@@ -1,6 +1,6 @@
 # Visual effects guide
 
-Open `/components/effects` in the running starter, or run `npm run storybook` and open **Foundation / Visual effects**. The gallery demonstrates light/dark surfaces, all four blur directions, three blur recipes, a scrolling header, edge fades, media controls, deterministic avatars and animated state icons. Its generated artwork is illustrative; no Playground artwork is bundled.
+Browse Progressive blur, Edge fade, Media scrim & glass actions, Soft gradients, State icon and Generated avatars in `/showcase`. Open `/components/effects` in the running starter, or run `npm run storybook` and open **Foundation / Visual effects**. The gallery demonstrates light/dark surfaces, all four blur directions, three blur recipes, a scrolling header, edge fades, media controls, deterministic avatars and animated state icons. Its generated artwork is illustrative; no Playground artwork is bundled.
 
 ## Import and ownership
 
@@ -9,7 +9,7 @@ import { ProgressiveBlur } from "@/components/visual/progressive-blur";
 import "@/components/visual/visual-effects.css";
 ```
 
-Import the opt-in stylesheet in the component or layout that owns the effect. `visual-guide.css` styles the demonstration only; do not import it into product screens. Shared controls still depend on the foundation's global typography and control styles. The effects use `--surface`, `--surface-muted`, light/dark color scheme and `--fx-surface-rgb`. Set the latter to the RGB channels of the actual canvas when rebranding; a white fade on a colored canvas creates an obvious seam.
+Visual components now include their effect stylesheet automatically, whether imported directly or through `components/library`. Explicitly import the stylesheet only when using CSS-only utilities such as `image-action` or `fx-elevated` without a visual component. `visual-guide.css` styles the demonstration only; do not import it into product screens. Shared controls still depend on the foundation's global typography and control styles. The effects use `--surface`, `--surface-muted` and the light/dark color scheme. Tint gradients resolve directly from `--surface`, including scoped themes. Override that semantic surface on a colored canvas to avoid a visible seam. Blur strengths live in `app/tokens.css`; effect shadow and motion aliases resolve to the Invariant system.
 
 ## Genuine progressive blur
 
@@ -100,7 +100,7 @@ The original stable hash chooses one of twelve palettes. Three radial SVG blooms
 
 ## Shadows and state transitions
 
-`fx-elevated` uses the source's three soft shadow layers, not a single heavy shadow. `StateIcon` now includes its required shared CSS: outgoing/incoming icons use opacity, scale and a small blur over 300ms. Without this stylesheet the copied component is incomplete. Keep one accessible button label that describes the current action, and use pressed state for toggles. The gallery includes a play/pause example. Reduced motion removes transition/filter animation.
+`fx-elevated` uses the shared Invariant surface shadow through `--fx-surface-shadow`, keeping elevation consistent with the rest of the starter. `StateIcon` uses the starter’s `app/controls.css`: outgoing/incoming icons use opacity, scale and a small blur over the shared normal duration and standard easing. Without this stylesheet the copied component is incomplete. Keep one accessible button label that describes the current action, and use pressed state for toggles. The gallery includes a play/pause example. Reduced motion removes transition/filter animation.
 
 ## Accessibility, browser support and performance
 

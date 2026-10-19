@@ -79,6 +79,16 @@
   --brand-soft: #edf4ee;
   --overlay: rgb(0 0 0 / 0.4);
   --fx-surface-rgb: 255 255 255;
+  --fx-blur-low: 4px;
+  --fx-blur-mid: 10px;
+  --fx-blur-high: 20px;
+  --fx-panel-low: 2px;
+  --fx-panel-mid: 6px;
+  --fx-panel-high: 12px;
+  --fx-surface-shadow: var(--surface-shadow);
+  --fx-motion-fast: var(--duration-fast);
+  --fx-motion-normal: var(--duration-normal);
+  --fx-motion-ease: var(--ease-standard);
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;

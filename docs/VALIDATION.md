@@ -1,14 +1,15 @@
 # Validation
 
-Validation for the unified Foundation and Invariant component library and the public demo.
+Validation for the unified Foundation and Invariant component library, visual effects previews, and public demo.
 
 ## Automated checks
 
-- `npm run check:ui:full` — passed. TypeScript, lint, design and contrast checks, production app build, Storybook build, and Playwright UI suite all completed. The UI suite reported 28 passed and 8 skipped project-specific repeats.
-- `npm run test:invariant` — passed. The suite reported 14 passed and 38 skipped project-specific repeats across desktop, phone, narrow, and reduced-motion projects. It checks all 50 Invariant previews, the 63-item sorted catalogue and legacy aliases, shared/legacy Button and Switch behavior, radio arrow-key and label selection, checkbox Space/disabled behavior, modal focus handling, mobile overflow, reduced motion, and host/preview token parity.
+- `npm run check:ui:full` — passed. TypeScript, lint, design and contrast checks, production app build, Storybook build, and Playwright UI suite all completed. The UI suite reported 28 passed and 8 skipped project-specific repeats. After the final reduced-transparency declaration-order adjustment, `npm run build` and the effects CSS verifier passed again.
+- `npm run test:invariant` — passed. The suite reported 31 passed and 77 project-specific skips across desktop, phone, narrow, and reduced-motion projects. It loads all 50 Invariant previews, checks the 68-item sorted catalogue and legacy aliases, shared/legacy Button and Switch behavior, radio arrow-key and label selection, checkbox Space/disabled behavior, modal focus handling, mobile overflow, reduced motion, and host/preview token parity.
 - `npm run test:demo` — passed, 3/3. It verifies the in-memory demo stays offline and isolated, route maps use synthetic pins, and demo chat upload remains guarded.
+- `node tests/verify-effects-build.mjs` — passed after production build. It checked 10 CSS files for 26 backdrop blur declarations, 11 masked layers, direction and gradient rules, unsupported-blur and reduced-transparency fallbacks, and reduced-motion behavior.
 
-The design check covers semantic foreground/background contrast in light and dark themes; its color parser converts OKLCH to sRGB before calculating contrast. The Invariant browser tests intercept non-local network requests, with a local fixture for the preview image.
+The design check covers semantic foreground/background contrast in light and dark themes; its color parser converts OKLCH to sRGB before calculating contrast. The Invariant browser tests intercept non-local network requests, with a local fixture for the preview image. New effects tests exercise progressive-blur recipes and all four strong edges, three blur layers and foreground clicks, edge-fade axis changes, media save/reduced-transparency behavior, StateIcon transitions, dark surface tint, opaque reduced-transparency fallback, and phone/narrow fit.
 
 ## Non-blocking build output
 
@@ -29,7 +30,7 @@ Playwright exercised desktop Chromium and emulated 390 px phone and 320 px narro
 - Manual review: original avatar artwork, selection controls, dark/light, modal labels/focus/Escape, and phone showcase layout.
 - Real-device keyboards, assistive technology, every interaction in all 50 components, and measured performance have not been comprehensively verified. ImageCarousel retains external sample image URLs.
 
-# Latest standalone demo validation — October 19, 2026
+# Standalone demo validation — October 19, 2026 (before visual-effects expansion)
 
 The owner-requested Yardwork demo extraction adds `/demo`, `/guide`, and `/showcase` while retaining the independent personal Cloudflare and GitHub configuration. No original Yardwork services or data were accessed.
 

@@ -1,4 +1,5 @@
 "use client";
+import "./visual-effects.css";
 import { useId } from "react";
 import { avatarIdentity } from "@/lib/gradient-identity";
 import { cn } from "@/lib/utils";

@@ -61,3 +61,10 @@ export { EmptyState } from "../../packages/invariant-ui/components/empty-state.j
 export { WorkspaceSwitcher } from "../../packages/invariant-ui/components/workspace-switcher.jsx";
 
 export { AskBar, type AskBarProps, type AskBarMessage } from "../ui/ask-bar";
+
+export { ProgressiveBlur, type BlurEdge } from "../visual/progressive-blur";
+export { EdgeFade } from "../visual/edge-fade";
+export { MediaScrim } from "../visual/media-scrim";
+export { GradientSurface } from "../visual/gradient-surface";
+export { GradientAvatar } from "../visual/gradient-avatar";
+export { StateIcon } from "../ui/state-icon";

@@ -1,3 +1,4 @@
+import "./visual-effects.css";
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 export type BlurEdge = "top" | "bottom" | "left" | "right";

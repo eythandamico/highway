@@ -27,7 +27,11 @@ const foundationEntries: CatalogueEntry[] = [
   { id: "card", name: "Glass surface", group: "Display" },
   { id: "status", name: "Status & feedback", group: "Display" },
   { id: "avatars", name: "Generated avatars", group: "Identity" },
-  { id: "gradients", name: "Gradients & blur", group: "Materials" },
+  { id: "state-icon", name: "State icon", group: "Actions" },
+  { id: "edge-fade", name: "Edge fade", group: "Materials" },
+  { id: "media-scrim", name: "Media scrim & glass actions", group: "Materials" },
+  { id: "progressive-blur", name: "Progressive blur", group: "Materials" },
+  { id: "gradients", name: "Soft gradients", group: "Materials" },
   { id: "navigation", name: "Office navigation", group: "Yardwork" },
   { id: "bookings", name: "Bookings chart", group: "Yardwork" },
   { id: "theme", name: "Scoped appearance", group: "Theming" },
@@ -79,7 +83,7 @@ async function waitForShowcaseHydration(page: Page) {
   await search.fill("__preview_ready__");
   await expect(page.getByText("No components match. Try another name.", { exact: true })).toBeVisible();
   await search.clear();
-  await expect(componentNav.getByRole("link")).toHaveCount(64);
+  await expect(componentNav.getByRole("link")).toHaveCount(68);
   return { search, componentNav };
 }
 
@@ -143,14 +147,19 @@ async function expectToggleKeyboardBehavior(toggle: Locator) {
   }
 }
 
-test("unified catalogue has 64 sorted entries, with legacy aliases resolved to shared components", async ({ page }, testInfo) => {
+async function choosePreviewOption(page: Page, label: string, value: string) {
+  await page.getByRole("combobox", { name: label, exact: true }).click();
+  await page.getByRole("option", { name: value, exact: true }).click();
+}
+
+test("unified catalogue has 68 sorted entries, with legacy aliases resolved to shared components", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Catalogue discovery and aliases run once on desktop.");
   expect(registry).toHaveLength(50);
   expect(new Set(registry.map((entry) => entry.id)).size).toBe(50);
   expect(new Set(registry.map((entry) => entry.previewId)).size).toBe(50);
-  expect(foundationEntries).toHaveLength(16);
-  expect(catalogue).toHaveLength(64);
-  expect(new Set(catalogue.map((entry) => entry.id)).size).toBe(64);
+  expect(foundationEntries).toHaveLength(20);
+  expect(catalogue).toHaveLength(68);
+  expect(new Set(catalogue.map((entry) => entry.id)).size).toBe(68);
 
   const { componentNav } = await loadShowcase(page, "button");
   const links = componentNav.getByRole("link");
@@ -163,6 +172,11 @@ test("unified catalogue has 64 sorted entries, with legacy aliases resolved to s
   await expect(componentNav.getByRole("link", { name: "Form fields", exact: true })).toBeVisible();
   await expect(componentNav.getByRole("link", { name: "Accessible select", exact: true })).toBeVisible();
   await expect(componentNav.getByRole("link", { name: "Ask bar", exact: true })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "Progressive blur", exact: true })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "Edge fade", exact: true })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "Media scrim & glass actions", exact: true })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "State icon", exact: true })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "Soft gradients", exact: true })).toBeVisible();
   await expect(componentNav.locator('a[href*="inv-button"]')).toHaveCount(0);
   await expect(componentNav.locator('a[href*="inv-toggle"]')).toHaveCount(0);
 
@@ -212,6 +226,180 @@ test("showcase Glass surface Card becomes opaque for reduced transparency", asyn
   // Card background-color transitions when its raised material is replaced by the opaque fallback.
   await expect.poll(() => card.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(opaqueCardColor);
   await expect.poll(() => card.evaluate((element) => getComputedStyle(element, "::before").backdropFilter)).toBe("none");
+  await mediaSession.detach();
+});
+
+test("progressive blur recipes, edges, and foreground controls remain independent", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Progressive blur recipe and direction behavior runs once on desktop.");
+  await loadShowcase(page, "progressive-blur");
+  const effect = page.locator(".library-preview .fx-progressive");
+  const layers = effect.locator(":scope > span");
+
+  await expect(effect).toHaveAttribute("aria-hidden", "true");
+  await expect(effect).toHaveAttribute("data-recipe", "header");
+  await expect(effect).toHaveAttribute("data-edge", "top");
+  await expect(layers).toHaveCount(3);
+  expect(await layers.evaluateAll((spans) => spans.map((span) => getComputedStyle(span).backdropFilter)))
+    .toEqual(["blur(4px)", "blur(10px)", "blur(20px)"]);
+  const headerMasks = await layers.evaluateAll((spans) => spans.map((span) => getComputedStyle(span).maskImage));
+  expect(headerMasks).toHaveLength(3);
+  expect(headerMasks.every((mask) => mask.includes("linear-gradient"))).toBe(true);
+
+  await choosePreviewOption(page, "Recipe", "rail");
+  await expect(effect).toHaveAttribute("data-recipe", "rail");
+  expect(await layers.evaluateAll((spans) => spans.map((span) => getComputedStyle(span).backdropFilter)))
+    .toEqual(["blur(4px)", "blur(10px)", "blur(20px)"]);
+  await choosePreviewOption(page, "Recipe", "panel");
+  await expect(effect).toHaveAttribute("data-recipe", "panel");
+  expect(await layers.evaluateAll((spans) => spans.map((span) => getComputedStyle(span).backdropFilter)))
+    .toEqual(["blur(2px)", "blur(6px)", "blur(12px)"]);
+
+  const directions = { top: "to bottom", bottom: "to top", left: "to right", right: "to left" };
+  for (const [edge, direction] of Object.entries(directions)) {
+    await choosePreviewOption(page, "Strong edge", edge);
+    await expect(effect).toHaveAttribute("data-edge", edge);
+    await expect.poll(() => effect.evaluate((element) => getComputedStyle(element).getPropertyValue("--fx-direction").trim()))
+      .toBe(direction);
+  }
+
+  const foregroundAction = page.getByRole("button", { name: "Test foreground action" });
+  await foregroundAction.click();
+  await expect(page.getByRole("status")).toHaveText("Foreground action count: 1");
+  await foregroundAction.click();
+  await expect(page.getByRole("status")).toHaveText("Foreground action count: 2");
+  expect(await effect.evaluate((element) => getComputedStyle(element).pointerEvents)).toBe("none");
+});
+
+test("edge fade changes axis while remaining decorative and non-interactive", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Edge fade axis behavior runs once on desktop.");
+  await loadShowcase(page, "edge-fade");
+  const edgeFade = page.locator(".library-preview .fx-edge-fade");
+  await expect(edgeFade).toHaveAttribute("aria-hidden", "true");
+  await expect(edgeFade).toHaveAttribute("data-axis", "horizontal");
+  expect(await edgeFade.evaluate((element) => getComputedStyle(element).pointerEvents)).toBe("none");
+  const horizontal = await edgeFade.evaluate((element) => getComputedStyle(element).backgroundImage);
+  expect(horizontal).toContain("to right");
+
+  await choosePreviewOption(page, "Fade axis", "vertical");
+  await expect(edgeFade).toHaveAttribute("data-axis", "vertical");
+  await expect.poll(() => edgeFade.evaluate((element) => getComputedStyle(element).backgroundImage)).not.toBe(horizontal);
+});
+
+test("media scrim keeps foreground actions usable and removes glass under reduced transparency", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Media foreground and reduced-transparency behavior runs once on desktop.");
+  await loadShowcase(page, "media-scrim");
+  const scrim = page.locator(".library-preview .fx-media-scrim");
+  const foreground = page.locator(".library-preview .fx-media-foreground");
+  const save = page.getByRole("button", { name: "Save example" });
+  await expect(scrim).toHaveAttribute("aria-hidden", "true");
+  await expect(foreground).toContainText("Keep the caption clear.");
+  expect(await scrim.evaluate((element) => getComputedStyle(element).pointerEvents)).toBe("none");
+  expect(await foreground.evaluate((element) => Number(getComputedStyle(element).zIndex))).toBeGreaterThan(0);
+
+  await save.click();
+  await expect(page.getByRole("button", { name: "Unsave example" })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("status")).toHaveText("Example saved locally.");
+
+  const mediaSession = await page.context().newCDPSession(page);
+  await mediaSession.send("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-transparency", value: "reduce" }],
+  });
+  await expect.poll(() => page.evaluate(() => matchMedia("(prefers-reduced-transparency: reduce)").matches)).toBe(true);
+  const savedAction = page.getByRole("button", { name: "Unsave example" });
+  await expect.poll(() => savedAction.evaluate((element) => getComputedStyle(element).backdropFilter)).toBe("none");
+  await expect.poll(() => savedAction.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe("rgb(36, 36, 36)");
+  await savedAction.click();
+  await expect(page.getByRole("button", { name: "Save example" })).toHaveAttribute("aria-pressed", "false");
+  await mediaSession.detach();
+});
+
+test("state icon changes both mounted glyphs and follows the reduced-motion preference", async ({ page }, testInfo) => {
+  test.skip(!["desktop", "reduced-motion"].includes(testInfo.project.name), "StateIcon behavior runs on desktop and reduced-motion projects.");
+  await loadShowcase(page, "state-icon");
+  const toggle = page.getByRole("button", { name: "Toggle icon" });
+  const status = page.getByRole("status");
+  const icon = page.locator(".library-preview .state-icon");
+  const glyphs = icon.locator(":scope > span");
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(status).toHaveText("Play icon");
+  await expect(glyphs).toHaveCount(2);
+  await expect(glyphs.nth(0)).toHaveAttribute("data-visible", "true");
+  await expect(glyphs.nth(1)).toHaveAttribute("data-visible", "false");
+
+  if (testInfo.project.name === "reduced-motion") {
+    expect(await glyphs.first().evaluate((element) => getComputedStyle(element).transitionProperty)).toBe("none");
+  } else {
+    await expect.poll(() => glyphs.first().evaluate((element) => getComputedStyle(element).transitionDuration))
+      .toBe("0.2s, 0.2s, 0.2s");
+  }
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(status).toHaveText("Pause icon");
+  await expect(glyphs.nth(0)).toHaveAttribute("data-visible", "false");
+  await expect(glyphs.nth(1)).toHaveAttribute("data-visible", "true");
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(status).toHaveText("Play icon");
+});
+
+test("visual effect previews fit phone and narrow showcase widths", async ({ page }, testInfo) => {
+  test.skip(!["phone", "narrow"].includes(testInfo.project.name), "Effects layout is checked in phone and narrow viewport projects.");
+  for (const id of ["progressive-blur", "edge-fade", "media-scrim"]) {
+    await loadShowcase(page, id);
+    const geometry = await page.evaluate(() => {
+      const preview = document.querySelector<HTMLElement>(".library-preview")!;
+      const visual = preview.querySelector<HTMLElement>(".fx-demo-stage, .fx-edge-demo, .fx-media-frame")!;
+      return {
+        viewport: document.documentElement.clientWidth,
+        document: document.documentElement.scrollWidth,
+        preview: preview.getBoundingClientRect().width,
+        visual: visual.getBoundingClientRect().width,
+        visualRight: visual.getBoundingClientRect().right,
+      };
+    });
+    expect(geometry.document - geometry.viewport).toBeLessThanOrEqual(1);
+    expect(geometry.preview).toBeLessThanOrEqual(geometry.viewport);
+    expect(geometry.visual).toBeGreaterThan(0);
+    expect(geometry.visualRight).toBeLessThanOrEqual(geometry.viewport + 1);
+  }
+});
+
+test("progressive blur uses theme surface tint and opaque reduced-transparency fallback", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Effect theme and transparency computation runs once on desktop.");
+  await loadShowcase(page, "progressive-blur");
+  await choosePreviewOption(page, "Recipe", "panel");
+  const root = page.locator("html");
+  const themeButton = page.getByRole("button", { name: "Toggle light and dark theme" });
+  if (await root.evaluate((element) => element.classList.contains("dark"))) await themeButton.click();
+  await expect(root).not.toHaveClass(/\bdark\b/);
+
+  const surfaceColor = () => page.evaluate(() => {
+    const sample = document.createElement("div");
+    sample.style.backgroundColor = "var(--surface)";
+    document.body.appendChild(sample);
+    const color = getComputedStyle(sample).backgroundColor;
+    sample.remove();
+    return color;
+  });
+  const lightSurface = await surfaceColor();
+  const tint = page.locator(".library-preview .fx-progressive");
+  await themeButton.click();
+  await expect(root).toHaveClass(/\bdark\b/);
+  const darkSurface = await surfaceColor();
+  expect(darkSurface).not.toBe(lightSurface);
+
+  const mediaSession = await page.context().newCDPSession(page);
+  await mediaSession.send("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-transparency", value: "reduce" }],
+  });
+  await expect.poll(() => page.evaluate(() => matchMedia("(prefers-reduced-transparency: reduce)").matches)).toBe(true);
+  const layers = tint.locator(":scope > span");
+  await expect.poll(() => layers.evaluateAll((spans) => spans.map((span) => getComputedStyle(span).backdropFilter)))
+    .toEqual(["none", "none", "none"]);
+  await expect.poll(() => tint.evaluate((element) => getComputedStyle(element, "::after").backgroundImage)).toBe("none");
+  await expect.poll(() => tint.evaluate((element) => getComputedStyle(element, "::after").backgroundColor)).toBe(darkSurface);
+  expect(await tint.evaluate((element) => getComputedStyle(element).pointerEvents)).toBe("none");
   await mediaSession.detach();
 });
 
@@ -344,11 +532,28 @@ test("Yardwork compact Ask bar expands and transfers focus from its label", asyn
     );
   });
   await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => resolve())));
-  await page.evaluate(() => window.scrollTo(0, 240));
-  await expect(composer).toHaveAttribute("data-compact", "true");
-  const expander = page.getByRole("button", { name: "Ask Yardwork" });
-  await expect(expander).toBeVisible();
-  await expander.focus();
+  const focusState = await page.evaluate(() => new Promise((resolve, reject) => {
+    // Keep the scroll threshold deterministic even if the app enables smooth scrolling.
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 240);
+    let frames = 0;
+    const focusWhenCompact = () => {
+      const form = document.querySelector<HTMLFormElement>('form[aria-label="Ask Yardwork composer"]');
+      const button = form?.querySelector<HTMLButtonElement>(".ui-ask-expand");
+      if (form?.dataset.compact === "true" && button?.getAttribute("aria-hidden") === "false" && button.tabIndex === 0) {
+        const state = { compact: form.dataset.compact, ariaHidden: button.getAttribute("aria-hidden"), tabIndex: button.tabIndex, label: button.textContent?.trim() };
+        // Focus dispatches the real button event; React then expands it and transfers focus to the input.
+        button.focus();
+        resolve(state);
+      } else if (frames++ < 120) {
+        requestAnimationFrame(focusWhenCompact);
+      } else {
+        reject(new Error("Compact composer expander did not remain keyboard-focusable"));
+      }
+    };
+    requestAnimationFrame(focusWhenCompact);
+  }));
+  expect(focusState).toEqual({ compact: "true", ariaHidden: "false", tabIndex: 0, label: "Ask Yardwork" });
   await expect(input).toBeFocused();
   await expect(composer).toHaveAttribute("data-compact", "false");
 });
@@ -403,7 +608,7 @@ test("unified catalogue search filters names across both component sets", async 
   await expect(page.getByText("No components match. Try another name.", { exact: true })).toBeVisible();
 
   await search.clear();
-  await expect(links).toHaveCount(64);
+  await expect(links).toHaveCount(68);
 });
 
 test("segmented control preview updates its selected state", async ({ page }, testInfo) => {

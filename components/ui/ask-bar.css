@@ -79,6 +79,6 @@
 }
 
 @media (prefers-reduced-transparency: reduce) {
- .ui-ask-capsule,.ui-ask-reply { background: var(--popover); backdrop-filter: none; -webkit-backdrop-filter: none; }
- .ui-ask-glass { background: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+ .ui-ask-capsule,.ui-ask-reply { background: var(--popover); -webkit-backdrop-filter: none; backdrop-filter: none; }
+ .ui-ask-glass { background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
