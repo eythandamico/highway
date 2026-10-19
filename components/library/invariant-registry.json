@@ -1,0 +1,2227 @@
+[
+  {
+    "id": "inv-bottom-nav",
+    "name": "BottomNav",
+    "group": "Navigation",
+    "description": "Floating bottom navigation bar with tab switching, add menu, profile menu, and chat input morph.",
+    "source": "packages/invariant-ui/components/bottom-nav.jsx",
+    "previewId": "bottom-nav",
+    "code": "import { BottomNav } from \"@/packages/invariant-ui/components/bottom-nav.jsx\";\n\nimport { BottomNav } from './components/bottom-nav'\n\n<BottomNav\n  tabs={[\n    { id: 'home', label: 'Home', icon: 'home' },\n    { id: 'search', label: 'Search', icon: 'search' },\n    { id: 'chat', label: 'Chat', icon: 'message' },\n  ]}\n  activeTab=\"home\"\n  onTabChange={(id) => setActiveTab(id)}\n  darkMode={isDark}\n  onToggleDarkMode={() => setIsDark(!isDark)}\n/>",
+    "documentation": "# BottomNav\n\nFloating bottom navigation bar with tab switching, add menu, profile menu, and chat input morph.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| tabs | `Array<{id, label, icon}>` | `[]` | Tab definitions |\n| activeTab | `string` | \u2014 | Currently active tab id |\n| onTabChange | `(id) => void` | \u2014 | Tab change callback |\n| addItems | `Array<{label, icon, iconColor?, onAction}>` | `[]` | Create menu items |\n| notifications | `{[tabId]: number}` | `{}` | Notification counts per tab |\n| avatarUrl | `string` | \u2014 | Profile image URL |\n| profile | `{name, email}` | \u2014 | User profile data |\n| profileItems | `Array<{label, icon, danger?, onAction}>` | `[]` | Profile menu items |\n| chatTabId | `string` | `'chat'` | Which tab triggers chat mode |\n| onSendMessage | `(msg) => void` | \u2014 | Chat send callback |\n| darkMode | `boolean` | `false` | Current dark mode state |\n| onToggleDarkMode | `() => void` | \u2014 | Dark mode toggle callback |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `lib/use-is-mobile.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\nimport { BottomNav } from './components/bottom-nav'\n\n<BottomNav\n  tabs={[\n    { id: 'home', label: 'Home', icon: 'home' },\n    { id: 'search', label: 'Search', icon: 'search' },\n    { id: 'chat', label: 'Chat', icon: 'message' },\n  ]}\n  activeTab=\"home\"\n  onTabChange={(id) => setActiveTab(id)}\n  darkMode={isDark}\n  onToggleDarkMode={() => setIsDark(!isDark)}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-bg`, `--inv-nav`, `--inv-accent`\n",
+    "props": [
+      [
+        "tabs",
+        "Array<{id, label, icon}>",
+        "[]",
+        "Tab definitions"
+      ],
+      [
+        "activeTab",
+        "string",
+        "\u2014",
+        "Currently active tab id"
+      ],
+      [
+        "onTabChange",
+        "(id) => void",
+        "\u2014",
+        "Tab change callback"
+      ],
+      [
+        "addItems",
+        "Array<{label, icon, iconColor?, onAction}>",
+        "[]",
+        "Create menu items"
+      ],
+      [
+        "notifications",
+        "{[tabId]: number}",
+        "{}",
+        "Notification counts per tab"
+      ],
+      [
+        "avatarUrl",
+        "string",
+        "\u2014",
+        "Profile image URL"
+      ],
+      [
+        "profile",
+        "{name, email}",
+        "\u2014",
+        "User profile data"
+      ],
+      [
+        "profileItems",
+        "Array<{label, icon, danger?, onAction}>",
+        "[]",
+        "Profile menu items"
+      ],
+      [
+        "chatTabId",
+        "string",
+        "'chat'",
+        "Which tab triggers chat mode"
+      ],
+      [
+        "onSendMessage",
+        "(msg) => void",
+        "\u2014",
+        "Chat send callback"
+      ],
+      [
+        "darkMode",
+        "boolean",
+        "false",
+        "Current dark mode state"
+      ],
+      [
+        "onToggleDarkMode",
+        "() => void",
+        "\u2014",
+        "Dark mode toggle callback"
+      ]
+    ]
+  },
+  {
+    "id": "inv-profile-menu",
+    "name": "ProfileMenu",
+    "group": "Navigation",
+    "description": "Avatar button with dropdown menu for profile actions.",
+    "source": "packages/invariant-ui/components/profile-menu.jsx",
+    "previewId": "profile",
+    "code": "import { ProfileMenu } from \"@/packages/invariant-ui/components/profile-menu.jsx\";\n\n<ProfileMenu\n  avatarUrl=\"/avatar.jpg\"\n  profile={{ name: 'Jane', email: 'jane@example.com' }}\n  profileItems={[\n    { label: 'Settings', icon: 'settings', onAction: () => {} },\n    { label: 'Log out', icon: 'logout', onAction: () => {} },\n  ]}\n/>",
+    "documentation": "# ProfileMenu\n\nAvatar button with dropdown menu for profile actions.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| avatarUrl | `string` | \u2014 | Profile image URL (required) |\n| profile | `{name, email}` | \u2014 | User info shown in menu |\n| profileItems | `Array<{label, icon, onAction}>` | `[]` | Menu action items |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<ProfileMenu\n  avatarUrl=\"/avatar.jpg\"\n  profile={{ name: 'Jane', email: 'jane@example.com' }}\n  profileItems={[\n    { label: 'Settings', icon: 'settings', onAction: () => {} },\n    { label: 'Log out', icon: 'logout', onAction: () => {} },\n  ]}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-shadow`, `--inv-outline`, `--inv-accent`, `--inv-menu-bg`, `--inv-menu-text`, `--inv-menu-text-active`, `--inv-menu-hover-bg`, `--inv-menu-divider`, `--inv-menu-shadow`\n",
+    "props": [
+      [
+        "avatarUrl",
+        "string",
+        "\u2014",
+        "Profile image URL (required)"
+      ],
+      [
+        "profile",
+        "{name, email}",
+        "\u2014",
+        "User info shown in menu"
+      ],
+      [
+        "profileItems",
+        "Array<{label, icon, onAction}>",
+        "[]",
+        "Menu action items"
+      ]
+    ]
+  },
+  {
+    "id": "inv-search-bar",
+    "name": "SearchBar",
+    "group": "Navigation",
+    "description": "Styled search input with icon and keyboard shortcut badge.",
+    "source": "packages/invariant-ui/components/search-bar.jsx",
+    "previewId": "search",
+    "code": "import { SearchBar } from \"@/packages/invariant-ui/components/search-bar.jsx\";\n\n<SearchBar placeholder=\"Search anything...\" onSearch={(q) => filter(q)} />",
+    "documentation": "# SearchBar\n\nStyled search input with icon and keyboard shortcut badge.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| placeholder | `string` | `'Search...'` | Input placeholder |\n| shortcutKey | `string` | `'\u2318K'` | Shortcut badge text |\n| className | `string` | `''` | Additional CSS classes |\n| onSearch | `(value) => void` | \u2014 | Called on input change |\n| autoFocus | `boolean` | `false` | Auto-focus on mount |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<SearchBar placeholder=\"Search anything...\" onSearch={(q) => filter(q)} />\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-bg-alt`, `--inv-border`, `--inv-outline`, `--inv-accent`\n",
+    "props": [
+      [
+        "placeholder",
+        "string",
+        "'Search...'",
+        "Input placeholder"
+      ],
+      [
+        "shortcutKey",
+        "string",
+        "'\u2318K'",
+        "Shortcut badge text"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ],
+      [
+        "onSearch",
+        "(value) => void",
+        "\u2014",
+        "Called on input change"
+      ],
+      [
+        "autoFocus",
+        "boolean",
+        "false",
+        "Auto-focus on mount"
+      ]
+    ]
+  },
+  {
+    "id": "inv-search-toggle",
+    "name": "SearchToggle",
+    "group": "Navigation",
+    "description": "Square icon button that morphs into a full search input on click.",
+    "source": "packages/invariant-ui/components/search-toggle.jsx",
+    "previewId": "search-toggle",
+    "code": "import { SearchToggle } from \"@/packages/invariant-ui/components/search-toggle.jsx\";\n\n<SearchToggle onSearch={(q) => filter(q)} />",
+    "documentation": "# SearchToggle\n\nSquare icon button that morphs into a full search input on click.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| placeholder | `string` | `'Search anything...'` | Input placeholder |\n| shortcutKey | `string` | `'\u2318K'` | Shortcut badge text |\n| onSearch | `(value) => void` | \u2014 | Called on input change |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<SearchToggle onSearch={(q) => filter(q)} />\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-nav-hover-bg`, `--inv-bg-alt`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "placeholder",
+        "string",
+        "'Search anything...'",
+        "Input placeholder"
+      ],
+      [
+        "shortcutKey",
+        "string",
+        "'\u2318K'",
+        "Shortcut badge text"
+      ],
+      [
+        "onSearch",
+        "(value) => void",
+        "\u2014",
+        "Called on input change"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-segmented-control",
+    "name": "SegmentedControl",
+    "group": "Navigation",
+    "description": "Tab switcher with sliding indicator animation. Supports text labels, icons, or both.",
+    "source": "packages/invariant-ui/components/segmented-control.jsx",
+    "previewId": "segmented-tabs",
+    "code": "import { SegmentedControl } from \"@/packages/invariant-ui/components/segmented-control.jsx\";\n\n<SegmentedControl\n  tabs={[\n    { id: 'all', label: 'All' },\n    { id: 'active', label: 'Active' },\n    { id: 'archived', label: 'Archived' },\n  ]}\n  activeTab=\"all\"\n  onTabChange={setTab}\n/>",
+    "documentation": "# SegmentedControl\n\nTab switcher with sliding indicator animation. Supports text labels, icons, or both.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| tabs | `Array<{id, label?, icon?}>` | `[]` | Tab definitions |\n| activeTab | `string` | \u2014 | Active tab id |\n| onTabChange | `(id) => void` | \u2014 | Tab change callback |\n| variant | `'default'\\|'subdued'` | `'default'` | `default`: white bg + hover indicator. `subdued`: bg-alt track + raised white indicator |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<SegmentedControl\n  tabs={[\n    { id: 'all', label: 'All' },\n    { id: 'active', label: 'Active' },\n    { id: 'archived', label: 'Archived' },\n  ]}\n  activeTab=\"all\"\n  onTabChange={setTab}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-nav-hover-bg`, `--inv-shadow-sm`, `--inv-accent`\n",
+    "props": [
+      [
+        "tabs",
+        "Array<{id, label?, icon?}>",
+        "[]",
+        "Tab definitions"
+      ],
+      [
+        "activeTab",
+        "string",
+        "\u2014",
+        "Active tab id"
+      ],
+      [
+        "onTabChange",
+        "(id) => void",
+        "\u2014",
+        "Tab change callback"
+      ],
+      [
+        "variant",
+        "'default'|'subdued'",
+        "'default'",
+        "default: white bg + hover indicator. subdued: bg-alt track + raised white indicator"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-tabs",
+    "name": "Tabs",
+    "group": "Navigation",
+    "description": "Horizontal tab bar with sliding underline indicator. Supports optional count badges.",
+    "source": "packages/invariant-ui/components/tabs.jsx",
+    "previewId": "tabs",
+    "code": "import { Tabs } from \"@/packages/invariant-ui/components/tabs.jsx\";\n\n<Tabs\n  tabs={[\n    { id: 'all', label: 'All', count: 24 },\n    { id: 'active', label: 'Active', count: 12 },\n    { id: 'archived', label: 'Archived' },\n  ]}\n  activeTab=\"all\"\n  onTabChange={setTab}\n/>",
+    "documentation": "# Tabs\n\nHorizontal tab bar with sliding underline indicator. Supports optional count badges.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| tabs | `Array<{ id, label, count? }>` | `[]` | Tab definitions |\n| activeTab | `string` | \u2014 | Active tab id |\n| onTabChange | `function` | \u2014 | Called with selected tab id |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Tabs\n  tabs={[\n    { id: 'all', label: 'All', count: 24 },\n    { id: 'active', label: 'Active', count: 12 },\n    { id: 'archived', label: 'Archived' },\n  ]}\n  activeTab=\"all\"\n  onTabChange={setTab}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-muted`, `--inv-border`\n",
+    "props": [
+      [
+        "tabs",
+        "Array<{ id, label, count? }>",
+        "[]",
+        "Tab definitions"
+      ],
+      [
+        "activeTab",
+        "string",
+        "\u2014",
+        "Active tab id"
+      ],
+      [
+        "onTabChange",
+        "function",
+        "\u2014",
+        "Called with selected tab id"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-workspace-switcher",
+    "name": "WorkspaceSwitcher",
+    "group": "Navigation",
+    "description": "Displays current workspace with dropdown to switch between workspaces.",
+    "source": "packages/invariant-ui/components/workspace-switcher.jsx",
+    "previewId": "startup",
+    "code": "import { WorkspaceSwitcher } from \"@/packages/invariant-ui/components/workspace-switcher.jsx\";\n\n<WorkspaceSwitcher\n  currentStartup={{ name: 'Acme', initials: 'AC', color: '#6366f1', slug: 'acme' }}\n  startups={workspaces}\n  onStartupChange={setSlug}\n/>",
+    "documentation": "# WorkspaceSwitcher\n\nDisplays current workspace with dropdown to switch between workspaces.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| currentStartup | `{name, slug, initials, color, avatarUrl?}` | \u2014 | Active workspace |\n| startups | `Array<{name, slug, initials, color, avatarUrl?}>` | `[]` | All workspaces |\n| onStartupChange | `(slug) => void` | \u2014 | Switch callback |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<WorkspaceSwitcher\n  currentStartup={{ name: 'Acme', initials: 'AC', color: '#6366f1', slug: 'acme' }}\n  startups={workspaces}\n  onStartupChange={setSlug}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-muted`, `--inv-accent`, `--inv-shadow`, `--inv-outline`, `--inv-menu-bg`, `--inv-menu-text`, `--inv-menu-text-active`, `--inv-menu-hover-bg`, `--inv-menu-divider`, `--inv-menu-shadow`\n",
+    "props": [
+      [
+        "currentStartup",
+        "{name, slug, initials, color, avatarUrl?}",
+        "\u2014",
+        "Active workspace"
+      ],
+      [
+        "startups",
+        "Array<{name, slug, initials, color, avatarUrl?}>",
+        "[]",
+        "All workspaces"
+      ],
+      [
+        "onStartupChange",
+        "(slug) => void",
+        "\u2014",
+        "Switch callback"
+      ]
+    ]
+  },
+  {
+    "id": "inv-checkbox",
+    "name": "Checkbox",
+    "group": "Inputs",
+    "description": "Single checkbox with optional label. Uses accent color when checked.",
+    "source": "packages/invariant-ui/components/checkbox.jsx",
+    "previewId": "checkbox",
+    "code": "import { Checkbox } from \"@/packages/invariant-ui/components/checkbox.jsx\";\n\n<Checkbox checked={agreed} onChange={setAgreed} label=\"I agree to the terms\" />\n<Checkbox checked={darkMode} onChange={setDarkMode} label=\"Dark mode\" />",
+    "documentation": "# Checkbox\n\nSingle checkbox with optional label. Uses accent color when checked.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| checked | `boolean` | `false` | Checked state |\n| onChange | `function` | \u2014 | Called with new boolean |\n| label | `string` | \u2014 | Label text |\n| disabled | `boolean` | `false` | Disable checkbox |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Checkbox checked={agreed} onChange={setAgreed} label=\"I agree to the terms\" />\n<Checkbox checked={darkMode} onChange={setDarkMode} label=\"Dark mode\" />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-accent`, `--inv-surface`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "checked",
+        "boolean",
+        "false",
+        "Checked state"
+      ],
+      [
+        "onChange",
+        "function",
+        "\u2014",
+        "Called with new boolean"
+      ],
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Label text"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disable checkbox"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-number-input",
+    "name": "NumberInput",
+    "group": "Inputs",
+    "description": "Numeric input with +/- stepper buttons, min/max bounds, and step size.",
+    "source": "packages/invariant-ui/components/number-input.jsx",
+    "previewId": "number-input",
+    "code": "import { NumberInput } from \"@/packages/invariant-ui/components/number-input.jsx\";\n\n<NumberInput label=\"Quantity\" value={qty} onChange={setQty} min={0} max={99} />\n<NumberInput value={temp} onChange={setTemp} step={0.5} />",
+    "documentation": "# NumberInput\n\nNumeric input with +/- stepper buttons, min/max bounds, and step size.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Input label |\n| value | `number` | `0` | Current value |\n| onChange | `function` | \u2014 | Called with new number |\n| min | `number` | \u2014 | Minimum value |\n| max | `number` | \u2014 | Maximum value |\n| step | `number` | `1` | Increment/decrement step |\n| disabled | `boolean` | `false` | Disable input |\n| error | `string` | \u2014 | Error message |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<NumberInput label=\"Quantity\" value={qty} onChange={setQty} min={0} max={99} />\n<NumberInput value={temp} onChange={setTemp} step={0.5} />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-muted`, `--inv-surface`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`, `--inv-accent`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Input label"
+      ],
+      [
+        "value",
+        "number",
+        "0",
+        "Current value"
+      ],
+      [
+        "onChange",
+        "function",
+        "\u2014",
+        "Called with new number"
+      ],
+      [
+        "min",
+        "number",
+        "\u2014",
+        "Minimum value"
+      ],
+      [
+        "max",
+        "number",
+        "\u2014",
+        "Maximum value"
+      ],
+      [
+        "step",
+        "number",
+        "1",
+        "Increment/decrement step"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disable input"
+      ],
+      [
+        "error",
+        "string",
+        "\u2014",
+        "Error message"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-pin-input",
+    "name": "PinInput",
+    "group": "Inputs",
+    "description": "Row of individual digit boxes for 2FA/OTP codes. Auto-advances focus on input, supports paste, and arrow key navigation.",
+    "source": "packages/invariant-ui/components/pin-input.jsx",
+    "previewId": "pin-input",
+    "code": "import { PinInput } from \"@/packages/invariant-ui/components/pin-input.jsx\";\n\n<PinInput value={code} onChange={setCode} />\n<PinInput length={4} value={pin} onChange={setPin} error=\"Invalid code\" />",
+    "documentation": "# PinInput\n\nRow of individual digit boxes for 2FA/OTP codes. Auto-advances focus on input, supports paste, and arrow key navigation.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| length | `number` | `6` | Number of digit boxes |\n| value | `string` | `''` | Current value |\n| onChange | `function` | \u2014 | Called with full string on change |\n| error | `string` | \u2014 | Error message |\n| disabled | `boolean` | `false` | Disable all inputs |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<PinInput value={code} onChange={setCode} />\n<PinInput length={4} value={pin} onChange={setPin} error=\"Invalid code\" />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-surface`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`, `--inv-accent`\n",
+    "props": [
+      [
+        "length",
+        "number",
+        "6",
+        "Number of digit boxes"
+      ],
+      [
+        "value",
+        "string",
+        "''",
+        "Current value"
+      ],
+      [
+        "onChange",
+        "function",
+        "\u2014",
+        "Called with full string on change"
+      ],
+      [
+        "error",
+        "string",
+        "\u2014",
+        "Error message"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disable all inputs"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-radio-group",
+    "name": "RadioGroup",
+    "group": "Inputs",
+    "description": "Group of radio options with vertical or horizontal layout.",
+    "source": "packages/invariant-ui/components/radio-group.jsx",
+    "previewId": "radio-group",
+    "code": "import { RadioGroup } from \"@/packages/invariant-ui/components/radio-group.jsx\";\n\n<RadioGroup\n  label=\"Plan\"\n  options={[\n    { id: 'free', label: 'Free' },\n    { id: 'pro', label: 'Pro' },\n    { id: 'team', label: 'Team' },\n  ]}\n  value={plan}\n  onChange={setPlan}\n/>",
+    "documentation": "# RadioGroup\n\nGroup of radio options with vertical or horizontal layout.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| options | `Array<{ id, label }>` | `[]` | Radio options |\n| value | `string` | \u2014 | Selected option id |\n| onChange | `function` | \u2014 | Called with selected id |\n| label | `string` | \u2014 | Group label |\n| direction | `'vertical'\\|'horizontal'` | `'vertical'` | Layout direction |\n| disabled | `boolean` | `false` | Disable all options |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<RadioGroup\n  label=\"Plan\"\n  options={[\n    { id: 'free', label: 'Free' },\n    { id: 'pro', label: 'Pro' },\n    { id: 'team', label: 'Team' },\n  ]}\n  value={plan}\n  onChange={setPlan}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-accent`, `--inv-surface`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "options",
+        "Array<{ id, label }>",
+        "[]",
+        "Radio options"
+      ],
+      [
+        "value",
+        "string",
+        "\u2014",
+        "Selected option id"
+      ],
+      [
+        "onChange",
+        "function",
+        "\u2014",
+        "Called with selected id"
+      ],
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Group label"
+      ],
+      [
+        "direction",
+        "'vertical'|'horizontal'",
+        "'vertical'",
+        "Layout direction"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disable all options"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-select",
+    "name": "Select",
+    "group": "Inputs",
+    "description": "Classic dropdown select with label, slide animation, and checkmark on selected option.",
+    "source": "packages/invariant-ui/components/select.jsx",
+    "previewId": "select",
+    "code": "import { Select } from \"@/packages/invariant-ui/components/select.jsx\";\n\n<Select\n  label=\"Model\"\n  options={[\n    { id: 'sonnet', label: 'Sonnet 4' },\n    { id: 'opus', label: 'Opus 4' },\n  ]}\n  value={selected}\n  onChange={setSelected}\n/>",
+    "documentation": "# Select\n\nClassic dropdown select with label, slide animation, and checkmark on selected option.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Label above the select |\n| options | `Array<{id, label}>` | `[]` | Options list |\n| value | `string` | \u2014 | Selected option id |\n| onChange | `(id) => void` | \u2014 | Change callback |\n| placeholder | `string` | `'Select...'` | Placeholder text |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<Select\n  label=\"Model\"\n  options={[\n    { id: 'sonnet', label: 'Sonnet 4' },\n    { id: 'opus', label: 'Opus 4' },\n  ]}\n  value={selected}\n  onChange={setSelected}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-muted`, `--inv-surface`, `--inv-accent`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`, `--inv-menu-bg`, `--inv-menu-text-active`, `--inv-menu-hover-bg`, `--inv-menu-shadow`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Label above the select"
+      ],
+      [
+        "options",
+        "Array<{id, label}>",
+        "[]",
+        "Options list"
+      ],
+      [
+        "value",
+        "string",
+        "\u2014",
+        "Selected option id"
+      ],
+      [
+        "onChange",
+        "(id) => void",
+        "\u2014",
+        "Change callback"
+      ],
+      [
+        "placeholder",
+        "string",
+        "'Select...'",
+        "Placeholder text"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-slider-input",
+    "name": "SliderInput",
+    "group": "Inputs",
+    "description": "Progress-bar style range slider with a draggable divider, label on the left, and value on the right. The filled portion represents the current value.",
+    "source": "packages/invariant-ui/components/slider-input.jsx",
+    "previewId": "slider-input",
+    "code": "import { SliderInput } from \"@/packages/invariant-ui/components/slider-input.jsx\";\n\n<SliderInput label=\"Width\" value={width} onChange={setWidth} min={0} max={500} suffix=\"px\" />\n<SliderInput label=\"Opacity\" value={opacity} onChange={setOpacity} min={0} max={1} step={0.01} />",
+    "documentation": "# SliderInput\n\nProgress-bar style range slider with a draggable divider, label on the left, and value on the right. The filled portion represents the current value.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Label text (displayed left side) |\n| value | `number` | `0` | Current value |\n| onChange | `function` | \u2014 | Called with new number |\n| min | `number` | `0` | Minimum value |\n| max | `number` | `100` | Maximum value |\n| step | `number` | `1` | Step increment |\n| suffix | `string` | `''` | Unit suffix after value (e.g. `'px'`, `'%'`) |\n| disabled | `boolean` | `false` | Disable slider |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<SliderInput label=\"Width\" value={width} onChange={setWidth} min={0} max={500} suffix=\"px\" />\n<SliderInput label=\"Opacity\" value={opacity} onChange={setOpacity} min={0} max={1} step={0.01} />\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-surface`, `--inv-muted`, `--inv-heading`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Label text (displayed left side)"
+      ],
+      [
+        "value",
+        "number",
+        "0",
+        "Current value"
+      ],
+      [
+        "onChange",
+        "function",
+        "\u2014",
+        "Called with new number"
+      ],
+      [
+        "min",
+        "number",
+        "0",
+        "Minimum value"
+      ],
+      [
+        "max",
+        "number",
+        "100",
+        "Maximum value"
+      ],
+      [
+        "step",
+        "number",
+        "1",
+        "Step increment"
+      ],
+      [
+        "suffix",
+        "string",
+        "''",
+        "Unit suffix after value (e.g. 'px', '%')"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disable slider"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-text-input",
+    "name": "TextInput",
+    "group": "Inputs",
+    "description": "Text input with label, error state, disabled state, and optional leading icon. Uses `forwardRef`.",
+    "source": "packages/invariant-ui/components/text-input.jsx",
+    "previewId": "text-input",
+    "code": "import { TextInput } from \"@/packages/invariant-ui/components/text-input.jsx\";\n\n<TextInput label=\"Email\" placeholder=\"you@example.com\" icon=\"mail\" />\n<TextInput label=\"Website\" error=\"Invalid URL\" />",
+    "documentation": "# TextInput\n\nText input with label, error state, disabled state, and optional leading icon. Uses `forwardRef`.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Label above input |\n| placeholder | `string` | `''` | Placeholder text |\n| error | `string` | \u2014 | Error message (shows red ring) |\n| disabled | `boolean` | `false` | Disabled state |\n| icon | `string` | \u2014 | Leading icon name |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<TextInput label=\"Email\" placeholder=\"you@example.com\" icon=\"mail\" />\n<TextInput label=\"Website\" error=\"Invalid URL\" />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-muted`, `--inv-surface`, `--inv-accent`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Label above input"
+      ],
+      [
+        "placeholder",
+        "string",
+        "''",
+        "Placeholder text"
+      ],
+      [
+        "error",
+        "string",
+        "\u2014",
+        "Error message (shows red ring)"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disabled state"
+      ],
+      [
+        "icon",
+        "string",
+        "\u2014",
+        "Leading icon name"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-textarea",
+    "name": "Textarea",
+    "group": "Inputs",
+    "description": "Multiline text input with optional auto-grow, character count, label, and error state.",
+    "source": "packages/invariant-ui/components/textarea.jsx",
+    "previewId": "textarea",
+    "code": "import { Textarea } from \"@/packages/invariant-ui/components/textarea.jsx\";\n\n<Textarea label=\"Bio\" placeholder=\"Tell us about yourself...\" value={bio} onChange={(e) => setBio(e.target.value)} maxLength={280} />\n<Textarea placeholder=\"Notes...\" autoGrow value={notes} onChange={(e) => setNotes(e.target.value)} />",
+    "documentation": "# Textarea\n\nMultiline text input with optional auto-grow, character count, label, and error state.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Input label |\n| placeholder | `string` | `''` | Placeholder text |\n| value | `string` | \u2014 | Controlled value |\n| onChange | `function` | \u2014 | Change handler |\n| maxLength | `number` | \u2014 | Character limit (shows counter) |\n| rows | `number` | `3` | Visible rows (ignored when autoGrow) |\n| autoGrow | `boolean` | `false` | Auto-expand height to fit content |\n| disabled | `boolean` | `false` | Disable input |\n| error | `string` | \u2014 | Error message |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Textarea label=\"Bio\" placeholder=\"Tell us about yourself...\" value={bio} onChange={(e) => setBio(e.target.value)} maxLength={280} />\n<Textarea placeholder=\"Notes...\" autoGrow value={notes} onChange={(e) => setNotes(e.target.value)} />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-muted`, `--inv-surface`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`, `--inv-accent`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Input label"
+      ],
+      [
+        "placeholder",
+        "string",
+        "''",
+        "Placeholder text"
+      ],
+      [
+        "value",
+        "string",
+        "\u2014",
+        "Controlled value"
+      ],
+      [
+        "onChange",
+        "function",
+        "\u2014",
+        "Change handler"
+      ],
+      [
+        "maxLength",
+        "number",
+        "\u2014",
+        "Character limit (shows counter)"
+      ],
+      [
+        "rows",
+        "number",
+        "3",
+        "Visible rows (ignored when autoGrow)"
+      ],
+      [
+        "autoGrow",
+        "boolean",
+        "false",
+        "Auto-expand height to fit content"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disable input"
+      ],
+      [
+        "error",
+        "string",
+        "\u2014",
+        "Error message"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-toggle",
+    "name": "Toggle",
+    "group": "Inputs",
+    "description": "On/off switch with spring thumb animation.",
+    "source": "packages/invariant-ui/components/toggle.jsx",
+    "previewId": "toggle",
+    "code": "import { Toggle } from \"@/packages/invariant-ui/components/toggle.jsx\";\n\n<Toggle checked={on} onChange={setOn} />\n<Toggle checked={on} onChange={setOn} size=\"small\" />",
+    "documentation": "# Toggle\n\nOn/off switch with spring thumb animation.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| checked | `boolean` | `false` | Toggle state |\n| onChange | `(checked) => void` | \u2014 | Change callback |\n| size | `'default'\\|'small'` | `'default'` | Toggle size |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Toggle checked={on} onChange={setOn} />\n<Toggle checked={on} onChange={setOn} size=\"small\" />\n```\n\n## CSS Variables Used\n\n`--inv-accent`, `--inv-border`\n",
+    "props": [
+      [
+        "checked",
+        "boolean",
+        "false",
+        "Toggle state"
+      ],
+      [
+        "onChange",
+        "(checked) => void",
+        "\u2014",
+        "Change callback"
+      ],
+      [
+        "size",
+        "'default'|'small'",
+        "'default'",
+        "Toggle size"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-action-button",
+    "name": "ActionButton",
+    "group": "Actions",
+    "description": "Button that morphs from label to spinner to checkmark on action.",
+    "source": "packages/invariant-ui/components/action-button.jsx",
+    "previewId": "morph-button",
+    "code": "import { ActionButton } from \"@/packages/invariant-ui/components/action-button.jsx\";\n\n<ActionButton label=\"Save\" icon=\"check\" onAction={() => save()} />",
+    "documentation": "# ActionButton\n\nButton that morphs from label to spinner to checkmark on action.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | `'Save'` | Button text |\n| icon | `string` | \u2014 | Icon name shown before label |\n| loadingDuration | `number` | `2000` | Loading time in ms |\n| onAction | `() => void` | \u2014 | Called on click |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<ActionButton label=\"Save\" icon=\"check\" onAction={() => save()} />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-bg`, `--inv-accent`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "'Save'",
+        "Button text"
+      ],
+      [
+        "icon",
+        "string",
+        "\u2014",
+        "Icon name shown before label"
+      ],
+      [
+        "loadingDuration",
+        "number",
+        "2000",
+        "Loading time in ms"
+      ],
+      [
+        "onAction",
+        "() => void",
+        "\u2014",
+        "Called on click"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-button",
+    "name": "Button",
+    "group": "Actions",
+    "description": "Standard button with variants, sizes, icons, and loading state. Uses `forwardRef`.",
+    "source": "packages/invariant-ui/components/button.jsx",
+    "previewId": "button",
+    "code": "import { Button } from \"@/packages/invariant-ui/components/button.jsx\";\n\n<Button label=\"Save\" variant=\"primary\" iconLeft=\"check\" />",
+    "documentation": "# Button\n\nStandard button with variants, sizes, icons, and loading state. Uses `forwardRef`.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Button text |\n| variant | `'primary'\\|'secondary'\\|'ghost'\\|'danger'` | `'primary'` | Visual variant |\n| size | `'small'\\|'default'\\|'large'` | `'default'` | Button size |\n| iconLeft | `string` | \u2014 | Icon name on the left |\n| iconRight | `string` | \u2014 | Icon name on the right |\n| disabled | `boolean` | `false` | Disabled state |\n| loading | `boolean` | `false` | Shows spinner |\n| onClick | `() => void` | \u2014 | Click handler |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<Button label=\"Save\" variant=\"primary\" iconLeft=\"check\" />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-bg`, `--inv-surface`, `--inv-nav-hover-bg`, `--inv-accent`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Button text"
+      ],
+      [
+        "variant",
+        "'primary'|'secondary'|'ghost'|'danger'",
+        "'primary'",
+        "Visual variant"
+      ],
+      [
+        "size",
+        "'small'|'default'|'large'",
+        "'default'",
+        "Button size"
+      ],
+      [
+        "iconLeft",
+        "string",
+        "\u2014",
+        "Icon name on the left"
+      ],
+      [
+        "iconRight",
+        "string",
+        "\u2014",
+        "Icon name on the right"
+      ],
+      [
+        "disabled",
+        "boolean",
+        "false",
+        "Disabled state"
+      ],
+      [
+        "loading",
+        "boolean",
+        "false",
+        "Shows spinner"
+      ],
+      [
+        "onClick",
+        "() => void",
+        "\u2014",
+        "Click handler"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-dropdown",
+    "name": "Dropdown",
+    "group": "Actions",
+    "description": "Overflow menu with trigger button and 12 placement options.",
+    "source": "packages/invariant-ui/components/dropdown.jsx",
+    "previewId": "dropdown",
+    "code": "import { Dropdown } from \"@/packages/invariant-ui/components/dropdown.jsx\";\n\n<Dropdown\n  placement=\"bottom-right\"\n  items={[\n    { label: 'Edit', icon: 'edit', onAction: () => {} },\n    { divider: true },\n    { label: 'Delete', icon: 'close', danger: true, onAction: () => {} },\n  ]}\n/>",
+    "documentation": "# Dropdown\n\nOverflow menu with trigger button and 12 placement options.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| trigger | `ReactNode` | \u2014 | Custom trigger element (defaults to vertical dots button) |\n| items | `Array<{label, icon?, danger?, onAction?} \\| {divider: true}>` | `[]` | Menu items |\n| placement | `string` | `'bottom-left'` | Menu position (see placements below) |\n| className | `string` | `''` | Additional CSS classes |\n\n### Placements\n\n`bottom-left`, `bottom-center`, `bottom-right`, `top-left`, `top-center`, `top-right`, `left-top`, `left-center`, `left-bottom`, `right-top`, `right-center`, `right-bottom`\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<Dropdown\n  placement=\"bottom-right\"\n  items={[\n    { label: 'Edit', icon: 'edit', onAction: () => {} },\n    { divider: true },\n    { label: 'Delete', icon: 'close', danger: true, onAction: () => {} },\n  ]}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-muted`, `--inv-heading`, `--inv-nav-hover-bg`, `--inv-menu-bg`, `--inv-menu-text`, `--inv-menu-text-active`, `--inv-menu-hover-bg`, `--inv-menu-divider`, `--inv-menu-shadow`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`, `--inv-accent`\n",
+    "props": [
+      [
+        "trigger",
+        "ReactNode",
+        "\u2014",
+        "Custom trigger element (defaults to vertical dots button)"
+      ],
+      [
+        "items",
+        "Array<{label, icon?, danger?, onAction?} | {divider: true}>",
+        "[]",
+        "Menu items"
+      ],
+      [
+        "placement",
+        "string",
+        "'bottom-left'",
+        "Menu position (see placements below)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-icon-button",
+    "name": "IconButton",
+    "group": "Actions",
+    "description": "Square button with a single icon. Two sizes, optional elevation via shadow.",
+    "source": "packages/invariant-ui/components/icon-button.jsx",
+    "previewId": "icon-button",
+    "code": "import { IconButton } from \"@/packages/invariant-ui/components/icon-button.jsx\";\n\n{/* Flat */}\n<IconButton icon=\"edit\" label=\"Edit\" />\n\n{/* Elevated */}\n<IconButton icon=\"plus\" label=\"Add\" elevated />\n\n{/* Small */}\n<IconButton icon=\"close\" label=\"Close\" size=\"small\" />",
+    "documentation": "# IconButton\n\nSquare button with a single icon. Two sizes, optional elevation via shadow.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| icon | `string` | \u2014 | Icon name from `lib/icon.jsx` |\n| label | `string` | \u2014 | Accessible label (aria-label) |\n| size | `'small'\\|'default'` | `'default'` | Button size (36px or 44px) |\n| elevated | `boolean` | `false` | Adds shadow for raised appearance |\n| onClick | `function` | \u2014 | Click handler |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n{/* Flat */}\n<IconButton icon=\"edit\" label=\"Edit\" />\n\n{/* Elevated */}\n<IconButton icon=\"plus\" label=\"Add\" elevated />\n\n{/* Small */}\n<IconButton icon=\"close\" label=\"Close\" size=\"small\" />\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-muted`, `--inv-heading`, `--inv-accent`, `--inv-nav-hover-bg`, `--inv-shadow-sm`, `--inv-shadow-sm-hover`\n",
+    "props": [
+      [
+        "icon",
+        "string",
+        "\u2014",
+        "Icon name from lib/icon.jsx"
+      ],
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Accessible label (aria-label)"
+      ],
+      [
+        "size",
+        "'small'|'default'",
+        "'default'",
+        "Button size (36px or 44px)"
+      ],
+      [
+        "elevated",
+        "boolean",
+        "false",
+        "Adds shadow for raised appearance"
+      ],
+      [
+        "onClick",
+        "function",
+        "\u2014",
+        "Click handler"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-agent-avatar",
+    "name": "AgentAvatar",
+    "group": "Identity",
+    "description": "Circular avatar with deterministic mesh gradient generated from name. Supports thinking and inactive states.",
+    "source": "packages/invariant-ui/components/agent-avatar.jsx",
+    "previewId": "agent-avatar",
+    "code": "import { AgentAvatar } from \"@/packages/invariant-ui/components/agent-avatar.jsx\";\n\n<AgentAvatar name=\"Nova\" size={48} state=\"thinking\" />",
+    "documentation": "# AgentAvatar\n\nCircular avatar with deterministic mesh gradient generated from name. Supports thinking and inactive states.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| name | `string` | \u2014 | Agent name (used for gradient generation and tooltip) |\n| avatarUrl | `string` | \u2014 | Optional image URL |\n| size | `number` | `40` | Avatar size in px |\n| state | `'default'\\|'thinking'\\|'inactive'` | `'default'` | Visual state |\n| onClick | `() => void` | \u2014 | Click handler |\n\n## Dependencies\n\n- `lib/popover.js`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<AgentAvatar name=\"Nova\" size={48} state=\"thinking\" />\n```\n\n## CSS Variables Used\n\n`--inv-accent`, `--inv-nav`, `--inv-nav-text-active`, `--inv-shadow`, `--inv-outline`\n",
+    "props": [
+      [
+        "name",
+        "string",
+        "\u2014",
+        "Agent name (used for gradient generation and tooltip)"
+      ],
+      [
+        "avatarUrl",
+        "string",
+        "\u2014",
+        "Optional image URL"
+      ],
+      [
+        "size",
+        "number",
+        "40",
+        "Avatar size in px"
+      ],
+      [
+        "state",
+        "'default'|'thinking'|'inactive'",
+        "'default'",
+        "Visual state"
+      ],
+      [
+        "onClick",
+        "() => void",
+        "\u2014",
+        "Click handler"
+      ]
+    ]
+  },
+  {
+    "id": "inv-profile-avatar",
+    "name": "ProfileAvatar, ProfileAvatarGroup",
+    "group": "Identity",
+    "description": "User avatar with rounded/circle variants, alert gem, and group stacking.",
+    "source": "packages/invariant-ui/components/profile-avatar.jsx",
+    "previewId": "profile-avatar",
+    "code": "import { ProfileAvatar, ProfileAvatarGroup } from \"@/packages/invariant-ui/components/profile-avatar.jsx\";\n\n<ProfileAvatar name=\"Jane\" avatarUrl=\"/jane.jpg\" rounded=\"full\" alert />\n\n<ProfileAvatarGroup\n  avatars={[\n    { name: 'Jane', avatarUrl: '/jane.jpg' },\n    { name: 'John', avatarUrl: '/john.jpg' },\n    { name: 'Sam', avatarUrl: '/sam.jpg' },\n    { name: 'Alex', avatarUrl: '/alex.jpg' },\n  ]}\n/>",
+    "documentation": "# ProfileAvatar\n\nUser avatar with rounded/circle variants, alert gem, and group stacking.\n\n## Props\n\n### ProfileAvatar\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| name | `string` | \u2014 | Name for tooltip |\n| avatarUrl | `string` | \u2014 | Image URL (required) |\n| size | `number` | `40` | Avatar size in px |\n| rounded | `'xl'\\|'full'` | `'xl'` | Shape variant |\n| alert | `boolean` | `false` | Show red alert dot |\n| grouped | `boolean` | `false` | Adds outer border for group stacking |\n| onClick | `() => void` | \u2014 | Click handler |\n\n### ProfileAvatarGroup\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| avatars | `Array<{name, avatarUrl, alert?, onClick?}>` | `[]` | Avatar list |\n| size | `number` | `40` | Avatar size |\n| rounded | `'xl'\\|'full'` | `'xl'` | Shape variant |\n| max | `number` | `3` | Max visible before overflow count |\n\n## Dependencies\n\n- `lib/popover.js`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<ProfileAvatar name=\"Jane\" avatarUrl=\"/jane.jpg\" rounded=\"full\" alert />\n\n<ProfileAvatarGroup\n  avatars={[\n    { name: 'Jane', avatarUrl: '/jane.jpg' },\n    { name: 'John', avatarUrl: '/john.jpg' },\n    { name: 'Sam', avatarUrl: '/sam.jpg' },\n    { name: 'Alex', avatarUrl: '/alex.jpg' },\n  ]}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-shadow`, `--inv-outline`, `--inv-bg`, `--inv-bg-alt`, `--inv-heading`, `--inv-muted`, `--inv-nav`, `--inv-nav-text-active`, `--inv-accent`\n",
+    "props": [
+      [
+        "name",
+        "string",
+        "\u2014",
+        "Name for tooltip"
+      ],
+      [
+        "avatarUrl",
+        "string",
+        "\u2014",
+        "Image URL (required)"
+      ],
+      [
+        "size",
+        "number",
+        "40",
+        "Avatar size in px"
+      ],
+      [
+        "rounded",
+        "'xl'|'full'",
+        "'xl'",
+        "Shape variant"
+      ],
+      [
+        "alert",
+        "boolean",
+        "false",
+        "Show red alert dot"
+      ],
+      [
+        "grouped",
+        "boolean",
+        "false",
+        "Adds outer border for group stacking"
+      ],
+      [
+        "onClick",
+        "() => void",
+        "\u2014",
+        "Click handler"
+      ],
+      [
+        "avatars",
+        "Array<{name, avatarUrl, alert?, onClick?}>",
+        "[]",
+        "Avatar list"
+      ],
+      [
+        "size",
+        "number",
+        "40",
+        "Avatar size"
+      ],
+      [
+        "rounded",
+        "'xl'|'full'",
+        "'xl'",
+        "Shape variant"
+      ],
+      [
+        "max",
+        "number",
+        "3",
+        "Max visible before overflow count"
+      ]
+    ]
+  },
+  {
+    "id": "inv-card",
+    "name": "Card",
+    "group": "Layout",
+    "description": "Content card with two variants: default (optional header image) and gradient (full generative gradient background with white text).",
+    "source": "packages/invariant-ui/components/card.jsx",
+    "previewId": "card",
+    "code": "import { Card } from \"@/packages/invariant-ui/components/card.jsx\";\n\n{/* Default with image */}\n<Card\n  image=\"/cover.jpg\"\n  title=\"Project Alpha\"\n  description=\"A brief description.\"\n/>\n\n{/* Gradient variant */}\n<Card\n  variant=\"gradient\"\n  gradientSeed=\"unique-name\"\n  title=\"Project Alpha\"\n  description=\"White text on generative gradient background.\"\n/>",
+    "documentation": "# Card\n\nContent card with two variants: default (optional header image) and gradient (full generative gradient background with white text).\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| image | `string` | \u2014 | Header image URL (default variant only) |\n| title | `string` | \u2014 | Card heading |\n| description | `string` | \u2014 | Secondary text |\n| children | `ReactNode` | \u2014 | Additional body content |\n| variant | `'default'\\|'gradient'` | `'default'` | Card style |\n| gradientSeed | `string` | \u2014 | Seed for gradient generation (falls back to title) |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n{/* Default with image */}\n<Card\n  image=\"/cover.jpg\"\n  title=\"Project Alpha\"\n  description=\"A brief description.\"\n/>\n\n{/* Gradient variant */}\n<Card\n  variant=\"gradient\"\n  gradientSeed=\"unique-name\"\n  title=\"Project Alpha\"\n  description=\"White text on generative gradient background.\"\n/>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-shadow-sm`, `--inv-heading`, `--inv-muted`\n",
+    "props": [
+      [
+        "image",
+        "string",
+        "\u2014",
+        "Header image URL (default variant only)"
+      ],
+      [
+        "title",
+        "string",
+        "\u2014",
+        "Card heading"
+      ],
+      [
+        "description",
+        "string",
+        "\u2014",
+        "Secondary text"
+      ],
+      [
+        "children",
+        "ReactNode",
+        "\u2014",
+        "Additional body content"
+      ],
+      [
+        "variant",
+        "'default'|'gradient'",
+        "'default'",
+        "Card style"
+      ],
+      [
+        "gradientSeed",
+        "string",
+        "\u2014",
+        "Seed for gradient generation (falls back to title)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-divider",
+    "name": "Divider",
+    "group": "Layout",
+    "description": "Horizontal rule using the theme border color.",
+    "source": "packages/invariant-ui/components/divider.jsx",
+    "previewId": "divider",
+    "code": "import { Divider } from \"@/packages/invariant-ui/components/divider.jsx\";\n\n<Divider />\n<Divider spacing=\"lg\" />",
+    "documentation": "# Divider\n\nHorizontal rule using the theme border color.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| spacing | `'none'\\|'sm'\\|'md'\\|'lg'` | `'md'` | Vertical margin |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Divider />\n<Divider spacing=\"lg\" />\n```\n\n## CSS Variables Used\n\n`--inv-border`\n",
+    "props": [
+      [
+        "spacing",
+        "'none'|'sm'|'md'|'lg'",
+        "'md'",
+        "Vertical margin"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-expand-card",
+    "name": "ExpandCard",
+    "group": "Layout",
+    "description": "Card that expands to reveal content with blur-in animation.",
+    "source": "packages/invariant-ui/components/expand-card.jsx",
+    "previewId": "morph-card",
+    "code": "import { ExpandCard } from \"@/packages/invariant-ui/components/expand-card.jsx\";\n\n<ExpandCard title=\"Details\" icon=\"settings\">\n  Content revealed on click.\n</ExpandCard>",
+    "documentation": "# ExpandCard\n\nCard that expands to reveal content with blur-in animation.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| title | `string` | \u2014 | Card header text |\n| children | `ReactNode` | \u2014 | Expandable content |\n| icon | `string` | \u2014 | Icon name in header |\n| defaultExpanded | `boolean` | `false` | Start expanded |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<ExpandCard title=\"Details\" icon=\"settings\">\n  Content revealed on click.\n</ExpandCard>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-body`, `--inv-shadow`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "title",
+        "string",
+        "\u2014",
+        "Card header text"
+      ],
+      [
+        "children",
+        "ReactNode",
+        "\u2014",
+        "Expandable content"
+      ],
+      [
+        "icon",
+        "string",
+        "\u2014",
+        "Icon name in header"
+      ],
+      [
+        "defaultExpanded",
+        "boolean",
+        "false",
+        "Start expanded"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-page-section",
+    "name": "PageSection",
+    "group": "Layout",
+    "description": "Content width constraint with responsive horizontal padding.",
+    "source": "packages/invariant-ui/components/page-section.jsx",
+    "previewId": "page-section",
+    "code": "import { PageSection } from \"@/packages/invariant-ui/components/page-section.jsx\";\n\n<PageSection width=\"md\">\n  <h1>Settings</h1>\n  <TextInput label=\"Name\" />\n</PageSection>",
+    "documentation": "# PageSection\n\nContent width constraint with responsive horizontal padding.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| width | `'sm'\\|'md'\\|'lg'\\|'full'` | `'md'` | Max width (576/672/1024/full) |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<PageSection width=\"md\">\n  <h1>Settings</h1>\n  <TextInput label=\"Name\" />\n</PageSection>\n```\n\n## CSS Variables Used\n\nNone directly \u2014 uses Tailwind max-width and padding utilities.\n",
+    "props": [
+      [
+        "width",
+        "'sm'|'md'|'lg'|'full'",
+        "'md'",
+        "Max width (576/672/1024/full)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-row",
+    "name": "Row",
+    "group": "Layout",
+    "description": "Horizontal layout with alignment and wrapping.",
+    "source": "packages/invariant-ui/components/row.jsx",
+    "previewId": "row",
+    "code": "import { Row } from \"@/packages/invariant-ui/components/row.jsx\";\n\n<Row justify=\"between\">\n  <span>Label</span>\n  <Toggle checked={on} onChange={setOn} />\n</Row>",
+    "documentation": "# Row\n\nHorizontal layout with alignment and wrapping.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| gap | `'xs'\\|'sm'\\|'md'\\|'lg'\\|'xl'` | `'md'` | Gap between children |\n| align | `'start'\\|'center'\\|'end'\\|'stretch'\\|'baseline'` | `'center'` | Vertical alignment |\n| justify | `'start'\\|'center'\\|'end'\\|'between'\\|'around'` | `'start'` | Horizontal distribution |\n| wrap | `boolean` | `false` | Allow wrapping |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Row justify=\"between\">\n  <span>Label</span>\n  <Toggle checked={on} onChange={setOn} />\n</Row>\n```\n\n## CSS Variables Used\n\nNone directly \u2014 uses Tailwind flex utilities.\n",
+    "props": [
+      [
+        "gap",
+        "'xs'|'sm'|'md'|'lg'|'xl'",
+        "'md'",
+        "Gap between children"
+      ],
+      [
+        "align",
+        "'start'|'center'|'end'|'stretch'|'baseline'",
+        "'center'",
+        "Vertical alignment"
+      ],
+      [
+        "justify",
+        "'start'|'center'|'end'|'between'|'around'",
+        "'start'",
+        "Horizontal distribution"
+      ],
+      [
+        "wrap",
+        "boolean",
+        "false",
+        "Allow wrapping"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-split-pane",
+    "name": "SplitPane",
+    "group": "Layout",
+    "description": "Resizable two-pane layout with a draggable divider and pull tab. Supports horizontal and vertical splitting.",
+    "source": "packages/invariant-ui/components/split-pane.jsx",
+    "previewId": "split-pane",
+    "code": "import { SplitPane } from \"@/packages/invariant-ui/components/split-pane.jsx\";\n\n<SplitPane\n  left={<div className=\"p-4\">Left pane</div>}\n  right={<div className=\"p-4\">Right pane</div>}\n  height={400}\n/>\n\n<SplitPane\n  direction=\"vertical\"\n  left={<div className=\"p-4\">Top pane</div>}\n  right={<div className=\"p-4\">Bottom pane</div>}\n  height={500}\n  defaultSplit={30}\n/>",
+    "documentation": "# SplitPane\n\nResizable two-pane layout with a draggable divider and pull tab. Supports horizontal and vertical splitting.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| left | `ReactNode` | \u2014 | Content for the first pane |\n| right | `ReactNode` | \u2014 | Content for the second pane |\n| direction | `'horizontal'\\|'vertical'` | `'horizontal'` | Split direction |\n| defaultSplit | `number` | `50` | Initial split percentage (0-100) |\n| minSize | `number` | `20` | Minimum pane size as percentage |\n| height | `number\\|string` | \u2014 | Container height |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<SplitPane\n  left={<div className=\"p-4\">Left pane</div>}\n  right={<div className=\"p-4\">Right pane</div>}\n  height={400}\n/>\n\n<SplitPane\n  direction=\"vertical\"\n  left={<div className=\"p-4\">Top pane</div>}\n  right={<div className=\"p-4\">Bottom pane</div>}\n  height={500}\n  defaultSplit={30}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-muted`, `--inv-heading`\n",
+    "props": [
+      [
+        "left",
+        "ReactNode",
+        "\u2014",
+        "Content for the first pane"
+      ],
+      [
+        "right",
+        "ReactNode",
+        "\u2014",
+        "Content for the second pane"
+      ],
+      [
+        "direction",
+        "'horizontal'|'vertical'",
+        "'horizontal'",
+        "Split direction"
+      ],
+      [
+        "defaultSplit",
+        "number",
+        "50",
+        "Initial split percentage (0-100)"
+      ],
+      [
+        "minSize",
+        "number",
+        "20",
+        "Minimum pane size as percentage"
+      ],
+      [
+        "height",
+        "number|string",
+        "\u2014",
+        "Container height"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-spotlight-card",
+    "name": "SpotlightCard",
+    "group": "Layout",
+    "description": "Card with cursor-following gradient glow effect.",
+    "source": "packages/invariant-ui/components/spotlight-card.jsx",
+    "previewId": "spotlight-card",
+    "code": "import { SpotlightCard } from \"@/packages/invariant-ui/components/spotlight-card.jsx\";\n\n<SpotlightCard className=\"w-64\">\n  <div className=\"p-5\">\n    <h3>Title</h3>\n    <p>Content</p>\n  </div>\n</SpotlightCard>",
+    "documentation": "# SpotlightCard\n\nCard with cursor-following gradient glow effect.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| children | `ReactNode` | \u2014 | Card content |\n| className | `string` | `''` | Additional CSS classes |\n| spotlightSize | `number` | `300` | Glow radius in px |\n| spotlightOpacity | `number` | `0.08` | Glow intensity |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<SpotlightCard className=\"w-64\">\n  <div className=\"p-5\">\n    <h3>Title</h3>\n    <p>Content</p>\n  </div>\n</SpotlightCard>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-accent`, `--inv-outline`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "children",
+        "ReactNode",
+        "\u2014",
+        "Card content"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ],
+      [
+        "spotlightSize",
+        "number",
+        "300",
+        "Glow radius in px"
+      ],
+      [
+        "spotlightOpacity",
+        "number",
+        "0.08",
+        "Glow intensity"
+      ]
+    ]
+  },
+  {
+    "id": "inv-stack",
+    "name": "Stack",
+    "group": "Layout",
+    "description": "Vertical layout with consistent gap sizes.",
+    "source": "packages/invariant-ui/components/stack.jsx",
+    "previewId": "stack",
+    "code": "import { Stack } from \"@/packages/invariant-ui/components/stack.jsx\";\n\n<Stack gap=\"lg\">\n  <h1>Title</h1>\n  <p>Content</p>\n  <Button label=\"Action\" />\n</Stack>",
+    "documentation": "# Stack\n\nVertical layout with consistent gap sizes.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| gap | `'xs'\\|'sm'\\|'md'\\|'lg'\\|'xl'` | `'md'` | Gap between children (4/8/16/24/40px) |\n| as | `string` | `'div'` | HTML element to render |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Stack gap=\"lg\">\n  <h1>Title</h1>\n  <p>Content</p>\n  <Button label=\"Action\" />\n</Stack>\n```\n\n## CSS Variables Used\n\nNone directly \u2014 uses Tailwind gap utilities.\n",
+    "props": [
+      [
+        "gap",
+        "'xs'|'sm'|'md'|'lg'|'xl'",
+        "'md'",
+        "Gap between children (4/8/16/24/40px)"
+      ],
+      [
+        "as",
+        "string",
+        "'div'",
+        "HTML element to render"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-surface",
+    "name": "Surface",
+    "group": "Layout",
+    "description": "Card/container with consistent elevation, radius, and padding.",
+    "source": "packages/invariant-ui/components/surface.jsx",
+    "previewId": "surface",
+    "code": "import { Surface } from \"@/packages/invariant-ui/components/surface.jsx\";\n\n<Surface padding=\"md\" elevation=\"sm\">\n  <h2>Card title</h2>\n  <p>Card content</p>\n</Surface>",
+    "documentation": "# Surface\n\nCard/container with consistent elevation, radius, and padding.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| padding | `'none'\\|'sm'\\|'md'\\|'lg'` | `'md'` | Inner padding |\n| elevation | `'none'\\|'sm'\\|'md'` | `'sm'` | Shadow level |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Surface padding=\"md\" elevation=\"sm\">\n  <h2>Card title</h2>\n  <p>Card content</p>\n</Surface>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-shadow-sm`, `--inv-shadow`\n",
+    "props": [
+      [
+        "padding",
+        "'none'|'sm'|'md'|'lg'",
+        "'md'",
+        "Inner padding"
+      ],
+      [
+        "elevation",
+        "'none'|'sm'|'md'",
+        "'sm'",
+        "Shadow level"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-alert",
+    "name": "Alert",
+    "group": "Feedback",
+    "description": "Inline notification banner with icon, title, description, and optional dismiss. Animates out on dismiss with scale + fade.",
+    "source": "packages/invariant-ui/components/alert.jsx",
+    "previewId": "alert",
+    "code": "import { Alert } from \"@/packages/invariant-ui/components/alert.jsx\";\n\n<Alert variant=\"success\" title=\"Saved\" description=\"Your changes have been saved.\" dismissible />\n<Alert variant=\"error\" title=\"Error\" description=\"Something went wrong.\" />",
+    "documentation": "# Alert\n\nInline notification banner with icon, title, description, and optional dismiss. Animates out on dismiss with scale + fade.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| variant | `'info'\\|'success'\\|'warning'\\|'error'` | `'info'` | Color variant |\n| title | `string` | \u2014 | Alert heading |\n| description | `string` | \u2014 | Secondary text |\n| dismissible | `boolean` | `false` | Show dismiss button |\n| onDismiss | `function` | \u2014 | Called after dismiss animation |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Alert variant=\"success\" title=\"Saved\" description=\"Your changes have been saved.\" dismissible />\n<Alert variant=\"error\" title=\"Error\" description=\"Something went wrong.\" />\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-heading`, `--inv-muted`, `--inv-surface`, `--inv-accent`\n",
+    "props": [
+      [
+        "variant",
+        "'info'|'success'|'warning'|'error'",
+        "'info'",
+        "Color variant"
+      ],
+      [
+        "title",
+        "string",
+        "\u2014",
+        "Alert heading"
+      ],
+      [
+        "description",
+        "string",
+        "\u2014",
+        "Secondary text"
+      ],
+      [
+        "dismissible",
+        "boolean",
+        "false",
+        "Show dismiss button"
+      ],
+      [
+        "onDismiss",
+        "function",
+        "\u2014",
+        "Called after dismiss animation"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-badge",
+    "name": "Badge",
+    "group": "Feedback",
+    "description": "Pill label with three variants: dark, subdued, and outline.",
+    "source": "packages/invariant-ui/components/badge.jsx",
+    "previewId": "badge",
+    "code": "import { Badge } from \"@/packages/invariant-ui/components/badge.jsx\";\n\n<Badge label=\"Active\" variant=\"dark\" />\n<Badge label=\"Pending\" variant=\"subdued\" />\n<Badge label=\"v2.1.0\" variant=\"outline\" />",
+    "documentation": "# Badge\n\nPill label with three variants: dark, subdued, and outline.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Badge text |\n| variant | `'dark'\\|'subdued'\\|'outline'` | `'dark'` | Visual style |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Badge label=\"Active\" variant=\"dark\" />\n<Badge label=\"Pending\" variant=\"subdued\" />\n<Badge label=\"v2.1.0\" variant=\"outline\" />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-bg`, `--inv-bg-alt`, `--inv-border`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Badge text"
+      ],
+      [
+        "variant",
+        "'dark'|'subdued'|'outline'",
+        "'dark'",
+        "Visual style"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-empty-state",
+    "name": "EmptyState",
+    "group": "Feedback",
+    "description": "Centered placeholder for empty lists, search results, and blank pages. Accepts an optional action button.",
+    "source": "packages/invariant-ui/components/empty-state.jsx",
+    "previewId": "empty-state",
+    "code": "import { EmptyState } from \"@/packages/invariant-ui/components/empty-state.jsx\";\n\n{/* Basic */}\n<EmptyState\n  icon=\"search\"\n  title=\"No results found\"\n  description=\"Try adjusting your search terms.\"\n/>\n\n{/* With action */}\n<EmptyState\n  icon=\"folder\"\n  title=\"No projects\"\n  description=\"Create your first project to get started.\"\n  action={<Button label=\"Create project\" variant=\"primary\" iconLeft=\"plus\" />}\n/>\n\n{/* Minimal */}\n<EmptyState icon=\"mail\" title=\"Inbox zero\" />",
+    "documentation": "# EmptyState\n\nCentered placeholder for empty lists, search results, and blank pages. Accepts an optional action button.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| icon | `string` | `'search'` | Icon name from `lib/icon.jsx` |\n| title | `string` | `'No results'` | Heading text |\n| description | `string` | \u2014 | Secondary text below heading |\n| action | `ReactNode` | \u2014 | Action element (typically a Button) |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n{/* Basic */}\n<EmptyState\n  icon=\"search\"\n  title=\"No results found\"\n  description=\"Try adjusting your search terms.\"\n/>\n\n{/* With action */}\n<EmptyState\n  icon=\"folder\"\n  title=\"No projects\"\n  description=\"Create your first project to get started.\"\n  action={<Button label=\"Create project\" variant=\"primary\" iconLeft=\"plus\" />}\n/>\n\n{/* Minimal */}\n<EmptyState icon=\"mail\" title=\"Inbox zero\" />\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-muted`, `--inv-heading`\n",
+    "props": [
+      [
+        "icon",
+        "string",
+        "'search'",
+        "Icon name from lib/icon.jsx"
+      ],
+      [
+        "title",
+        "string",
+        "'No results'",
+        "Heading text"
+      ],
+      [
+        "description",
+        "string",
+        "\u2014",
+        "Secondary text below heading"
+      ],
+      [
+        "action",
+        "ReactNode",
+        "\u2014",
+        "Action element (typically a Button)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-progress",
+    "name": "Progress",
+    "group": "Feedback",
+    "description": "Linear progress bar with animated fill, optional label, value counter, shimmer effect, and three sizes.",
+    "source": "packages/invariant-ui/components/progress.jsx",
+    "previewId": "progress",
+    "code": "import { Progress } from \"@/packages/invariant-ui/components/progress.jsx\";\n\n<Progress value={65} label=\"Upload\" showValue />\n<Progress value={100} label=\"Complete\" size=\"large\" />\n<Progress value={30} size=\"small\" />",
+    "documentation": "# Progress\n\nLinear progress bar with animated fill, optional label, value counter, shimmer effect, and three sizes.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| value | `number` | `0` | Current value |\n| max | `number` | `100` | Maximum value |\n| label | `string` | \u2014 | Label text |\n| showValue | `boolean` | `false` | Show percentage counter |\n| size | `'small'\\|'default'\\|'large'` | `'default'` | Bar thickness |\n| animated | `boolean` | `true` | Animate fill and counter |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Progress value={65} label=\"Upload\" showValue />\n<Progress value={100} label=\"Complete\" size=\"large\" />\n<Progress value={30} size=\"small\" />\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-heading`\n",
+    "props": [
+      [
+        "value",
+        "number",
+        "0",
+        "Current value"
+      ],
+      [
+        "max",
+        "number",
+        "100",
+        "Maximum value"
+      ],
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Label text"
+      ],
+      [
+        "showValue",
+        "boolean",
+        "false",
+        "Show percentage counter"
+      ],
+      [
+        "size",
+        "'small'|'default'|'large'",
+        "'default'",
+        "Bar thickness"
+      ],
+      [
+        "animated",
+        "boolean",
+        "true",
+        "Animate fill and counter"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-skeleton",
+    "name": "Skeleton",
+    "group": "Feedback",
+    "description": "Animated loading placeholder with variants for text, avatars, cards, and list items. Respects `prefers-reduced-motion`.",
+    "source": "packages/invariant-ui/components/skeleton.jsx",
+    "previewId": "skeleton",
+    "code": "import { Skeleton } from \"@/packages/invariant-ui/components/skeleton.jsx\";\n\n{/* Text placeholder */}\n<Skeleton variant=\"line\" lines={4} />\n\n{/* Avatar placeholder */}\n<Skeleton variant=\"circle\" width={48} />\n\n{/* Card loading state */}\n<Skeleton variant=\"card\" />\n\n{/* List item placeholder */}\n<Skeleton variant=\"avatar-line\" />",
+    "documentation": "# Skeleton\n\nAnimated loading placeholder with variants for text, avatars, cards, and list items. Respects `prefers-reduced-motion`.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| variant | `'line'\\|'circle'\\|'card'\\|'avatar-line'` | `'line'` | Skeleton shape |\n| width | `number\\|string` | \u2014 | Container width |\n| height | `number\\|string` | \u2014 | Container height (card variant) |\n| lines | `number` | `3` | Number of lines (line variant only) |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n{/* Text placeholder */}\n<Skeleton variant=\"line\" lines={4} />\n\n{/* Avatar placeholder */}\n<Skeleton variant=\"circle\" width={48} />\n\n{/* Card loading state */}\n<Skeleton variant=\"card\" />\n\n{/* List item placeholder */}\n<Skeleton variant=\"avatar-line\" />\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-border`, `--inv-surface`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "variant",
+        "'line'|'circle'|'card'|'avatar-line'",
+        "'line'",
+        "Skeleton shape"
+      ],
+      [
+        "width",
+        "number|string",
+        "\u2014",
+        "Container width"
+      ],
+      [
+        "height",
+        "number|string",
+        "\u2014",
+        "Container height (card variant)"
+      ],
+      [
+        "lines",
+        "number",
+        "3",
+        "Number of lines (line variant only)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-spinner",
+    "name": "Spinner",
+    "group": "Feedback",
+    "description": "Animated loading circle. Inherits `currentColor` for stroke color.",
+    "source": "packages/invariant-ui/components/spinner.jsx",
+    "previewId": "spinner",
+    "code": "import { Spinner } from \"@/packages/invariant-ui/components/spinner.jsx\";\n\n{/* Inline in a button */}\n<Spinner size={16} />\n\n{/* Standalone */}\n<Spinner size={24} className=\"text-[var(--inv-accent)]\" />",
+    "documentation": "# Spinner\n\nAnimated loading circle. Inherits `currentColor` for stroke color.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| size | `number` | `20` | Width and height in pixels |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css` (for Tailwind `animate-spin`)\n\n## Usage\n\n```jsx\n{/* Inline in a button */}\n<Spinner size={16} />\n\n{/* Standalone */}\n<Spinner size={24} className=\"text-[var(--inv-accent)]\" />\n```\n",
+    "props": [
+      [
+        "size",
+        "number",
+        "20",
+        "Width and height in pixels"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-step-indicator",
+    "name": "StepIndicator",
+    "group": "Feedback",
+    "description": "Horizontal dots where the active step expands to a pill with spring animation.",
+    "source": "packages/invariant-ui/components/step-indicator.jsx",
+    "previewId": "step-indicator",
+    "code": "import { StepIndicator } from \"@/packages/invariant-ui/components/step-indicator.jsx\";\n\n<StepIndicator steps={4} activeStep={1} onStepChange={setStep} />",
+    "documentation": "# StepIndicator\n\nHorizontal dots where the active step expands to a pill with spring animation.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| steps | `number` | `5` | Total number of steps |\n| activeStep | `number` | `0` | Currently active step (0-indexed) |\n| onStepChange | `(index) => void` | \u2014 | Step click callback |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<StepIndicator steps={4} activeStep={1} onStepChange={setStep} />\n```\n\n## CSS Variables Used\n\n`--inv-accent`, `--inv-heading`, `--inv-border`\n",
+    "props": [
+      [
+        "steps",
+        "number",
+        "5",
+        "Total number of steps"
+      ],
+      [
+        "activeStep",
+        "number",
+        "0",
+        "Currently active step (0-indexed)"
+      ],
+      [
+        "onStepChange",
+        "(index) => void",
+        "\u2014",
+        "Step click callback"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-toast",
+    "name": "ToastProvider, useToast",
+    "group": "Feedback",
+    "description": "Notification toasts with stacking card deck effect. Uses context provider pattern.",
+    "source": "packages/invariant-ui/components/toast.jsx",
+    "previewId": "toast",
+    "code": "import { ToastProvider, useToast } from \"@/packages/invariant-ui/components/toast.jsx\";\n\n// Wrap app\n<ToastProvider>\n  <App />\n</ToastProvider>\n\n// In any component\nconst { addToast } = useToast()\naddToast('Saved', { message: 'Changes saved successfully' })",
+    "documentation": "# Toast\n\nNotification toasts with stacking card deck effect. Uses context provider pattern.\n\n## Components\n\n### ToastProvider\n\nWrap your app to enable toasts.\n\n### useToast\n\nHook returning `{ addToast, dismissToast }`.\n\n`addToast(title, { message?, icon?, duration? })` \u2014 returns toast id.\n\n## Props (addToast options)\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| title | `string` | \u2014 | Toast title (first arg) |\n| message | `string` | \u2014 | Secondary text |\n| icon | `string` | `'check'` | Icon name |\n| duration | `number` | `3000` | Auto-dismiss time in ms |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n// Wrap app\n<ToastProvider>\n  <App />\n</ToastProvider>\n\n// In any component\nconst { addToast } = useToast()\naddToast('Saved', { message: 'Changes saved successfully' })\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-shadow`, `--inv-outline`\n",
+    "props": []
+  },
+  {
+    "id": "inv-bottom-sheet",
+    "name": "BottomSheet",
+    "group": "Overlays",
+    "description": "iOS-style bottom sheet with pull-to-dismiss, viewport shrink effect, and backdrop. The page scales down and rounds its corners when the sheet opens.",
+    "source": "packages/invariant-ui/components/bottom-sheet.jsx",
+    "previewId": "bottom-sheet",
+    "code": "import { BottomSheet } from \"@/packages/invariant-ui/components/bottom-sheet.jsx\";\n\n<BottomSheet\n  isOpen={showSheet}\n  onClose={() => setShowSheet(false)}\n  title=\"Settings\"\n>\n  <div className=\"flex flex-col gap-4\">\n    <p className=\"inv-body\">Sheet content goes here.</p>\n    <Button label=\"Done\" onClick={() => setShowSheet(false)} />\n  </div>\n</BottomSheet>",
+    "documentation": "# BottomSheet\n\niOS-style bottom sheet with pull-to-dismiss, viewport shrink effect, and backdrop. The page scales down and rounds its corners when the sheet opens.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| isOpen | `boolean` | \u2014 | Controls visibility |\n| onClose | `function` | \u2014 | Called when dismissed (backdrop click, escape, or pull down) |\n| title | `string` | \u2014 | Header text |\n| children | `ReactNode` | \u2014 | Sheet content |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<BottomSheet\n  isOpen={showSheet}\n  onClose={() => setShowSheet(false)}\n  title=\"Settings\"\n>\n  <div className=\"flex flex-col gap-4\">\n    <p className=\"inv-body\">Sheet content goes here.</p>\n    <Button label=\"Done\" onClick={() => setShowSheet(false)} />\n  </div>\n</BottomSheet>\n```\n\n## CSS Variables Used\n\n`--inv-bg`, `--inv-surface`, `--inv-heading`, `--inv-border`, `--inv-shadow`\n",
+    "props": [
+      [
+        "isOpen",
+        "boolean",
+        "\u2014",
+        "Controls visibility"
+      ],
+      [
+        "onClose",
+        "function",
+        "\u2014",
+        "Called when dismissed (backdrop click, escape, or pull down)"
+      ],
+      [
+        "title",
+        "string",
+        "\u2014",
+        "Header text"
+      ],
+      [
+        "children",
+        "ReactNode",
+        "\u2014",
+        "Sheet content"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-dialog",
+    "name": "Dialog",
+    "group": "Overlays",
+    "description": "Small centered confirmation popup with title, description, and action buttons. Closes on backdrop click and Escape key.",
+    "source": "packages/invariant-ui/components/dialog.jsx",
+    "previewId": "dialog",
+    "code": "import { Dialog } from \"@/packages/invariant-ui/components/dialog.jsx\";\n\n<Dialog\n  isOpen={showConfirm}\n  onClose={() => setShowConfirm(false)}\n  title=\"Delete project?\"\n  description=\"This action cannot be undone. All data will be permanently removed.\"\n  actions={\n    <>\n      <Button label=\"Cancel\" variant=\"ghost\" onClick={() => setShowConfirm(false)} />\n      <Button label=\"Delete\" variant=\"danger\" onClick={handleDelete} />\n    </>\n  }\n/>",
+    "documentation": "# Dialog\n\nSmall centered confirmation popup with title, description, and action buttons. Closes on backdrop click and Escape key.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| isOpen | `boolean` | \u2014 | Controls visibility |\n| onClose | `function` | \u2014 | Called when dismissed |\n| title | `string` | \u2014 | Heading text |\n| description | `string` | \u2014 | Secondary text |\n| actions | `ReactNode` | \u2014 | Action buttons (typically Button components) |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Dialog\n  isOpen={showConfirm}\n  onClose={() => setShowConfirm(false)}\n  title=\"Delete project?\"\n  description=\"This action cannot be undone. All data will be permanently removed.\"\n  actions={\n    <>\n      <Button label=\"Cancel\" variant=\"ghost\" onClick={() => setShowConfirm(false)} />\n      <Button label=\"Delete\" variant=\"danger\" onClick={handleDelete} />\n    </>\n  }\n/>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-shadow`, `--inv-heading`, `--inv-muted`\n",
+    "props": [
+      [
+        "isOpen",
+        "boolean",
+        "\u2014",
+        "Controls visibility"
+      ],
+      [
+        "onClose",
+        "function",
+        "\u2014",
+        "Called when dismissed"
+      ],
+      [
+        "title",
+        "string",
+        "\u2014",
+        "Heading text"
+      ],
+      [
+        "description",
+        "string",
+        "\u2014",
+        "Secondary text"
+      ],
+      [
+        "actions",
+        "ReactNode",
+        "\u2014",
+        "Action buttons (typically Button components)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-menu",
+    "name": "Menu, MenuItem, MenuDivider",
+    "group": "Overlays",
+    "description": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
+    "source": "packages/invariant-ui/components/menu.jsx",
+    "previewId": "menu",
+    "code": "import { Menu, MenuItem, MenuDivider } from \"@/packages/invariant-ui/components/menu.jsx\";\n\n<Menu>\n  <MenuItem icon=\"edit\" label=\"Edit\" onClick={handleEdit} />\n  <MenuItem icon=\"copy\" label=\"Duplicate\" onClick={handleDuplicate} />\n  <MenuDivider />\n  <MenuItem icon=\"close\" label=\"Delete\" danger onClick={handleDelete} />\n</Menu>",
+    "documentation": "# Menu, MenuItem, MenuDivider\n\nComposable menu primitives for building dropdown menus, context menus, and action lists.\n\n## Exports\n\n- `Menu` \u2014 rounded container with menu background and shadow\n- `MenuItem` \u2014 individual action row with icon, label, optional description and selection state\n- `MenuDivider` \u2014 horizontal separator line\n\n## Props\n\n### Menu\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| children | `ReactNode` | \u2014 | MenuItem and MenuDivider elements |\n| className | `string` | `''` | Additional CSS classes |\n\n### MenuItem\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Item text |\n| icon | `string` | \u2014 | Icon name from `lib/icon.jsx` |\n| danger | `boolean` | `false` | Red danger styling |\n| description | `string` | \u2014 | Secondary text below label |\n| selected | `boolean` | `false` | Shows checkmark |\n| onClick | `function` | \u2014 | Click handler |\n| className | `string` | `''` | Additional CSS classes |\n\n### MenuDivider\n\nNo props.\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Menu>\n  <MenuItem icon=\"edit\" label=\"Edit\" onClick={handleEdit} />\n  <MenuItem icon=\"copy\" label=\"Duplicate\" onClick={handleDuplicate} />\n  <MenuDivider />\n  <MenuItem icon=\"close\" label=\"Delete\" danger onClick={handleDelete} />\n</Menu>\n```\n\n## CSS Variables Used\n\n`--inv-menu-bg`, `--inv-menu-shadow`, `--inv-menu-text`, `--inv-menu-text-active`, `--inv-menu-hover-bg`, `--inv-menu-divider`, `--inv-accent`\n",
+    "props": [
+      [
+        "children",
+        "ReactNode",
+        "\u2014",
+        "MenuItem and MenuDivider elements"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ],
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Item text"
+      ],
+      [
+        "icon",
+        "string",
+        "\u2014",
+        "Icon name from lib/icon.jsx"
+      ],
+      [
+        "danger",
+        "boolean",
+        "false",
+        "Red danger styling"
+      ],
+      [
+        "description",
+        "string",
+        "\u2014",
+        "Secondary text below label"
+      ],
+      [
+        "selected",
+        "boolean",
+        "false",
+        "Shows checkmark"
+      ],
+      [
+        "onClick",
+        "function",
+        "\u2014",
+        "Click handler"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-modal",
+    "name": "Modal",
+    "group": "Overlays",
+    "description": "Larger content container with header, close button, and scrollable body. Closes on backdrop click and Escape key.",
+    "source": "packages/invariant-ui/components/modal.jsx",
+    "previewId": "modal",
+    "code": "import { Modal } from \"@/packages/invariant-ui/components/modal.jsx\";\n\n<Modal\n  isOpen={showSettings}\n  onClose={() => setShowSettings(false)}\n  title=\"Settings\"\n>\n  <div className=\"flex flex-col gap-4\">\n    <TextInput label=\"Display name\" placeholder=\"Your name\" />\n    <TextInput label=\"Email\" placeholder=\"you@example.com\" />\n    <div className=\"flex justify-end gap-2 pt-2\">\n      <Button label=\"Cancel\" variant=\"ghost\" onClick={() => setShowSettings(false)} />\n      <Button label=\"Save\" variant=\"primary\" onClick={handleSave} />\n    </div>\n  </div>\n</Modal>",
+    "documentation": "# Modal\n\nLarger content container with header, close button, and scrollable body. Closes on backdrop click and Escape key.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| isOpen | `boolean` | \u2014 | Controls visibility |\n| onClose | `function` | \u2014 | Called when dismissed |\n| title | `string` | \u2014 | Header text |\n| children | `ReactNode` | \u2014 | Modal body content |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Modal\n  isOpen={showSettings}\n  onClose={() => setShowSettings(false)}\n  title=\"Settings\"\n>\n  <div className=\"flex flex-col gap-4\">\n    <TextInput label=\"Display name\" placeholder=\"Your name\" />\n    <TextInput label=\"Email\" placeholder=\"you@example.com\" />\n    <div className=\"flex justify-end gap-2 pt-2\">\n      <Button label=\"Cancel\" variant=\"ghost\" onClick={() => setShowSettings(false)} />\n      <Button label=\"Save\" variant=\"primary\" onClick={handleSave} />\n    </div>\n  </div>\n</Modal>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-shadow`, `--inv-heading`, `--inv-muted`, `--inv-nav-hover-bg`\n",
+    "props": [
+      [
+        "isOpen",
+        "boolean",
+        "\u2014",
+        "Controls visibility"
+      ],
+      [
+        "onClose",
+        "function",
+        "\u2014",
+        "Called when dismissed"
+      ],
+      [
+        "title",
+        "string",
+        "\u2014",
+        "Header text"
+      ],
+      [
+        "children",
+        "ReactNode",
+        "\u2014",
+        "Modal body content"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-overlay",
+    "name": "Overlay",
+    "group": "Overlays",
+    "description": "Fullscreen backdrop with black tint and blur. Used behind dialogs, modals, and other floating layers.",
+    "source": "packages/invariant-ui/components/overlay.jsx",
+    "previewId": "overlay",
+    "code": "import { Overlay } from \"@/packages/invariant-ui/components/overlay.jsx\";\n\n<Overlay isOpen={showModal} onClick={() => setShowModal(false)} />",
+    "documentation": "# Overlay\n\nFullscreen backdrop with black tint and blur. Used behind dialogs, modals, and other floating layers.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| isOpen | `boolean` | \u2014 | Controls visibility and pointer events |\n| onClick | `function` | \u2014 | Called when backdrop is clicked |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Overlay isOpen={showModal} onClick={() => setShowModal(false)} />\n```\n\n## CSS Variables Used\n\nNone (uses hardcoded `black/40` for the tint).\n",
+    "props": [
+      [
+        "isOpen",
+        "boolean",
+        "\u2014",
+        "Controls visibility and pointer events"
+      ],
+      [
+        "onClick",
+        "function",
+        "\u2014",
+        "Called when backdrop is clicked"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-tooltip",
+    "name": "Tooltip",
+    "group": "Overlays",
+    "description": "Animated hover label that appears above or below its parent. Uses `popoverStyle` for scale + blur entrance. Must be inside a `relative` positioned container.",
+    "source": "packages/invariant-ui/components/tooltip.jsx",
+    "previewId": "tooltip",
+    "code": "import { Tooltip } from \"@/packages/invariant-ui/components/tooltip.jsx\";\n\n<div className=\"relative\">\n  <button onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>\n    Hover me\n  </button>\n  <Tooltip label=\"Hello!\" visible={hovered} />\n</div>",
+    "documentation": "# Tooltip\n\nAnimated hover label that appears above or below its parent. Uses `popoverStyle` for scale + blur entrance. Must be inside a `relative` positioned container.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| label | `string` | \u2014 | Tooltip text |\n| visible | `boolean` | \u2014 | Controls visibility |\n| position | `'top'\\|'bottom'` | `'top'` | Placement relative to parent |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/popover.js`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<div className=\"relative\">\n  <button onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>\n    Hover me\n  </button>\n  <Tooltip label=\"Hello!\" visible={hovered} />\n</div>\n```\n\n## CSS Variables Used\n\n`--inv-nav`, `--inv-nav-text-active`, `--inv-shadow`\n",
+    "props": [
+      [
+        "label",
+        "string",
+        "\u2014",
+        "Tooltip text"
+      ],
+      [
+        "visible",
+        "boolean",
+        "\u2014",
+        "Controls visibility"
+      ],
+      [
+        "position",
+        "'top'|'bottom'",
+        "'top'",
+        "Placement relative to parent"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-image-carousel",
+    "name": "ImageCarousel",
+    "group": "AI & media",
+    "description": "Image slideshow with sliding transitions, left/right arrow navigation, and a StepIndicator overlay at the bottom center.",
+    "source": "packages/invariant-ui/components/image-carousel.jsx",
+    "previewId": "image-carousel",
+    "code": "import { ImageCarousel } from \"@/packages/invariant-ui/components/image-carousel.jsx\";\n\n<ImageCarousel\n  images={['/photo1.jpg', '/photo2.jpg', '/photo3.jpg']}\n  height={400}\n/>\n\n<ImageCarousel\n  images={[\n    { src: '/hero.jpg', alt: 'Hero image' },\n    { src: '/feature.jpg', alt: 'Feature overview' },\n  ]}\n/>",
+    "documentation": "# ImageCarousel\n\nImage slideshow with sliding transitions, left/right arrow navigation, and a StepIndicator overlay at the bottom center.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| images | `Array<string \\| { src, alt }>` | `[]` | Image URLs or objects with src and alt |\n| height | `number` | `320` | Image area height in pixels |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `components/step-indicator.jsx`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<ImageCarousel\n  images={['/photo1.jpg', '/photo2.jpg', '/photo3.jpg']}\n  height={400}\n/>\n\n<ImageCarousel\n  images={[\n    { src: '/hero.jpg', alt: 'Hero image' },\n    { src: '/feature.jpg', alt: 'Feature overview' },\n  ]}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-surface`, `--inv-heading`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "images",
+        "Array<string | { src, alt }>",
+        "[]",
+        "Image URLs or objects with src and alt"
+      ],
+      [
+        "height",
+        "number",
+        "320",
+        "Image area height in pixels"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-message-bubble",
+    "name": "MessageBubble",
+    "group": "AI & media",
+    "description": "Chat message bubble for agent and user messages with thinking state and hover actions.",
+    "source": "packages/invariant-ui/components/message-bubble.jsx",
+    "previewId": "message-bubble",
+    "code": "import { MessageBubble } from \"@/packages/invariant-ui/components/message-bubble.jsx\";\n\n<MessageBubble role=\"agent\" agentName=\"Nova\" content=\"Hello!\" timestamp=\"2:14 PM\" />\n<MessageBubble role=\"user\" avatarUrl=\"/me.jpg\" content=\"Hi there\" timestamp=\"2:15 PM\" />\n<MessageBubble role=\"agent\" agentName=\"Nova\" thinking />",
+    "documentation": "# MessageBubble\n\nChat message bubble for agent and user messages with thinking state and hover actions.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| content | `string` | \u2014 | Message text |\n| role | `'user'\\|'agent'` | `'user'` | Message sender |\n| thinking | `boolean` | `false` | Shows thinking shimmer (agent only) |\n| agentName | `string` | \u2014 | Agent name for avatar |\n| avatarUrl | `string` | \u2014 | User avatar URL |\n| timestamp | `string` | \u2014 | Time display |\n| onCopy | `() => void` | \u2014 | Copy action |\n| onThumbsUp | `() => void` | \u2014 | Like action (agent) |\n| onThumbsDown | `() => void` | \u2014 | Dislike action (agent) |\n| onEdit | `() => void` | \u2014 | Edit action (user) |\n| onRetry | `() => void` | \u2014 | Retry action (user) |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `components/agent-avatar.jsx`\n- `components/profile-avatar.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<MessageBubble role=\"agent\" agentName=\"Nova\" content=\"Hello!\" timestamp=\"2:14 PM\" />\n<MessageBubble role=\"user\" avatarUrl=\"/me.jpg\" content=\"Hi there\" timestamp=\"2:15 PM\" />\n<MessageBubble role=\"agent\" agentName=\"Nova\" thinking />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-bg-alt`, `--inv-muted`, `--inv-border`, `--inv-nav-hover-bg`\n",
+    "props": [
+      [
+        "content",
+        "string",
+        "\u2014",
+        "Message text"
+      ],
+      [
+        "role",
+        "'user'|'agent'",
+        "'user'",
+        "Message sender"
+      ],
+      [
+        "thinking",
+        "boolean",
+        "false",
+        "Shows thinking shimmer (agent only)"
+      ],
+      [
+        "agentName",
+        "string",
+        "\u2014",
+        "Agent name for avatar"
+      ],
+      [
+        "avatarUrl",
+        "string",
+        "\u2014",
+        "User avatar URL"
+      ],
+      [
+        "timestamp",
+        "string",
+        "\u2014",
+        "Time display"
+      ],
+      [
+        "onCopy",
+        "() => void",
+        "\u2014",
+        "Copy action"
+      ],
+      [
+        "onThumbsUp",
+        "() => void",
+        "\u2014",
+        "Like action (agent)"
+      ],
+      [
+        "onThumbsDown",
+        "() => void",
+        "\u2014",
+        "Dislike action (agent)"
+      ],
+      [
+        "onEdit",
+        "() => void",
+        "\u2014",
+        "Edit action (user)"
+      ],
+      [
+        "onRetry",
+        "() => void",
+        "\u2014",
+        "Retry action (user)"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-prompt-bar",
+    "name": "PromptBar",
+    "group": "AI & media",
+    "description": "Multi-line prompt input with model selector, file upload, mic with voice visualizer, and send button.",
+    "source": "packages/invariant-ui/components/prompt-bar.jsx",
+    "previewId": "prompt-bar",
+    "code": "import { PromptBar } from \"@/packages/invariant-ui/components/prompt-bar.jsx\";\n\n<PromptBar\n  models={[\n    { id: 'sonnet', label: 'Sonnet 4' },\n    { id: 'opus', label: 'Opus 4' },\n  ]}\n  activeModel=\"sonnet\"\n  onModelChange={setModel}\n  onSubmit={(msg) => send(msg)}\n/>",
+    "documentation": "# PromptBar\n\nMulti-line prompt input with model selector, file upload, mic with voice visualizer, and send button.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| placeholder | `string` | `'Ask anything...'` | Input placeholder |\n| models | `Array<{id, label, description?, icon?}>` | `[]` | Model options |\n| activeModel | `string` | \u2014 | Selected model id |\n| onModelChange | `(id) => void` | \u2014 | Model change callback |\n| onSubmit | `(text) => void` | \u2014 | Send callback |\n| onUpload | `() => void` | \u2014 | Upload button callback |\n| onMicPress | `() => void` | \u2014 | Mic button callback |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `lib/popover.js`\n- `lib/use-click-outside.js`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<PromptBar\n  models={[\n    { id: 'sonnet', label: 'Sonnet 4' },\n    { id: 'opus', label: 'Opus 4' },\n  ]}\n  activeModel=\"sonnet\"\n  onModelChange={setModel}\n  onSubmit={(msg) => send(msg)}\n/>\n```\n\n## CSS Variables Used\n\n`--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-accent`, `--inv-border`, `--inv-nav-hover-bg`, `--inv-menu-bg`, `--inv-menu-text`, `--inv-menu-text-active`, `--inv-menu-hover-bg`, `--inv-menu-shadow`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "placeholder",
+        "string",
+        "'Ask anything...'",
+        "Input placeholder"
+      ],
+      [
+        "models",
+        "Array<{id, label, description?, icon?}>",
+        "[]",
+        "Model options"
+      ],
+      [
+        "activeModel",
+        "string",
+        "\u2014",
+        "Selected model id"
+      ],
+      [
+        "onModelChange",
+        "(id) => void",
+        "\u2014",
+        "Model change callback"
+      ],
+      [
+        "onSubmit",
+        "(text) => void",
+        "\u2014",
+        "Send callback"
+      ],
+      [
+        "onUpload",
+        "() => void",
+        "\u2014",
+        "Upload button callback"
+      ],
+      [
+        "onMicPress",
+        "() => void",
+        "\u2014",
+        "Mic button callback"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-accordion",
+    "name": "Accordion",
+    "group": "Data",
+    "description": "Collapsible content sections with blur-in animation.",
+    "source": "packages/invariant-ui/components/accordion.jsx",
+    "previewId": "accordion",
+    "code": "import { Accordion } from \"@/packages/invariant-ui/components/accordion.jsx\";\n\n<Accordion items={[\n  { title: 'Section one', content: 'Content here' },\n  { title: 'Section two', content: 'More content' },\n]} />",
+    "documentation": "# Accordion\n\nCollapsible content sections with blur-in animation.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| items | `Array<{title, content}>` | `[]` | Accordion items |\n| multiple | `boolean` | `false` | Allow multiple open sections |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n- `lucide-react` (peer)\n\n## Usage\n\n```jsx\n<Accordion items={[\n  { title: 'Section one', content: 'Content here' },\n  { title: 'Section two', content: 'More content' },\n]} />\n```\n\n## CSS Variables Used\n\n`--inv-heading`, `--inv-body`, `--inv-muted`, `--inv-border`\n",
+    "props": [
+      [
+        "items",
+        "Array<{title, content}>",
+        "[]",
+        "Accordion items"
+      ],
+      [
+        "multiple",
+        "boolean",
+        "false",
+        "Allow multiple open sections"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  },
+  {
+    "id": "inv-table",
+    "name": "Table",
+    "group": "Data",
+    "description": "Data table with sortable columns, row selection, and hover highlighting. Uses subdued bg-alt background.",
+    "source": "packages/invariant-ui/components/table.jsx",
+    "previewId": "table",
+    "code": "import { Table } from \"@/packages/invariant-ui/components/table.jsx\";\n\n<Table\n  columns={[\n    { key: 'name', label: 'Name' },\n    { key: 'role', label: 'Role' },\n    { key: 'status', label: 'Status', render: (v) => <Badge label={v} /> },\n  ]}\n  data={[\n    { name: 'Alice', role: 'Engineer', status: 'Active' },\n    { name: 'Bob', role: 'Designer', status: 'Away' },\n  ]}\n  selectable\n/>",
+    "documentation": "# Table\n\nData table with sortable columns, row selection, and hover highlighting. Uses subdued bg-alt background.\n\n## Props\n\n| Prop | Type | Default | Description |\n|------|------|---------|-------------|\n| columns | `Array<{ key, label, sortable?, render? }>` | `[]` | Column definitions. `render(value, row)` for custom cells |\n| data | `Array<object>` | `[]` | Row data keyed by column keys |\n| selectable | `boolean` | `false` | Enable row checkboxes |\n| onSelectionChange | `function` | \u2014 | Called with array of selected indices |\n| className | `string` | `''` | Additional CSS classes |\n\n## Dependencies\n\n- `lib/icon.jsx`\n- `tokens/theme.css`\n\n## Usage\n\n```jsx\n<Table\n  columns={[\n    { key: 'name', label: 'Name' },\n    { key: 'role', label: 'Role' },\n    { key: 'status', label: 'Status', render: (v) => <Badge label={v} /> },\n  ]}\n  data={[\n    { name: 'Alice', role: 'Engineer', status: 'Active' },\n    { name: 'Bob', role: 'Designer', status: 'Away' },\n  ]}\n  selectable\n/>\n```\n\n## CSS Variables Used\n\n`--inv-bg-alt`, `--inv-surface`, `--inv-heading`, `--inv-muted`, `--inv-accent`, `--inv-shadow-sm`\n",
+    "props": [
+      [
+        "columns",
+        "Array<{ key, label, sortable?, render? }>",
+        "[]",
+        "Column definitions. render(value, row) for custom cells"
+      ],
+      [
+        "data",
+        "Array<object>",
+        "[]",
+        "Row data keyed by column keys"
+      ],
+      [
+        "selectable",
+        "boolean",
+        "false",
+        "Enable row checkboxes"
+      ],
+      [
+        "onSelectionChange",
+        "function",
+        "\u2014",
+        "Called with array of selected indices"
+      ],
+      [
+        "className",
+        "string",
+        "''",
+        "Additional CSS classes"
+      ]
+    ]
+  }
+]

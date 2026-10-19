@@ -1,0 +1,6 @@
+.theme-midnight {
+  --inv-accent: oklch(0.7 0.2 280);
+  --inv-nav: #0a0a1a;
+  --inv-surface: #141428;
+  --inv-radius: 16px;
+}

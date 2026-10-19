@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-19T17:14:09.581Z",
+  "createdAt": "2026-10-19T17:41:22.769Z",
   "files": [
     {
       "path": ".dev.vars.example",
@@ -8,18 +8,18 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 979,
-      "sha256": "feba1c6a5da4c2ed92a30496db0862604e65fd0d6e4e971a788fd51d82a726d2"
+      "bytes": 1015,
+      "sha256": "6ac5ed3c1fd08e377c6a03920491fbda17f75b947c0471ad3984899a54c4de53"
     },
     {
       "path": ".gitignore",
-      "bytes": 183,
-      "sha256": "e3ba22479dc3fa6e503a7b951ccdc28dd9018d3bcc21b91d7d07786070eb0703"
+      "bytes": 251,
+      "sha256": "096c5723f3aea8a35c42b2c84c4f28e20180833e2e781ea33397dc799122ba6c"
     },
     {
       "path": ".impeccable.md",
-      "bytes": 1598,
-      "sha256": "0f2c07fc7a67bcd1a9801ea07f87a9aaa8f3b4edf46e378d2da168e4fcec8894"
+      "bytes": 2029,
+      "sha256": "9e7a11584e311d2191e1f23814a2992b1312b6f056b626c5865da1afaeaf58b7"
     },
     {
       "path": ".storybook/main.ts",
@@ -43,13 +43,13 @@
     },
     {
       "path": "NOTICE.md",
-      "bytes": 751,
-      "sha256": "f532fc068413e4e4d71ac2e36e8930f0301a6183e07deb30a4ce07d7b5c6332e"
+      "bytes": 1055,
+      "sha256": "025a7c899ca007770fa4883f4c65cc8a9928bcef0fc202ed9764f6a65c8c8b41"
     },
     {
       "path": "README.md",
-      "bytes": 8305,
-      "sha256": "f43fda536d69f741634f26d9b06de253f4cd78bd08ab61edcc0e07e0bfe06553"
+      "bytes": 8779,
+      "sha256": "d163909c24a9104ffa5f4a8b0913697d8e842e7cac8e5049d1ff1ae40cb3d10d"
     },
     {
       "path": "app/about/page.tsx",
@@ -128,13 +128,13 @@
     },
     {
       "path": "app/globals.css",
-      "bytes": 9793,
-      "sha256": "7a32a7c98db97105e2667f0bef7788218167a8c374ae4abca01cb1146be4eb62"
+      "bytes": 9894,
+      "sha256": "85e1bf4a419807e36ccff8e4d43882ca208a4950d21e661e064844828d3b4b0d"
     },
     {
       "path": "app/guide/page.tsx",
-      "bytes": 7357,
-      "sha256": "3a07a4ebbf430b910f1b7c3c0a03dda810fd4b0688c6fcc652aabab39831ef86"
+      "bytes": 9219,
+      "sha256": "8b15f2643f528b0b453f73beeb88928c72d5804b690abb6b8960666a5732aa19"
     },
     {
       "path": "app/help/page.tsx",
@@ -292,19 +292,24 @@
       "sha256": "1ddf39c7663e9f57b682c52bf74c45b3188e152ad9df2199730429e0309e52a6"
     },
     {
+      "path": "components/library/invariant-registry.json",
+      "bytes": 108373,
+      "sha256": "4150fecadd3e30b2eecd446c69ad4dacb94a85eee0a9fc6e4537b84e0c5d54a4"
+    },
+    {
       "path": "components/library/library-shell.tsx",
       "bytes": 1390,
       "sha256": "34d3ec7aa70362a02422cf748bbc91f4d6d9455fe3b7e8e04b32e6b8d485b60e"
     },
     {
       "path": "components/library/library.css",
-      "bytes": 6128,
-      "sha256": "fdd865b993548a6ba745f38c1b607ca32e5ba3e6bda70a64cebfe7617c2cbc25"
+      "bytes": 8537,
+      "sha256": "6aaf85d0345d191f91b996846be7a4e91597efd086e343941f6a7d4b6cd9b1d2"
     },
     {
       "path": "components/library/showcase.tsx",
-      "bytes": 16810,
-      "sha256": "f98128d36cbce96cb7403ba89e7a8a3fcd03c4bf023e1abeff083530e981f258"
+      "bytes": 19080,
+      "sha256": "73270148c7f95bf20ed8eac3a3b8094c9e40df022e8e415584047428e86bea67"
     },
     {
       "path": "components/ui/accordion.tsx",
@@ -978,13 +983,18 @@
     },
     {
       "path": "docs/DESIGN-SYSTEM.md",
-      "bytes": 8331,
-      "sha256": "ecd2b71d6834740c13d4e7739785c3853f916946f3228312298d923d72ccb92b"
+      "bytes": 8950,
+      "sha256": "23463ad89a9e16b69c613327c5be9f2139fdc805d715529a67b952508b5c2939"
     },
     {
       "path": "docs/EXTENSIONS.md",
       "bytes": 7074,
       "sha256": "f340ae21ea2e2c64ee556f0d08b20fa080e1dc6bcb2350f4301b46c7aac59039"
+    },
+    {
+      "path": "docs/INVARIANT-INTEGRATION.md",
+      "bytes": 3029,
+      "sha256": "4b7839867d4383e336c0bd8ab5c5aa80942c59aa5305bd3e62e57fe7cfb1e980"
     },
     {
       "path": "docs/OPERATIONS.md",
@@ -1023,8 +1033,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 8717,
-      "sha256": "9a66849808b6326309d948b82c7d9228f1fea37c0b6b240a31997df3cf1cdf29"
+      "bytes": 9791,
+      "sha256": "e96bfbf5f2d1775160514b61d1292bbd03b699c4ab1a3c1b4f255b4d2abc6039"
     },
     {
       "path": "docs/VISUAL-EFFECTS.md",
@@ -1043,8 +1053,8 @@
     },
     {
       "path": "eslint.config.mjs",
-      "bytes": 544,
-      "sha256": "d8c420f60afbba4844405e3a97a6c0ee91414592ec291ff9f13b497ed61d8d66"
+      "bytes": 575,
+      "sha256": "63c605091234b5f707899253300f9e28338b16924e496f43524e23a54519df59"
     },
     {
       "path": "hooks/use-mobile.ts",
@@ -1293,8 +1303,628 @@
     },
     {
       "path": "package.json",
-      "bytes": 3357,
-      "sha256": "e16d57643b7b4e7fdf3d2d68f62fad273b724c5b022c3d2755cb368143b8fcbe"
+      "bytes": 3611,
+      "sha256": "120613f1aed8bc2da617cdcc802deadf3e7731f2bc4891665d106fd9f5d53123"
+    },
+    {
+      "path": "packages/invariant-ui/LICENSE",
+      "bytes": 1066,
+      "sha256": "8fd8142f70b99b6bddbfb9f77f8770b3080abe77b5c2eec008cb4b29bc6b1e83"
+    },
+    {
+      "path": "packages/invariant-ui/README.md",
+      "bytes": 1964,
+      "sha256": "1e3efb582e756c71e80eeb0c3bbb0bea7205bce55c936c0b234b5297d52ba511"
+    },
+    {
+      "path": "packages/invariant-ui/RULES.md",
+      "bytes": 6503,
+      "sha256": "4e17b5af231f66e5e268f3aebc1b6d513baccbf23abc54d569a06e308cbc5642"
+    },
+    {
+      "path": "packages/invariant-ui/components.json",
+      "bytes": 10756,
+      "sha256": "542f5eac1675f843c135126ca0b5de20c08559c3e2def5572014030e0710a8df"
+    },
+    {
+      "path": "packages/invariant-ui/components/accordion.jsx",
+      "bytes": 2630,
+      "sha256": "4e85296fd875cc26b73ceae2e98f4b760b01a33ff04f0361dadb7d5015764bd8"
+    },
+    {
+      "path": "packages/invariant-ui/components/action-button.jsx",
+      "bytes": 3625,
+      "sha256": "3fc22acf231e36efd50f6eb0bd469a37d068d3f254a911a8c15947343ffbdae7"
+    },
+    {
+      "path": "packages/invariant-ui/components/agent-avatar.jsx",
+      "bytes": 6332,
+      "sha256": "2d42bce5bbe97d25a8167d0992068907fe557ebb26450382112ae7518139694d"
+    },
+    {
+      "path": "packages/invariant-ui/components/alert.jsx",
+      "bytes": 2280,
+      "sha256": "c40d937108d629858853d358b5198a6979910cf70194d9c16a9024b95fe9f530"
+    },
+    {
+      "path": "packages/invariant-ui/components/badge.jsx",
+      "bytes": 518,
+      "sha256": "fa83836e304bc008e6e8dd23c02d8d8fddf0025600bdcb5a44dfd53b367f5c1d"
+    },
+    {
+      "path": "packages/invariant-ui/components/bottom-nav.jsx",
+      "bytes": 19381,
+      "sha256": "d9450f70c30c2887a8620743ed16211d9ab639c55ab11aff4dc93acb9900f634"
+    },
+    {
+      "path": "packages/invariant-ui/components/bottom-sheet.jsx",
+      "bytes": 8528,
+      "sha256": "ff30d4b02e3fa1689fcb743e9236f68c8058662a3aa7432b8a4ab7252b300da1"
+    },
+    {
+      "path": "packages/invariant-ui/components/button.jsx",
+      "bytes": 2049,
+      "sha256": "feb229ae658978564925a94b2e65149011fe7526560f485601b46536c6198ae7"
+    },
+    {
+      "path": "packages/invariant-ui/components/card.jsx",
+      "bytes": 6506,
+      "sha256": "d265cc471c9e479bb3c6ad6efa20c8272761dc411440a00ba47709c0dd9dd96f"
+    },
+    {
+      "path": "packages/invariant-ui/components/checkbox.jsx",
+      "bytes": 1520,
+      "sha256": "63b3436a75102e8e367cc1ae692f21c0c5de1ab655927f741f1f8f26b14cfd65"
+    },
+    {
+      "path": "packages/invariant-ui/components/dialog.jsx",
+      "bytes": 1754,
+      "sha256": "5fbb7c93c8a96e75c3dfcf0fa2fa145535188e9d0d7a199611b2de3d35b647a9"
+    },
+    {
+      "path": "packages/invariant-ui/components/divider.jsx",
+      "bytes": 314,
+      "sha256": "c312e4721acc4b9dde12d2c5ab59042cd03789c6afb1ea547bfc5c6ccb563bda"
+    },
+    {
+      "path": "packages/invariant-ui/components/dropdown.jsx",
+      "bytes": 3470,
+      "sha256": "fc9cefcd5fb1faa82e6de7c1527c453f5dac8342390a3e15e4859a2d6d53e4c6"
+    },
+    {
+      "path": "packages/invariant-ui/components/empty-state.jsx",
+      "bytes": 886,
+      "sha256": "e61acac69f06709dd608909c5d1b4aa1fa029447c835e0bf4f6f47ed5e319f7a"
+    },
+    {
+      "path": "packages/invariant-ui/components/expand-card.jsx",
+      "bytes": 2269,
+      "sha256": "099894e0a882466b0f0e26b238069c514bc043ce6059a9077a5ed936772efeea"
+    },
+    {
+      "path": "packages/invariant-ui/components/icon-button.jsx",
+      "bytes": 998,
+      "sha256": "b335747d43244560b6a59af82cc5697c256ef4d3064a14e9b1833da407f27a31"
+    },
+    {
+      "path": "packages/invariant-ui/components/image-carousel.jsx",
+      "bytes": 9312,
+      "sha256": "ed94b135b090dad7612cf5253fc82a77b777d3a47a1f4e5e6977a5f4db61b692"
+    },
+    {
+      "path": "packages/invariant-ui/components/menu.jsx",
+      "bytes": 1666,
+      "sha256": "a056953489deeef92c8f1213fcf48b065f0d3fb77c41e282a11550e2a3934a77"
+    },
+    {
+      "path": "packages/invariant-ui/components/message-bubble.jsx",
+      "bytes": 3809,
+      "sha256": "5ea61e2c3141d271743ba2d906f730607666a0734a2aacac0ac67cbeac238b4c"
+    },
+    {
+      "path": "packages/invariant-ui/components/modal.jsx",
+      "bytes": 2141,
+      "sha256": "7491065a2047e9d5ebe9941e8668256e52eb016d7478f8b87b2db49960049623"
+    },
+    {
+      "path": "packages/invariant-ui/components/number-input.jsx",
+      "bytes": 4829,
+      "sha256": "7495c52eb4f3ed9e39d70d18502aeb19688b8a5d38e08e397bcf779d7f88e1f7"
+    },
+    {
+      "path": "packages/invariant-ui/components/overlay.jsx",
+      "bytes": 325,
+      "sha256": "2bbdb069032f1facd46be8ad05434089e4956066459db5f1b0ea16c9a3bfdb3d"
+    },
+    {
+      "path": "packages/invariant-ui/components/page-section.jsx",
+      "bytes": 382,
+      "sha256": "7c2ce008ff413c822f7b32df0063c945a897bad62bc2901a6842561130ae4b46"
+    },
+    {
+      "path": "packages/invariant-ui/components/pin-input.jsx",
+      "bytes": 3094,
+      "sha256": "344af943e31e37b016160101710c99a9acedbbd6d36f12cbaead7e2334f4ff84"
+    },
+    {
+      "path": "packages/invariant-ui/components/profile-avatar.jsx",
+      "bytes": 3176,
+      "sha256": "8a3224c8300e13ab25cb50e9f2acf0d33827b18ee65419029e1b3610384fb8d8"
+    },
+    {
+      "path": "packages/invariant-ui/components/profile-menu.jsx",
+      "bytes": 3566,
+      "sha256": "ed18fb0c25e6ab8af1f416ae7d8a1185130c2a7a9111149dfebd96b6a570fe5b"
+    },
+    {
+      "path": "packages/invariant-ui/components/progress.jsx",
+      "bytes": 3082,
+      "sha256": "169a7a2bbe4d331404cb37a8d07d0b2119246106e16784831303bbcbce05d9cc"
+    },
+    {
+      "path": "packages/invariant-ui/components/prompt-bar.jsx",
+      "bytes": 9220,
+      "sha256": "0b80c33679f0c6b8c8a325441bb2ffa10026ce9a2abbf484ee55957b4091ddf8"
+    },
+    {
+      "path": "packages/invariant-ui/components/radio-group.jsx",
+      "bytes": 2163,
+      "sha256": "f60dd830cea23740477db8a4eb20b59da51b652c8a8afd32740296fe55876a6c"
+    },
+    {
+      "path": "packages/invariant-ui/components/row.jsx",
+      "bytes": 797,
+      "sha256": "5003d9c37327e31d28666bc2f67e105c876a7681fe7457969c1cb48222557de5"
+    },
+    {
+      "path": "packages/invariant-ui/components/search-bar.jsx",
+      "bytes": 1218,
+      "sha256": "d7cfd7fe0e32d0e88075c787f5c87e3442074d7e98fbf1cac590330df47adb4c"
+    },
+    {
+      "path": "packages/invariant-ui/components/search-toggle.jsx",
+      "bytes": 2940,
+      "sha256": "02a4bbfb3be77cf51e080435ddcd642305a1e7543df82004976eb8ea1edbe2c8"
+    },
+    {
+      "path": "packages/invariant-ui/components/segmented-control.jsx",
+      "bytes": 2613,
+      "sha256": "2813e0024eb12bdf7b4b641e1190e9022b01a6b7fdd0548df267017e0f28bb6a"
+    },
+    {
+      "path": "packages/invariant-ui/components/select.jsx",
+      "bytes": 3404,
+      "sha256": "58e4c96bad3d028fe75e3939ad02b447d2a3e075d105774ff7e7f0c3d23ad47d"
+    },
+    {
+      "path": "packages/invariant-ui/components/skeleton.jsx",
+      "bytes": 2763,
+      "sha256": "a9aec522a28541cf8591c9d33628ad0974be2e2f446113d3b12b64b624962a4a"
+    },
+    {
+      "path": "packages/invariant-ui/components/slider-input.jsx",
+      "bytes": 3710,
+      "sha256": "36a413e3937dbd11c106a33d7a66c09ee6a74dbc4270da77a0d9eebe8b4bc570"
+    },
+    {
+      "path": "packages/invariant-ui/components/spinner.jsx",
+      "bytes": 454,
+      "sha256": "83e40a7e33339adfab95de528f4012a887458b9aff406fe12b78200b5028317b"
+    },
+    {
+      "path": "packages/invariant-ui/components/split-pane.jsx",
+      "bytes": 2990,
+      "sha256": "bb2a754edfd75072a6c0bf3010216bfd213fdc8879b297a6f4335dfa60166ead"
+    },
+    {
+      "path": "packages/invariant-ui/components/spotlight-card.jsx",
+      "bytes": 2046,
+      "sha256": "b376c2cb421f1ce6a4fe4ba6a9c9ecd5fc7da0b8f583f9944b89c1e145ac66c1"
+    },
+    {
+      "path": "packages/invariant-ui/components/stack.jsx",
+      "bytes": 344,
+      "sha256": "d4dab949df0c9c617817ec90ccaef7f725182d25e12df6be644afdaaedb98ed5"
+    },
+    {
+      "path": "packages/invariant-ui/components/step-indicator.jsx",
+      "bytes": 1942,
+      "sha256": "36a33bafd5a4f1b995c1848f0968a1a1365a474013b6f1a755113a5f70896bc2"
+    },
+    {
+      "path": "packages/invariant-ui/components/surface.jsx",
+      "bytes": 561,
+      "sha256": "6119b04cc8de703ef3754b1310b8994517606c18abd5e09cb330cb2848dda1c2"
+    },
+    {
+      "path": "packages/invariant-ui/components/table.jsx",
+      "bytes": 6122,
+      "sha256": "16f9382d572310c79c8a03c59fc3899f6fcacd9a1106dc4669012ebee891efce"
+    },
+    {
+      "path": "packages/invariant-ui/components/tabs.jsx",
+      "bytes": 2508,
+      "sha256": "a94004850458042c5718162eed37699a22496a378d4ccbe32d23e4e70cb4a60a"
+    },
+    {
+      "path": "packages/invariant-ui/components/text-input.jsx",
+      "bytes": 1874,
+      "sha256": "e86d82434d45c1c1f6a66382c4cdfc32189da6361450f1463a4dd8af50bc14fa"
+    },
+    {
+      "path": "packages/invariant-ui/components/textarea.jsx",
+      "bytes": 2598,
+      "sha256": "a882709ba1484205b5ddf31a1ba70ffc08c257b4efb8d60619e94b38522f11aa"
+    },
+    {
+      "path": "packages/invariant-ui/components/toast.jsx",
+      "bytes": 3600,
+      "sha256": "7fc1985ac75c3fb0b3734b9e98a897644fb3e38a36a750c55b53f655387d3bed"
+    },
+    {
+      "path": "packages/invariant-ui/components/toggle.jsx",
+      "bytes": 1851,
+      "sha256": "c8071141236c7546883e4767c4b4e1fc73e40ad28b698e1a90c8d4f2e1d65fcc"
+    },
+    {
+      "path": "packages/invariant-ui/components/tooltip.jsx",
+      "bytes": 736,
+      "sha256": "bf8e7a720c2cb42a8216b2aee37b451c3c49b8813646fd67c73c3ba82351458f"
+    },
+    {
+      "path": "packages/invariant-ui/components/workspace-switcher.jsx",
+      "bytes": 4355,
+      "sha256": "17b489b7cde7337b2a53130148c911e2707905755d0838e4cc21e4297a153183"
+    },
+    {
+      "path": "packages/invariant-ui/docs/accordion.md",
+      "bytes": 662,
+      "sha256": "cda14861d8c7341bb8fbb799f0b2a293ce73c6d7fc3cce1916e063093ab9fd87"
+    },
+    {
+      "path": "packages/invariant-ui/docs/action-button.md",
+      "bytes": 682,
+      "sha256": "5ae5809660cd4f4d23ce52ec6fbe1e9e9a4b77a60dea0f73549a1ece2c76e827"
+    },
+    {
+      "path": "packages/invariant-ui/docs/agent-avatar.md",
+      "bytes": 767,
+      "sha256": "07353689638afa44aab165d6e3a1939bc8f6d0de250177024c73f9a8c9abeee5"
+    },
+    {
+      "path": "packages/invariant-ui/docs/alert.md",
+      "bytes": 936,
+      "sha256": "4d9e886ee200c1aded186dfb6fe44a7da01d4f67b08f1e5f99e620693b232a30"
+    },
+    {
+      "path": "packages/invariant-ui/docs/badge.md",
+      "bytes": 600,
+      "sha256": "5e5edac611521cd9cb5ae42218c677bd770f196c2c322db46916691e23645dad"
+    },
+    {
+      "path": "packages/invariant-ui/docs/bottom-nav.md",
+      "bytes": 1606,
+      "sha256": "4b12996cc60514b8b90797940d51d1c2f729b26fb169ba2f061c9d2587a57669"
+    },
+    {
+      "path": "packages/invariant-ui/docs/bottom-sheet.md",
+      "bytes": 987,
+      "sha256": "3491e458b5679d3cf3b73aca5571fc8ffa4d250a3f21315ece98424604fe804a"
+    },
+    {
+      "path": "packages/invariant-ui/docs/button.md",
+      "bytes": 988,
+      "sha256": "a9ae7322e86d3d096d81e35222344545e935dbeca7e07ec570b2297c47517a9e"
+    },
+    {
+      "path": "packages/invariant-ui/docs/card.md",
+      "bytes": 1101,
+      "sha256": "a16efac20445152b3cecd86487cc3210c48eb5c7bb6a765d65c4955ad351ecef"
+    },
+    {
+      "path": "packages/invariant-ui/docs/checkbox.md",
+      "bytes": 754,
+      "sha256": "ba2e4bbec3f967e7c942ad92321a36126097fc35d5b1c791b14443268286acdd"
+    },
+    {
+      "path": "packages/invariant-ui/docs/dialog.md",
+      "bytes": 1125,
+      "sha256": "a8b1f0ed49ee9d04ffb5e19ec680c64dc2877128cbb4b7f70f157fc1c31735d7"
+    },
+    {
+      "path": "packages/invariant-ui/docs/divider.md",
+      "bytes": 410,
+      "sha256": "4034062ceb6ef61cafa2c384423a6c435171ede40a3fdd4096ff3974f6b1de0e"
+    },
+    {
+      "path": "packages/invariant-ui/docs/dropdown.md",
+      "bytes": 1321,
+      "sha256": "28e5e91a3bc8e63c2d935142d9bf3f845ff9efbacf31eb53a3c5ad0ad6f4faf5"
+    },
+    {
+      "path": "packages/invariant-ui/docs/empty-state.md",
+      "bytes": 1087,
+      "sha256": "4c9cc042a162a8f4ee9fb1388d104d7ecc27c6323f8666039b3ca1d0d4609d6b"
+    },
+    {
+      "path": "packages/invariant-ui/docs/expand-card.md",
+      "bytes": 740,
+      "sha256": "d265d9dd7452d99393a98bd996dc2d72c4131055b9902caaf0501a338a329b44"
+    },
+    {
+      "path": "packages/invariant-ui/docs/icon-button.md",
+      "bytes": 969,
+      "sha256": "dc2d317d6c7de22a2729510ea2d73a43df2a924650921fccd9c51f9d3bc673a6"
+    },
+    {
+      "path": "packages/invariant-ui/docs/image-carousel.md",
+      "bytes": 868,
+      "sha256": "29fab5b20420072742fe4292887941f9b2cbf142b7c7b82ccc2520956af67f3f"
+    },
+    {
+      "path": "packages/invariant-ui/docs/menu.md",
+      "bytes": 1562,
+      "sha256": "8fa5e40617b9dbe118087149124f9489698c043ed31a8fc537e61270edb5edc4"
+    },
+    {
+      "path": "packages/invariant-ui/docs/message-bubble.md",
+      "bytes": 1359,
+      "sha256": "c4457b51918bd5b1d1505df54b757d9483c826219f5fa38c3596fa0ac13626c2"
+    },
+    {
+      "path": "packages/invariant-ui/docs/modal.md",
+      "bytes": 1201,
+      "sha256": "4ac0ff5f4895a3f3ef2a474cad4d6ce1c8468e712704b25a4721a5a2bed5fb1b"
+    },
+    {
+      "path": "packages/invariant-ui/docs/number-input.md",
+      "bytes": 953,
+      "sha256": "e1e88e5ffd10ba8f19cae25c7903aa905abbdefb8e1d3719a304b0158ff52389"
+    },
+    {
+      "path": "packages/invariant-ui/docs/overlay.md",
+      "bytes": 595,
+      "sha256": "1aea8df9f3aef4286c63f35d71cf25cb26b92a9f0ff7d57cd91f57a72a2967fa"
+    },
+    {
+      "path": "packages/invariant-ui/docs/page-section.md",
+      "bytes": 543,
+      "sha256": "8c48552dd5d86db132de1c3ba807192723c97e3000b2c1cde0e40dec5a17fffa"
+    },
+    {
+      "path": "packages/invariant-ui/docs/patterns.md",
+      "bytes": 4184,
+      "sha256": "14444d93d1eb6a7b4b04f76ac642129a8a2ec768be786be89d967bd168f38357"
+    },
+    {
+      "path": "packages/invariant-ui/docs/pin-input.md",
+      "bytes": 842,
+      "sha256": "1ae107ff1b8e60cf85d30ed32640aaf459de9f087c8b191a44147c1e5dd8cf83"
+    },
+    {
+      "path": "packages/invariant-ui/docs/profile-avatar.md",
+      "bytes": 1463,
+      "sha256": "cd86d836a7ad3adafed7f6005af9521434bf54535175d6bb5444e07affd2cc52"
+    },
+    {
+      "path": "packages/invariant-ui/docs/profile-menu.md",
+      "bytes": 961,
+      "sha256": "6d1d15b1a175b5aa51705cdaead4f0dda72eb9a1e3b10c963f36146bfb481b65"
+    },
+    {
+      "path": "packages/invariant-ui/docs/progress.md",
+      "bytes": 842,
+      "sha256": "eff65e799458e1a1c3303957fc4ea2466e16275cfa4640d7779e601e8d7487cf"
+    },
+    {
+      "path": "packages/invariant-ui/docs/prompt-bar.md",
+      "bytes": 1291,
+      "sha256": "67583733100c8dfcb06f022cd0583dd60e3de1cb513c454f4609bb53aaeabc3f"
+    },
+    {
+      "path": "packages/invariant-ui/docs/radio-group.md",
+      "bytes": 902,
+      "sha256": "d983fd49e428f4aea311c15565f21fec89728282e8f29ba53fc173cc0c8545a2"
+    },
+    {
+      "path": "packages/invariant-ui/docs/row.md",
+      "bytes": 747,
+      "sha256": "e44d65061c9c00148b969d6ae3346cba1fd6dc4ab11f88598a8426234940df12"
+    },
+    {
+      "path": "packages/invariant-ui/docs/search-bar.md",
+      "bytes": 779,
+      "sha256": "9df49b307ca7564ae241e77b2586ae8871fb9984669aef94711ecba1fdaed16c"
+    },
+    {
+      "path": "packages/invariant-ui/docs/search-toggle.md",
+      "bytes": 731,
+      "sha256": "a322dbc2ff5b0f729edfeefaa63a7ca4c4a490c29bc0855bdfe94b365b64d6f9"
+    },
+    {
+      "path": "packages/invariant-ui/docs/segmented-control.md",
+      "bytes": 990,
+      "sha256": "cbeb3bbc694a6e06decf306a487d390748ea63440f26c1cfb446f972e35913c0"
+    },
+    {
+      "path": "packages/invariant-ui/docs/select.md",
+      "bytes": 1054,
+      "sha256": "a3115e7fd9331a9ec45cc02b11e6b596ca501f5b1a65bda25278a63c173c3d7a"
+    },
+    {
+      "path": "packages/invariant-ui/docs/skeleton.md",
+      "bytes": 958,
+      "sha256": "93d0d025914825712b8fecb3a2884c8b9ce01cad28a72f11af383b6dd8b75656"
+    },
+    {
+      "path": "packages/invariant-ui/docs/slider-input.md",
+      "bytes": 1090,
+      "sha256": "b43ce0cd5c7df9922384cf1301ccc7764bff0c99ed1f7a21c6f5ede92aa7bb10"
+    },
+    {
+      "path": "packages/invariant-ui/docs/spinner.md",
+      "bytes": 501,
+      "sha256": "7ad26498a6bff0017d4f1e5977ce522c4c59480126831153d0a7c87ea6300312"
+    },
+    {
+      "path": "packages/invariant-ui/docs/split-pane.md",
+      "bytes": 1077,
+      "sha256": "689ccfe5e983bd4ca9da61f936583a7425f007c8b615d006629f1bb1b3e9399d"
+    },
+    {
+      "path": "packages/invariant-ui/docs/spotlight-card.md",
+      "bytes": 651,
+      "sha256": "d19cbf479cbee3965d8304b292b7180469fad54b1d669a98e17596e59443c47a"
+    },
+    {
+      "path": "packages/invariant-ui/docs/stack.md",
+      "bytes": 563,
+      "sha256": "1adf5af7f1c9b1e61dd03bc4626e886e17d32c65c1a7496359d89912af2e773c"
+    },
+    {
+      "path": "packages/invariant-ui/docs/step-indicator.md",
+      "bytes": 627,
+      "sha256": "75198b80534cffba2fc6c5a3931e07d257b7f2e1173985de3437a467966d8034"
+    },
+    {
+      "path": "packages/invariant-ui/docs/surface.md",
+      "bytes": 578,
+      "sha256": "d552fc5f3fe926245299cf60bfa0d4701ed3b0822f75441d6ea2ea129cfe79f5"
+    },
+    {
+      "path": "packages/invariant-ui/docs/table.md",
+      "bytes": 1114,
+      "sha256": "daf66232ba6f216822c3ed5107950fb1cbea916a970522d0b46b32b49fafc081"
+    },
+    {
+      "path": "packages/invariant-ui/docs/tabs.md",
+      "bytes": 754,
+      "sha256": "cc9624a96a595aeb3520dc138b0efca2c8bc959cc3cc4b2a9ecfdd297473980a"
+    },
+    {
+      "path": "packages/invariant-ui/docs/text-input.md",
+      "bytes": 871,
+      "sha256": "8e39c924d37b47b8aa2fde826d30c42c62149f6e3ef721b930c52a27c6dadafd"
+    },
+    {
+      "path": "packages/invariant-ui/docs/textarea.md",
+      "bytes": 1160,
+      "sha256": "672e02c66014527184e2fa47c99a9c4ee8e05b68001edd71c36cef7547fe90a1"
+    },
+    {
+      "path": "packages/invariant-ui/docs/theming.md",
+      "bytes": 2263,
+      "sha256": "ef58c86dd58ffb2be40049c5e77a502a837b70193aa9a8cc5e669c69e5e8bb8f"
+    },
+    {
+      "path": "packages/invariant-ui/docs/toast.md",
+      "bytes": 980,
+      "sha256": "4c4c5b1fb6fc7c62b3067eb23c22e37890278dc858627c5ce53554fe7e030938"
+    },
+    {
+      "path": "packages/invariant-ui/docs/toggle.md",
+      "bytes": 580,
+      "sha256": "bb8da53deb745e19cb04b1edeaf8dad53fecbcee5d24a099679b19887a5cec7e"
+    },
+    {
+      "path": "packages/invariant-ui/docs/tooltip.md",
+      "bytes": 836,
+      "sha256": "70300d2fdab8a7ee8fd32d0ffccf99c543700ad9a155e4e35bce3d7bcc83fe08"
+    },
+    {
+      "path": "packages/invariant-ui/docs/workspace-switcher.md",
+      "bytes": 966,
+      "sha256": "d946f277e2a6ea05d59222f03f258cab70c982bd7b2a597563fbf617d82374cf"
+    },
+    {
+      "path": "packages/invariant-ui/lib/icon.jsx",
+      "bytes": 4208,
+      "sha256": "3ca7bc736023bcf6c51a43d65d0344fd43335a80410915ed14a0ade1515b5d46"
+    },
+    {
+      "path": "packages/invariant-ui/lib/popover.js",
+      "bytes": 2692,
+      "sha256": "36f1e5d257d7f2bce7515826dff879ae1f3094152285634d65b0658c0e0ca782"
+    },
+    {
+      "path": "packages/invariant-ui/lib/use-click-outside.js",
+      "bytes": 697,
+      "sha256": "6db8ba7cabe5d38ae807fbacc04f94e6246fc6b4c295276be2b3da4eb7936d78"
+    },
+    {
+      "path": "packages/invariant-ui/lib/use-dialog-focus.js",
+      "bytes": 2326,
+      "sha256": "7538ebffeb20131930abd852d9268846f61e939367bbe8213fae010b92ddf428"
+    },
+    {
+      "path": "packages/invariant-ui/lib/use-is-mobile.js",
+      "bytes": 450,
+      "sha256": "201447fb83cd36c0b9e7d278a37dbc0bea87408599c890f667922cdb64cfc608"
+    },
+    {
+      "path": "packages/invariant-ui/preview/data.jsx",
+      "bytes": 781,
+      "sha256": "fa68ba2073f1d802208c1fd8a6b2772856ad91131958b4446f663df8ccfb125e"
+    },
+    {
+      "path": "packages/invariant-ui/preview/feedback.js",
+      "bytes": 161,
+      "sha256": "db58bd90ed73a3528670973647998f73987d8f1dc9beb6777dc7c56469e4e117"
+    },
+    {
+      "path": "packages/invariant-ui/preview/index.html",
+      "bytes": 264,
+      "sha256": "4ebe1d422a79573c8b8355ffece2d08c081052c74fef632a7c105fad36228b19"
+    },
+    {
+      "path": "packages/invariant-ui/preview/main.jsx",
+      "bytes": 1348,
+      "sha256": "2c8e6046578c93e424e1baa71518fac8dd644f266c237593666938097eb5e614"
+    },
+    {
+      "path": "packages/invariant-ui/preview/public/avatar.svg",
+      "bytes": 260,
+      "sha256": "86cac82d85e5edef3358f47ade83c1b70c49f9f9776ae7c350dec32a5fca2a64"
+    },
+    {
+      "path": "packages/invariant-ui/preview/public/card-video.mp4",
+      "bytes": 1661623,
+      "sha256": "d08d968f4f41d3c6dd49df53caffa603e510d89478a9498dc16ad85263981d97"
+    },
+    {
+      "path": "packages/invariant-ui/preview/screens.jsx",
+      "bytes": 39736,
+      "sha256": "8f0a27a88cc0b349679a57685cf98c38ff2698051e2efab233f8846eaf8614c7"
+    },
+    {
+      "path": "packages/invariant-ui/preview/styles.css",
+      "bytes": 1143,
+      "sha256": "90e22f4a7897054704d478f7cf4794d85ecc529c9d7ca826a85c1cc60c7d8f18"
+    },
+    {
+      "path": "packages/invariant-ui/preview/supplemental.jsx",
+      "bytes": 2781,
+      "sha256": "645e29a335208968454760f6a7608feef686768814b7afeca4f685923756f91d"
+    },
+    {
+      "path": "packages/invariant-ui/preview/vite.config.mjs",
+      "bytes": 285,
+      "sha256": "0e14b821bb313a214599467119aff9e5a2e5c6522e53f1f6a7537193d6a230f3"
+    },
+    {
+      "path": "packages/invariant-ui/tokens/presets/forest.css",
+      "bytes": 113,
+      "sha256": "2a8088e77cfe9faa0b9dd558c4d6de8ecb0369fa162ca8434eae917c0b2a9ce6"
+    },
+    {
+      "path": "packages/invariant-ui/tokens/presets/midnight.css",
+      "bytes": 126,
+      "sha256": "d35debec0b197afc5fd22e76629ef6337aa9cb811b14fd64c1cca4859015dbf3"
+    },
+    {
+      "path": "packages/invariant-ui/tokens/theme.css",
+      "bytes": 4788,
+      "sha256": "0e74d6ba6cdd30f7952715699f0c68d5b725bf4d55587ac0501e0f4f1c8ce985"
     },
     {
       "path": "packages/mobile-client/src/contracts.ts",
@@ -1307,9 +1937,39 @@
       "sha256": "9fecfef27043ce59481f69cb2180319d0b3fa0eb6c2ef702b943b1511ae40a1e"
     },
     {
+      "path": "playwright.invariant.config.ts",
+      "bytes": 917,
+      "sha256": "527ca70d06384bd04c5262771eda22f2b10d6e271f2d24502c2aec60dba4a0cc"
+    },
+    {
       "path": "postcss.config.mjs",
       "bytes": 94,
       "sha256": "dfac7ac2d86d326a0e5adb024e7943c181393ed17a5fcb8f0315b24c7da6ddde"
+    },
+    {
+      "path": "public/invariant-preview/assets/index-GdMXPrI1.css",
+      "bytes": 42521,
+      "sha256": "84e158656c06144bd557d1a83ee6804da9cd0dd8b56d6173e6cbc3ab634ed33c"
+    },
+    {
+      "path": "public/invariant-preview/assets/index-V4RwEfxQ.js",
+      "bytes": 340630,
+      "sha256": "27cf8d56e388878cc67d297926aa28b490a4774ffa81be1d26d0b23d98690070"
+    },
+    {
+      "path": "public/invariant-preview/avatar.svg",
+      "bytes": 260,
+      "sha256": "86cac82d85e5edef3358f47ade83c1b70c49f9f9776ae7c350dec32a5fca2a64"
+    },
+    {
+      "path": "public/invariant-preview/card-video.mp4",
+      "bytes": 1661623,
+      "sha256": "d08d968f4f41d3c6dd49df53caffa603e510d89478a9498dc16ad85263981d97"
+    },
+    {
+      "path": "public/invariant-preview/index.html",
+      "bytes": 403,
+      "sha256": "e3f44d88387eff030a0e6e1c381a0e03df9ec7acaba4f682ec6ce8158107e72a"
     },
     {
       "path": "scripts/check-design.mjs",
@@ -1323,8 +1983,8 @@
     },
     {
       "path": "scripts/package.mjs",
-      "bytes": 2602,
-      "sha256": "e83f77b0f26202a78d2c7165cdbf72ebf2805a8530d4c5cc90944ac882879d03"
+      "bytes": 2635,
+      "sha256": "549fbe820456ea0d065febf062d11feec8a42bccdfccbf0e6b6ae784b73710b3"
     },
     {
       "path": "scripts/setup.mjs",
@@ -1360,6 +2020,11 @@
       "path": "tests/browser/server.mjs",
       "bytes": 1411,
       "sha256": "150143c6be06f91888ecb6c2a15f8797ef8b526c365e30fe29bf1b1010aac57e"
+    },
+    {
+      "path": "tests/invariant-browser/invariant.spec.ts",
+      "bytes": 10825,
+      "sha256": "f1fb39a99cc7e076ca908a06813e0ac7654fecd828908df170d4c72310058f04"
     },
     {
       "path": "tests/local-api.integration.mjs",

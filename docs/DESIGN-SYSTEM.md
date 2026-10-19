@@ -76,3 +76,7 @@ Run `npm run check:ui` for static guards and builds; `npm run test:ui` for brows
 `components/ui/portal-container.tsx` carries the nearest Dialog/Sheet content container. Nested Select and Popover content mount within that boundary so the outer focus trap permits keyboard and calendar interaction; outside an overlay, they retain body portals. Keep caller refs and focus restoration intact when extending these primitives.
 
 `@radix-ui/react-dismissable-layer` is pinned directly to `1.1.19` so the shared Radix Dialog/Select/Popover stack resolves one physical instance and coordinates outside-click/Escape dismissal. A separate compatible dependency stack may exist for cmdk. Preserve the lockfile; dependency updates must verify that one Escape closes only the top menu/calendar, the next closes the dialog, and focus returns correctly. Do not disable the outer focus trap to hide a duplicated-context bug.
+
+## Invariant collection
+
+The owner-approved `packages/invariant-ui` collection preserves Invariant's original `--inv-*` tokens and components. This is an intentionally distinct, namespaced design system; its palette and geometry are not Foundation token overrides. Global CSS imports its namespaced tokens and scans its component classes. Keep new Foundation controls in the existing owning layers; use Invariant components through their documented APIs and `inv-scope`. The showcase's isolated preview document prevents page-level motion from changing the host. See `INVARIANT-INTEGRATION.md` for changes and limits.

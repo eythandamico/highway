@@ -126,3 +126,7 @@ No remote is preconfigured. No source Git history, customer records, artwork, pr
 Create your own D1 database and private R2 bucket; configure your own HTTPS origin, authentication secret, verified email sender and SendGrid token; apply migrations; replace placeholder public content and complete the release checklist. `npm run check:release` checks public configuration only and deliberately fails on the unconfigured starter. Nothing in setup or packaging deploys an app.
 
 Vinext is pinned to the version used by the source foundation and is a beta dependency. Validate framework upgrades explicitly. This starter preserves that stack rather than promising compatibility with every Next.js deployment host.
+
+### Invariant collection
+
+All 50 Invariant UI components are included in `packages/invariant-ui`, with original materials and motion, source docs, and integration refinements. Explore `/showcase?collection=invariant&component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. `npm run build:invariant` rebuilds the isolated previews during development. See `docs/INVARIANT-INTEGRATION.md`.

@@ -13,3 +13,6 @@ artifacts/
 .DS_Store
 test-results/
 playwright-report/
+
+# Generated isolated component previews
+/public/invariant-preview/

@@ -8,8 +8,8 @@
   },
   "scripts": {
     "setup": "node scripts/setup.mjs",
-    "dev": "vinext dev --port 5188",
-    "build": "vinext build",
+    "dev": "npm run build:invariant && vinext dev --port 5188",
+    "build": "npm run build:invariant && vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --port 5188",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -21,9 +21,11 @@
     "package": "node scripts/package.mjs",
     "check:design": "node scripts/check-design.mjs && node --test tests/verify-design-foundation.mjs",
     "test:ui": "playwright test --config playwright.design.config.ts",
+    "test:invariant": "npm run build:invariant && playwright test --config playwright.invariant.config.ts",
     "check:ui": "npm run typecheck && npm run lint && npm run check:design && npm run build && npm run build-storybook",
     "check:ui:full": "npm run check:ui && npm run test:ui",
-    "test:demo": "node --experimental-strip-types --test tests/verify-demo-workspace.mjs"
+    "test:demo": "node --experimental-strip-types --test tests/verify-demo-workspace.mjs",
+    "build:invariant": "vite build --config packages/invariant-ui/preview/vite.config.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

@@ -3,6 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Plus, Search } from "lucide-react";
+import { useTheme } from "next-themes";
+import invariantEntries from "./invariant-registry.json";
 import { LibraryShell } from "./library-shell";
 import { CodeExample } from "./code-example";
 import { Button } from "@/components/ui/button";
@@ -48,12 +50,39 @@ const entries = [
   { id: "theme", name: "Scoped appearance", group: "Theming", description: "Brand tokens applied to both the container and portal context, keeping status colors independent.", source: "lib/design/appearance-style.ts · components/ui/theme-scope.tsx", code: `const tokens = appearanceStyle(DEFAULT_ACCENT);\n<ThemeScope tokens={tokens}>\n  <section style={tokens}>\n    <Button>Continue</Button>\n  </section>\n</ThemeScope>`, preview: ThemePreview },
 ];
 export function Showcase() {
-  const params = useSearchParams(), [query, setQuery] = useState("");
-  const selected = entries.find(e => e.id === params.get("component")) || entries[0];
-  const filtered = entries.filter(e => `${e.name} ${e.group}`.toLowerCase().includes(query.toLowerCase()));
-  const Preview = selected.preview;
-  return <LibraryShell><div className="library-layout"><aside className="library-sidebar"><Label htmlFor="component-search" className="sr-only">Search components</Label><Input id="component-search" placeholder="Find a component…" value={query} onChange={e=>setQuery(e.target.value)}/><nav aria-label="Component library">{filtered.map((entry,index)=><div key={entry.id}>{(index===0 || filtered[index-1].group!==entry.group)&&<p className="library-category">{entry.group}</p>}<Link className="block" href={`/showcase?component=${entry.id}`} scroll={false} aria-current={entry.id===selected.id?"page":undefined}>{entry.name}</Link></div>)}</nav>{!filtered.length&&<p className="muted" role="status">No components match. Try another name.</p>}</aside>
-  <article className="library-content"><p className="library-eyebrow">{selected.group.toUpperCase()} / LIVE COMPONENT</p><h1>{selected.name}</h1><p className="library-intro">{selected.description}</p><section className="library-preview" aria-label={`${selected.name} interactive preview`}><div className="library-preview-inner"><Preview key={selected.id}/></div></section><p className="library-source">Source: <code>{selected.source}</code></p><CodeExample key={selected.id} code={selected.code}/><div className="library-links"><Button variant="ghost" asChild><Link href="/guide#build">How to use these components →</Link></Button><Button variant="ghost" asChild><Link href="/components/foundation">Full quality lab →</Link></Button></div></article></div></LibraryShell>;
+  const params = useSearchParams();
+  const [query, setQuery] = useState("");
+  const { resolvedTheme } = useTheme();
+  const collection = params.get("collection") === "invariant" || params.get("component")?.startsWith("inv-") ? "invariant" : "foundation";
+  const catalogue = collection === "invariant" ? invariantEntries : entries;
+  const selected = catalogue.find(e => e.id === params.get("component")) || catalogue[0];
+  const filtered = catalogue.filter(e => `${e.name} ${e.group}`.toLowerCase().includes(query.toLowerCase()));
+  const Preview = "preview" in selected ? selected.preview : null;
+  const previewURL = "previewId" in selected ? `/invariant-preview/index.html?component=${selected.previewId}&theme=${resolvedTheme === "dark" ? "dark" : "light"}` : null;
+  return <LibraryShell>
+    <div className="library-collections" aria-label="Component collections">
+      <Link href="/showcase" aria-current={collection === "foundation" ? "page" : undefined}>Foundation <span>15</span></Link>
+      <Link href="/showcase?collection=invariant&component=inv-segmented-control" aria-current={collection === "invariant" ? "page" : undefined}>Invariant <span>50</span></Link>
+      <p>Small details. Considered interactions.</p>
+    </div>
+    <div className="library-layout"><aside className="library-sidebar">
+      <Label htmlFor="component-search" className="sr-only">Search components</Label><Input id="component-search" placeholder="Find a component…" value={query} onChange={e=>setQuery(e.target.value)}/>
+      <nav aria-label="Component library">{filtered.map((entry,index)=><div key={entry.id}>
+        {(index===0 || filtered[index-1].group!==entry.group)&&<p className="library-category">{entry.group}</p>}
+        <Link className="block" href={`/showcase?collection=${collection}&component=${entry.id}`} scroll={false} aria-current={entry.id===selected.id?"page":undefined}>{entry.name.split(",")[0]}</Link>
+      </div>)}</nav>{!filtered.length&&<p className="muted" role="status">No components match. Try another name.</p>}
+    </aside>
+    <article className="library-content" key={selected.id}>
+      <p className="library-eyebrow">{selected.group.toUpperCase()} / LIVE COMPONENT</p>
+      <h1>{selected.name.split(",")[0]}</h1><p className="library-intro">{selected.description}</p>
+      {previewURL ? <>
+        <div className="library-preview-toolbar"><span>Original Invariant materials & motion</span><a href={previewURL} target="_blank" rel="noreferrer">Open full preview ↗</a></div>
+        <iframe className="library-invariant-preview" title={`${selected.name.split(",")[0]} interactive preview`} src={previewURL}/>
+      </> : <section className="library-preview" aria-label={`${selected.name} interactive preview`}><div className="library-preview-inner">{Preview && <Preview/>}</div></section>}
+      <p className="library-source">Source: <code>{selected.source}</code></p><CodeExample code={selected.code}/>
+      {"props" in selected && <section className="library-api" aria-label="Component API"><h2>API reference</h2>{selected.props.length ? <div className="library-api-scroll"><table className="library-mapping"><thead><tr>{["Prop", "Type", "Default", "Description"].map(label=><th key={label} scope="col">{label}</th>)}</tr></thead><tbody>{selected.props.map((row,index)=><tr key={index}>{row.map((cell,i)=><td key={i}>{i<3?<code>{cell}</code>:cell}</td>)}</tr>)}</tbody></table></div> : <p className="muted">See the full usage reference for composition and subcomponent APIs.</p>}<details className="library-reference"><summary>Full usage reference</summary><pre>{selected.documentation}</pre></details></section>}
+      <div className="library-links"><Button variant="ghost" asChild><Link href={collection === "invariant" ? "/guide#invariant" : "/guide#build"}>How to use these components →</Link></Button><Button variant="ghost" asChild><Link href="/components/foundation">Full quality lab →</Link></Button></div>
+    </article></div></LibraryShell>;
 }
 function ButtonPreview() {
   const [variant,setVariant]=useState<"default"|"secondary"|"ghost"|"destructive">("default"),[disabled,setDisabled]=useState(false),[count,setCount]=useState(0);

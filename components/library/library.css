@@ -67,3 +67,26 @@
 @media (max-width: 640px) {
   .library-preview .yw-desktop-nav .ui-button { min-inline-size: 0; flex-direction: column; padding-inline: var(--space-1); }
 }
+
+/* Invariant's quiet selection, deliberate entrance, and spacious preview stage. */
+.library-collections { display:flex; align-items:center; flex-wrap:wrap; gap:var(--space-2); padding:var(--space-4) var(--space-8); border-bottom:1px solid var(--line); }
+.library-collections a { display:flex; align-items:center; gap:var(--space-3); padding:var(--space-3) var(--space-5); border-radius:var(--radius-control); text-decoration:none; color:var(--soft); transition:background-color var(--duration-fast), color var(--duration-fast), transform var(--duration-fast); }
+.library-collections a[aria-current] { background:var(--surface-muted); color:var(--ink); box-shadow:var(--panel-shadow); }
+.library-collections a:active { transform:scale(.97); }
+.library-collections span { font-size:var(--type-caption); color:var(--soft); }
+.library-collections p { margin-left:auto; color:var(--soft); font-size:var(--type-secondary); }
+.library-preview-toolbar { display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--space-3); margin-top:var(--space-8); padding:var(--space-4) var(--space-5); border:1px solid var(--line); border-radius:var(--radius-panel) var(--radius-panel) 0 0; color:var(--soft); font-size:var(--type-secondary); }
+.library-invariant-preview { display:block; width:100%; height:480px; border:1px solid var(--line); border-top:0; border-radius:0 0 var(--radius-panel) var(--radius-panel); }
+.library-reference { margin-top:var(--space-6); border-bottom:1px solid var(--line); padding-bottom:var(--space-5); }
+.library-reference summary { cursor:pointer; padding:var(--space-3) 0; }
+.library-reference pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:var(--type-secondary); color:var(--soft); margin-top:var(--space-4); }
+.library-content { animation:library-reveal 220ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes library-reveal { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .library-content { animation:none; } .library-collections a { transition:none; } }
+@media(max-width:900px) { .library-collections { padding:var(--space-3) var(--space-5); } .library-collections p { display:none; } }
+
+.library-content h1 { overflow-wrap:anywhere; }
+
+.library-api { margin-top:var(--space-10); }
+.library-api-scroll { overflow-x:auto; margin-top:var(--space-4); }
+.library-api table { min-width:560px; }

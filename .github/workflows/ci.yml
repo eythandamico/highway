@@ -37,6 +37,7 @@ jobs:
       - run: npm run check:design
       - run: npm run build-storybook
       - run: npm run test:ui
+      - run: npm run test:invariant
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

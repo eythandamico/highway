@@ -1,3 +1,12 @@
+# Invariant integration validation — October 19, 2026
+
+- `npm run test:invariant`: 9 applicable tests passed across desktop, 390px phone, 320px narrow, and reduced-motion projects; 23 project-specific skips. Tests visit all 50 catalogue previews and check search, segmented/toggle state, modal labels/focus/keyboard dismissal/restoration, theme sync, mobile containment, and reduced-motion CSS.
+- `npm run check:ui:full`: typecheck, lint, design/contrast, preview + app production builds, Storybook, and Foundation browser tests passed (28 passed, 8 intentional skips).
+- `npm run test:demo`: 3/3 passed.
+- Lint: zero errors; 18 inherited package warnings remain, chiefly native image elements, unused variables, and dependency suggestions.
+- Manual review: original avatar artwork, selection controls, dark/light, modal labels/focus/Escape, and phone showcase layout.
+- Real-device keyboards, assistive technology, every interaction in all 50 components, and measured performance have not been comprehensively verified. ImageCarousel retains external sample image URLs.
+
 # Latest standalone demo validation — October 19, 2026
 
 The owner-requested Yardwork demo extraction adds `/demo`, `/guide`, and `/showcase` while retaining the independent personal Cloudflare and GitHub configuration. No original Yardwork services or data were accessed.
