@@ -1,0 +1,11 @@
+"use client";
+import { useState } from 'react';
+import { useOffice } from './context';
+import { Button,Modal } from './shared';
+import { Feedback } from '@/components/foundation/feedback';
+export function InvoicePayment({invoiceId}:{invoiceId:string}) {
+ const {request,demo,role}=useOffice(),[open,setOpen]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[preview,setPreview]=useState<{amount:number;currency:string;service:string;fingerprint:string;available:boolean}|null>(null),[url,setUrl]=useState('');
+ async function review(){setOpen(true);setBusy(true);setError('');setUrl('');try{setPreview(await request('/api/integrations/payments',{action:'preview',invoiceId}));}catch(e){setError(e instanceof Error?e.message:'Could not load payment.');}finally{setBusy(false);}}
+ async function create(){if(!preview||busy)return;setBusy(true);setError('');try{const r=await request<{url:string}>('/api/integrations/payments',{action:'checkout',invoiceId,fingerprint:preview.fingerprint});setUrl(r.url);}catch(e){setError(e instanceof Error?e.message:'Could not create payment link.');}finally{setBusy(false);}}
+ return <><Button variant="secondary" disabled={demo||!['owner','admin'].includes(role||'')} onClick={()=>void review()}>Payment link</Button>{open&&<Modal open title="Invoice payment link" description="Review the invoice total before creating a Stripe payment link. This does not charge a card or send a message." pending={busy} onClose={()=>setOpen(false)}>{error&&<Feedback>{error}</Feedback>}{preview&&<><p>{preview.service}</p><p>{new Intl.NumberFormat('en-CA',{style:'currency',currency:'CAD'}).format(preview.amount/100)} CAD</p>{!preview.available&&<p>Yardwork payments are not available for your business yet.</p>}</>}{url?<><a href={url} target="_blank" rel="noopener noreferrer">Open Stripe payment page</a><p>Share this link only with the intended customer. Payment is recorded only after Stripe confirms it.</p><Button variant="secondary" onClick={()=>void navigator.clipboard.writeText(url).catch(()=>setError('Could not copy the link. Open the payment page to copy its address.'))}>Copy payment link</Button></>:<Button disabled={busy||!preview?.available} onClick={()=>void create()}>{busy?'Preparing…':'Create reviewed payment link'}</Button>}</Modal>}</>;
+}

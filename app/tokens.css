@@ -237,3 +237,122 @@
   --avatar-rim-shadow: inset 0 0 0 1px rgb(16 46 70 / 60%), inset 0 0 0 2px rgb(255 255 255 / 24%), inset 0 2px 1px rgb(255 255 255 / 30%), inset 0 -2px 1px rgb(16 46 70 / 12%);
   --avatar-lift-shadow: 0 2px 4px -2px rgb(16 46 70 / 25%);
 }
+
+/* Original Yardwork demo materials; shared starter tokens above remain authoritative. */
+:root {
+  --inbox-badge-background: #123c31;
+  --inbox-badge-foreground: #ffffff;
+  --map-route: #376b50;
+  --map-location: #2575b5;
+  --yw-green: var(--brand-ink);
+  --yw-dark-green: var(--brand-ink-dark);
+  --yw-pale: var(--brand-soft);
+  --yw-warning: var(--status-warning);
+  --yw-warning-bg: var(--status-warning-bg);
+  --yw-danger: var(--status-error);
+  --yw-radius: var(--radius-panel);
+  --yw-accent: var(--primary);
+  --yw-accent-foreground: var(--primary-foreground);
+}
+.dark {
+  --yw-green: var(--brand-ink);
+  --yw-dark-green: var(--brand-ink-dark);
+  --yw-pale: var(--brand-soft);
+  --yw-warning: var(--status-warning);
+  --yw-warning-bg: var(--status-warning-bg);
+  --yw-danger: var(--status-error);
+  --yw-radius: var(--radius-panel);
+  --yw-accent: var(--primary);
+  --yw-accent-foreground: var(--primary-foreground);
+}
+:root {
+  --ask-bar-width: 52.5rem;
+  --ask-bar-compact-width: 11.5rem;
+  --ask-morph-duration: 520ms;
+  --ask-morph-ease: cubic-bezier(.4, 0, .2, 1);
+  --ask-surface: rgb(255 255 255 / 90%);
+  --ask-blur: 24px;
+  --ask-surface-duration: 400ms;
+  --ask-rim-duration: 280ms;
+  --ask-surface-ease: cubic-bezier(0.4,0,0.2,1);
+  --ask-rim-ease: cubic-bezier(0.22,1,0.36,1);
+  --ask-orb-size: 1.875rem;
+  --ask-orb-shadow: drop-shadow(0 3.6px 6.6px rgb(0 0 0 / 30%));
+  --ask-edge: rgb(133 96 63 / 8%);
+  --ask-bottom-edge: rgb(133 96 63 / 20%);
+  --ask-ink: #44382e;
+  --ask-placeholder: #74695f;
+  --ask-reflection-strong: rgb(255 255 255 / 22%);
+  --ask-reflection-soft: rgb(255 255 255 / 8%);
+  --ask-reflection-top: rgb(255 255 255 / 9%);
+  --ask-reflection-mid: rgb(255 255 255 / 6%);
+  --ask-rim-light: rgb(255 255 255 / 85%);
+  --ask-glass-inset: inset 0 1px 0 rgb(255 255 255 / 90%);
+  --ask-glass-shadow: 0 2px 6px -2px rgb(85 59 36 / 9%), 0 12px 28px -12px rgb(85 59 36 / 22%);
+  --ask-focus-shadow: 0 18px 32px -12px rgb(70 46 27 / 42%);
+  --ask-button: #85603f;
+  --ask-button-ink: #ffffff;
+  --ask-button-edge: color-mix(in srgb, var(--ask-button) 78%, #462e1b);
+  --ask-button-hover: color-mix(in srgb, var(--ask-button) 94%, white);
+  --ask-button-active: color-mix(in srgb, var(--ask-button) 94%, #462e1b);
+  --ask-button-shadow: inset 0 1px 0 rgb(255 255 255 / 38%), inset 0 0 0 1px rgb(255 255 255 / 16%), 0 6px 16px -5px rgb(85 59 36 / 28%);
+  --ask-button-hover-shadow: inset 0 1px 0 rgb(255 255 255 / 45%), inset 0 0 0 1px rgb(255 255 255 / 20%), 0 8px 20px -5px rgb(85 59 36 / 32%);
+  --ask-button-active-shadow: inset 0 1px 3px rgb(70 46 27 / 20%), inset 0 0 0 1px rgb(255 255 255 / 12%), 0 2px 5px -2px rgb(85 59 36 / 24%);
+}
+.dark {
+  --ask-surface: rgb(44 38 32 / 82%);
+  --ask-edge: rgb(211 179 147 / 12%);
+  --ask-bottom-edge: rgb(211 179 147 / 20%);
+  --ask-ink: #f1e7dc;
+  --ask-placeholder: #c0b1a2;
+  --ask-glass-inset: inset 0 1px 0 rgb(255 255 255 / 22%);
+  --ask-rim-light: rgb(255 255 255 / 32%);
+  --ask-focus-shadow: 0 18px 32px -12px rgb(0 0 0 / 50%);
+}
+:root {
+  --pebble-size: 3.3rem;
+  --pebble-core-opacity: .18;
+  --pebble-highlight: #ffebc2;
+  --pebble-body: #e99a28;
+  --pebble-shade: #a96520;
+  --pebble-edge: #c88d3c;
+  --pebble-ink: #393630;
+  --pebble-reflection: #574022;
+  --pebble-shadow: drop-shadow(0 3px 3px rgb(67 48 28 / 17%));
+}
+.dark {
+  --pebble-core-opacity: .22;
+  --pebble-body: #eda640;
+  --pebble-shade: #ba7b30;
+  --pebble-ink: #211f1c;
+}
+:root {
+  --ask-reply-surface: rgb(252 250 247 / 94%);
+}
+.dark {
+  --ask-reply-surface: rgb(38 34 30 / 94%);
+}
+:root {
+  --day-selected-edge: color-mix(in srgb, var(--ring) 25%, transparent);
+  --day-selected-ink: var(--primary-foreground);
+  --day-selected-surface: color-mix(in srgb, var(--primary) 32%, var(--background));
+  --day-selected-shadow: inset 0 1px 0 rgb(255 255 255 / 90%), 0 2px 6px -2px rgb(62 80 28 / 10%), 0 12px 24px -14px rgb(62 80 28 / 22%);
+}
+.dark {
+  --day-selected-ink: var(--foreground);
+}
+:root {
+  --metal-orb-fallback: radial-gradient(circle at 32% 24%, #edf6c6 0%, #d9ee8a 28%, #d3e887 52%, #c2d67b 76%, #a8ba6a 100%);
+  --metal-eye-ink: #123c31;
+  --metal-eye-shadow: none;
+  --helper-rim-shadow: inset 0 0 0 1px rgb(18 60 49 / 20%);
+}
+:root {
+  --ask-viewport-fade: linear-gradient(to top, rgb(133 105 75 / 23%) 0%, rgb(133 105 75 / 10%) 40%, rgb(133 105 75 / 0%) 100%);
+  --ask-viewport-fade-height: 12rem;
+}
+.dark {
+  --ask-viewport-fade: linear-gradient(to top, rgb(70 49 31 / 32%), rgb(70 49 31 / 0%) 100%);
+}
+
+:root { --artwork-highlight: #ffffff; --artwork-shade: #000000; }

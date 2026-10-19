@@ -1,114 +1,148 @@
 import assert from "node:assert/strict";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { test } from "node:test";
-import { createDemoWorkspace } from "../lib/demo-workspace.ts";
+import ts from "typescript";
+import { fieldApi } from "../components/yardwork/field-api.ts";
+import { demoSuite } from "../lib/yardwork/demo-suite.ts";
+import { exampleMapStops } from "../lib/yardwork/route-map.ts";
+import { applyAction } from "../lib/yardwork/yardwork.ts";
 
-test("demo workspaces isolate record state and keep file URLs local", async () => {
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+async function loadDemoProvider() {
+  const source = await readFile(path.join(root, "components/yardwork/context.tsx"), "utf8");
+  let output = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.ESNext,
+      target: ts.ScriptTarget.ES2022,
+      jsx: ts.JsxEmit.ReactJSX,
+    },
+  }).outputText;
+  output = output
+    .replace('import { toast } from "sonner";', 'const toast = { success() {}, error() {} };')
+    .replaceAll('"@/lib/ui/action-feedback"', JSON.stringify(pathToFileURL(path.join(root, "lib/ui/action-feedback.ts")).href))
+    .replaceAll('"@/lib/yardwork/yardwork"', JSON.stringify(pathToFileURL(path.join(root, "lib/yardwork/yardwork.ts")).href));
+
+  const directory = await mkdtemp(path.join(root, "tests", ".office-provider-test-"));
+  const modulePath = path.join(directory, "context.mjs");
+  try {
+    await writeFile(modulePath, output);
+    return await import(pathToFileURL(modulePath).href);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+}
+
+function descendants(rootNode, predicate) {
+  const matches = [];
+  const visit = (node) => {
+    if (predicate(node)) matches.push(node);
+    node.forEachChild(visit);
+  };
+  visit(rootNode);
+  return matches;
+}
+
+test("demo provider and field API stay offline while demo mutations stay isolated", async () => {
   const originalFetch = globalThis.fetch;
-  const originalCreateObjectURL = URL.createObjectURL;
-  const originalRevokeObjectURL = URL.revokeObjectURL;
-  const createdUrls = [];
-  const revokedUrls = [];
-  globalThis.fetch = async () => { throw new Error("Demo must not make network requests."); };
-  URL.createObjectURL = blob => {
-    const url = originalCreateObjectURL.call(URL, blob);
-    createdUrls.push(url);
-    return url;
+  let fetchCalls = 0;
+  globalThis.fetch = async () => {
+    fetchCalls++;
+    throw new Error("Demo code must not issue network requests.");
   };
-  URL.revokeObjectURL = url => {
-    revokedUrls.push(url);
-    originalRevokeObjectURL.call(URL, url);
-  };
-
-  const first = createDemoWorkspace();
-  const second = createDemoWorkspace();
-  const call = async (workspace, path, options = {}) => workspace.request(path, options);
 
   try {
-    assert.equal(first.initial.records.length, 5);
-    assert.equal(first.initial.total, 5);
-    assert.equal(second.initial.records.length, 5);
+    const { OfficeProvider, useOffice } = await loadDemoProvider();
+    const providerState = demoSuite();
+    const siblingState = demoSuite();
+    const firstScheduled = providerState.jobs.find((job) => job.status === "scheduled");
+    assert.ok(firstScheduled, "fixture contains a scheduled job");
 
-    const createResult = await call(first, "/records", {
-      method: "POST",
-      body: JSON.stringify({ title: "  Demo roadmap  ", body: "Try the isolated workspace." }),
-    });
-    assert.ok(createResult.id);
-    let active = await call(first, "/records?status=active");
-    assert.equal(active.total, 6);
-    assert.equal(active.records[0].title, "Demo roadmap");
-    assert.equal((await call(first, "/records?q=ROADMAP")).total, 1, "search is case-insensitive");
-    assert.equal((await call(second, "/records?q=ROADMAP")).total, 0, "records do not leak between instances");
-
-    await call(first, "/records", {
-      method: "PATCH",
-      body: JSON.stringify({ id: createResult.id, revision: 1, status: "archived" }),
-    });
-    assert.equal((await call(first, "/records?q=roadmap")).total, 0);
-    let archived = await call(first, "/records?q=roadmap&status=archived");
-    assert.equal(archived.total, 1);
-    assert.equal(archived.records[0].revision, 2);
-
-    await call(first, "/records", {
-      method: "PATCH",
-      body: JSON.stringify({ id: createResult.id, revision: 2, status: "active" }),
-    });
-    active = await call(first, "/records?q=roadmap");
-    assert.equal(active.total, 1, "archived records can be restored");
-    assert.equal(active.records[0].revision, 3);
-
-    for (let index = 0; index < 22; index++) {
-      await call(first, "/records", {
-        method: "POST",
-        body: JSON.stringify({ title: `Page fixture ${index}`, body: "Pagination fixture." }),
-      });
+    let office;
+    function Probe() {
+      office = useOffice();
+      return createElement("span", null, "provider captured");
     }
-    const pageOne = await call(first, "/records?page=1");
-    const pageTwo = await call(first, "/records?page=2");
-    assert.equal(pageOne.page, 1);
-    assert.equal(pageOne.records.length, 20);
-    assert.equal(pageTwo.page, 2);
-    assert.equal(pageTwo.records.length, 8);
-    assert.equal(pageTwo.total, 28);
+    renderToStaticMarkup(createElement(
+      OfficeProvider,
+      { initial: { state: providerState, revision: 0 }, initialNow: "2026-10-20T12:00:00.000Z", demo: true },
+      createElement(Probe),
+    ));
 
-    const resetInstance = createDemoWorkspace();
-    assert.equal((await call(resetInstance, "/records?q=roadmap")).total, 0, "a fresh instance resets demo state");
-    assert.equal((await call(first, "/records?q=roadmap")).total, 1, "resetting one instance leaves another intact");
-    resetInstance.dispose();
+    assert.equal(office.demo, true);
+    await assert.rejects(office.request("/api/integrations"), /standalone demo/);
+    await assert.rejects(fieldApi("/api/field/jobs", "PUT", { status: "complete" }), /unavailable in this demo/);
+    await office.refresh();
 
-    const initialFiles = await call(first, "/files");
-    assert.equal(initialFiles.files.length, 1);
-    const sampleHref = first.fileHref(initialFiles.files[0].id);
-    assert.match(sampleHref, /^data:text\/plain;charset=utf-8,/);
-    assert.equal(decodeURIComponent(sampleHref.split(",")[1]).includes("sample attachment"), true);
+    const providerNext = await office.mutate("start", { id: firstScheduled.id });
+    assert.equal(providerNext.jobs.find((job) => job.id === firstScheduled.id).status, "in-progress");
+    assert.equal(providerState.jobs.find((job) => job.id === firstScheduled.id).status, "scheduled", "provider mutation does not alter its input fixture");
+    assert.equal(siblingState.jobs.find((job) => job.id === firstScheduled.id).status, "scheduled", "separate demo fixtures remain unchanged");
 
-    const fileOne = await call(first, "/files?name=first.txt", {
-      method: "POST",
-      body: new Blob(["first demo file"], { type: "text/plain" }),
-    });
-    const fileTwo = await call(first, "/files?name=second.txt", {
-      method: "POST",
-      body: new Blob(["second demo file"], { type: "text/plain" }),
-    });
-    const firstHref = first.fileHref(fileOne.id);
-    const secondHref = first.fileHref(fileTwo.id);
-    assert.match(firstHref, /^blob:/);
-    assert.match(secondHref, /^blob:/);
-    assert.deepEqual(createdUrls, [firstHref, secondHref]);
-    assert.equal((await call(first, "/files")).files.some(file => "href" in file), false, "file hrefs stay in the adapter");
-
-    await call(first, `/files/${fileOne.id}`, { method: "DELETE" });
-    assert.deepEqual(revokedUrls, [firstHref], "deleting an uploaded file revokes its object URL");
-    assert.equal(first.fileHref(fileOne.id), "#");
-    first.dispose();
-    assert.deepEqual(revokedUrls, [firstHref, secondHref], "dispose revokes remaining object URLs");
-    assert.equal(first.fileHref(fileTwo.id), secondHref, "dispose cleans up URLs without deleting demo file metadata");
-    assert.equal((await call(second, "/files")).files.length, 1, "file state is isolated between instances");
-    assert.equal(createdUrls.length, 2);
+    const reducerNext = applyAction(siblingState, "start", { id: firstScheduled.id }, new Date("2026-10-20T12:00:00.000Z"), true);
+    assert.equal(reducerNext.jobs.find((job) => job.id === firstScheduled.id).status, "in-progress");
+    assert.equal(siblingState.jobs.find((job) => job.id === firstScheduled.id).status, "scheduled", "applyAction returns an isolated state copy");
+    assert.equal(fetchCalls, 0, "requests, field calls, and reducer actions do not use fetch");
   } finally {
-    first.dispose();
     globalThis.fetch = originalFetch;
-    URL.createObjectURL = originalCreateObjectURL;
-    URL.revokeObjectURL = originalRevokeObjectURL;
-    for (const url of createdUrls) if (!revokedUrls.includes(url)) originalRevokeObjectURL.call(URL, url);
   }
+});
+
+test("demo route maps use fixed synthetic pins instead of geocoding addresses", async () => {
+  const state = demoSuite();
+  const stops = state.jobs.map((job, index) => ({
+    id: job.id,
+    number: index + 1,
+    name: job.service,
+    address: state.customers.find((customer) => customer.id === job.customerId)?.address || "",
+    time: job.time,
+    status: job.status,
+  }));
+  const expectedPins = new Map([
+    ["27 Woodbine Avenue, Toronto", { lat: 43.6687, lng: -79.3054 }],
+    ["42 Oak Street, Toronto", { lat: 43.6616, lng: -79.3655 }],
+    ["65 Queen Street East, Toronto", { lat: 43.6539, lng: -79.3745 }],
+    ["118 Kingston Road, Toronto", { lat: 43.6699, lng: -79.3093 }],
+    ["89 Danforth Avenue, Toronto", { lat: 43.6769, lng: -79.3575 }],
+    ["14 Logan Avenue, Toronto", { lat: 43.6544, lng: -79.3395 }],
+  ]);
+  const mapped = exampleMapStops(stops);
+  const mappedKnownAddresses = new Set(mapped.filter((stop) => stop.point).map((stop) => stop.address));
+  assert.ok(mappedKnownAddresses.size > 0, "demo fixture includes sample pins");
+  for (const stop of mapped) {
+    if (expectedPins.has(stop.address)) assert.deepEqual(stop.point, expectedPins.get(stop.address));
+    else assert.equal(stop.point, undefined, "unknown and user-provided addresses receive no map point");
+  }
+  assert.equal(exampleMapStops([{ id: "custom", number: 1, name: "Custom", address: "99 User Home Street, Toronto", time: "12:00", status: "scheduled" }])[0].point, undefined);
+
+  const routeMapSource = await readFile(path.join(root, "components/yardwork/route-map.tsx"), "utf8");
+  const routeMap = ts.createSourceFile("route-map.tsx", routeMapSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const mappedDeclaration = descendants(routeMap, (node) => ts.isVariableDeclaration(node) && node.name.getText(routeMap) === "mapped" && !!node.initializer)[0];
+  assert.ok(mappedDeclaration && ts.isConditionalExpression(mappedDeclaration.initializer), "route map selects points from a demo condition");
+  assert.equal(mappedDeclaration.initializer.condition.getText(routeMap), "demo");
+  assert.match(mappedDeclaration.initializer.whenTrue.getText(routeMap), /exampleMapStops\(stops\)/);
+  assert.match(mappedDeclaration.initializer.whenFalse.getText(routeMap), /mapJson\(/, "live geocoding stays in the non-demo branch");
+});
+
+test("demo chat photo upload remains guarded by demo mode", async () => {
+  const askSource = await readFile(path.join(root, "components/yardwork/ask.tsx"), "utf8");
+  const ask = ts.createSourceFile("ask.tsx", askSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const send = descendants(ask, (node) => ts.isFunctionDeclaration(node) && node.name?.text === "send")[0];
+  assert.ok(send, "chat send handler exists");
+  const fetchCalls = descendants(send, (node) => ts.isCallExpression(node) && node.expression.getText(ask) === "fetch");
+  assert.equal(fetchCalls.length, 1);
+
+  let guarded = false;
+  for (let ancestor = fetchCalls[0].parent; ancestor && ancestor !== send; ancestor = ancestor.parent) {
+    if (ts.isIfStatement(ancestor) && /photo\s*&&\s*!demo/.test(ancestor.expression.getText(ask))) {
+      guarded = true;
+      break;
+    }
+  }
+  assert.ok(guarded, "the photo PUT is nested under the photo && !demo guard");
+  assert.match(fetchCalls[0].arguments[0].getText(ask), /\/api\/chat-photos\//);
 });

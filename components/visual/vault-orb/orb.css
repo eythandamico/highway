@@ -1,0 +1,21 @@
+.yw-vault-orb { position: absolute; inset: 0; display: block; filter: var(--ask-orb-shadow); }
+.yw-vault-orb::before { content: ""; position: absolute; inset: 8%; border-radius: var(--radius-pill); background: var(--metal-orb-fallback); }
+.yw-vault-orb canvas { position: relative; display: block; width: 100%; height: 100%; }
+.yw-metal-face { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--metal-eye-ink); filter: var(--metal-eye-shadow); pointer-events: none; }
+
+/* Keep the 44px hit target; balance the visible sphere inside the capsule. */
+.yw-vault-orb-button .yw-metal-helper {
+  width: var(--space-11);
+  height: var(--space-11);
+  transform: translateX(calc(-1 * var(--space-1)));
+}
+
+/* A quiet contour; the sphere shader supplies its own lighting. */
+.yw-metal-helper::after {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--helper-rim-shadow);
+  pointer-events: none;
+}

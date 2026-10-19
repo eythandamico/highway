@@ -1,3 +1,16 @@
+# Latest standalone demo validation — October 19, 2026
+
+The owner-requested Yardwork demo extraction adds `/demo`, `/guide`, and `/showcase` while retaining the independent personal Cloudflare and GitHub configuration. No original Yardwork services or data were accessed.
+
+- TypeScript, ESLint, semantic design checks, production build, and Storybook build passed.
+- Existing Playwright foundation suite: 28 passed, 8 intentional matrix skips.
+- Focused demo isolation tests: 3 passed, covering in-memory mutations, rejecting request/field transports, synthetic map coordinates, and demo photo-upload guards.
+- Browser review compared the original and restored Today dashboard in light/dark; phone emulation reviewed navigation and a customer profile. The new showcase’s interactive button and theme toggle were checked.
+- Production dependency audit: zero vulnerabilities. Full audit reports nine high findings in pre-existing development-tool dependency chains; none were introduced by the new production dependencies.
+- Public OpenStreetMap tiles remain an intentional third-party asset source in the optional Route view. Live email, payments, customer messaging, and AI providers are not configured or verified. Real-device keyboards and assistive technology were not tested.
+
+The following sections retain the earlier starter validation history.
+
 # Validation
 
 ## October 19, 2026 — starter 0.2.0

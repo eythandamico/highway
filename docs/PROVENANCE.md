@@ -17,3 +17,7 @@ The visual-layer correction additionally extracts original blur/mask/tint recipe
 ## October 19, 2026 foundation refresh
 
 Adapted reusable design code and implementation contracts from `easy-launch-apps/yardwork` at `8271182a411ca5ff9fe25589492e518dbcb4eeb7`. These build on the starter's Playground foundation. Shared warm surface and avatar-rim recipes retain their source comments; no Shotcall/Yardwork artwork or mascot is bundled. Product selectors and field definitions were removed from extracted compositions. See STARTER-REFRESH.md for the exact included/excluded scope. Existing third-party license notices remain applicable. This provenance record is not a new license grant for unrelated product assets.
+
+## Owner-authorized demo addition — October 19, 2026
+
+The original exclusion of Yardwork product UI is superseded for the owner-requested standalone demo. Its client screens, synthetic fixtures, pure demo rules, and generated artwork are now included. No production services or customer data were imported. See `DEMO-EXTRACTION.md` for the exact boundary. Invariant supplied the guide/showcase reference, not runtime dependencies.

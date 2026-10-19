@@ -4,7 +4,7 @@ import { resolve, join, relative } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 const root=process.cwd();
-const directories=["app","components","config","db","hooks","lib","migrations","public","scripts","stories","tests","vendor","worker","docs",".storybook",".github"];
+const directories=["app","components","config","db","hooks","lib","packages","migrations","public","scripts","stories","tests","vendor","worker","docs",".storybook",".github"];
 const roots=["package.json","package-lock.json","tsconfig.json","next-env.d.ts","next.config.ts","vite.config.ts","postcss.config.mjs","eslint.config.mjs","wrangler.jsonc","cloudflare-env.d.ts","README.md","AGENTS.md","NOTICE.md",".gitignore",".dev.vars.example",".impeccable.md","playwright.design.config.ts"];
 const paths=[];
 function walk(path){for(const entry of readdirSync(path,{withFileTypes:true})){if(entry.isSymbolicLink())throw new Error(`Refusing symlink ${entry.name}`);const full=join(path,entry.name);if(entry.isDirectory())walk(full);else if(entry.isFile())paths.push(relative(root,full));}}

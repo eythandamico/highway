@@ -1,0 +1,108 @@
+.yw-ask-dock { position: fixed; inset-inline-start: 0; inset-inline-end: 0; bottom: max(var(--space-8),env(safe-area-inset-bottom)); display: flex; justify-content: center; padding-inline: var(--space-4); z-index: var(--layer-header); pointer-events: none; }
+.yw-ask-dock[hidden] { display: none; }
+.yw-vault-stack { width: min(100%,var(--ask-bar-width)); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+/* Shotcall shot-bar geometry and layered material, with warm semantic colors. */
+.yw-vault-capsule { pointer-events: auto; contain: layout; position: relative; display: flex; align-items: center; gap: calc(var(--space-2) + var(--space-half)); width: 100%; max-width: var(--ask-bar-width); padding: var(--space-3) var(--space-4); border: 1px solid var(--ask-edge); border-bottom-color: var(--ask-bottom-edge); border-radius: var(--radius-pill); overflow: hidden; background: var(--ask-surface); -webkit-backdrop-filter: blur(var(--ask-blur)); backdrop-filter: blur(var(--ask-blur)); box-shadow: var(--ask-glass-shadow); transition: max-width var(--ask-morph-duration) var(--ask-morph-ease), padding-block var(--ask-morph-duration) var(--ask-morph-ease), box-shadow var(--ask-surface-duration) var(--ask-surface-ease); }
+.yw-vault-capsule[data-compact="true"] { max-width: var(--ask-bar-compact-width); padding-block: var(--space-2); }
+.yw-vault-glass,.yw-vault-rim { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+.yw-vault-glass { background: radial-gradient(ellipse 95% 260% at 38% -100%,var(--ask-reflection-strong) 0%,var(--ask-reflection-soft) 52%,transparent 100%),linear-gradient(180deg,var(--ask-reflection-top),var(--ask-reflection-mid) 60%,var(--ask-reflection-soft)); box-shadow: var(--ask-glass-inset); }
+.yw-vault-rim { padding: calc(var(--space-half) / 2); background: linear-gradient(to bottom,var(--ask-rim-light),transparent 60%); opacity: .45; mask: linear-gradient(var(--foreground) 0 0) content-box,linear-gradient(var(--foreground) 0 0); mask-composite: exclude; transition: opacity var(--ask-rim-duration) var(--ask-rim-ease); }
+.yw-vault-capsule > .ui-button,.yw-vault-capsule > .ui-input { position: relative; }
+.yw-vault-capsule .yw-vault-input { flex: 1; min-width: 0; width: 100%; padding: var(--space-2) 0; background: transparent; color: var(--ask-ink); box-shadow: none; border: none; border-radius: 0; height: auto; font-size: var(--type-body); }
+.yw-vault-capsule .yw-vault-input::placeholder { color: var(--ask-placeholder); }
+.yw-vault-capsule:focus-within { outline: none; box-shadow: var(--ask-focus-shadow); }
+.yw-vault-capsule:focus-within > .yw-vault-rim { opacity: 1; }
+.yw-vault-capsule .yw-vault-expand { position: absolute; inset-inline-start: calc(var(--space-4) + var(--space-11) + var(--space-2) + var(--space-half)); white-space: nowrap; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity var(--duration-normal) var(--ease-standard), visibility 0s var(--duration-normal); padding: 0; min-width: 0; background: transparent; color: var(--ask-ink); font-size: var(--type-secondary); }
+.yw-vault-capsule .yw-vault-orb-button,.yw-vault-capsule .yw-vault-send,.yw-vault-capsule .yw-vault-mic { flex-shrink: 0; width: var(--space-11); min-width: var(--space-11); height: var(--space-11); min-height: var(--space-11); padding: 0; background: transparent; border: none; box-shadow: none; color: var(--ask-ink); }
+.yw-vault-capsule .yw-vault-mic:disabled { color: var(--ask-placeholder); opacity: .7; }
+.yw-vault-capsule .ui-button:focus-visible { outline-color: var(--ask-button); }
+@media (prefers-reduced-transparency: reduce) { .yw-vault-capsule { background: var(--popover); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+@media (hover: hover) and (pointer: fine) {
+ .yw-vault-capsule:hover { box-shadow: var(--ask-focus-shadow); }
+ .yw-vault-capsule:hover > .yw-vault-rim { opacity: 1; }
+ .yw-vault-capsule .yw-vault-send:hover:not(:disabled) { background: var(--ask-edge); }
+}
+.yw-vault-reply { pointer-events: auto; width: 100%; background: var(--ask-reply-surface); -webkit-backdrop-filter: blur(var(--ask-blur)); backdrop-filter: blur(var(--ask-blur)); color: var(--popover-foreground); border: 1px solid var(--ask-edge); border-radius: var(--radius-panel); padding: var(--space-4); box-shadow: var(--surface-shadow); animation: ask-reply-enter var(--duration-slow) var(--ease-standard); }
+.yw-vault-reply-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--ask-edge); font-size: var(--type-secondary); }
+.yw-vault-reply-question { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--weight-medium); }
+.yw-vault-reply-log { position: relative; display: flex; flex-direction: column; max-height: min(40dvh,var(--dialog-width)); overflow-y: auto; overscroll-behavior: contain; white-space: pre-wrap; overflow-wrap: anywhere; }
+.yw-vault-reply-log [data-role="user"] { align-self: flex-end; max-width: 85%; padding: var(--space-2) var(--space-3); border-radius: var(--radius-panel); background: var(--secondary); font-size: var(--type-secondary); }
+.yw-vault-reply-pending { color: var(--muted-foreground); }
+@keyframes ask-reply-enter { from { transform: translateY(var(--space-5)); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .yw-vault-reply { animation: none; } }
+.yw-app .yw-content { padding-bottom: calc(var(--space-30) + env(safe-area-inset-bottom)); }
+@media (max-width: 760px) {
+ .yw-ask-dock { inset-inline-start: 0; bottom: calc(var(--space-24) + env(safe-area-inset-bottom)); }
+ .yw-app .yw-content { padding-bottom: calc(var(--space-30) + var(--space-20) + env(safe-area-inset-bottom)); }
+ .has-dev-options .dev-options { bottom: calc(var(--space-24) + var(--space-16) + env(safe-area-inset-bottom)); }
+ .yw-vault-capsule { padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5); }
+ .yw-vault-capsule .yw-vault-send { height: var(--space-11); min-height: var(--space-11); }
+}
+@media (prefers-reduced-motion: reduce) { .yw-vault-capsule,.yw-vault-rim { transition: none; } }
+@media print { .yw-ask-dock { display: none; } }
+
+
+/* The capsule supplies the input's visible focus boundary. */
+.yw-vault-capsule .yw-vault-input:focus-visible { outline: none; box-shadow: none; }
+@media (max-width: 760px) {
+ .has-dev-options:has(.yw-vault-reply) .dev-options { visibility: hidden; }
+}
+
+/* Match the shared Shotcall surface recipe, retaining the capsule's own motion. */
+.yw-vault-capsule {
+  background: var(--panel-surface);
+  border-color: var(--panel-edge);
+  border-top-color: var(--panel-top-edge);
+  border-bottom-color: var(--panel-bottom-edge);
+  box-shadow: var(--panel-shadow);
+}
+
+.yw-vault-capsule { isolation: isolate; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.yw-vault-glass { z-index: -1; background: var(--panel-wash); box-shadow: var(--panel-finish); -webkit-backdrop-filter: blur(var(--panel-blur)); backdrop-filter: blur(var(--panel-blur)); }
+.yw-vault-rim { z-index: -1; padding: var(--panel-rim-width); background: var(--panel-rim); opacity: 1; }
+
+.yw-vault-capsule:focus-within { box-shadow: var(--panel-shadow-hover); }
+@media (hover: hover) and (pointer: fine) {
+  .yw-vault-capsule:hover { box-shadow: var(--panel-shadow-hover); }
+}
+
+/* Viewport-anchored warmth behind the floating composer; never blocks page input. */
+.yw-ask-dock::before {
+  content: "";
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  height: calc(var(--ask-viewport-fade-height) + env(safe-area-inset-bottom));
+  background: var(--ask-viewport-fade);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* The orb itself is the target: don't paint a second disc behind it on hover. */
+.yw-vault-capsule .yw-vault-orb-button.ui-button:hover:not(:disabled),
+.yw-vault-capsule .yw-vault-orb-button.ui-button:active:not(:disabled) {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Keep both labels mounted: only their opacity changes during the shape morph. */
+.yw-vault-compose {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space-2) + var(--space-half));
+  flex: 1;
+  min-width: 0;
+  opacity: 1;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+}
+.yw-vault-capsule[data-compact="true"] .yw-vault-compose { opacity: 0; pointer-events: none; }
+.yw-vault-capsule[data-compact="true"] .yw-vault-expand {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: var(--duration-normal), 0s;
+}
+.yw-vault-capsule[data-compact="false"] .yw-vault-compose { transition-delay: var(--duration-normal); }
+@media (prefers-reduced-motion: reduce) {
+  .yw-vault-capsule,.yw-vault-compose,.yw-vault-capsule .yw-vault-expand { transition: none !important; }
+}

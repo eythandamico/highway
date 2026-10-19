@@ -10,7 +10,7 @@ export function Status({
 }) {
   return (
     <span className="ui-status" data-tone={tone}>
-      {children}
+      {typeof children === "string" ? children.replace(/^(in-progress|needs-review|not-started)$/, value => value.replace(/-/g, " ")).replace(/^\p{L}/u, letter => letter.toLocaleUpperCase("en-CA")) : children}
     </span>
   );
 }

@@ -1,7 +1,7 @@
 # New app foundation instructions
 
 - This is an independent project. Do not read from or write to another application's database, bucket, repository or deployment.
-- Establish the new product's users, purpose and brand before replacing the neutral starter screens. Use the refreshed shared design contract; do not copy Yardwork's product screens.
+- Establish the new product's users, purpose and brand before replacing the neutral starter screens. Use the refreshed shared design contract. The owner explicitly authorized copying Yardwork’s demo screens and interactions into this independent demo on October 19, 2026; preserve their appearance, but do not copy credentials, live data, or production adapters.
 - Reuse components/ui and semantic tokens. Avoid one-off controls, duplicated modal logic, new fonts or arbitrary typography sizes.
 - Keep input text at least 16px on phones. Preserve browser pinch zoom, safe areas, keyboard access, focus restoration and reduced-motion behavior.
 - Server verification determines identity. Scope every resource read/write to authorized workspace membership; never trust userId, role or workspace from a client without checking.
