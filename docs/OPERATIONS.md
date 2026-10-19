@@ -12,7 +12,7 @@ This repository targets `Me@eythandami.co’s Account` (`2aebaf88ef9bbc427b72077
 
 `wrangler.jsonc` holds production bindings and public configuration. Local development uses ignored `.dev.vars` overrides with `APP_ENV=development`, `AUTH_DELIVERY=console`, and a matching local `SITE_ORIGIN`. The current local instance runs at `http://localhost:5190` with `npm run dev -- --port 5190`; a fresh setup defaults to port 5188.
 
-The Worker uses a separately generated authentication secret. Live sign-in additionally requires `SENDGRID_API_TOKEN` and `FROM_ADDRESS` for a verified sender; these must be supplied as Worker secrets, never committed. No automatic deployment is configured. Publish manually after validation using `npm run build` followed by `npx wrangler deploy --config dist/server/wrangler.json`.
+The Worker uses a separately generated authentication secret. Live sign-in additionally requires `SENDGRID_API_TOKEN` and `FROM_ADDRESS` for a verified sender; these must be supplied as Worker secrets, never committed. Until both email secrets are configured, the live sign-in dialog shows a temporary availability message and the sign-in endpoints return 503. Local console-code sign-in remains available. Adding the email secrets restores the existing sign-in flow without a code change. No automatic deployment is configured. Publish manually after validation using `npm run build` followed by `npx wrangler deploy --config dist/server/wrangler.json`.
 
 ## Isolated environments
 
