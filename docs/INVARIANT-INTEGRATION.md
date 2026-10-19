@@ -42,3 +42,9 @@ Original sample photos in ImageCarousel remain public Unsplash URLs. The persona
 The original library is JavaScript/JSX. It is linted and bundled but does not claim comprehensive static prop typing. Automated interaction tests and desktop/mobile emulation do not establish assistive-technology or real-device coverage for every component.
 
 Checkbox and RadioGroup also delegate to the shared Radix primitives. Their Invariant selection artwork sits inside 44px targets; labels, keyboard selection, disabled state and form behavior use the shared implementations.
+
+## Ask bar
+
+`components/ui/ask-bar.tsx` extracts the original Yardwork glass composer without its orb. It is exported as `AskBar` from `components/library`; the demo's `ask-launcher.tsx` is now a context adapter around that same component. The shared composer has no Yardwork context, transport, AI, or voice dependency. Its material consumes the canonical `--panel-*` tokens and its original capsule motion consumes `--ask-*` tokens.
+
+Supply `onSend(text)` and an append-only `messages` array (`id`, `role`, `text`) for reply previews. Reject the callback on failure to preserve drafts; resolve only after the operation is accepted. Empty submissions and immediate duplicate submissions are blocked. `label`, `placeholder`, `disabled`, `hidden`, `floating`, `compactOnScroll`, and `onOpen` configure embedding. Inline is the default; floating placement requires content clearance, with bottom-navigation offsets owned by the consuming page. The showcase at `/showcase?component=ask-bar` exercises the real component with synthetic replies and an explicit failure toggle.

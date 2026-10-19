@@ -57,7 +57,8 @@ Validation was run against the refreshed standalone folder, using gpt-6-luna wit
 | Production application build | Passed; built Worker serves the app successfully |
 | Storybook build | Passed |
 | Playwright design suite | 28 passed; 8 project-specific skips |
-| Unified Invariant showcase suite | Passed: 16 checks; 44 project-specific skips |
+| Unified Invariant showcase suite | Passed: 23 checks; 61 project-specific skips |
+| Demo workspace suite | Passed: 3 tests |
 | Narrow 320px / 200% heading regression | Passed: visible heading `scrollWidth` stays within `clientWidth` |
 | Built effects CSS verification | Passed |
 | Local Worker/API integration | Passed on final clean run |
@@ -77,6 +78,7 @@ A foreign-Origin check once received 500 instead of expected 403 during this pas
 - Shared ordinary buttons enforce minimum width and height; the inline variant opts out explicitly.
 - The integration harness fails promptly on server 500s and uses the intended IPv4 worker rather than another localhost listener.
 - The original glass surface material was restored to the shared Card tokens. Browser regressions target the real Card rendered by `/showcase?component=card`: light mode keeps its translucent wash, inset finish, rim and 12px blur; reduced-transparency emulation transitions to the opaque `--card` color and disables backdrop blur. Both passed in the final invariant suite; they run once on desktop, so the other three matrix projects skip them.
+- The unified showcase contains 64 sorted entries. AskBar regressions exercise the real preview for empty Enter, successful Enter, duplicate submissions while pending, disabled state, failed-draft retention and retry, plus absence of an orb, phone-width fit and reduced-motion behavior. The public Yardwork demo also verifies scroll compaction transfers keyboard focus from the expander to the composer. `npm run test:demo` passed its three offline/demo-isolation checks.
 
 Final screenshots are kept outside the package under `artifacts/validation-screenshots/`: `quality-lab-light-desktop.png`, `quality-lab-dark-desktop.png`, `quality-lab-narrow-320px-200pct.png`, and `quality-lab-dialog-settled.png`. The gallery uses synthetic examples only. Real mobile keyboards, screen readers, low-end-device performance, production email, remote D1/R2 and deployment are not verified. Vinext remains the pinned beta framework. This pass is not a fresh dependency-security audit.
 

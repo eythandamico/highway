@@ -59,3 +59,5 @@ export { Card } from "../../packages/invariant-ui/components/card.jsx";
 export { Dialog } from "../../packages/invariant-ui/components/dialog.jsx";
 export { EmptyState } from "../../packages/invariant-ui/components/empty-state.jsx";
 export { WorkspaceSwitcher } from "../../packages/invariant-ui/components/workspace-switcher.jsx";
+
+export { AskBar, type AskBarProps, type AskBarMessage } from "../ui/ask-bar";

@@ -15,6 +15,7 @@ const registry = JSON.parse(
 ) as RegistryEntry[];
 const aliases: Record<string, string> = { "inv-button": "button", "inv-toggle": "switch" };
 const foundationEntries: CatalogueEntry[] = [
+  { id: "ask-bar", name: "Ask bar", group: "Inputs" },
   { id: "button", name: "Button", group: "Actions" },
   { id: "fields", name: "Form fields", group: "Inputs" },
   { id: "select", name: "Accessible select", group: "Inputs" },
@@ -78,7 +79,7 @@ async function waitForShowcaseHydration(page: Page) {
   await search.fill("__preview_ready__");
   await expect(page.getByText("No components match. Try another name.", { exact: true })).toBeVisible();
   await search.clear();
-  await expect(componentNav.getByRole("link")).toHaveCount(63);
+  await expect(componentNav.getByRole("link")).toHaveCount(64);
   return { search, componentNav };
 }
 
@@ -142,14 +143,14 @@ async function expectToggleKeyboardBehavior(toggle: Locator) {
   }
 }
 
-test("unified catalogue has 63 sorted entries, with legacy aliases resolved to shared components", async ({ page }, testInfo) => {
+test("unified catalogue has 64 sorted entries, with legacy aliases resolved to shared components", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Catalogue discovery and aliases run once on desktop.");
   expect(registry).toHaveLength(50);
   expect(new Set(registry.map((entry) => entry.id)).size).toBe(50);
   expect(new Set(registry.map((entry) => entry.previewId)).size).toBe(50);
-  expect(foundationEntries).toHaveLength(15);
-  expect(catalogue).toHaveLength(63);
-  expect(new Set(catalogue.map((entry) => entry.id)).size).toBe(63);
+  expect(foundationEntries).toHaveLength(16);
+  expect(catalogue).toHaveLength(64);
+  expect(new Set(catalogue.map((entry) => entry.id)).size).toBe(64);
 
   const { componentNav } = await loadShowcase(page, "button");
   const links = componentNav.getByRole("link");
@@ -161,6 +162,7 @@ test("unified catalogue has 63 sorted entries, with legacy aliases resolved to s
   await expect(componentNav.getByRole("link", { name: "Switch / Toggle", exact: true })).toBeVisible();
   await expect(componentNav.getByRole("link", { name: "Form fields", exact: true })).toBeVisible();
   await expect(componentNav.getByRole("link", { name: "Accessible select", exact: true })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "Ask bar", exact: true })).toBeVisible();
   await expect(componentNav.locator('a[href*="inv-button"]')).toHaveCount(0);
   await expect(componentNav.locator('a[href*="inv-toggle"]')).toHaveCount(0);
 
@@ -213,6 +215,144 @@ test("showcase Glass surface Card becomes opaque for reduced transparency", asyn
   await mediaSession.detach();
 });
 
+test("Ask bar empty Enter does not send and a valid Enter produces a local reply", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Ask bar submission behavior runs once on desktop.");
+  await loadShowcase(page, "ask-bar");
+  const composer = page.locator('.library-preview form[aria-label="Ask anything composer"]');
+  const input = page.getByRole("textbox", { name: "Ask anything" });
+  await expect(composer).toBeVisible();
+  await input.press("Enter");
+  await expect(composer).toHaveAttribute("aria-busy", "false");
+  await expect(page.getByRole("log", { name: "Conversation preview" })).toHaveCount(0);
+  await expect(page.getByText("Local demo only. Enter sends; Escape dismisses the reply. No voice service is connected.")).toBeVisible();
+
+  await input.fill("What should I work on next?");
+  await input.press("Enter");
+  const log = page.getByRole("log", { name: "Conversation preview" });
+  await expect(log).toContainText("Demo reply: your message arrived.");
+  await expect(log.locator('[data-role="assistant"]')).toHaveCount(1);
+  await expect(page.locator(".ui-ask-reply-question")).toHaveText("What should I work on next?");
+  await expect(input).toHaveValue("");
+  await expect(page.locator('.library-preview .ui-ask-root [class*="orb"], .library-preview .ui-ask-root [data-orb]')).toHaveCount(0);
+});
+
+test("Ask bar pending state rejects duplicate submits", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Ask bar pending guard runs once on desktop.");
+  await loadShowcase(page, "ask-bar");
+  const composer = page.locator('.library-preview form[aria-label="Ask anything composer"]');
+  const input = page.getByRole("textbox", { name: "Ask anything" });
+  await input.fill("Only answer once");
+  await input.press("Enter");
+  await expect(composer).toHaveAttribute("aria-busy", "true");
+  await expect(input).toBeDisabled();
+  await expect(page.locator('.ui-ask-root [role="status"]')).toHaveText("Sending message…");
+
+  // Re-submit through the real form while the preview callback is pending.
+  await composer.evaluate((form) => {
+    (form as HTMLFormElement).requestSubmit();
+    (form as HTMLFormElement).requestSubmit();
+  });
+  const log = page.getByRole("log", { name: "Conversation preview" });
+  await expect(log.locator('[data-role="assistant"]')).toHaveCount(1);
+  await expect(log).toContainText("Demo reply: your message arrived.");
+});
+
+test("Ask bar retains a failed draft and retries successfully when re-enabled", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Ask bar failure and retry behavior runs once on desktop.");
+  await loadShowcase(page, "ask-bar");
+  const input = page.getByRole("textbox", { name: "Ask anything" });
+  const failureToggle = page.getByRole("switch", { name: "Simulate failure" });
+  const draft = "Keep this draft after failure";
+  await failureToggle.click();
+  await expect(failureToggle).toHaveAttribute("aria-checked", "true");
+  await input.fill(draft);
+  await input.press("Enter");
+
+  await expect(page.getByRole("alert")).toHaveText("Example failure. Your draft is kept—turn off Simulate failure and try again.");
+  await expect(input).toHaveValue(draft);
+  await failureToggle.click();
+  await expect(failureToggle).toHaveAttribute("aria-checked", "false");
+  await expect(input).toHaveValue(draft);
+  await input.press("Enter");
+  const log = page.getByRole("log", { name: "Conversation preview" });
+  await expect(log).toContainText("Demo reply: your message arrived.");
+  await expect(page.getByRole("alert")).toHaveCount(0);
+});
+
+test("Ask bar disabled state preserves the draft and blocks sending", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Ask bar disabled state runs once on desktop.");
+  await loadShowcase(page, "ask-bar");
+  const composer = page.locator('.library-preview form[aria-label="Ask anything composer"]');
+  const input = page.getByRole("textbox", { name: "Ask anything" });
+  const draft = "Do not send while disabled";
+  await input.fill(draft);
+  await page.getByRole("switch", { name: "Disabled" }).click();
+  await expect(input).toBeDisabled();
+  await expect(input).toHaveValue(draft);
+  await expect(page.getByRole("button", { name: "Send message" })).toBeDisabled();
+  await composer.evaluate((form) => (form as HTMLFormElement).requestSubmit());
+  await expect(composer).toHaveAttribute("aria-busy", "false");
+  await expect(input).toHaveValue(draft);
+  await page.waitForTimeout(1000); // Longer than the local preview response delay, to catch an accidental send.
+  await expect(page.getByRole("log", { name: "Conversation preview" })).toHaveCount(0);
+  await expect(page.getByRole("alert")).toHaveCount(0);
+});
+
+test("Ask bar fits on phone and removes transitions under reduced motion", async ({ page }, testInfo) => {
+  test.skip(!["phone", "reduced-motion"].includes(testInfo.project.name), "Run the Ask bar responsive and motion checks in their focused projects.");
+  await loadShowcase(page, "ask-bar");
+  const capsule = page.locator('.library-preview form[aria-label="Ask anything composer"]');
+
+  if (testInfo.project.name === "phone") {
+    const input = page.getByRole("textbox", { name: "Ask anything" });
+    await expect(input).toBeVisible();
+    const geometry = await page.evaluate(() => {
+      const capsule = document.querySelector('.library-preview form[aria-label="Ask anything composer"]')!;
+      const input = capsule.querySelector("input")!;
+      return {
+        viewport: window.innerWidth,
+        document: document.documentElement.scrollWidth,
+        capsule: capsule.getBoundingClientRect().width,
+        input: input.getBoundingClientRect().width,
+      };
+    });
+    expect(geometry.document - geometry.viewport).toBeLessThanOrEqual(1);
+    expect(geometry.capsule).toBeLessThanOrEqual(geometry.viewport);
+    expect(geometry.input).toBeGreaterThan(0);
+  } else {
+    expect(await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
+    await expect.poll(() => capsule.evaluate((element) => getComputedStyle(element).transitionProperty)).toBe("none");
+    await page.getByRole("textbox", { name: "Ask anything" }).fill("Reduced motion reply");
+    await page.getByRole("textbox", { name: "Ask anything" }).press("Enter");
+    const reply = page.locator(".ui-ask-reply");
+    await expect(reply).toBeVisible();
+    await expect.poll(() => reply.evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+  }
+});
+
+test("Yardwork compact Ask bar expands and transfers focus from its label", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Compact Ask bar focus runs once on desktop.");
+  await page.setViewportSize({ width: 1280, height: 650 });
+  await page.goto("/demo");
+  const composer = page.locator('form[aria-label="Ask Yardwork composer"]');
+  const input = page.getByRole("textbox", { name: "Ask Yardwork" });
+  await expect(composer).toBeVisible();
+  await page.waitForFunction(() => {
+    const form = document.querySelector<HTMLFormElement>('form[aria-label="Ask Yardwork composer"]');
+    return !!form && Object.entries(form).some(([key, value]) =>
+      key.startsWith("__reactProps$") && typeof (value as { onSubmit?: unknown }).onSubmit === "function",
+    );
+  });
+  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => resolve())));
+  await page.evaluate(() => window.scrollTo(0, 240));
+  await expect(composer).toHaveAttribute("data-compact", "true");
+  const expander = page.getByRole("button", { name: "Ask Yardwork" });
+  await expect(expander).toBeVisible();
+  await expander.focus();
+  await expect(input).toBeFocused();
+  await expect(composer).toHaveAttribute("data-compact", "false");
+});
+
 test("all 50 original Invariant previews remain available across the catalogue and direct preview routes", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Exhaustive preview loading runs once on desktop.");
   test.setTimeout(180_000);
@@ -263,7 +403,7 @@ test("unified catalogue search filters names across both component sets", async 
   await expect(page.getByText("No components match. Try another name.", { exact: true })).toBeVisible();
 
   await search.clear();
-  await expect(links).toHaveCount(63);
+  await expect(links).toHaveCount(64);
 });
 
 test("segmented control preview updates its selected state", async ({ page }, testInfo) => {

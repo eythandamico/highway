@@ -8,6 +8,7 @@ import invariantEntries from "./invariant-registry.json";
 import { LibraryShell } from "./library-shell";
 import { CodeExample } from "./code-example";
 import { Button } from "@/components/ui/button";
+import { AskBar, type AskBarMessage } from "@/components/ui/ask-bar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,6 +34,7 @@ import "@/components/visual/visual-effects.css";
 import "@/components/yardwork/yardwork.css";
 
 const entries = [
+  { id: "ask-bar", name: "Ask bar", group: "Inputs", description: "Yardwork’s glass composer, without the orb. Keyboard submission, retained drafts, protected pending states and inline replies. This example uses local sample responses.", source: "components/ui/ask-bar.tsx · ask-bar.css", code: `import { AskBar } from "@/components/library";\n\n<AskBar messages={messages} onSend={sendMessage} />\n// Optional: label, disabled, floating, compactOnScroll, onOpen.\n// Reject onSend to retain the draft and show an error.`, preview: AskBarPreview },
   { id: "button", name: "Button", group: "Actions", description: "Clear actions, generous targets, and consistent geometry. Try the variants and states.", source: "components/ui/button.tsx", code: `import { Button } from "@/components/ui/button";\n\n<Button variant="default" onClick={handleSave}>Save changes</Button>\n<Button variant="secondary">Cancel</Button>`, preview: ButtonPreview },
   { id: "fields", name: "Form fields", group: "Inputs", description: "Labelled inputs and text areas with room for real content. Phone inputs retain a readable size.", source: "components/ui/input.tsx · textarea.tsx · label.tsx", code: `<Label htmlFor="name">Customer name</Label>\n<Input id="name" placeholder="Alex Morgan" />\n<Label htmlFor="notes">Notes</Label>\n<Textarea id="notes" placeholder="Anything to keep in mind?" />`, preview: FieldsPreview },
   { id: "select", name: "Accessible select", group: "Inputs", description: "A shared select control with keyboard support and consistent field styling.", source: "components/ui/native-select.tsx", code: `<NativeSelect value={team} onChange={e => setTeam(e.target.value)}>\n  <option value="service">Service team</option>\n  <option value="projects">Projects team</option>\n</NativeSelect>`, preview: SelectPreview },
@@ -100,3 +102,18 @@ function GradientPreview(){const [variant,setVariant]=useState<"onboarding"|"pro
 function NavigationPreview(){const [view,setView]=useState<"today"|"schedule"|"customers"|"money">("today");return <div className="yw-app"><OfficeNavigation current={view} onNavigate={setView}/><p className="library-source" role="status">Selected: {view}</p></div>;}
 function ChartPreview(){const [sample]=useState(demoSuite);return <div className="yw-app"><BookingsChart jobs={sample.jobs}/></div>;}
 function ThemePreview(){const tokens=appearanceStyle(DEFAULT_ACCENT);return <ThemeScope tokens={tokens}><div style={tokens} className="library-preview-form"><Button>Continue</Button><Status tone="good">Semantic status stays independent</Status><MenuPreview/></div></ThemeScope>;}
+
+function AskBarPreview() {
+ const [messages,setMessages]=useState<AskBarMessage[]>([]);
+ const [disabled,setDisabled]=useState(false),[fail,setFail]=useState(false);
+ return <>
+
+  <AskBar disabled={disabled} messages={messages} onSend={async text=>{
+   await new Promise(resolve=>setTimeout(resolve,900));
+   if(fail)throw new Error("Example failure. Your draft is kept—turn off Simulate failure and try again.");
+   setMessages(previous=>[...previous,{id:crypto.randomUUID(),role:"user",text},{id:crypto.randomUUID(),role:"assistant",text:"Demo reply: your message arrived. Connect onSend to your own service when you build an app."}]);
+  }}/>
+  <div className="library-controls"><Label htmlFor="ask-disabled">Disabled</Label><Switch id="ask-disabled" checked={disabled} onCheckedChange={setDisabled}/><Label htmlFor="ask-failure">Simulate failure</Label><Switch id="ask-failure" checked={fail} onCheckedChange={setFail}/></div>
+  <p className="library-source">Local demo only. Enter sends; Escape dismisses the reply. No voice service is connected.</p>
+ </>;
+}
