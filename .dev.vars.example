@@ -1,0 +1,8 @@
+# npm run setup creates .dev.vars with a unique local secret.
+APP_ENV=development
+SITE_ORIGIN=http://localhost:5188
+BETTER_AUTH_SECRET=replace-with-at-least-32-random-characters
+AUTH_DELIVERY=console
+# Production email delivery: set AUTH_DELIVERY=email and configure these as secrets.
+# SENDGRID_API_TOKEN=
+# FROM_ADDRESS=

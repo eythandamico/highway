@@ -1,0 +1,14 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+const meta={title:"Foundation/Actions",component:Button,tags:["autodocs"]} satisfies Meta<typeof Button>;
+export default meta;type Story=StoryObj<typeof meta>;
+export const Primary:Story={args:{children:"Save changes"}};
+export const Secondary:Story={args:{children:"Cancel",variant:"secondary"}};
+export const Disabled:Story={args:{children:"Saving…",disabled:true}};
+export const Field:Story={render:()=> <div className="stack" style={{maxWidth:400}}><Label htmlFor="story-email">Email address</Label><Input id="story-email" type="email" autoComplete="email" placeholder="you@example.com"/></div>};
+export const Modal:Story={render:()=> <Dialog><DialogTrigger asChild><Button>Open dialog</Button></DialogTrigger><DialogContent><DialogTitle>Review changes</DialogTitle><DialogDescription>Check the details before continuing.</DialogDescription><Button>Confirm</Button></DialogContent></Dialog>};
+export const BottomSheet:Story={render:()=> <Sheet><SheetTrigger asChild><Button>Open sheet</Button></SheetTrigger><SheetContent side="bottom"><SheetTitle>A focused task</SheetTitle><SheetDescription>Use this space for one clear action.</SheetDescription><Button>Continue</Button></SheetContent></Sheet>};

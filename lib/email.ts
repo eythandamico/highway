@@ -1,0 +1,7 @@
+import { appConfig } from "@/config/app";
+function escape(value: string) { return value.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]!)); }
+export function signInEmail(code: string, origin: string) {
+  const name=escape(appConfig.name), url=escape(new URL(origin).origin);
+  return {subject:`Your ${appConfig.name} sign-in code`, text:`Your sign-in code is ${code}. Enter it to continue. It expires in 10 minutes and can be used once. Never share it. If you didn't request it, ignore this email. ${origin}`,
+    html:`<!doctype html><html><body style="margin:0;background:#fff;color:#171717;font-family:Arial,sans-serif"><main style="max-width:520px;margin:auto;padding:56px 24px"><a href="${url}" style="color:#171717;text-decoration:none;font-weight:bold">${name}</a><h1 style="font-size:24px;margin:40px 0 16px">Your sign-in code</h1><p style="color:#666;font-size:16px;line-height:1.6">Enter this code to continue. It expires in 10 minutes and can be used once.</p><div style="padding:28px;background:#f3f3f3;border-radius:16px;text-align:center;font-size:32px;letter-spacing:8px;font-weight:bold">${escape(code)}</div><p style="color:#666;font-size:16px;line-height:1.6;margin-top:28px">Never share this code. If you didn’t request it, you can ignore this email.</p><footer style="margin-top:48px;font-size:14px"><a href="${url}" style="color:#666">${name}</a></footer></main></body></html>`};
+}

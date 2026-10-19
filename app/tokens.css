@@ -1,0 +1,239 @@
+/* Single source of shared design tokens. See docs/DESIGN-SYSTEM.md.
+   Product styles consume these tokens; theme overrides live here. */
+:root {
+  --background: #fdfdfb;
+  --foreground: #171717;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --popover: #ffffff;
+  --menu-edge: rgb(133 116 92 / 24%);
+  --menu-shadow: 0 2px 5px rgb(85 69 48 / 6%), 0 12px 28px -8px rgb(85 69 48 / 18%), 0 28px 56px -20px rgb(85 69 48 / 16%);
+  --popover-foreground: #171717;
+  --primary: #d9ee8a;
+  --primary-foreground: #123c31;
+  --secondary: #f0f0ed;
+  --secondary-foreground: #171717;
+  --muted: #f5f5f5;
+  --muted-foreground: #686868;
+  --accent: #eff6d9;
+  --accent-foreground: #123c31;
+  --destructive: #b42318;
+  --border: #e5e5e5;
+  --input: #858585;
+  --ring: #627e26;
+  --chart-1: #77952d;
+  --chart-2: #009689;
+  --chart-3: #104e64;
+  --chart-4: #ffb900;
+  --chart-5: #fe9a00;
+  --radius: 0.625rem;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #171717;
+  --sidebar-primary: #d9ee8a;
+  --sidebar-primary-foreground: #123c31;
+  --sidebar-accent: #d9ee8a;
+  --sidebar-accent-foreground: #123c31;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #a1a1a1;
+  color-scheme: light;
+  --surface: var(--background);
+  --nav-hover: color-mix(in srgb, var(--foreground) 9%, var(--background));
+  --nav-count: color-mix(in srgb, var(--foreground) 15%, var(--background));
+  --surface-muted: #f3f3f3;
+  --ink: var(--foreground);
+  --soft: var(--muted-foreground);
+  --line: var(--border);
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --primary-hover: #cbe473;
+  --primary-active: #bed763;
+  --control-focus: var(--ring);
+  --control-radius: var(--radius-pill);
+  --surface-radius: var(--radius-panel);
+  --control-height: 2.75rem;
+  --row-description-min: 10rem;
+  --control-ease: var(--ease-standard);
+  --control-error: var(--status-error);
+  --secondary-hover: #e7e7e3;
+  --secondary-active: #dadada;
+  --field-disabled: #f7f7f7;
+  --text-disabled: #929292;
+  --placeholder: #717171;
+  --surface-shadow:
+    0 1px 3px rgb(0 0 0/0.04), 0 6px 16px -4px rgb(0 0 0/0.08),
+    0 20px 40px -12px rgb(0 0 0/0.1);
+  --action-border: #627e26;
+  --destructive-foreground: #ffffff;
+  --destructive-hover: #912018;
+  --field-edge: #87877e;
+  --field-surface: var(--secondary);
+  --status-neutral-bg: #eeeee9;
+  --status-neutral-ink: #484842;
+  --status-success: #276044;
+  --status-success-bg: #dcebdd;
+  --status-warning: #795116;
+  --status-warning-bg: #f5e6c9;
+  --status-error: #b42318;
+  --status-error-bg: #f9ddd8;
+  --status-info: #235b80;
+  --status-info-bg: #d9eaf5;
+  --brand-ink: #376b50;
+  --brand-ink-dark: #9dceb1;
+  --brand-soft: #edf4ee;
+  --overlay: rgb(0 0 0 / 0.4);
+  --fx-surface-rgb: 255 255 255;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-11: 2.75rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-18: 4.5rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-25: 6.25rem;
+  --space-28: 7rem;
+  --space-30: 7.5rem;
+  --space-half: 0.125rem;
+  --radius-xs: 0.25rem;
+  --radius-control: 0.75rem;
+  --radius-panel: 1rem;
+  --radius-dialog: 1.5rem;
+  --radius-pill: 999px;
+  --ease-standard: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-fast: 120ms;
+  --duration-normal: 180ms;
+  --duration-slow: 300ms;
+  --overlay-enter-duration: var(--duration-normal);
+  --overlay-exit-duration: var(--duration-fast);
+  --overlay-ease: var(--ease-standard);
+  --nav-slide-duration: 420ms;
+  --nav-slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --chart-height: 15rem;
+  --chart-height-compact: 10rem;
+  --layer-header: 20;
+  --layer-rail: 30;
+  --layer-mobile-nav: 40;
+  --layer-overlay: 50;
+  --layer-dialog: 51;
+  --layer-popover: 55;
+  --layer-tooltip: 56;
+  --layer-toast: 60;
+  --page-max: 78.75rem;
+  --reading-max: 48rem;
+  --dialog-width: 42.5rem;
+  --record-dialog-width: 88rem;
+  --record-sidebar-width: 25rem;
+  --profile-surface: color-mix(in srgb, var(--card) 85%, var(--surface-muted));
+  --focus-width: 2px;
+  --focus-offset: 3px;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #151515;
+  --foreground: #ededed;
+  --card: #202020;
+  --card-foreground: #ededed;
+  --popover: #202020;
+  --menu-edge: rgb(180 160 132 / 28%);
+  --menu-shadow: 0 4px 12px rgb(0 0 0 / 20%), 0 20px 44px -12px rgb(0 0 0 / 50%);
+  --popover-foreground: #ededed;
+  --primary: #d9ee8a;
+  --primary-foreground: #123c31;
+  --secondary: #292929;
+  --secondary-foreground: #ededed;
+  --muted: #242424;
+  --muted-foreground: #aaa;
+  --accent: #303b22;
+  --accent-foreground: #d9ee8a;
+  --border: #343434;
+  --input: #7b7b7b;
+  --ring: #d9ee8a;
+  --surface: var(--background);
+  --surface-muted: #242424;
+  --ink: var(--foreground);
+  --soft: var(--muted-foreground);
+  --line: var(--border);
+  --primary-hover: #cbe473;
+  --primary-active: #bed763;
+  --sidebar-primary: #d9ee8a;
+  --sidebar-primary-foreground: #123c31;
+  --sidebar-accent: #d9ee8a;
+  --sidebar-accent-foreground: #123c31;
+  --chart-1: #77952d;
+  --control-focus: var(--ring);
+  --secondary-hover: #363636;
+  --secondary-active: #414141;
+  --field-disabled: #1e1e1e;
+  --text-disabled: #808080;
+  --placeholder: #a0a0a0;
+  --action-border: #d9ee8a;
+  --field-edge: #85857e;
+  --field-surface: var(--secondary);
+  --status-neutral-bg: #383833;
+  --status-neutral-ink: #e1e1d9;
+  --status-success: #9dceb1;
+  --status-success-bg: #23332a;
+  --status-warning: #e9c28a;
+  --status-warning-bg: #30291d;
+  --status-error: #f3aaaa;
+  --status-error-bg: #3b2020;
+  --status-info: #a2d6f4;
+  --status-info-bg: #20333f;
+  --brand-soft: #23332a;
+  --destructive: #f3aaaa;
+  --destructive-foreground: #3b1717;
+  --destructive-hover: #e59696;
+  --overlay: rgb(0 0 0 / 0.65);
+  --fx-surface-rgb: 21 21 21;
+}
+
+/* Soft white surface material, shared with the Ask capsule. Fields stay separate. */
+:root {
+  --panel-tint: #85745c;
+  /* Shotcall aurora wash: preserve the reference gradient geometry and alpha. */
+  --panel-wash:
+    radial-gradient(120% 200% at 46% 138%, rgb(255 255 255 / 17%) 0%, transparent 62%),
+    radial-gradient(90% 170% at 30% 145%, rgb(255 255 255 / 10%) 0%, transparent 58%),
+    radial-gradient(110% 185% at 72% 135%, rgb(255 255 255 / 13%) 0%, transparent 60%),
+    linear-gradient(170deg, rgb(255 255 255 / 5%) 0%, rgb(255 255 255 / 6%) 44%, rgb(255 255 255 / 9%) 100%);
+  --panel-surface: color-mix(in srgb, var(--panel-tint) 4%, transparent);
+  --panel-edge: color-mix(in srgb, var(--panel-tint) 8%, transparent);
+  --panel-top-edge: var(--panel-edge);
+  --panel-rim: linear-gradient(to bottom, rgb(255 255 255 / 85%), transparent 60%);
+  --panel-finish: inset 0 1px 0 rgb(255 255 255 / 90%);
+  --panel-blur: 12px;
+  --panel-shadow-hover: 0 18px 32px -12px rgb(70 56 39 / 42%);
+  --panel-shadow-pressed: 0 2px 6px -2px rgb(85 69 48 / 12%), 0 6px 14px -8px rgb(85 69 48 / 20%);
+  --panel-motion-duration: 400ms;
+  --panel-motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --panel-rim-width: 1px;
+  --panel-bottom-edge: rgb(133 116 92 / 20%);
+  --panel-shadow: 0 2px 6px -2px rgb(85 69 48 / 6%), 0 12px 24px -14px rgb(85 69 48 / 14%);
+}
+.dark {
+  --panel-wash: none;
+  --panel-rim: none;
+  --panel-finish: none;
+  --panel-surface: var(--card);
+  --panel-top-edge: var(--border);
+  --panel-edge: var(--border);
+  --panel-bottom-edge: var(--border);
+  --panel-shadow: var(--surface-shadow);
+  --panel-shadow-hover: 0 18px 32px -12px rgb(0 0 0 / 50%);
+  --panel-shadow-pressed: 0 4px 12px -6px rgb(0 0 0 / 35%);
+}
+
+/* Shotcall's exact raised avatar rim and highlight recipe. */
+:root {
+  --avatar-rim-shadow: inset 0 0 0 1px rgb(16 46 70 / 60%), inset 0 0 0 2px rgb(255 255 255 / 24%), inset 0 2px 1px rgb(255 255 255 / 30%), inset 0 -2px 1px rgb(16 46 70 / 12%);
+  --avatar-lift-shadow: 0 2px 4px -2px rgb(16 46 70 / 25%);
+}

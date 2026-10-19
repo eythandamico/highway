@@ -1,0 +1,54 @@
+/* Shared application type scale. Rem values honor the browser's text size. */
+:root {
+  --type-caption: 0.75rem;    /* 12: metadata, badges, timestamps */
+  --type-secondary: 0.875rem; /* 14: navigation, labels, controls */
+  --type-body: 1rem;         /* 16: paragraphs, form input */
+  --type-subheading: 1.25rem;/* 20: small section headings */
+  --type-title: 1.5rem;      /* 24: card and dialog titles */
+  --type-heading: 2rem;      /* 32: page headings */
+  --type-display: 4rem;      /* 64: welcome headline */
+  --leading-body: 1.6;
+  --leading-ui: 1.4;
+  --leading-heading: 1.2;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+}
+
+/* Keep shared Tailwind components on the same scale. */
+@theme inline {
+  --text-xs: var(--type-caption);
+  --text-xs--line-height: var(--leading-ui);
+  --text-sm: var(--type-secondary);
+  --text-sm--line-height: var(--leading-ui);
+  --text-base: var(--type-body);
+  --text-base--line-height: var(--leading-body);
+  --text-lg: var(--type-subheading);
+  --text-lg--line-height: var(--leading-heading);
+  --text-xl: var(--type-subheading);
+  --text-xl--line-height: var(--leading-heading);
+  --text-2xl: var(--type-title);
+  --text-2xl--line-height: var(--leading-heading);
+  --text-3xl: var(--type-heading);
+  --text-3xl--line-height: var(--leading-heading);
+  --text-4xl: var(--type-heading);
+  --text-4xl--line-height: var(--leading-heading);
+}
+
+/* Balanced headings and readable final lines, without changing the type scale. */
+h1, h2, h3, h4, h5, h6 {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+p { text-wrap: pretty; }
+.count, [data-slot="table-cell"] { font-variant-numeric: tabular-nums; }
+
+/* Phone UI: comfortable reading/control text, with a separate metadata tier.
+   Keep rem units and the browser's root size so text preferences still scale. */
+@media (max-width: 640px) {
+  :root {
+    --type-caption: 0.875rem;  /* 14: timestamps and compact metadata */
+    --type-secondary: 1rem;   /* 16: descriptions, menus and controls */
+  }
+}

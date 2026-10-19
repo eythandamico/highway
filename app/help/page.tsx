@@ -1,0 +1,2 @@
+export const metadata={title:"Help & feedback",alternates:{canonical:"/help"}};
+export default function Page(){return <article className="page reading"><h1>Help & feedback</h1><p>For this starter, setup and troubleshooting are documented in the included README.</p><p>Before launch, replace this page with a real support channel and feedback process. No messages are sent from this starter page.</p></article>;}

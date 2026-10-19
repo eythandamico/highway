@@ -1,0 +1,2 @@
+export const metadata={title:"Privacy policy",alternates:{canonical:"/privacy"}};
+export default function Page(){return <article className="page reading"><h1>Privacy policy</h1><p>Draft placeholder—not a completed privacy policy.</p><p>Before accepting real users, describe the data you collect, its purpose, retention and deletion, your processors, applicable rights and a contact address. The starter uses account/session records, private workspace data and private file storage.</p></article>;}

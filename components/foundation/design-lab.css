@@ -1,0 +1,7 @@
+.design-lab { max-inline-size: var(--reading-max); }
+.design-lab .header-actions { flex-wrap: wrap; }
+.design-lab > header { margin-block-end: var(--space-10); }
+.design-lab .settings-section { padding-block: var(--space-8); }
+.design-lab .lab-check { display: flex; align-items: center; gap: var(--space-3); min-block-size: var(--control-height); }
+.design-lab .lab-check input { inline-size: var(--space-5); block-size: var(--space-5); }
+.lab-stress { display: grid; gap: var(--space-4); min-inline-size: 0; overflow-wrap: anywhere; padding: var(--space-6); border: 1px solid var(--border); border-radius: var(--radius-panel); }

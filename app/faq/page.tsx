@@ -1,0 +1,2 @@
+export const metadata={title:"Frequently asked questions",alternates:{canonical:"/faq"}};
+export default function Page(){return <article className="page reading"><h1>Frequently asked questions</h1><p>How do I sign in? Use your email address and enter the six-digit code. New accounts are created on first sign-in.</p><p>Is my workspace public? No. Records and files require a verified session and workspace membership.</p><p>Can I change the appearance? Yes. Settings supports light, dark and system appearance.</p></article>;}
