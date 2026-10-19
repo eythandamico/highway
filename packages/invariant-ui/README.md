@@ -19,7 +19,7 @@ All 50 Invariant component APIs remain available. Explore the combined catalogue
 
 `app/tokens.css` owns the Invariant palette, radii, shadows and motion. `app/typography.css` owns its rem type scale. This folder's `tokens/theme.css` maps the original `--inv-*` names onto those shared tokens. Change the canonical tokens rather than adding a second palette. The root supports `.dark` and `data-theme="dark"`.
 
-This integrated copy depends on the Foundation project: do not copy only `tokens/theme.css` or a compatibility wrapper into another app. Reuse the starter, or bring the component's complete import graph and shared CSS owners (`tokens`, `typography`, `controls`, `foundation`, compatibility aliases). The app uses React 19, Tailwind 4, Radix and lucide-react; preserve the root lockfile. Original per-component API docs live in `docs/`.
+For reusable installation, use the compiled `@highway/react` and `@highway/styles` packages described in [PACKAGES.md](../../docs/PACKAGES.md). They build directly from these sources without application infrastructure. This source folder depends on the Foundation project: do not copy only `tokens/theme.css` or a compatibility wrapper into another app. Reuse the starter, or bring the component's complete import graph and shared CSS owners (`tokens`, `typography`, `controls`, `foundation`, compatibility aliases). The app uses React 19, Tailwind 4, Radix and lucide-react; preserve the root lockfile. Original per-component API docs live in `docs/`.
 
 The showcase's isolated documents import those same styles. Rebuild their assets with `npm run build:invariant`; development startup and production builds include this automatically.
 

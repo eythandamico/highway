@@ -52,7 +52,7 @@ Validation was run against the refreshed standalone folder, using gpt-6-luna wit
 | Check | Result |
 | --- | --- |
 | TypeScript | Passed |
-| ESLint | Passed |
+| ESLint | Passed with 18 copied Invariant warnings; 0 errors |
 | Shared design guard | Passed: 107 application/shared component files and 8 stylesheets |
 | Semantic token/contrast checks | Passed |
 | Production application build | Passed; built Worker serves the app successfully |
@@ -60,11 +60,25 @@ Validation was run against the refreshed standalone folder, using gpt-6-luna wit
 | Playwright design suite | 28 passed; 8 project-specific skips |
 | Unified Invariant showcase suite | Passed: 23 checks; 61 project-specific skips |
 | Demo workspace suite | Passed: 3 tests |
+| Highway package archives | Passed: `@highway/styles` and `@highway/react` 0.1.0; archive contents, published exports, React 19 peer, declaration files, scoped CSS, and absence of Next/Cloudflare runtime imports verified |
+| Installed-package example | Passed: strict TypeScript and Vite production build from the actual tarballs; isolated declaration check; React SSR import/render smoke; 7 browser tests passed with 14 intentional viewport/motion skips |
 | Narrow 320px / 200% heading regression | Passed: visible heading `scrollWidth` stays within `clientWidth` |
 | Built effects CSS verification | Passed |
 | Local Worker/API integration | Passed on final clean run |
 
 The eight skips are intentional matrix routing: phone-only assertions skip desktop/reduced-motion projects, the 320px enlarged-text assertion skips other widths, and reduced-motion assertions run only in their dedicated project. They are not disabled failures. The suite exercises light/dark, desktop/390px/320px, enlarged text, reduced motion, control geometry (including one-character small buttons), form draft retention/pending dismissal, themed portals, native date entry, lazy calendar selection, nested Select/Calendar Escape behavior, Sheet dismissal and focus restoration. Static checks are not substitutes for rendered browser checks.
+
+The package suite compares installed `Button` and `GlassCard` computed styles with their real source-showcase examples; it also checks dark branded FormDialog and menu portals, pending/failure draft retention and retry, AskBar Enter submission, DateInput/calendar loading without Next assets, effects and foreground interaction, host-style isolation, scoped `.inv-body` typography/color, phone fit, and reduced motion. React SSR was checked with `react-dom/server` to ensure package import/render is safe without browser globals; this is not a full Next.js integration test. Real mobile keyboards and assistive technology remain unverified.
+
+To reproduce package validation against fresh artifacts, run:
+
+```sh
+npm run pack:packages
+(cd examples/highway-vite && npm install ../../artifacts/highway-styles-0.1.0.tgz ../../artifacts/highway-react-0.1.0.tgz --force)
+npm run test:packages
+```
+
+`npm run test:packages` validates both tarballs, builds the standalone Vite consumer with strict TypeScript, resolves the installed declarations through the isolated fixture, runs the SSR smoke, and executes the package browser suite. The forced install refreshes same-version local tarballs in npm's cache.
 
 The API integration covers development OTP sign-in, tenant separation, viewer permissions, origin rejection, stale revision conflicts, record archive/list behavior and private upload/download/delete. Tests bind and request `127.0.0.1:5188`, while sending the configured `http://localhost:5188` Origin for trusted-origin coverage. This keeps test requests away from an unrelated IPv6 localhost development listener. Stop any process occupying the test's IPv4 endpoint before running the suite. Only the test's isolated `.wrangler/test-state` is reset.
 

@@ -134,3 +134,7 @@ The library combines Invariant components and Foundation patterns under Invarian
 ## Project identity
 
 The project and personal GitHub repository are named Highway (`eythandamico/highway`). Product branding is centralized in `config/app.ts`. The existing Cloudflare worker `app-foundation`, D1 and R2 bindings, local checkout directory, and theme preference key retain their internal names for continuity; the live deployment URL is unchanged.
+
+## Install the library without the application
+
+Highway now builds `@highway/styles` and `@highway/react` directly from its shared components. Run `npm run pack:packages` for versioned installable tarballs. Consumers need neither Tailwind configuration nor Highway infrastructure. Use `HighwayTheme` for exact defaults or supported brand overrides. See [package installation and theming](docs/PACKAGES.md) and the [isolated React/Vite/TypeScript example](examples/highway-vite/README.md).

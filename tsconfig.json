@@ -44,6 +44,8 @@
   "exclude": [
     "node_modules",
     "dist",
-    "storybook-static"
+    "storybook-static",
+    "examples",
+    "packages/highway-react/dist"
   ]
 }

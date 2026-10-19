@@ -25,7 +25,10 @@
     "check:ui": "npm run typecheck && npm run lint && npm run check:design && npm run build && npm run build-storybook",
     "check:ui:full": "npm run check:ui && npm run test:ui",
     "test:demo": "node --experimental-strip-types --test tests/verify-demo-workspace.mjs",
-    "build:invariant": "vite build --config packages/invariant-ui/preview/vite.config.mjs"
+    "build:invariant": "vite build --config packages/invariant-ui/preview/vite.config.mjs",
+    "build:packages": "node scripts/highway/build.mjs",
+    "pack:packages": "npm run build:packages && node scripts/highway/pack.mjs",
+    "test:packages": "node tests/validate-highway-packages.mjs && npm run build --prefix examples/highway-vite && tsc --project tests/package-browser/tsconfig.json && node tests/package-browser/ssr-smoke.mjs && playwright test --config playwright.package.config.ts"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
@@ -74,6 +77,8 @@
     "@storybook/addon-a11y": "10.6.0",
     "@storybook/addon-docs": "10.6.0",
     "@storybook/react-vite": "10.6.0",
+    "@tailwindcss/node": "4.2.1",
+    "@tailwindcss/oxide": "4.2.1",
     "@tailwindcss/postcss": "4.2.1",
     "@types/leaflet": "1.9.21",
     "@types/node": "22.19.19",
@@ -81,8 +86,10 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
+    "esbuild": "0.28.1",
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.8",
+    "postcss": "8.5.23",
     "react-server-dom-webpack": "19.2.8",
     "storybook": "10.6.0",
     "tailwindcss": "4.2.1",
