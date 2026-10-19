@@ -44,6 +44,7 @@ function Button({
   iconPosition,
   loading = false,
   disabled,
+  children,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -71,7 +72,7 @@ function Button({
       data-icon-position={iconPosition}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >{asChild ? children : <>{loading && <svg className="ui-spinner ui-button-spinner" aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="2" opacity=".25"/><path d="M10 3a7 7 0 0 1 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>}{loading ? <span className="ui-button-pending-label">{children}</span> : children}</>}</Comp>
   );
 }
 

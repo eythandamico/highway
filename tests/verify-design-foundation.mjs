@@ -76,7 +76,32 @@ function parseColor(value, tokenName) {
   const rgb = normalized.match(/^rgba?\(\s*(\d+(?:\.\d+)?)\s*[, ]\s*(\d+(?:\.\d+)?)\s*[, ]\s*(\d+(?:\.\d+)?)\s*(?:[,/]\s*(?:1(?:\.0+)?|100%))?\s*\)$/);
   if (rgb) return rgb.slice(1, 4).map(Number);
 
-  assert.fail(`${tokenName} must resolve to a solid hex or rgb color, got ${JSON.stringify(value)}`);
+  const oklch = normalized.match(/^oklch\(\s*(\d*\.?\d+)(%)?\s+(\d*\.?\d+)\s+(-?\d*\.?\d+)(?:\s*\/\s*(?:1(?:\.0+)?|100%))?\s*\)$/);
+  if (oklch) {
+    const lightness = Number(oklch[1]) / (oklch[2] ? 100 : 1);
+    const chroma = Number(oklch[3]);
+    const hue = Number(oklch[4]) * Math.PI / 180;
+    const a = chroma * Math.cos(hue);
+    const b = chroma * Math.sin(hue);
+    const lRoot = lightness + 0.3963377774 * a + 0.2158037573 * b;
+    const mRoot = lightness - 0.1055613458 * a - 0.0638541728 * b;
+    const sRoot = lightness - 0.0894841775 * a - 1.2914855480 * b;
+    const l = lRoot ** 3;
+    const m = mRoot ** 3;
+    const s = sRoot ** 3;
+    const linearRgb = [
+      4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+      -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+      -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s,
+    ];
+    return linearRgb.map((channel) => {
+      const clipped = Math.max(0, Math.min(1, channel));
+      const srgb = clipped <= 0.0031308 ? clipped * 12.92 : 1.055 * clipped ** (1 / 2.4) - 0.055;
+      return srgb * 255;
+    });
+  }
+
+  assert.fail(`${tokenName} must resolve to a solid hex, rgb, or oklch color, got ${JSON.stringify(value)}`);
 }
 
 function relativeLuminance([red, green, blue]) {

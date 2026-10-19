@@ -81,7 +81,7 @@ export function SplitPane({
       >
         {/* Pull tab */}
         <div
-          className={`rounded-full bg-[var(--inv-muted)] transition-all duration-150 ${
+          className={`rounded-full bg-[var(--inv-muted)] transition-all duration-[var(--duration-fast)] ${
             isHorizontal
               ? `w-[3px] ${isDragging ? 'h-8 bg-[var(--inv-heading)]' : 'h-6 group-hover:h-8'}`
               : `h-[3px] ${isDragging ? 'w-8 bg-[var(--inv-heading)]' : 'w-6 group-hover:w-8'}`

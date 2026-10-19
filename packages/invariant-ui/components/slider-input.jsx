@@ -89,7 +89,7 @@ export function SliderInput({
         }}
       >
         <div
-          className={`rounded-full bg-[var(--inv-muted)] mr-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-150 ${
+          className={`rounded-full bg-[var(--inv-muted)] mr-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-[var(--duration-fast)] ${
             isDragging ? 'w-1 h-6 !opacity-100 bg-[var(--inv-heading)]' : 'w-[3px] h-5'
           }`}
         />
@@ -97,13 +97,13 @@ export function SliderInput({
 
       {/* Label left */}
       {label && (
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[14px] font-medium text-[var(--inv-muted)] pointer-events-none z-10">
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[length:var(--type-secondary)] font-medium text-[var(--inv-muted)] pointer-events-none z-10">
           {label}
         </span>
       )}
 
       {/* Value right */}
-      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[14px] font-medium text-[var(--inv-muted)] pointer-events-none z-10">
+      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[length:var(--type-secondary)] font-medium text-[var(--inv-muted)] pointer-events-none z-10">
         {displayValue}
       </span>
     </div>

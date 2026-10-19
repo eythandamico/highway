@@ -33,7 +33,7 @@ export function ProfileMenu({ avatarUrl, profile, profileItems = [], placement =
       <button
         type="button"
         onClick={() => setMenuOpen(prev => !prev)}
-        className="relative w-10 h-10 rounded-xl cursor-pointer transition-[scale,opacity] duration-150 ease-out active:scale-[0.96] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+        className="relative w-10 h-10 rounded-xl cursor-pointer transition-[scale,opacity] duration-[var(--duration-fast)] ease-out active:scale-[0.96] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
         aria-label="Profile menu"
         aria-expanded={menuOpen}
         aria-haspopup="true"
@@ -52,8 +52,8 @@ export function ProfileMenu({ avatarUrl, profile, profileItems = [], placement =
           {profile && (
             <>
               <div className="px-2 py-1.5">
-                <div className="text-[15px] font-semibold text-[var(--inv-menu-text-active)] truncate">{profile.name}</div>
-                <div className="text-[13px] text-[var(--inv-menu-text)] truncate">{profile.email}</div>
+                <div className="text-[length:var(--type-body)] font-semibold text-[var(--inv-menu-text-active)] truncate">{profile.name}</div>
+                <div className="text-[length:var(--type-secondary)] text-[var(--inv-menu-text)] truncate">{profile.email}</div>
               </div>
               <div className="border-t border-[var(--inv-menu-divider)] mx-2.5 my-1" aria-hidden="true" />
             </>
@@ -64,7 +64,7 @@ export function ProfileMenu({ avatarUrl, profile, profileItems = [], placement =
               type="button"
               role="menuitem"
               onClick={() => { setMenuOpen(false); item.onAction?.() }}
-              className="w-full text-left px-2 py-1.5 text-[15px] text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+              className="w-full text-left px-2 py-1.5 text-[length:var(--type-body)] text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
             >
               <Icon name={item.icon} size={18} className="text-[var(--inv-menu-text)]" aria-hidden="true" />
               {item.label}

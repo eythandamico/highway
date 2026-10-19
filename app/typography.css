@@ -1,9 +1,9 @@
 /* Shared application type scale. Rem values honor the browser's text size. */
 :root {
-  --type-caption: 0.75rem;    /* 12: metadata, badges, timestamps */
-  --type-secondary: 0.875rem; /* 14: navigation, labels, controls */
-  --type-body: 1rem;         /* 16: paragraphs, form input */
-  --type-subheading: 1.25rem;/* 20: small section headings */
+  --type-caption: 0.6875rem;  /* 11: metadata, badges, timestamps */
+  --type-secondary: 0.8125rem; /* 13: navigation, labels, controls */
+  --type-body: 0.9375rem;  /* 15: paragraphs, form input */
+  --type-subheading: 1.125rem;/* 18: small section headings */
   --type-title: 1.5rem;      /* 24: card and dialog titles */
   --type-heading: 2rem;      /* 32: page headings */
   --type-display: 4rem;      /* 64: welcome headline */
@@ -48,6 +48,7 @@ p { text-wrap: pretty; }
    Keep rem units and the browser's root size so text preferences still scale. */
 @media (max-width: 640px) {
   :root {
+    --type-body: 1rem;
     --type-caption: 0.875rem;  /* 14: timestamps and compact metadata */
     --type-secondary: 1rem;   /* 16: descriptions, menus and controls */
   }

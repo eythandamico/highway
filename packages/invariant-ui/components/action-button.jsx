@@ -50,7 +50,7 @@ export function ActionButton({ label = 'Save', icon, loadingDuration = 2000, onA
       >
         {/* Idle — label + icon */}
         <span
-          className="flex items-center gap-2 text-[15px] whitespace-nowrap"
+          className="flex items-center gap-2 text-[length:var(--type-body)] whitespace-nowrap"
           style={{
             opacity: isIdle ? 1 : 0,
             scale: isIdle ? '1' : '0.85',

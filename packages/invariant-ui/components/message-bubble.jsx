@@ -7,7 +7,7 @@ import { ProfileAvatar } from './profile-avatar.jsx'
 function ThinkingIndicator() {
   return (
     <span
-      className="text-[15px] font-semibold bg-clip-text"
+      className="text-[length:var(--type-body)] font-semibold bg-clip-text"
       style={{
         backgroundImage: 'linear-gradient(90deg, var(--inv-heading) 25%, var(--inv-border) 50%, var(--inv-heading) 75%)',
         backgroundSize: '300% 100%',
@@ -32,7 +32,7 @@ function ActionButton({ icon, label, onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-150 cursor-pointer"
+      className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-[var(--duration-fast)] cursor-pointer"
       aria-label={label}
     >
       <Icon name={icon} size={14} />
@@ -81,7 +81,7 @@ export function MessageBubble({
       {/* Content + Actions */}
       <div className={`max-w-[75%] flex flex-col ${isAgent ? '' : 'items-end'}`}>
         <div
-          className={`text-[15px] leading-relaxed ${
+          className={`text-[length:var(--type-body)] leading-relaxed ${
             isAgent
               ? 'py-1 text-[var(--inv-heading)]'
               : 'px-4 py-2.5 rounded-2xl rounded-tr-md bg-[var(--inv-bg-alt)] text-[var(--inv-heading)]'
@@ -116,7 +116,7 @@ export function MessageBubble({
           </div>
 
           {timestamp && (
-            <span className="text-[11px] text-[var(--inv-muted)] px-1">{timestamp}</span>
+            <span className="text-[length:var(--type-caption)] text-[var(--inv-muted)] px-1">{timestamp}</span>
           )}
         </div>
       </div>

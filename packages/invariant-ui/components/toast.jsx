@@ -49,8 +49,8 @@ function ToastItem({ toast, onDismiss }) {
       }}
     >
       <div className="flex flex-col gap-0.5">
-        <span className="text-[15px] font-medium text-[var(--inv-heading)]">{toast.title}</span>
-        {toast.message && <span className="text-[13px] text-[var(--inv-muted)]">{toast.message}</span>}
+        <span className="text-[length:var(--type-body)] font-medium text-[var(--inv-heading)]">{toast.title}</span>
+        {toast.message && <span className="text-[length:var(--type-secondary)] text-[var(--inv-muted)]">{toast.message}</span>}
       </div>
     </div>
   )

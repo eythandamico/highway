@@ -68,7 +68,7 @@ export function Table({
                   <button
                     type="button"
                     onClick={toggleAll}
-                    className={`w-5 h-5 rounded-md flex items-center justify-center cursor-pointer transition-colors duration-150 ${
+                    className={`w-5 h-5 rounded-md flex items-center justify-center cursor-pointer transition-colors duration-[var(--duration-fast)] ${
                       allSelected ? 'bg-[var(--inv-accent)] text-white' : 'bg-[var(--inv-surface)]'
                     }`}
                     style={{ boxShadow: allSelected ? undefined : 'var(--inv-shadow-sm)' }}
@@ -80,7 +80,7 @@ export function Table({
               {columns.map(col => (
                 <th
                   key={col.key}
-                  className={`text-left px-5 py-3 text-[14px] font-medium text-[var(--inv-heading)] ${
+                  className={`text-left px-5 py-3 text-[length:var(--type-secondary)] font-medium text-[var(--inv-heading)] ${
                     col.sortable !== false ? 'cursor-pointer select-none' : ''
                   } ${col.align === 'right' ? 'text-right' : ''}`}
                   onClick={() => col.sortable !== false && handleSort(col.key)}
@@ -118,7 +118,7 @@ export function Table({
                       <button
                         type="button"
                         onClick={() => toggleRow(i)}
-                        className={`w-5 h-5 rounded-md flex items-center justify-center cursor-pointer transition-all duration-150 active:scale-[0.9] ${
+                        className={`w-5 h-5 rounded-md flex items-center justify-center cursor-pointer transition-all duration-[var(--duration-fast)] active:scale-[0.9] ${
                           isSelected ? 'bg-[var(--inv-accent)] text-white' : 'bg-[var(--inv-surface)]'
                         }`}
                         style={{ boxShadow: isSelected ? undefined : 'var(--inv-shadow-sm)' }}
@@ -130,7 +130,7 @@ export function Table({
                   {columns.map(col => (
                     <td
                       key={col.key}
-                      className={`px-5 py-4 text-[14px] text-[var(--inv-heading)] ${col.align === 'right' ? 'text-right' : ''}`}
+                      className={`px-5 py-4 text-[length:var(--type-secondary)] text-[var(--inv-heading)] ${col.align === 'right' ? 'text-right' : ''}`}
                     >
                       {col.render ? col.render(row[col.key], row) : row[col.key]}
                     </td>
@@ -145,7 +145,7 @@ export function Table({
                 {footer.map((cell, i) => (
                   <td
                     key={i}
-                    className={`px-5 py-4 text-[14px] font-medium text-[var(--inv-heading)] ${
+                    className={`px-5 py-4 text-[length:var(--type-secondary)] font-medium text-[var(--inv-heading)] ${
                       columns[i]?.align === 'right' ? 'text-right' : ''
                     }`}
                   >
@@ -158,7 +158,7 @@ export function Table({
         </table>
       </div>
       {caption && (
-        <p className="text-[13px] text-[var(--inv-muted)] mt-3 text-center">{caption}</p>
+        <p className="text-[length:var(--type-secondary)] text-[var(--inv-muted)] mt-3 text-center">{caption}</p>
       )}
       <style>{`
         @keyframes inv-table-sort {

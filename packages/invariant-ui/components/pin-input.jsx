@@ -78,7 +78,7 @@ export function PinInput({
             onPaste={handlePaste}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
-            className={`w-11 h-13 text-center text-[18px] font-semibold text-[var(--inv-heading)] bg-[var(--inv-surface)] rounded-xl outline-none transition-[box-shadow] duration-150 ${
+            className={`w-11 h-13 text-center text-[length:var(--type-subheading)] font-semibold text-[var(--inv-heading)] bg-[var(--inv-surface)] rounded-xl outline-none transition-[box-shadow] duration-[var(--duration-fast)] ${
               disabled
                 ? 'opacity-40 pointer-events-none [box-shadow:var(--inv-shadow-sm)]'
                 : error
@@ -89,7 +89,7 @@ export function PinInput({
         ))}
       </div>
       {error && !disabled && (
-        <span className="text-[13px] text-red-400">{error}</span>
+        <span className="text-[length:var(--type-secondary)] text-[var(--status-error)]">{error}</span>
       )}
     </div>
   )

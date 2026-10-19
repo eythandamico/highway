@@ -10,11 +10,12 @@ html {
   }
 }
 .ui-button {
+  position: relative;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  font-size: var(--type-secondary);
+  font-size: var(--type-body);
   font-weight: var(--weight-medium);
   line-height: var(--leading-ui);
   height: auto;
@@ -32,12 +33,13 @@ html {
   transition: background-color var(--duration-normal) var(--ease-standard), color var(--duration-normal) var(--ease-standard), box-shadow var(--duration-normal) var(--ease-standard), transform var(--duration-normal) var(--ease-standard);
 }
 .ui-button-primary { background: var(--primary); color: var(--primary-foreground); }
-.ui-button-secondary { background: var(--secondary); color: var(--secondary-foreground); }
+.ui-button-secondary { background: var(--card); color: var(--secondary-foreground); box-shadow: var(--control-shadow); }
 .ui-button-ghost { background: transparent; color: var(--foreground); }
 .ui-button-destructive { background: var(--destructive); color: var(--destructive-foreground); }
-.ui-button:active:not(:disabled) { transform: scale(0.98); }
+.ui-button:active:not(:disabled) { transform: scale(var(--press-scale)); }
 .ui-button-primary:active:not(:disabled) { background: var(--primary-active); }
 .ui-button-secondary:active:not(:disabled) { background: var(--secondary-active); }
+.ui-button-sm { font-size: var(--type-secondary); }
 .ui-button-xs { --button-padding: var(--space-2); font-size: var(--type-caption); }
 .ui-button-lg { --button-padding: var(--space-6); min-block-size: var(--space-12); padding-block: var(--space-3); }
 .ui-button-icon { width: var(--control-height); height: var(--control-height); min-width: var(--control-height); padding: 0; aspect-ratio: 1; }
@@ -59,6 +61,7 @@ html {
   }
   .ui-button-secondary:not(:disabled):hover {
     background: var(--secondary-hover);
+    box-shadow: var(--control-shadow-hover);
   }
   .ui-button-ghost:not(:disabled):hover {
     background: var(--secondary);
@@ -282,3 +285,37 @@ html {
 .ui-date-popover .rdp-root { --cell-size: 2.75rem; }
 .ui-date-popover .rdp-day_button { border-radius: var(--radius-control); }
 .ui-select-error { color: var(--destructive); font-size: var(--type-caption); }
+
+/* Invariant switch: concentric corners, compressible thumb, immediate keyboard state. */
+.ui-switch { position:relative; display:inline-flex; align-items:center; flex-shrink:0; width:var(--space-14); height:var(--space-11); padding:var(--space-1); border:0; background:transparent; cursor:pointer; }
+.ui-switch::before { content:""; position:absolute; inset:calc(var(--space-1) + var(--space-half)) 0; border-radius:var(--radius-control); background:var(--switch-track); box-shadow:var(--control-shadow); transition:background-color var(--duration-normal) var(--ease-standard); }
+.ui-switch[data-state="checked"]::before { background:var(--ring); }
+.ui-switch-thumb { position:relative; display:block; width:var(--space-6); height:var(--space-6); border-radius:var(--space-2); background:var(--switch-thumb); box-shadow:var(--control-shadow); transform:translateX(0); transition:transform 250ms var(--ease-spring), width 250ms var(--ease-spring); }
+.ui-switch[data-state="checked"] .ui-switch-thumb { transform:translateX(var(--space-6)); }
+.ui-switch:active:not(:disabled) .ui-switch-thumb { width:calc(var(--space-7) + var(--space-half)); transition-duration:var(--duration-fast); }
+.ui-switch[data-state="checked"]:active:not(:disabled) .ui-switch-thumb { transform:translateX(calc(var(--space-4) + var(--space-half))); }
+.ui-switch:disabled { opacity:.45; cursor:not-allowed; }
+.ui-switch[data-size="sm"] { width:var(--space-11); }
+.ui-switch[data-size="sm"] .ui-switch-thumb { width:var(--space-5); height:var(--space-5); }
+.ui-switch[data-size="sm"]::before { inset:var(--space-2) 0; }
+.ui-switch[data-size="sm"]:active:not(:disabled) .ui-switch-thumb { width:var(--space-6); }
+.ui-switch[data-size="sm"][data-state="checked"] .ui-switch-thumb { transform:translateX(var(--space-4)); }
+.ui-switch[data-size="sm"][data-state="checked"]:active:not(:disabled) .ui-switch-thumb { transform:translateX(var(--space-3)); }
+@media(prefers-reduced-motion:reduce) { .ui-switch-thumb, .ui-switch::before { transition:none; } .ui-button:active:not(:disabled) { transform:none; } }
+
+/* Keep the original label width while showing pending feedback. */
+.ui-button-pending-label { display:inline-flex; align-items:center; justify-content:center; gap:inherit; opacity:0; min-inline-size:0; }
+.ui-button-spinner { position:absolute; inset:0; margin:auto; width:var(--space-4); height:var(--space-4); }
+
+/* Invariant selection artwork inside a full touch target. Radix owns semantics. */
+.ui-choice { position:relative; display:inline-grid; place-items:center; flex-shrink:0; width:var(--space-11); height:var(--space-11); border:0; padding:0; background:transparent; cursor:pointer; color:var(--selection-mark); }
+.ui-choice::before { content:""; position:absolute; width:var(--space-6); height:var(--space-6); border-radius:var(--space-2); background:var(--secondary); box-shadow:var(--control-shadow); }
+.ui-choice-indicator { display:grid; place-items:center; position:relative; width:calc(var(--space-4) + var(--space-half)); height:calc(var(--space-4) + var(--space-half)); border-radius:calc(var(--space-1) + var(--space-half)); background:var(--ring); transform:scale(0); opacity:0; transition:transform 250ms var(--ease-spring), opacity var(--duration-fast) var(--ease-standard); }
+.ui-choice[data-state="checked"] .ui-choice-indicator, .ui-choice[data-state="indeterminate"] .ui-choice-indicator { transform:scale(1); opacity:1; }
+.ui-radio::before, .ui-radio .ui-choice-indicator { border-radius:var(--radius-pill); }
+.ui-radio .ui-choice-indicator { width:calc(var(--space-3) + var(--space-half)); height:calc(var(--space-3) + var(--space-half)); }
+.ui-choice:disabled { opacity:.45; cursor:not-allowed; }
+.ui-choice-field { display:flex; align-items:center; gap:var(--space-half); }
+.ui-choice-field label { cursor:pointer; color:var(--foreground); font-size:var(--type-body); }
+.ui-choice-field:has(:disabled) label { opacity:.45; cursor:not-allowed; }
+@media(prefers-reduced-motion:reduce) { .ui-choice-indicator { transition:none; } }

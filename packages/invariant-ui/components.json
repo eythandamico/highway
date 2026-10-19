@@ -3,32 +3,70 @@
     "file": "components/accordion.jsx",
     "export": "Accordion",
     "doc": "docs/accordion.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "alert": {
     "file": "components/alert.jsx",
     "export": "Alert",
     "doc": "docs/alert.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "action-button": {
     "file": "components/action-button.jsx",
     "export": "ActionButton",
     "doc": "docs/action-button.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "agent-avatar": {
     "file": "components/agent-avatar.jsx",
     "export": "AgentAvatar",
     "doc": "docs/agent-avatar.md",
-    "deps": ["lib/popover.js"],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "lib/popover.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "badge": {
@@ -36,7 +74,13 @@
     "export": "Badge",
     "doc": "docs/badge.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "bottom-sheet": {
@@ -44,63 +88,135 @@
     "export": "BottomSheet",
     "doc": "docs/bottom-sheet.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "bottom-nav": {
     "file": "components/bottom-nav.jsx",
     "export": "BottomNav",
     "doc": "docs/bottom-nav.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js", "lib/use-is-mobile.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js",
+      "lib/use-is-mobile.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "button": {
     "file": "components/button.jsx",
     "export": "Button",
     "doc": "docs/button.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "../../components/ui/button.tsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "divider": {
     "file": "components/divider.jsx",
     "export": "Divider",
     "doc": "docs/divider.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "dropdown": {
     "file": "components/dropdown.jsx",
     "export": "Dropdown",
     "doc": "docs/dropdown.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "number-input": {
     "file": "components/number-input.jsx",
     "export": "NumberInput",
     "doc": "docs/number-input.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "pin-input": {
     "file": "components/pin-input.jsx",
     "export": "PinInput",
     "doc": "docs/pin-input.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "radio-group": {
     "file": "components/radio-group.jsx",
     "export": "RadioGroup",
     "doc": "docs/radio-group.md",
-    "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "../../components/ui/radio-group.tsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "split-pane": {
@@ -108,7 +224,13 @@
     "export": "SplitPane",
     "doc": "docs/split-pane.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "slider-input": {
@@ -116,55 +238,119 @@
     "export": "SliderInput",
     "doc": "docs/slider-input.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "textarea": {
     "file": "components/textarea.jsx",
     "export": "Textarea",
     "doc": "docs/textarea.md",
-    "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "../../components/ui/textarea.tsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "modal": {
     "file": "components/modal.jsx",
     "export": "Modal",
     "doc": "docs/modal.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "image-carousel": {
     "file": "components/image-carousel.jsx",
     "export": "ImageCarousel",
     "doc": "docs/image-carousel.md",
-    "deps": ["lib/icon.jsx", "components/step-indicator.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "components/step-indicator.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "icon-button": {
     "file": "components/icon-button.jsx",
     "export": "IconButton",
     "doc": "docs/icon-button.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "menu": {
     "file": "components/menu.jsx",
     "export": "Menu, MenuItem, MenuDivider",
     "doc": "docs/menu.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "overlay": {
     "file": "components/overlay.jsx",
     "export": "Overlay",
     "doc": "docs/overlay.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "spinner": {
@@ -172,39 +358,81 @@
     "export": "Spinner",
     "doc": "docs/spinner.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "tooltip": {
     "file": "components/tooltip.jsx",
     "export": "Tooltip",
     "doc": "docs/tooltip.md",
-    "deps": ["lib/popover.js"],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "lib/popover.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "expand-card": {
     "file": "components/expand-card.jsx",
     "export": "ExpandCard",
     "doc": "docs/expand-card.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "message-bubble": {
     "file": "components/message-bubble.jsx",
     "export": "MessageBubble",
     "doc": "docs/message-bubble.md",
-    "deps": ["lib/icon.jsx", "components/agent-avatar.jsx", "components/profile-avatar.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "components/agent-avatar.jsx",
+      "components/profile-avatar.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "page-section": {
     "file": "components/page-section.jsx",
     "export": "PageSection",
     "doc": "docs/page-section.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "progress": {
@@ -212,79 +440,172 @@
     "export": "Progress",
     "doc": "docs/progress.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "profile-avatar": {
     "file": "components/profile-avatar.jsx",
     "export": "ProfileAvatar, ProfileAvatarGroup",
     "doc": "docs/profile-avatar.md",
-    "deps": ["lib/popover.js"],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "lib/popover.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "profile-menu": {
     "file": "components/profile-menu.jsx",
     "export": "ProfileMenu",
     "doc": "docs/profile-menu.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "prompt-bar": {
     "file": "components/prompt-bar.jsx",
     "export": "PromptBar",
     "doc": "docs/prompt-bar.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "row": {
     "file": "components/row.jsx",
     "export": "Row",
     "doc": "docs/row.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "search-bar": {
     "file": "components/search-bar.jsx",
     "export": "SearchBar",
     "doc": "docs/search-bar.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "search-toggle": {
     "file": "components/search-toggle.jsx",
     "export": "SearchToggle",
     "doc": "docs/search-toggle.md",
-    "deps": ["lib/icon.jsx", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "segmented-control": {
     "file": "components/segmented-control.jsx",
     "export": "SegmentedControl",
     "doc": "docs/segmented-control.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "select": {
     "file": "components/select.jsx",
     "export": "Select",
     "doc": "docs/select.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "spotlight-card": {
     "file": "components/spotlight-card.jsx",
     "export": "SpotlightCard",
     "doc": "docs/spotlight-card.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "stack": {
@@ -292,7 +613,13 @@
     "export": "Stack",
     "doc": "docs/stack.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "step-indicator": {
@@ -300,7 +627,13 @@
     "export": "StepIndicator",
     "doc": "docs/step-indicator.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "surface": {
@@ -308,47 +641,98 @@
     "export": "Surface",
     "doc": "docs/surface.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "table": {
     "file": "components/table.jsx",
     "export": "Table",
     "doc": "docs/table.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "tabs": {
     "file": "components/tabs.jsx",
     "export": "Tabs",
     "doc": "docs/tabs.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "text-input": {
     "file": "components/text-input.jsx",
     "export": "TextInput",
     "doc": "docs/text-input.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "../../components/ui/input.tsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "toast": {
     "file": "components/toast.jsx",
     "export": "ToastProvider, useToast",
     "doc": "docs/toast.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "toggle": {
     "file": "components/toggle.jsx",
     "export": "Toggle",
     "doc": "docs/toggle.md",
-    "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "../../components/ui/switch.tsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "skeleton": {
@@ -356,47 +740,101 @@
     "export": "Skeleton",
     "doc": "docs/skeleton.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "checkbox": {
     "file": "components/checkbox.jsx",
     "export": "Checkbox",
     "doc": "docs/checkbox.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "../../components/ui/checkbox.tsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "card": {
     "file": "components/card.jsx",
     "export": "Card",
     "doc": "docs/card.md",
     "deps": [],
-    "tokens": ["tokens/theme.css"],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "dialog": {
     "file": "components/dialog.jsx",
     "export": "Dialog",
     "doc": "docs/dialog.md",
-    "deps": ["lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
+    "deps": [
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
     "peer": []
   },
   "empty-state": {
     "file": "components/empty-state.jsx",
     "export": "EmptyState",
     "doc": "docs/empty-state.md",
-    "deps": ["lib/icon.jsx"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   },
   "workspace-switcher": {
     "file": "components/workspace-switcher.jsx",
     "export": "WorkspaceSwitcher",
     "doc": "docs/workspace-switcher.md",
-    "deps": ["lib/icon.jsx", "lib/popover.js", "lib/use-click-outside.js"],
-    "tokens": ["tokens/theme.css"],
-    "peer": ["lucide-react"]
+    "deps": [
+      "lib/icon.jsx",
+      "lib/popover.js",
+      "lib/use-click-outside.js"
+    ],
+    "tokens": [
+      "../../app/tokens.css",
+      "../../app/typography.css",
+      "../../app/controls.css",
+      "../../app/foundation.css",
+      "tokens/theme.css"
+    ],
+    "peer": [
+      "lucide-react"
+    ]
   }
 }

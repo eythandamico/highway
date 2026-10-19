@@ -135,7 +135,7 @@ export function Card({
         <button
           type="button"
           onClick={() => setMuted(m => !m)}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--inv-heading)]/[0.32] backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white cursor-pointer transition-[color,scale] duration-150 active:scale-[0.96] z-10"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[var(--inv-heading)]/[0.32] backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white cursor-pointer transition-[color,scale] duration-[var(--duration-fast)] active:scale-[0.96] z-10"
           aria-label={muted ? 'Unmute' : 'Mute'}
         >
           <Icon name={muted ? 'volume-off' : 'volume'} size={16} />

@@ -128,7 +128,7 @@ export function PromptBar({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           rows={2}
-          className="w-full bg-transparent text-[15px] text-[var(--inv-heading)] placeholder-[var(--inv-muted)] outline-none resize-none leading-relaxed"
+          className="w-full bg-transparent text-[length:var(--type-body)] text-[var(--inv-heading)] placeholder-[var(--inv-muted)] outline-none resize-none leading-relaxed"
           style={{
             opacity: recording ? 0 : 1,
             pointerEvents: recording ? 'none' : 'auto',
@@ -154,7 +154,7 @@ export function PromptBar({
           <button
             type="button"
             onClick={onUpload}
-            className="w-9 h-9 flex items-center justify-center rounded-full text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-150 cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center rounded-full text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-[var(--duration-fast)] cursor-pointer"
             aria-label="Upload file"
           >
             <Icon name="plus" size={18} />
@@ -166,7 +166,7 @@ export function PromptBar({
               <button
                 type="button"
                 onClick={() => setModelMenuOpen(prev => !prev)}
-                className="h-9 px-2.5 flex items-center gap-1.5 rounded-full text-[13px] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-150 cursor-pointer"
+                className="h-9 px-2.5 flex items-center gap-1.5 rounded-full text-[length:var(--type-secondary)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-[var(--duration-fast)] cursor-pointer"
                 aria-label="Select model"
                 aria-expanded={modelMenuOpen}
                 aria-haspopup="true"
@@ -188,7 +188,7 @@ export function PromptBar({
                       type="button"
                       role="menuitem"
                       onClick={() => { setModelMenuOpen(false); onModelChange?.(model.id) }}
-                      className={`w-full text-left px-2 py-1.5 text-[15px] rounded-xl transition-[color,background-color] duration-150 ease-out cursor-pointer flex items-center gap-2 ${
+                      className={`w-full text-left px-2 py-1.5 text-[length:var(--type-body)] rounded-xl transition-[color,background-color] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2 ${
                         model.id === activeModel
                           ? 'text-[var(--inv-menu-text-active)] font-medium bg-[var(--inv-menu-hover-bg)]'
                           : 'text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)]'
@@ -197,7 +197,7 @@ export function PromptBar({
                       {model.icon && <Icon name={model.icon} size={18} className="text-[var(--inv-menu-text)]" />}
                       <div className="flex flex-col">
                         <span>{model.label}</span>
-                        {model.description && <span className="text-[11px] text-[var(--inv-menu-text)]">{model.description}</span>}
+                        {model.description && <span className="text-[length:var(--type-caption)] text-[var(--inv-menu-text)]">{model.description}</span>}
                       </div>
                     </button>
                   ))}
@@ -212,7 +212,7 @@ export function PromptBar({
           <button
             type="button"
             onClick={handleMicToggle}
-            className={`w-9 h-9 flex items-center justify-center rounded-full transition-[color,background-color] duration-150 cursor-pointer ${
+            className={`w-9 h-9 flex items-center justify-center rounded-full transition-[color,background-color] duration-[var(--duration-fast)] cursor-pointer ${
               recording
                 ? 'bg-red-500 text-white'
                 : 'text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)]'
@@ -231,7 +231,7 @@ export function PromptBar({
                 setValue('')
               }
             }}
-            className={`w-9 h-9 flex items-center justify-center rounded-full transition-[color,background-color,scale] duration-200 ease-out cursor-pointer active:scale-[0.96] ${
+            className={`w-9 h-9 flex items-center justify-center rounded-full transition-[color,background-color,scale] duration-[var(--duration-normal)] ease-out cursor-pointer active:scale-[0.96] ${
               hasValue
                 ? 'bg-[var(--inv-accent)] text-white'
                 : 'bg-[var(--inv-border)] text-[var(--inv-muted)]'

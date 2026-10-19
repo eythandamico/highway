@@ -37,7 +37,7 @@ export function Tabs({
               data-tab-id={tab.id}
               type="button"
               onClick={() => onTabChange?.(tab.id)}
-              className={`relative z-10 px-4 py-2 text-[14px] font-medium cursor-pointer transition-colors duration-200 ${
+              className={`relative z-10 px-4 py-2 text-[length:var(--type-secondary)] font-medium cursor-pointer transition-colors duration-[var(--duration-normal)] ${
                 isActive
                   ? 'text-[var(--inv-heading)]'
                   : 'text-[var(--inv-muted)] hover:text-[var(--inv-heading)]'
@@ -46,7 +46,7 @@ export function Tabs({
               {tab.label}
               {tab.count !== undefined && (
                 <span
-                  className="ml-2 text-[11px] font-medium px-1.5 py-0.5 rounded-full"
+                  className="ml-2 text-[length:var(--type-caption)] font-medium px-1.5 py-0.5 rounded-full"
                   style={{
                     backgroundColor: isActive
                       ? 'color-mix(in srgb, var(--inv-heading) 10%, transparent)'

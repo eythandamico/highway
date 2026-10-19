@@ -15,14 +15,14 @@ export function Select({ label, options = [], value, onChange, placeholder = 'Se
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
       {label && (
-        <label id={labelId} className="text-[13px] font-medium text-[var(--inv-heading)]">{label}</label>
+        <label id={labelId} className="text-[length:var(--type-secondary)] font-medium text-[var(--inv-heading)]">{label}</label>
       )}
 
       <div className="relative" onMouseDown={e => e.stopPropagation()}>
         <button
           type="button"
           onClick={() => setOpen(prev => !prev)}
-          className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-[var(--inv-surface)] text-[15px] cursor-pointer transition-[box-shadow] duration-150 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2"
+          className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-[var(--inv-surface)] text-[length:var(--type-body)] cursor-pointer transition-[box-shadow] duration-[var(--duration-fast)] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2"
           style={{ boxShadow: open ? 'var(--inv-shadow-sm-hover)' : 'var(--inv-shadow-sm)' }}
           aria-expanded={open}
           aria-haspopup="listbox"
@@ -33,7 +33,7 @@ export function Select({ label, options = [], value, onChange, placeholder = 'Se
             {selected?.label || placeholder}
           </span>
           <span
-            className="text-[var(--inv-muted)] transition-transform duration-200"
+            className="text-[var(--inv-muted)] transition-transform duration-[var(--duration-normal)]"
             style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
           >
             <Icon name="chevron-right" size={16} style={{ transform: 'rotate(90deg)' }} />
@@ -57,7 +57,7 @@ export function Select({ label, options = [], value, onChange, placeholder = 'Se
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => { setOpen(false); onChange?.(option.id) }}
-                  className={`w-full text-left px-2 py-1.5 text-[15px] rounded-xl transition-[color,background-color] duration-150 ease-out cursor-pointer flex items-center justify-between active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+                  className={`w-full text-left px-2 py-1.5 text-[length:var(--type-body)] rounded-xl transition-[color,background-color] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center justify-between active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
                     isSelected
                       ? 'text-[var(--inv-menu-text-active)] font-medium bg-[var(--inv-menu-hover-bg)]'
                       : 'text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)]'

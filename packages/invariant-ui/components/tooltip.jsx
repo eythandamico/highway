@@ -14,7 +14,7 @@ export function Tooltip({ label, visible, position = 'top', className = '' }) {
 
   return (
     <div
-      className={`absolute ${positions[position]} px-3 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[15px] font-medium whitespace-nowrap pointer-events-none ${className}`}
+      className={`absolute ${positions[position]} px-3 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[length:var(--type-body)] font-medium whitespace-nowrap pointer-events-none ${className}`}
       style={{
         ...popoverStyle(visible, origins[position]),
         boxShadow: 'var(--inv-shadow)',

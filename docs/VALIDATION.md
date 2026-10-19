@@ -1,3 +1,25 @@
+# Validation
+
+Validation for the unified Foundation and Invariant component library and the public demo.
+
+## Automated checks
+
+- `npm run check:ui:full` — passed. TypeScript, lint, design and contrast checks, production app build, Storybook build, and Playwright UI suite all completed. The UI suite reported 28 passed and 8 skipped project-specific repeats.
+- `npm run test:invariant` — passed. The suite reported 14 passed and 38 skipped project-specific repeats across desktop, phone, narrow, and reduced-motion projects. It checks all 50 Invariant previews, the 63-item sorted catalogue and legacy aliases, shared/legacy Button and Switch behavior, radio arrow-key and label selection, checkbox Space/disabled behavior, modal focus handling, mobile overflow, reduced motion, and host/preview token parity.
+- `npm run test:demo` — passed, 3/3. It verifies the in-memory demo stays offline and isolated, route maps use synthetic pins, and demo chat upload remains guarded.
+
+The design check covers semantic foreground/background contrast in light and dark themes; its color parser converts OKLCH to sRGB before calculating contrast. The Invariant browser tests intercept non-local network requests, with a local fixture for the preview image.
+
+## Non-blocking build output
+
+Lint reports 18 warnings and no errors, primarily image-element, unused-variable, and hook-dependency warnings in imported Invariant components. Storybook reports an output chunk larger than 500 kB, and vinext notes that some routes cannot be statically classified. These warnings did not fail the checks.
+
+## Coverage limits
+
+Playwright exercised desktop Chromium and emulated 390 px phone and 320 px narrow viewports, plus Chromium reduced-motion mode. These checks do not replace testing on physical iOS/Android devices, with real touch hardware, or with assistive technologies and screen readers. Those checks have not been performed here.
+
+## Earlier validation records
+
 # Invariant integration validation — October 19, 2026
 
 - `npm run test:invariant`: 9 applicable tests passed across desktop, 390px phone, 320px narrow, and reduced-motion projects; 23 project-specific skips. Tests visit all 50 catalogue previews and check search, segmented/toggle state, modal labels/focus/keyboard dismissal/restoration, theme sync, mobile containment, and reduced-motion CSS.

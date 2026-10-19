@@ -28,9 +28,9 @@ export function MenuItem({
       type="button"
       role="menuitem"
       onClick={onClick}
-      className={`w-full text-left px-2 py-1.5 text-[15px] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+      className={`w-full text-left px-2 py-1.5 text-[length:var(--type-body)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
         danger
-          ? 'text-red-400 hover:bg-[var(--inv-menu-hover-bg)]'
+          ? 'text-[var(--status-error)] hover:bg-[var(--inv-menu-hover-bg)]'
           : 'text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)]'
       } ${className}`}
     >
@@ -38,13 +38,13 @@ export function MenuItem({
         <Icon
           name={icon}
           size={18}
-          className={danger ? 'text-red-400' : 'text-[var(--inv-menu-text)]'}
+          className={danger ? 'text-[var(--status-error)]' : 'text-[var(--inv-menu-text)]'}
         />
       )}
       <span className="flex-1 flex flex-col">
         {label}
         {description && (
-          <span className="text-[12px] text-[var(--inv-menu-text)]">{description}</span>
+          <span className="text-[length:var(--type-caption)] text-[var(--inv-menu-text)]">{description}</span>
         )}
       </span>
       {selected && (

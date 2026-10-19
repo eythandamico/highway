@@ -17,7 +17,7 @@ function AccordionItem({ title, children, isOpen, onToggle }) {
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-3 text-[15px] font-medium text-[var(--inv-heading)] cursor-pointer group"
+        className="w-full flex items-center justify-between py-3 text-[length:var(--type-body)] font-medium text-[var(--inv-heading)] cursor-pointer group"
       >
         {title}
         <span
@@ -46,7 +46,7 @@ function AccordionItem({ title, children, isOpen, onToggle }) {
               : 'opacity 0.15s ease, filter 0.15s ease, transform 0.15s ease',
           }}
         >
-          <div className="text-[15px] text-[var(--inv-body)] leading-relaxed">
+          <div className="text-[length:var(--type-body)] text-[var(--inv-body)] leading-relaxed">
             {children}
           </div>
         </div>

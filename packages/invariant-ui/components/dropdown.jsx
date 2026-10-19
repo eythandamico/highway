@@ -33,7 +33,7 @@ export function Dropdown({ trigger, items = [], placement = 'bottom-left', class
         {trigger || (
           <button
             type="button"
-            className="w-11 h-11 flex items-center justify-center rounded-xl bg-[var(--inv-surface)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] transition-[color,box-shadow,scale] duration-200 ease-out cursor-pointer active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2 [box-shadow:var(--inv-shadow-sm)] hover:[box-shadow:var(--inv-shadow-sm-hover)]"
+            className="w-11 h-11 flex items-center justify-center rounded-xl bg-[var(--inv-surface)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] transition-[color,box-shadow,scale] duration-[var(--duration-normal)] ease-out cursor-pointer active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2 [box-shadow:var(--inv-shadow-sm)] hover:[box-shadow:var(--inv-shadow-sm-hover)]"
             aria-label="More options"
             aria-expanded={open}
             aria-haspopup="true"
@@ -60,13 +60,13 @@ export function Dropdown({ trigger, items = [], placement = 'bottom-left', class
                 type="button"
                 role="menuitem"
                 onClick={() => { setOpen(false); item.onAction?.() }}
-                className={`w-full text-left px-2 py-1.5 text-[15px] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+                className={`w-full text-left px-2 py-1.5 text-[length:var(--type-body)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
                   item.danger
-                    ? 'text-red-400 hover:bg-[var(--inv-menu-hover-bg)]'
+                    ? 'text-[var(--status-error)] hover:bg-[var(--inv-menu-hover-bg)]'
                     : 'text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)]'
                 }`}
               >
-                {item.icon && <Icon name={item.icon} size={18} className={item.danger ? 'text-red-400' : 'text-[var(--inv-menu-text)]'} />}
+                {item.icon && <Icon name={item.icon} size={18} className={item.danger ? 'text-[var(--status-error)]' : 'text-[var(--inv-menu-text)]'} />}
                 {item.label}
               </button>
             )

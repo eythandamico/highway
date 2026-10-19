@@ -54,7 +54,7 @@ export function SegmentedControl({ tabs = [], activeTab, onTabChange, variant = 
             aria-pressed={isActive}
             type="button"
             onClick={() => onTabChange?.(tab.id)}
-            className={`relative z-10 flex items-center justify-center gap-1.5 text-[13px] font-medium rounded-lg transition-colors duration-150 cursor-pointer ${
+            className={`relative z-10 flex items-center justify-center gap-1.5 text-[length:var(--type-secondary)] font-medium rounded-lg transition-colors duration-[var(--duration-fast)] cursor-pointer ${
               iconOnly ? 'w-9 h-9' : 'px-3 py-1.5'
             } ${
               isActive

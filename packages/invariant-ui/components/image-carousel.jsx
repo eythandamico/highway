@@ -230,7 +230,7 @@ export function ImageCarousel({
               type="button"
               onClick={(e) => { e.stopPropagation(); prev() }}
               onPointerDown={(e) => e.stopPropagation()}
-              className="w-8 h-8 rounded-full bg-[var(--inv-heading)]/[0.32] backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white cursor-pointer transition-[color,scale] duration-150 active:scale-[0.96]"
+              className="w-8 h-8 rounded-full bg-[var(--inv-heading)]/[0.32] backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white cursor-pointer transition-[color,scale] duration-[var(--duration-fast)] active:scale-[0.96]"
               aria-label="Previous"
             >
               <Icon name={isVertical ? 'arrow-up' : 'chevron-left'} size={18} style={isVertical ? {} : { marginRight: 1 }} />
@@ -248,7 +248,7 @@ export function ImageCarousel({
               type="button"
               onClick={(e) => { e.stopPropagation(); next() }}
               onPointerDown={(e) => e.stopPropagation()}
-              className="w-8 h-8 rounded-full bg-[var(--inv-heading)]/[0.32] backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white cursor-pointer transition-[color,scale] duration-150 active:scale-[0.96]"
+              className="w-8 h-8 rounded-full bg-[var(--inv-heading)]/[0.32] backdrop-blur-md flex items-center justify-center text-white/70 hover:text-white cursor-pointer transition-[color,scale] duration-[var(--duration-fast)] active:scale-[0.96]"
               aria-label="Next"
             >
               <Icon name={isVertical ? 'arrow-down' : 'chevron-right'} size={18} style={isVertical ? {} : { marginLeft: 1 }} />

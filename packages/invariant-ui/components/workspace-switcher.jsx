@@ -16,7 +16,7 @@ export function WorkspaceSwitcher({ currentStartup, startups = [], onStartupChan
       <button
         type="button"
         onClick={() => setMenuOpen(prev => !prev)}
-        className="flex items-center gap-2.5 cursor-pointer transition-[scale,opacity] duration-150 ease-out active:scale-[0.96] hover:opacity-80 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 rounded-xl whitespace-nowrap"
+        className="flex items-center gap-2.5 cursor-pointer transition-[scale,opacity] duration-[var(--duration-fast)] ease-out active:scale-[0.96] hover:opacity-80 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 rounded-xl whitespace-nowrap"
         aria-expanded={menuOpen}
         aria-haspopup="true"
         aria-label={`Switch startup, currently ${currentStartup.name}`}
@@ -25,14 +25,14 @@ export function WorkspaceSwitcher({ currentStartup, startups = [], onStartupChan
           <img src={currentStartup.avatarUrl} alt="" className="w-10 h-10 rounded-xl object-cover flex-shrink-0" style={{ boxShadow: 'var(--inv-shadow), inset 0 0 0 1px var(--inv-outline)' }} />
         ) : (
           <span
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-[12px] font-bold text-white flex-shrink-0"
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-[length:var(--type-caption)] font-bold text-white flex-shrink-0"
             style={{ background: currentStartup.color, boxShadow: 'var(--inv-shadow), inset 0 0 0 1px var(--inv-outline)' }}
             aria-hidden="true"
           >
             {currentStartup.initials}
           </span>
         )}
-        <span className="text-[15px] font-semibold text-[var(--inv-heading)]">{currentStartup.name}</span>
+        <span className="text-[length:var(--type-body)] font-semibold text-[var(--inv-heading)]">{currentStartup.name}</span>
         <Icon name="chevrons-vertical" size={12} className="text-[var(--inv-muted)]" aria-hidden="true" />
       </button>
 
@@ -48,7 +48,7 @@ export function WorkspaceSwitcher({ currentStartup, startups = [], onStartupChan
               type="button"
               role="menuitem"
               onClick={() => { setMenuOpen(false); onStartupChange?.(s.slug) }}
-              className={`w-full text-left px-2 py-1.5 text-[15px] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+              className={`w-full text-left px-2 py-1.5 text-[length:var(--type-body)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
                 s.slug === currentStartup.slug
                   ? 'bg-[var(--inv-menu-hover-bg)] text-[var(--inv-menu-text-active)] font-medium'
                   : 'text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)]'
@@ -74,7 +74,7 @@ export function WorkspaceSwitcher({ currentStartup, startups = [], onStartupChan
             role="menuitem"
             aria-label="Create startup"
             onClick={() => { setMenuOpen(false) }}
-            className="w-full text-left px-2 py-1.5 text-[15px] text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+            className="w-full text-left px-2 py-1.5 text-[length:var(--type-body)] text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
           >
             <Icon name="plus" size={18} className="text-[var(--inv-menu-text)]" aria-hidden="true" />
             Create startup

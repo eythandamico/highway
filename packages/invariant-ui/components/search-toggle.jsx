@@ -33,7 +33,7 @@ export function SearchToggle({ placeholder = 'Search anything...', shortcutKey =
         <button
           type="button"
           onClick={() => !expanded && setExpanded(true)}
-          className="flex-shrink-0 w-11 h-11 flex items-center justify-center text-[var(--inv-muted)] hover:text-[var(--inv-heading)] cursor-pointer transition-colors duration-150"
+          className="flex-shrink-0 w-11 h-11 flex items-center justify-center text-[var(--inv-muted)] hover:text-[var(--inv-heading)] cursor-pointer transition-colors duration-[var(--duration-fast)]"
           aria-label="Open search"
         >
           <Icon name="search" size={20} />
@@ -60,7 +60,7 @@ export function SearchToggle({ placeholder = 'Search anything...', shortcutKey =
             placeholder={placeholder}
             onChange={(e) => onSearch?.(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Escape') setExpanded(false) }}
-            className="flex-1 min-w-0 bg-transparent text-[15px] text-[var(--inv-heading)] placeholder-[var(--inv-muted)] outline-none"
+            className="flex-1 min-w-0 bg-transparent text-[length:var(--type-body)] text-[var(--inv-heading)] placeholder-[var(--inv-muted)] outline-none"
             tabIndex={expanded ? 0 : -1}
           />
 
@@ -68,7 +68,7 @@ export function SearchToggle({ placeholder = 'Search anything...', shortcutKey =
           <button
             type="button"
             onClick={() => setExpanded(false)}
-            className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] cursor-pointer transition-[color,background-color] duration-150"
+            className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] cursor-pointer transition-[color,background-color] duration-[var(--duration-fast)]"
             aria-label="Close search"
             tabIndex={expanded ? 0 : -1}
           >

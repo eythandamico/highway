@@ -1,6 +1,6 @@
 # App Foundation design contract
 
-Updated October 19, 2026 from Yardwork's reusable foundation. This contract replaces the original extraction notes. The starter is for building a new product: establish its audience, tasks and brand before replacing neutral screens. It inherits Yardwork's lime/forest accent and warm materials as editable defaults, not its business model or artwork.
+Updated October 19, 2026 from Yardwork's reusable foundation. This contract replaces the original extraction notes. The starter is for building a new product: establish its audience, tasks and brand before replacing neutral screens. The owner selected Invariant's styling system across the unified component library. Yardwork supplies only the independent synthetic demo and its artwork.
 
 ## One owner per concern
 
@@ -21,11 +21,11 @@ Fix cascade conflicts at the owner. Do not append competing recipes or broad `!i
 
 ## Palette and surfaces
 
-Default action: lime `#D9EE8A` with forest `#123C31`. Near-white canvas, subdued filled fields, warm raised edges, soft layered shadows. Brand colors are separate from success, warning, error and information tokens. Text must communicate status without relying on color. Dark mode uses semantic dark surfaces; never invert artwork.
+Default action: Invariant ink on a warm near-white canvas. Neutral white fields, concentric rounded corners, hairline rims and layered shadows. The blue Invariant accent indicates focus and selection. Brand colors are separate from success, warning, error and information tokens. Text must communicate status without relying on color. Dark mode uses semantic dark surfaces; never invert artwork.
 
 | Surface | Usage |
 | --- | --- |
-| Field | Neutral fill, no visible resting border, visible keyboard focus and invalid feedback. |
+| Field | White fill, subtle hairline shadow, visible keyboard focus and invalid feedback. |
 | Raised | Card or `data-surface="raised"`; shared wash, rim and soft shadow. Do not turn every grouping into a card. |
 | Menu | Opaque popover, warm edge and shadow; content behind it must not compete. |
 | Dialog/sheet | Opaque card base; bounded viewport scrolling, safe-area padding and focus restoration. |
@@ -34,7 +34,7 @@ Raised hover changes the shadow without moving layout. Selection, hover and focu
 
 ## Type, rhythm and targets
 
-Use caption 12, secondary 14, body 16, subheading 20, title 24, heading 32 and display 64 through rem tokens. At phone widths, metadata becomes 14 and secondary text 16. Inputs remain at least 16px at the default root size. Weights are 400/500/600. Use tabular numerals for changing values and locale-aware formatting for dates and money.
+Use Invariant caption 11, secondary 13, body 15, subheading 18, title 24, heading 32 and display 64 through rem tokens. At phone widths, metadata becomes 14 and secondary text 16. Inputs remain at least 16px at the default root size. Weights are 400/500/600. Use tabular numerals for changing values and locale-aware formatting for dates and money.
 
 Use the four-pixel spacing rhythm and intentional two-pixel half step. Radii are control, panel, dialog and pill. Ordinary buttons, including small/icon variants, have at least 44×44px targets. `size="inline"` is the deliberate inline-link exception; give it surrounding space. Glyphs remain 16–24px. Let long labels wrap; never force user text into a fixed height.
 
@@ -77,6 +77,10 @@ Run `npm run check:ui` for static guards and builds; `npm run test:ui` for brows
 
 `@radix-ui/react-dismissable-layer` is pinned directly to `1.1.19` so the shared Radix Dialog/Select/Popover stack resolves one physical instance and coordinates outside-click/Escape dismissal. A separate compatible dependency stack may exist for cmdk. Preserve the lockfile; dependency updates must verify that one Escape closes only the top menu/calendar, the next closes the dialog, and focus returns correctly. Do not disable the outer focus trap to hide a duplicated-context bug.
 
-## Invariant collection
+## One library, Invariant styling
 
-The owner-approved `packages/invariant-ui` collection preserves Invariant's original `--inv-*` tokens and components. This is an intentionally distinct, namespaced design system; its palette and geometry are not Foundation token overrides. Global CSS imports its namespaced tokens and scans its component classes. Keep new Foundation controls in the existing owning layers; use Invariant components through their documented APIs and `inv-scope`. The showcase's isolated preview document prevents page-level motion from changing the host. See `INVARIANT-INTEGRATION.md` for changes and limits.
+`app/tokens.css` owns Invariant's palette, shadows, geometry and motion. `app/typography.css` owns its rem type scale with phone input minimums. `packages/invariant-ui/tokens/theme.css` contains compatibility aliases, not another palette. Both app and isolated preview import these same owners.
+
+Import from `components/library` or individual modules. Button, Switch/Toggle, TextInput/Input and Textarea use the same production primitives. Compatibility wrappers preserve original Invariant prop names. Specialized Invariant components remain at their source locations; they consume the unified tokens and type scale. Use FormDialog for pending/error-protected forms. Legacy showcase URLs continue to work; the catalogue no longer splits by collection. `docs/INVARIANT-INTEGRATION.md` records provenance and limits.
+
+Checkbox and RadioGroup also delegate to the shared Radix primitives. Their Invariant selection artwork sits inside 44px targets; labels, keyboard selection, disabled state and form behavior use the shared implementations.

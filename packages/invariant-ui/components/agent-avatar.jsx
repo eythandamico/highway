@@ -59,7 +59,7 @@ export function AgentAvatar({ name, avatarUrl, size = 40, state = 'default', onC
       <button
         type="button"
         onClick={onClick}
-        className="relative rounded-full cursor-pointer transition-[scale] duration-200 ease-out active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2 overflow-hidden"
+        className="relative rounded-full cursor-pointer transition-[scale] duration-[var(--duration-normal)] ease-out active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2 overflow-hidden"
         aria-label={name}
         style={{ width: size, height: size }}
       >
@@ -153,7 +153,7 @@ export function AgentAvatar({ name, avatarUrl, size = 40, state = 'default', onC
 
       {name && (
         <div
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[15px] font-medium whitespace-nowrap pointer-events-none"
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[length:var(--type-body)] font-medium whitespace-nowrap pointer-events-none"
           style={{
             ...popoverStyle(hovered, 'bottom center'),
             boxShadow: 'var(--inv-shadow)',

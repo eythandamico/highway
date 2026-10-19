@@ -127,6 +127,6 @@ Create your own D1 database and private R2 bucket; configure your own HTTPS orig
 
 Vinext is pinned to the version used by the source foundation and is a beta dependency. Validate framework upgrades explicitly. This starter preserves that stack rather than promising compatibility with every Next.js deployment host.
 
-### Invariant collection
+### One library, Invariant styling
 
-All 50 Invariant UI components are included in `packages/invariant-ui`, with original materials and motion, source docs, and integration refinements. Explore `/showcase?collection=invariant&component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. `npm run build:invariant` rebuilds the isolated previews during development. See `docs/INVARIANT-INTEGRATION.md`.
+The library combines Invariant components and Foundation patterns under Invariant’s styling system. `app/tokens.css` and `app/typography.css` own the shared palette, materials, scale, and motion; `--inv-*` values are aliases. Import from `@/components/library` or direct modules. Explore `/showcase?component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. `npm run build:invariant` rebuilds the isolated previews during development. See `docs/INVARIANT-INTEGRATION.md`.

@@ -83,7 +83,7 @@ export function NumberInput({
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
       {label && (
-        <label className={`text-[13px] font-medium ${disabled ? 'text-[var(--inv-muted)]' : 'text-[var(--inv-heading)]'}`}>{label}</label>
+        <label className={`text-[length:var(--type-secondary)] font-medium ${disabled ? 'text-[var(--inv-muted)]' : 'text-[var(--inv-heading)]'}`}>{label}</label>
       )}
       <div
         className={`inline-flex items-center gap-0.5 h-12 rounded-2xl bg-[var(--inv-bg-alt)] p-1 ${
@@ -97,7 +97,7 @@ export function NumberInput({
           onMouseUp={stopHold}
           onMouseLeave={stopHold}
           disabled={disabled || atMin}
-          className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--inv-surface)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] transition-[color,scale,box-shadow] duration-200 ease-out cursor-pointer active:scale-[0.96] disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0 [box-shadow:var(--inv-shadow-sm)] active:[box-shadow:none]"
+          className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--inv-surface)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] transition-[color,scale,box-shadow] duration-[var(--duration-normal)] ease-out cursor-pointer active:scale-[0.96] disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0 [box-shadow:var(--inv-shadow-sm)] active:[box-shadow:none]"
           aria-label="Decrease"
         >
           <Icon name="minus" size={16} />
@@ -106,7 +106,7 @@ export function NumberInput({
         <div
           ref={numberRef}
           onWheel={handleWheel}
-          className="text-center text-[15px] font-medium text-[var(--inv-heading)] select-none cursor-ns-resize tabular-nums"
+          className="text-center text-[length:var(--type-body)] font-medium text-[var(--inv-heading)] select-none cursor-ns-resize tabular-nums"
           style={{
             minWidth: 40,
             padding: '0 8px',
@@ -130,14 +130,14 @@ export function NumberInput({
           onMouseUp={stopHold}
           onMouseLeave={stopHold}
           disabled={disabled || atMax}
-          className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--inv-surface)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] transition-[color,scale,box-shadow] duration-200 ease-out cursor-pointer active:scale-[0.96] disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0 [box-shadow:var(--inv-shadow-sm)] active:[box-shadow:none]"
+          className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--inv-surface)] text-[var(--inv-muted)] hover:text-[var(--inv-heading)] transition-[color,scale,box-shadow] duration-[var(--duration-normal)] ease-out cursor-pointer active:scale-[0.96] disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0 [box-shadow:var(--inv-shadow-sm)] active:[box-shadow:none]"
           aria-label="Increase"
         >
           <Icon name="plus" size={16} />
         </button>
       </div>
       {error && !disabled && (
-        <span className="text-[13px] text-red-400">{error}</span>
+        <span className="text-[length:var(--type-secondary)] text-[var(--status-error)]">{error}</span>
       )}
     </div>
   )

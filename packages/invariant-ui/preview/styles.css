@@ -1,5 +1,10 @@
 @import "tailwindcss" source(none);
+@import "../../../app/tokens.css";
+@import "../../../app/typography.css";
+@import "../../../app/controls.css";
+@import "../../../app/foundation.css";
 @import "../tokens/theme.css";
+@source "../../../components/ui";
 @source "../components";
 @source "../lib";
 @source ".";

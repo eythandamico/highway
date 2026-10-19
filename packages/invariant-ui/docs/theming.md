@@ -1,3 +1,5 @@
+> App Foundation integration: edit `app/tokens.css` and `app/typography.css`. The `--inv-*` names below are compatibility aliases. The original standalone instructions below describe the source API; see `packages/invariant-ui/README.md` for the integrated setup.
+
 # Theming
 
 Invariant UI uses CSS custom properties for theming. No JavaScript theme engine or React context required.

@@ -7,7 +7,7 @@ export function Badge({ label, variant = 'dark', className = '' }) {
   }
 
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium ${variants[variant] || variants.dark} ${className}`}>
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[length:var(--type-caption)] font-medium ${variants[variant] || variants.dark} ${className}`}>
       {label}
     </span>
   )

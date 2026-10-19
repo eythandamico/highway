@@ -88,7 +88,7 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
           type="button"
           role="menuitem"
           onClick={() => { setAddMenuOpen(false); item.onAction?.() }}
-          className="w-full text-left px-2 py-1.5 text-[15px] text-[var(--inv-menu-text-active)] hover:text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+          className="w-full text-left px-2 py-1.5 text-[length:var(--type-body)] text-[var(--inv-menu-text-active)] hover:text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
         >
           <Icon name={item.icon} size={18} className={item.iconColor || 'text-[var(--inv-menu-text)]'} aria-hidden="true" />
           {item.label}
@@ -102,8 +102,8 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
       {profile && (
         <>
           <div className="px-2 py-1.5">
-            <div className="text-[15px] font-semibold text-[var(--inv-menu-text-active)] truncate">{profile.name}</div>
-            <div className="text-[13px] text-[var(--inv-menu-text)] truncate">{profile.email}</div>
+            <div className="text-[length:var(--type-body)] font-semibold text-[var(--inv-menu-text-active)] truncate">{profile.name}</div>
+            <div className="text-[length:var(--type-secondary)] text-[var(--inv-menu-text)] truncate">{profile.email}</div>
           </div>
           <div className="border-t border-[var(--inv-menu-divider)] mx-2.5 my-1" aria-hidden="true" />
         </>
@@ -115,12 +115,12 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
         aria-checked={darkMode}
         aria-label="Toggle dark mode"
         onClick={() => onToggleDarkMode?.()}
-        className="w-full text-left px-2 py-1.5 text-[15px] text-[var(--inv-menu-text-active)] hover:text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color] duration-150 ease-out cursor-pointer flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+        className="w-full text-left px-2 py-1.5 text-[length:var(--type-body)] text-[var(--inv-menu-text-active)] hover:text-[var(--inv-menu-text-active)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
       >
         <Icon name={darkMode ? 'sun' : 'moon'} size={18} className="text-[var(--inv-menu-text)]" aria-hidden="true" />
         <span className="flex-1">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
-        <span className={`relative w-8 h-[18px] rounded-full transition-colors duration-200 ${darkMode ? 'bg-[var(--inv-accent)]' : 'bg-[var(--inv-menu-hover-bg)]'}`} aria-hidden="true">
-          <span className={`absolute top-[3px] left-[3px] w-3 h-3 rounded-full bg-white shadow-sm transition-transform duration-200 ${darkMode ? 'translate-x-[14px]' : ''}`} />
+        <span className={`relative w-8 h-[18px] rounded-full transition-colors duration-[var(--duration-normal)] ${darkMode ? 'bg-[var(--inv-accent)]' : 'bg-[var(--inv-menu-hover-bg)]'}`} aria-hidden="true">
+          <span className={`absolute top-[3px] left-[3px] w-3 h-3 rounded-full bg-white shadow-sm transition-transform duration-[var(--duration-normal)] ${darkMode ? 'translate-x-[14px]' : ''}`} />
         </span>
       </button>
       <div className="border-t border-[var(--inv-menu-divider)] mx-2.5 my-1" aria-hidden="true" />
@@ -130,11 +130,11 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
           type="button"
           role="menuitem"
           onClick={() => { setProfileMenuOpen(false); item.onAction?.() }}
-          className={`w-full text-left px-2 py-1.5 text-[15px] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-150 ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
-            item.danger ? 'text-red-400 hover:text-red-300' : 'text-[var(--inv-menu-text-active)] hover:text-[var(--inv-menu-text-active)]'
+          className={`w-full text-left px-2 py-1.5 text-[length:var(--type-body)] hover:bg-[var(--inv-menu-hover-bg)] rounded-xl transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer flex items-center gap-2.5 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+            item.danger ? 'text-[var(--status-error)] hover:text-red-300' : 'text-[var(--inv-menu-text-active)] hover:text-[var(--inv-menu-text-active)]'
           }`}
         >
-          <Icon name={item.icon} size={18} className={item.danger ? 'text-red-400' : 'text-[var(--inv-menu-text)]'} aria-hidden="true" />
+          <Icon name={item.icon} size={18} className={item.danger ? 'text-[var(--status-error)]' : 'text-[var(--inv-menu-text)]'} aria-hidden="true" />
           {item.label}
         </button>
       ))}
@@ -214,7 +214,7 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
                 <button
                   type="button"
                   onClick={() => { navigator.vibrate?.(10); setAddMenuOpen(prev => !prev); setProfileMenuOpen(false) }}
-                  className={`flex items-center justify-center w-11 h-11 rounded-xl cursor-pointer transition-[background-color,color,scale] duration-200 ease-out active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+                  className={`flex items-center justify-center w-11 h-11 rounded-xl cursor-pointer transition-[background-color,color,scale] duration-[var(--duration-normal)] ease-out active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
                     addMenuOpen
                       ? 'bg-[var(--inv-accent)] text-white'
                       : 'bg-[var(--inv-heading)] text-[var(--inv-bg)] hover:bg-[var(--inv-accent)] hover:text-white'
@@ -225,13 +225,13 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
                 >
                   <span className="relative flex items-center justify-center w-[18px] h-[18px]">
                     <span
-                      className="absolute inset-0 flex items-center justify-center transition-[opacity,filter,scale] duration-200"
+                      className="absolute inset-0 flex items-center justify-center transition-[opacity,filter,scale] duration-[var(--duration-normal)]"
                       style={{ transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)', opacity: addMenuOpen ? 0 : 1, scale: addMenuOpen ? '0.25' : '1', filter: addMenuOpen ? 'blur(4px)' : 'blur(0px)' }}
                     >
                       <Icon name="plus" size={20} aria-hidden="true" />
                     </span>
                     <span
-                      className="transition-[opacity,filter,scale] duration-200"
+                      className="transition-[opacity,filter,scale] duration-[var(--duration-normal)]"
                       style={{ transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)', opacity: addMenuOpen ? 1 : 0, scale: addMenuOpen ? '1' : '0.25', filter: addMenuOpen ? 'blur(0px)' : 'blur(4px)' }}
                     >
                       <Icon name="close" size={20} aria-hidden="true" />
@@ -283,7 +283,7 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
                     type="button"
                     onClick={() => { navigator.vibrate?.(10); onTabChange?.(tab.id); setDismissedChat(false); setAddMenuOpen(false); setProfileMenuOpen(false) }}
                     onMouseEnter={() => setHoveredIdx(isActive ? null : idx)}
-                    className={`relative z-10 flex items-center justify-center w-11 h-11 rounded-xl cursor-pointer transition-[color,scale] duration-150 ease-out active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+                    className={`relative z-10 flex items-center justify-center w-11 h-11 rounded-xl cursor-pointer transition-[color,scale] duration-[var(--duration-fast)] ease-out active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
                       isActive ? 'text-[var(--inv-accent)]' : 'text-[var(--inv-nav-text)] hover:text-[var(--inv-nav-text-active)]'
                     }`}
                     aria-label={`${tab.label}${notifCount > 0 ? ` (${notifCount} new)` : ''}`}
@@ -295,7 +295,7 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
                     )}
                   </button>
                   <div
-                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-5 px-2 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[15px] font-medium whitespace-nowrap pointer-events-none"
+                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-5 px-2 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[length:var(--type-body)] font-medium whitespace-nowrap pointer-events-none"
                     style={{
                       ...popoverStyle(hoveredIdx === idx, 'bottom center'),
                       boxShadow: 'var(--inv-shadow)',
@@ -316,7 +316,7 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
                 <button
                   type="button"
                   onClick={() => { navigator.vibrate?.(10); setProfileMenuOpen(prev => !prev); setAddMenuOpen(false) }}
-                  className="w-11 h-11 rounded-xl overflow-hidden cursor-pointer transition-[scale,opacity] duration-150 ease-out active:scale-[0.96] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+                  className="w-11 h-11 rounded-xl overflow-hidden cursor-pointer transition-[scale,opacity] duration-[var(--duration-fast)] ease-out active:scale-[0.96] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
                   aria-label="Profile menu"
                   aria-expanded={profileMenuOpen}
                   aria-haspopup="true"
@@ -359,7 +359,7 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
           <button
             type="button"
             onClick={() => { navigator.vibrate?.(10); setDismissedChat(true) }}
-            className="flex items-center justify-center w-11 h-11 rounded-xl text-[var(--inv-nav-text)] hover:text-[var(--inv-nav-text-active)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color,scale] duration-150 ease-out cursor-pointer active:scale-[0.96] flex-shrink-0 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
+            className="flex items-center justify-center w-11 h-11 rounded-xl text-[var(--inv-nav-text)] hover:text-[var(--inv-nav-text-active)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer active:scale-[0.96] flex-shrink-0 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1"
             aria-label="Collapse chat input"
           >
             <Icon name="arrow-left" size={18} aria-hidden="true" />
@@ -373,13 +373,13 @@ export function BottomNav({ tabs = [], activeTab, onTabChange, addItems = [], no
             onKeyDown={(e) => { if (e.key === 'Enter') handleSend() }}
             placeholder="Message your agents..."
             aria-label="Chat message"
-            className="flex-1 bg-[var(--inv-nav-hover-bg)] rounded-xl px-3 h-11 text-[15px] text-[var(--inv-nav-text-active)] placeholder-[var(--inv-nav-text)] outline-none focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] transition-[background-color] duration-150 min-w-0"
+            className="flex-1 bg-[var(--inv-nav-hover-bg)] rounded-xl px-3 h-11 text-[length:var(--type-body)] text-[var(--inv-nav-text-active)] placeholder-[var(--inv-nav-text)] outline-none focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] transition-[background-color] duration-[var(--duration-fast)] min-w-0"
           />
 
           <button
             type="button"
             onClick={handleSend}
-            className={`flex items-center justify-center w-11 h-11 rounded-xl transition-[background-color,color,scale] duration-150 ease-out cursor-pointer active:scale-[0.96] flex-shrink-0 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
+            className={`flex items-center justify-center w-11 h-11 rounded-xl transition-[background-color,color,scale] duration-[var(--duration-fast)] ease-out cursor-pointer active:scale-[0.96] flex-shrink-0 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-1 ${
               chatInput.trim()
                 ? 'bg-[var(--inv-accent)] text-white'
                 : 'bg-[var(--inv-nav-hover-bg)] text-[var(--inv-nav-text)]'

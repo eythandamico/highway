@@ -15,7 +15,7 @@ export function ExpandCard({ title, children, icon, defaultExpanded = false, cla
 
   return (
     <div
-      className={`rounded-2xl bg-[var(--inv-surface)] overflow-hidden cursor-pointer transition-[box-shadow] duration-200 ${className}`}
+      className={`rounded-2xl bg-[var(--inv-surface)] overflow-hidden cursor-pointer transition-[box-shadow] duration-[var(--duration-normal)] ${className}`}
       style={{ boxShadow: expanded ? 'var(--inv-shadow)' : 'var(--inv-shadow-sm)' }}
       onClick={() => setExpanded(prev => !prev)}
     >
@@ -23,7 +23,7 @@ export function ExpandCard({ title, children, icon, defaultExpanded = false, cla
         {icon && (
           <Icon name={icon} size={18} className="text-[var(--inv-muted)] flex-shrink-0" />
         )}
-        <span className="flex-1 text-[15px] font-medium text-[var(--inv-heading)]">{title}</span>
+        <span className="flex-1 text-[length:var(--type-body)] font-medium text-[var(--inv-heading)]">{title}</span>
         <span
           className="text-[var(--inv-muted)] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
@@ -51,7 +51,7 @@ export function ExpandCard({ title, children, icon, defaultExpanded = false, cla
               : 'opacity 0.15s ease, filter 0.15s ease, transform 0.15s ease',
           }}
         >
-          <div className="text-[15px] text-[var(--inv-body)] leading-relaxed">
+          <div className="text-[length:var(--type-body)] text-[var(--inv-body)] leading-relaxed">
             {children}
           </div>
         </div>

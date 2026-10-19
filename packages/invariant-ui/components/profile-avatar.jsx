@@ -13,7 +13,7 @@ export function ProfileAvatar({ name, avatarUrl, size = 40, rounded = 'xl', aler
       <button
         type="button"
         onClick={onClick}
-        className={`relative ${radiusClass} cursor-pointer transition-[scale] duration-200 ease-out active:scale-[0.96] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2`}
+        className={`relative ${radiusClass} cursor-pointer transition-[scale] duration-[var(--duration-normal)] ease-out active:scale-[0.96] hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[var(--inv-accent)] focus-visible:ring-offset-2`}
         aria-label={name}
         style={{ width: size, height: size, boxShadow: grouped ? 'none' : 'var(--inv-shadow)', outline: grouped ? '3px solid var(--inv-bg)' : 'none' }}
       >
@@ -29,7 +29,7 @@ export function ProfileAvatar({ name, avatarUrl, size = 40, rounded = 'xl', aler
 
       {name && (
         <div
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[15px] font-medium whitespace-nowrap pointer-events-none"
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-xl bg-[var(--inv-nav)] text-[var(--inv-nav-text-active)] text-[length:var(--type-body)] font-medium whitespace-nowrap pointer-events-none"
           style={{
             ...popoverStyle(hovered, 'bottom center'),
             boxShadow: 'var(--inv-shadow)',

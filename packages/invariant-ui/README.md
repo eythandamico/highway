@@ -1,83 +1,30 @@
-# Invariant UI
+# Invariant UI in App Foundation
 
-A component library for building agent-powered interfaces. Copy-paste components with CSS variable theming.
+This locally integrated copy supplies the styling system and specialized components for the unified Foundation library. The upstream MIT license is retained. See [integration notes](../../docs/INVARIANT-INTEGRATION.md) for provenance and changes.
 
-## Quick start
+## Use in this app
 
-```bash
-npm install lucide-react
+```tsx
+import { Button, TextInput, SegmentedControl } from "@/components/library";
+
+<TextInput label="Project name" placeholder="A new beginning" />
+<Button onClick={saveProject}>Save project</Button>
 ```
 
-Copy `tokens/theme.css` and any components you need into your project:
+The public Button uses children. The legacy `packages/invariant-ui/components/button.jsx` import continues to accept `label`, `primary`, `danger`, and the original size names. Both render the shared Button. Toggle similarly delegates to Switch; text-field wrappers use shared input primitives.
 
-```jsx
-import './tokens/theme.css'
-import { Button } from './components/button'
-import { SearchBar } from './components/search-bar'
+All 50 Invariant component APIs remain available. Explore the combined catalogue at `/showcase`, and the practical guide at `/guide`.
 
-function App() {
-  return (
-    <>
-      <SearchBar placeholder="Search anything..." />
-      <Button label="Get started" variant="primary" />
-    </>
-  )
-}
-```
+## Styling and reuse
 
-## Components
+`app/tokens.css` owns the Invariant palette, radii, shadows and motion. `app/typography.css` owns its rem type scale. This folder's `tokens/theme.css` maps the original `--inv-*` names onto those shared tokens. Change the canonical tokens rather than adding a second palette. The root supports `.dark` and `data-theme="dark"`.
 
-27 components across 5 categories:
+This integrated copy depends on the Foundation project: do not copy only `tokens/theme.css` or a compatibility wrapper into another app. Reuse the starter, or bring the component's complete import graph and shared CSS owners (`tokens`, `typography`, `controls`, `foundation`, compatibility aliases). The app uses React 19, Tailwind 4, Radix and lucide-react; preserve the root lockfile. Original per-component API docs live in `docs/`.
 
-**Navigation** — BottomNav, ProfileMenu, WorkspaceSwitcher
-
-**Inputs** — SearchBar, SearchToggle, TextInput, Select, PromptBar
-
-**Actions** — Button, ActionButton, Dropdown, Toggle, SegmentedControl
-
-**Display** — AgentAvatar, ProfileAvatar, MessageBubble, Badge, StepIndicator, ExpandCard, SpotlightCard, Accordion, Toast
-
-**Layout** — Stack, Row, Surface, PageSection, Divider
-
-## Theming
-
-All components use `--inv-*` CSS variables. Light and dark mode built in.
-
-```html
-<div data-theme="dark">
-  <!-- components render in dark mode -->
-</div>
-```
-
-Override any variable to customize:
-
-```css
-:root {
-  --inv-accent: #e11d48;
-  --inv-radius: 8px;
-}
-```
-
-Preset themes available: `theme-midnight`, `theme-forest`.
-
-## For AI agents
-
-This library is designed to work with Claude Code, Codex, and other AI coding agents. See [`agent.md`](agent.md) for the full integration guide and [`components.json`](components.json) for the machine-readable manifest.
-
-## Requirements
-
-- React 18+
-- Tailwind CSS 4+
-- lucide-react
-
-## Documentation
-
-- [`agent.md`](agent.md) — AI agent entry point
-- [`RULES.md`](RULES.md) — Component consistency rules
-- [`docs/`](docs/) — Per-component documentation
-- [`docs/theming.md`](docs/theming.md) — Theming guide
-- [`docs/patterns.md`](docs/patterns.md) — Full-page composition examples
+The showcase's isolated documents import those same styles. Rebuild their assets with `npm run build:invariant`; development startup and production builds include this automatically.
 
 ## License
 
 [MIT](LICENSE)
+
+Checkbox and RadioGroup also delegate to the shared Radix primitives. Their Invariant selection artwork sits inside 44px targets; labels, keyboard selection, disabled state and form behavior use the shared implementations.

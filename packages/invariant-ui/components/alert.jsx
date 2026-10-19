@@ -64,12 +64,12 @@ export function Alert({
       {/* Content */}
       <div className="flex-1 pt-0.5">
         {title && (
-          <div className="text-[14px] font-medium text-[var(--inv-heading)]">
+          <div className="text-[length:var(--type-secondary)] font-medium text-[var(--inv-heading)]">
             {title}
           </div>
         )}
         {description && (
-          <div className={`text-[13px] text-[var(--inv-muted)] ${title ? 'mt-0.5' : ''}`}>
+          <div className={`text-[length:var(--type-secondary)] text-[var(--inv-muted)] ${title ? 'mt-0.5' : ''}`}>
             {description}
           </div>
         )}
@@ -80,7 +80,7 @@ export function Alert({
         <button
           type="button"
           onClick={handleDismiss}
-          className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-surface)] cursor-pointer transition-[color,background-color,scale] duration-150 active:scale-[0.9] flex-shrink-0"
+          className="w-7 h-7 rounded-lg flex items-center justify-center text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-surface)] cursor-pointer transition-[color,background-color,scale] duration-[var(--duration-fast)] active:scale-[0.9] flex-shrink-0"
           aria-label="Dismiss"
         >
           <Icon name="close" size={14} />

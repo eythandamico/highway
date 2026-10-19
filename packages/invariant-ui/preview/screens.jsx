@@ -520,6 +520,7 @@ export function useScreens(darkMode, toggleDarkMode) {
           <div className="flex flex-col gap-3">
             <Checkbox checked={checkboxA} onChange={setCheckboxA} label="I agree to the terms" />
             <Checkbox checked={checkboxB} onChange={setCheckboxB} label="Send me updates" />
+            <Checkbox disabled label="Locked by policy" />
           </div>
         </ComponentStage>
       ),

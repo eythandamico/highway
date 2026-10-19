@@ -60,10 +60,10 @@ export function Progress({
       {(label || showValue) && (
         <div className="flex items-center justify-between">
           {label && (
-            <span className="text-[13px] font-medium text-[var(--inv-heading)]">{label}</span>
+            <span className="text-[length:var(--type-secondary)] font-medium text-[var(--inv-heading)]">{label}</span>
           )}
           {showValue && (
-            <span className="text-[13px] font-medium text-[var(--inv-muted)] tabular-nums">
+            <span className="text-[length:var(--type-secondary)] font-medium text-[var(--inv-muted)] tabular-nums">
               {animated ? displayValue : value}%
             </span>
           )}

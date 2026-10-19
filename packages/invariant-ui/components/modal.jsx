@@ -24,7 +24,7 @@ export function Modal({
       <div
         data-dialog-backdrop
         onMouseDown={onClose}
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-150"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-[var(--duration-fast)]"
         style={{ opacity: isOpen ? 1 : 0 }}
       />
 
@@ -51,7 +51,7 @@ export function Modal({
           <button
             type="button"
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-150 cursor-pointer ml-auto"
+            className="w-8 h-8 flex items-center justify-center rounded-lg text-[var(--inv-muted)] hover:text-[var(--inv-heading)] hover:bg-[var(--inv-nav-hover-bg)] transition-[color,background-color] duration-[var(--duration-fast)] cursor-pointer ml-auto"
             aria-label="Close"
           >
             <Icon name="close" size={16} />

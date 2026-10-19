@@ -24,7 +24,7 @@ export function Dialog({
       <div
         data-dialog-backdrop
         onMouseDown={onClose}
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-150"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-[var(--duration-fast)]"
         style={{ opacity: isOpen ? 1 : 0 }}
       />
 

@@ -1,5 +1,5 @@
-const SPRING = 'cubic-bezier(0.34, 1.3, 0.64, 1)'
-const EASE_OUT = 'cubic-bezier(0.4, 0, 1, 1)'
+const SPRING = 'var(--ease-spring)'
+const EASE_OUT = 'var(--ease-standard)'
 
 const prefersReducedMotion = typeof window !== 'undefined'
   ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -38,8 +38,8 @@ export function popoverStyle(isOpen, origin) {
     opacity: isOpen ? 1 : 0,
     filter: isOpen ? 'blur(0px)' : 'blur(8px)',
     transition: isOpen
-      ? `scale 0.3s ${SPRING}, opacity 0.2s ease-out, filter 0.3s ${SPRING}`
-      : `scale 0.15s ${EASE_OUT}, opacity 0.12s ease-in, filter 0.15s ${EASE_OUT}`,
+      ? `scale var(--overlay-enter-duration) ${SPRING}, opacity var(--duration-normal) var(--ease-standard), filter var(--overlay-enter-duration) ${SPRING}`
+      : `scale var(--overlay-exit-duration) ${EASE_OUT}, opacity var(--duration-fast) var(--ease-standard), filter var(--overlay-exit-duration) ${EASE_OUT}`,
     pointerEvents: isOpen ? 'auto' : 'none',
   }
 }
@@ -58,8 +58,8 @@ export function slideStyle(isOpen, placement = 'bottom-center') {
     transform: isOpen ? 'translate(0, 0)' : `translate(${offset.x}, ${offset.y})`,
     filter: isOpen ? 'blur(0px)' : 'blur(8px)',
     transition: isOpen
-      ? `opacity 0.2s ease-out, transform 0.3s ${SPRING}, filter 0.3s ${SPRING}`
-      : `opacity 0.12s ease-in, transform 0.15s ${EASE_OUT}, filter 0.15s ${EASE_OUT}`,
+      ? `opacity var(--duration-normal) var(--ease-standard), transform var(--overlay-enter-duration) ${SPRING}, filter var(--overlay-enter-duration) ${SPRING}`
+      : `opacity var(--duration-fast) var(--ease-standard), transform var(--overlay-exit-duration) ${EASE_OUT}, filter var(--overlay-exit-duration) ${EASE_OUT}`,
     pointerEvents: isOpen ? 'auto' : 'none',
   }
 }
