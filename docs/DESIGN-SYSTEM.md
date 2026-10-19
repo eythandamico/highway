@@ -84,3 +84,7 @@ Run `npm run check:ui` for static guards and builds; `npm run test:ui` for brows
 Import from `components/library` or individual modules. Button, Switch/Toggle, TextInput/Input and Textarea use the same production primitives. Compatibility wrappers preserve original Invariant prop names. Specialized Invariant components remain at their source locations; they consume the unified tokens and type scale. Use FormDialog for pending/error-protected forms. Legacy showcase URLs continue to work; the catalogue no longer splits by collection. `docs/INVARIANT-INTEGRATION.md` records provenance and limits.
 
 Checkbox and RadioGroup also delegate to the shared Radix primitives. Their Invariant selection artwork sits inside 44px targets; labels, keyboard selection, disabled state and form behavior use the shared implementations.
+
+## Glass material
+
+Raised Foundation cards and `data-surface="raised"` retain the original glass wash, translucent fill, highlight rim, inset finish and bounded blur. Invariant controls and typography share the same system without flattening this material. Dark mode retains the original opaque material adaptation; reduced transparency uses opaque surfaces. Overlay content retains its opaque base for readability. `app/tokens.css` owns the glass recipe.

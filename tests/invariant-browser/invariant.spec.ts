@@ -23,7 +23,7 @@ const foundationEntries: CatalogueEntry[] = [
   { id: "dialog", name: "Form dialog", group: "Overlays" },
   { id: "sheet", name: "Sheet", group: "Overlays" },
   { id: "menu", name: "Dropdown menu", group: "Overlays" },
-  { id: "card", name: "Raised surface", group: "Display" },
+  { id: "card", name: "Glass surface", group: "Display" },
   { id: "status", name: "Status & feedback", group: "Display" },
   { id: "avatars", name: "Generated avatars", group: "Identity" },
   { id: "gradients", name: "Gradients & blur", group: "Materials" },
@@ -109,6 +109,30 @@ async function loadShowcase(page: Page, componentId = "inv-segmented-control") {
   return { frameLocator: null, frame: null, componentNav };
 }
 
+async function loadLightShowcaseCard(page: Page, testInfo: { project: { name: string } }) {
+  test.skip(testInfo.project.name !== "desktop", "Glass material computation runs once on desktop.");
+  await loadShowcase(page, "card");
+  const root = page.locator("html");
+  if (await root.evaluate((element) => element.classList.contains("dark"))) {
+    await page.getByRole("button", { name: "Toggle light and dark theme" }).click();
+  }
+  await expect(root).not.toHaveClass(/\bdark\b/);
+  const card = page.locator('.library-preview [data-slot="card"]');
+  await expect(card).toBeVisible();
+  return card;
+}
+
+async function readOpaqueCardColor(page: Page) {
+  return page.evaluate(() => {
+    const sample = document.createElement("div");
+    sample.style.backgroundColor = "var(--card)";
+    document.body.appendChild(sample);
+    const color = getComputedStyle(sample).backgroundColor;
+    sample.remove();
+    return color;
+  });
+}
+
 async function expectToggleKeyboardBehavior(toggle: Locator) {
   for (const key of ["Space", "Enter"] as const) {
     const initialState = await toggle.getAttribute("aria-checked");
@@ -151,6 +175,42 @@ test("unified catalogue has 63 sorted entries, with legacy aliases resolved to s
     );
     await expect(page.locator("iframe.library-invariant-preview")).toHaveCount(0);
   }
+});
+
+test("showcase Glass surface Card keeps its light glass wash, rim and blur", async ({ page }, testInfo) => {
+  const card = await loadLightShowcaseCard(page, testInfo);
+  const material = await card.evaluate((element) => {
+    const before = getComputedStyle(element, "::before");
+    const after = getComputedStyle(element, "::after");
+    return {
+      surfaceColor: getComputedStyle(element).backgroundColor,
+      wash: before.backgroundImage,
+      finish: before.boxShadow,
+      blur: before.backdropFilter,
+      rim: after.backgroundImage,
+    };
+  });
+
+  expect(material.surfaceColor).not.toBe(await readOpaqueCardColor(page));
+  expect(material.wash).not.toBe("none");
+  expect(material.finish).toContain("inset");
+  expect(material.blur).toBe("blur(12px)");
+  expect(material.rim).not.toBe("none");
+});
+
+test("showcase Glass surface Card becomes opaque for reduced transparency", async ({ page }, testInfo) => {
+  const card = await loadLightShowcaseCard(page, testInfo);
+  const opaqueCardColor = await readOpaqueCardColor(page);
+  const mediaSession = await page.context().newCDPSession(page);
+  await mediaSession.send("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-reduced-transparency", value: "reduce" }],
+  });
+  await expect.poll(() => page.evaluate(() => matchMedia("(prefers-reduced-transparency: reduce)").matches)).toBe(true);
+
+  // Card background-color transitions when its raised material is replaced by the opaque fallback.
+  await expect.poll(() => card.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe(opaqueCardColor);
+  await expect.poll(() => card.evaluate((element) => getComputedStyle(element, "::before").backdropFilter)).toBe("none");
+  await mediaSession.detach();
 });
 
 test("all 50 original Invariant previews remain available across the catalogue and direct preview routes", async ({ page }, testInfo) => {
