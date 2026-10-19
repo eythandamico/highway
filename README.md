@@ -1,6 +1,6 @@
-# App Foundation
+# Highway
 
-A standalone starter extracted and adapted from the Playground foundation, packaged for a different product. React 19, Next-compatible App Router via Vinext, Cloudflare Workers, D1, R2, Better Auth, Drizzle, Tailwind and shared Radix-based components. This is **a separate package**, refreshed with the reusable Yardwork design foundation on October 19, 2026. See [the refresh inventory](docs/STARTER-REFRESH.md) for scope and provenance.
+Highway is a standalone starter extracted and adapted from the Playground foundation, packaged for a different product. React 19, Next-compatible App Router via Vinext, Cloudflare Workers, D1, R2, Better Auth, Drizzle, Tailwind and shared Radix-based components. This is **a separate package**, refreshed with the reusable Yardwork design foundation on October 19, 2026. See [the refresh inventory](docs/STARTER-REFRESH.md) for scope and provenance.
 
 ## Explore the demo and library
 
@@ -130,3 +130,7 @@ Vinext is pinned to the version used by the source foundation and is a beta depe
 ### One library, Invariant styling
 
 The library combines Invariant components and Foundation patterns under Invariant’s styling system. `app/tokens.css` and `app/typography.css` own the shared palette, materials, scale, and motion; `--inv-*` values are aliases. Import from `@/components/library` or direct modules. Explore `/showcase?component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. `npm run build:invariant` rebuilds the isolated previews during development. See `docs/INVARIANT-INTEGRATION.md`.
+
+## Project identity
+
+The project and personal GitHub repository are named Highway (`eythandamico/highway`). Product branding is centralized in `config/app.ts`. The existing Cloudflare worker `app-foundation`, D1 and R2 bindings, local checkout directory, and theme preference key retain their internal names for continuity; the live deployment URL is unchanged.
