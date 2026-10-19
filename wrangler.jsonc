@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "app-foundation-db",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "293f31a0-b2e9-4b18-a377-9b794028f72b",
       "migrations_dir": "migrations"
     }
   ],
@@ -21,9 +21,9 @@
     }
   ],
   "vars": {
-    "APP_ENV": "development",
-    "SITE_ORIGIN": "http://localhost:5188",
-    "AUTH_DELIVERY": "console"
+    "APP_ENV": "production",
+    "SITE_ORIGIN": "https://app-foundation.winter-lake-b4eb.workers.dev",
+    "AUTH_DELIVERY": "email"
   },
   "observability": {
     "enabled": true,
@@ -31,5 +31,7 @@
       "enabled": true,
       "invocation_logs": false
     }
-  }
+  },
+  "account_id": "2aebaf88ef9bbc427b720771d94a8efc",
+  "workers_dev": true
 }

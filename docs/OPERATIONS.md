@@ -1,5 +1,19 @@
 # Setup and operations
 
+## Personal Cloudflare deployment
+
+This repository targets `Me@eythandami.co’s Account` (`2aebaf88ef9bbc427b720771d94a8efc`). Its resources are independent of Yardwork:
+
+- Worker: `app-foundation`
+- URL: https://app-foundation.winter-lake-b4eb.workers.dev
+- D1: `app-foundation-db` (`293f31a0-b2e9-4b18-a377-9b794028f72b`)
+- Private R2 bucket: `app-foundation-files`
+- Repository: https://github.com/eythandamico/app-foundation-starter
+
+`wrangler.jsonc` holds production bindings and public configuration. Local development uses ignored `.dev.vars` overrides with `APP_ENV=development`, `AUTH_DELIVERY=console`, and a matching local `SITE_ORIGIN`. The current local instance runs at `http://localhost:5190` with `npm run dev -- --port 5190`; a fresh setup defaults to port 5188.
+
+The Worker uses a separately generated authentication secret. Live sign-in additionally requires `SENDGRID_API_TOKEN` and `FROM_ADDRESS` for a verified sender; these must be supplied as Worker secrets, never committed. No automatic deployment is configured. Publish manually after validation using `npm run build` followed by `npx wrangler deploy --config dist/server/wrangler.json`.
+
 ## Isolated environments
 
 The starter has no source-app account IDs, domains, remote bindings or production secrets. Its placeholder D1 ID is for local development only. Every new app needs its own development, staging and production data boundaries. Never point this kit at Playground or Yardwork's existing storage as a shortcut.
