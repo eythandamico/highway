@@ -22,7 +22,8 @@
     "check:design": "node scripts/check-design.mjs && node --test tests/verify-design-foundation.mjs",
     "test:ui": "playwright test --config playwright.design.config.ts",
     "check:ui": "npm run typecheck && npm run lint && npm run check:design && npm run build && npm run build-storybook",
-    "check:ui:full": "npm run check:ui && npm run test:ui"
+    "check:ui:full": "npm run check:ui && npm run test:ui",
+    "test:demo": "node --experimental-strip-types --test tests/verify-demo-workspace.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

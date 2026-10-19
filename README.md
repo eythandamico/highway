@@ -2,6 +2,10 @@
 
 A standalone starter extracted and adapted from the Playground foundation, packaged for a different product. React 19, Next-compatible App Router via Vinext, Cloudflare Workers, D1, R2, Better Auth, Drizzle, Tailwind and shared Radix-based components. This is **a separate package**, refreshed with the reusable Yardwork design foundation on October 19, 2026. See [the refresh inventory](docs/STARTER-REFRESH.md) for scope and provenance.
 
+## Explore without signing in
+
+Open `/demo` for a public, interactive workspace with sample records and an example attachment. It uses the same workspace controls with an in-memory browser adapter: create/search/archive/restore records and try files without sending data to the API. Changes reset when the page unmounts or reloads, or when you choose **Reset demo**. Real workspaces and private files still require authentication.
+
 ## Start locally
 
 Use Node 22.13+ and npm. Unzip the whole folder, then:
