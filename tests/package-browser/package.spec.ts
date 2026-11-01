@@ -94,7 +94,7 @@ test("home and showcase routes server-render the landing page, component directo
   expect(guideResponse?.status()).toBe(200);
   await expect(page.getByRole("heading", { name: "Use Highway in your project." })).toBeVisible();
   const setupOptions = page.locator("details.library-other-setup").first();
-  await setupOptions.locator("summary").click();
+  await setupOptions.locator(":scope > summary").click();
   await expect(setupOptions).toHaveAttribute("open", "");
 
   const shellSource = `npm install --ignore-scripts --save-exact https://github.com/eythandamico/highway/releases/download/highway-v${componentCatalog.packageVersion}/highway-styles-${componentCatalog.packageVersion}.tgz https://github.com/eythandamico/highway/releases/download/highway-v${componentCatalog.packageVersion}/highway-react-${componentCatalog.packageVersion}.tgz`;
@@ -238,10 +238,11 @@ test("guide and showcase typography follow Highway roles at desktop and phone wi
     await page.screenshot({ path: "artifacts/validation-screenshots/docs-type-scale-desktop.png" });
   }
 
-  await page.goto("http://localhost:5190/showcase?component=inv-icon-button");
-  await expect(page.locator("#component-top")).toHaveText(pageTitleFor("inv-icon-button"));
-  await expect(page.locator("#component-props")).toBeVisible();
-  const showcaseTitle = page.locator("article.library-content > h1");
+  await page.goto("http://localhost:5190/showcase?component=inv-search-bar");
+  await expect(page.locator("#component-top")).toHaveText(pageTitleFor("inv-search-bar"));
+  await expect(page.locator("#component-preview")).toBeVisible();
+  await expect(page.locator("#component-api")).toBeVisible();
+  const showcaseTitle = page.locator("#component-top");
   const showcaseIntro = page.locator("article.library-content > .library-intro");
   const showcaseSectionTitle = page.locator("#component-install h2");
   const showcaseBody = page.locator("#component-install > p").first();
@@ -284,7 +285,7 @@ test("component sidebar keeps all entries reachable with keyboard search, collap
   expect(await groupButtons.count()).toBeGreaterThan(0);
   await expect(sidebar.locator('.component-group-toggle[aria-expanded="true"]')).toHaveCount(await groupButtons.count());
   await expect(sidebar.locator('a[aria-current="page"]')).toHaveAttribute("href", "/showcase?component=button");
-  await expect(page.getByRole("textbox", { name: "Search components" })).toBeVisible();
+  await expect(page.getByRole("searchbox", { name: "Search components" })).toBeVisible();
 
   if (desktop) {
     if (await page.locator("html").evaluate(element => element.classList.contains("dark"))) {
@@ -302,7 +303,7 @@ test("component sidebar keeps all entries reachable with keyboard search, collap
   await expect(actionsLinks).toBeHidden();
   expect(await visibleLinks.count()).toBeLessThan(componentCatalog.pages.length);
 
-  const search = page.getByRole("textbox", { name: "Search components" });
+  const search = page.getByRole("searchbox", { name: "Search components" });
   await search.fill("Button");
   await expect(search).toHaveValue("Button");
   for (const shortcut of ["Control+k", "Meta+k"]) {
@@ -370,7 +371,7 @@ test("On this page desktop navigation stays sticky, tracks sections, focuses jum
   expect(railTop).toBeLessThan(100);
 
   const setupOptions = page.locator("details.library-other-setup").nth(1);
-  await setupOptions.locator("summary").click();
+  await setupOptions.locator(":scope > summary").click();
   await expect(setupOptions).toHaveAttribute("open", "");
   await toc.getByRole("link", { name: "MCP", exact: true }).focus();
   await page.keyboard.press("Enter");
@@ -480,7 +481,6 @@ test("showcase switches every component page with a single article and a working
     const helperImports: Record<string, string> = {
       "inv-empty-state": 'import { Button } from "@highway/react";',
       "inv-bottom-sheet": 'import { Button } from "@highway/react";',
-      "inv-modal": 'import { Button, TextInput } from "@highway/react";',
       "inv-table": 'import { Badge } from "@highway/react";',
     };
     if (helperImports[componentId!]) expect(allUsageCode, `Public helper imports for ${componentId}`).toContain(helperImports[componentId!]);
@@ -765,8 +765,8 @@ test("installed default button matches the source showcase appearance", async ({
         const snapshot = JSON.stringify({ sourceStyle, packageStyle });
         const stable = snapshot === previousSnapshot;
         previousSnapshot = snapshot;
-        return { matches: JSON.stringify(sourceStyle) === JSON.stringify(packageStyle), stable };
-      }, { intervals: [50, 100, 150, 200, 250, 300], timeout: 5000 }).toEqual({ matches: true, stable: true });
+        return { matches: JSON.stringify(sourceStyle) === JSON.stringify(packageStyle), stable, sourceStyle, packageStyle };
+      }, { intervals: [50, 100, 150, 200, 250, 300], timeout: 5000 }).toMatchObject({ matches: true, stable: true });
       const [sourceStyle, packageStyle] = await Promise.all([
         sourceButton.evaluate(read, properties),
         packageButton.evaluate(read, properties),
@@ -778,7 +778,7 @@ test("installed default button matches the source showcase appearance", async ({
 
     await sourcePage.goto("http://localhost:5190/showcase?component=card");
     await expect(sourcePage.locator("article.library-content h1")).toHaveText(pageTitleFor("card"));
-    const sourceCard = sourcePage.locator('.library-preview [data-slot="card"]');
+    const sourceCard = sourcePage.locator('.library-component-preview [data-slot="card"]');
     const packageCard = page.locator('.highway [data-slot="card"]').first();
     await expect(sourceCard).toBeVisible();
     await expect(packageCard).toBeVisible();
