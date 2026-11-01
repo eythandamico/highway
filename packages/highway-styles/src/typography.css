@@ -1,0 +1,165 @@
+/* Highway application type contract. Values are rem-based for browser text scaling.
+   Pixel equivalents assume the default 16px root; never reset the host root size. */
+:root {
+  --type-display: 1.875rem;
+  --leading-display: 2.25rem;
+  --weight-display: 600;
+  --type-heading-xl: 1.5rem;
+  --leading-heading-xl: 2rem;
+  --weight-heading-xl: 600;
+  --type-heading-lg: 1.125rem;
+  --leading-heading-lg: 1.75rem;
+  --weight-heading-lg: 600;
+  --type-heading-md: 1rem;
+  --leading-heading-md: 1.5rem;
+  --weight-heading-md: 600;
+  --type-body: 0.875rem;
+  --leading-body: 1.25rem;
+  --weight-body: 400;
+  --type-body-sm: 0.8125rem;
+  --leading-body-sm: 1.25rem;
+  --weight-body-sm: 400;
+  --type-caption: 0.75rem;
+  --leading-caption: 1rem;
+  --weight-caption: 400;
+  --type-micro: 0.6875rem;
+  --leading-micro: 1rem;
+  --weight-micro: 500;
+  /* Existing component names resolve to the same scale, not a second system. */
+  --type-secondary: var(--type-body);
+  --type-subheading: var(--type-heading-lg);
+  --type-title: var(--type-heading-xl);
+  --type-heading: var(--type-heading-xl);
+  --leading-ui: var(--leading-body);
+  --leading-heading: var(--leading-heading-xl);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+}
+
+/* Base inheritance applies to the application scope in compiled packages. */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-body);
+}
+h1 { font-size: var(--type-heading-xl); line-height: var(--leading-heading-xl); font-weight: var(--weight-heading-xl); }
+h2 { font-size: var(--type-heading-lg); line-height: var(--leading-heading-lg); font-weight: var(--weight-heading-lg); }
+h3, h4, h5, h6 { font-size: var(--type-heading-md); line-height: var(--leading-heading-md); font-weight: var(--weight-heading-md); }
+
+/* Complete roles: use these for host markup; no Tailwind installation needed. */
+.highway-type-display, [data-highway-type="display"] {
+  font-size: var(--type-display);
+  line-height: var(--leading-display);
+  font-weight: var(--weight-display);
+}
+.highway-type-heading-xl, [data-highway-type="heading-xl"] {
+  font-size: var(--type-heading-xl);
+  line-height: var(--leading-heading-xl);
+  font-weight: var(--weight-heading-xl);
+}
+.highway-type-heading-lg, [data-highway-type="heading-lg"] {
+  font-size: var(--type-heading-lg);
+  line-height: var(--leading-heading-lg);
+  font-weight: var(--weight-heading-lg);
+}
+.highway-type-heading-md, [data-highway-type="heading-md"] {
+  font-size: var(--type-heading-md);
+  line-height: var(--leading-heading-md);
+  font-weight: var(--weight-heading-md);
+}
+.highway-type-body, [data-highway-type="body"] {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-body);
+}
+.highway-type-body-sm, [data-highway-type="body-sm"] {
+  font-size: var(--type-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: var(--weight-body-sm);
+}
+.highway-type-caption, [data-highway-type="caption"] {
+  font-size: var(--type-caption);
+  line-height: var(--leading-caption);
+  font-weight: var(--weight-caption);
+}
+.highway-type-micro, [data-highway-type="micro"] {
+  font-size: var(--type-micro);
+  line-height: var(--leading-micro);
+  font-weight: var(--weight-micro);
+}
+
+/* Analytics hierarchy: values align, labels stay readable, emphasis stops at 600. */
+strong, b { font-weight: var(--weight-semibold); }
+.highway-secondary-label {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-body);
+  color: var(--muted-foreground);
+}
+.highway-type-display, [data-highway-type="display"],
+.highway-metric, [data-highway-metric], .highway-table {
+  font-variant-numeric: tabular-nums;
+}
+/* A metric is secondary by default; primary prominence must be intentional. */
+.highway-metric, [data-highway-metric="secondary"] {
+  font-size: var(--type-heading-xl);
+  line-height: var(--leading-heading-xl);
+  font-weight: var(--weight-heading-xl);
+}
+[data-highway-metric="primary"] {
+  font-size: var(--type-display);
+  line-height: var(--leading-display);
+  font-weight: var(--weight-display);
+}
+.highway-table {
+  font-size: var(--type-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: var(--weight-body-sm);
+}
+.highway-table th { font-weight: var(--weight-medium); }
+@media (min-width: 641px) {
+  /* Height is a table-row minimum: wrapping and enlarged text can expand it. */
+  .highway-table tr { height: 2.5rem; }
+  .highway-table th, .highway-table td { padding-block: var(--space-2); }
+}
+
+/* Shared Tailwind aliases use the same size and leading pairs. */
+@theme inline {
+  --font-weight-bold: var(--weight-semibold);
+  --text-xs: var(--type-caption);
+  --text-xs--line-height: var(--leading-caption);
+  --text-sm: var(--type-body-sm);
+  --text-sm--line-height: var(--leading-body-sm);
+  --text-base: var(--type-body);
+  --text-base--line-height: var(--leading-body);
+  --text-lg: var(--type-heading-md);
+  --text-lg--line-height: var(--leading-heading-md);
+  --text-xl: var(--type-heading-lg);
+  --text-xl--line-height: var(--leading-heading-lg);
+  --text-2xl: var(--type-heading-xl);
+  --text-2xl--line-height: var(--leading-heading-xl);
+  --text-3xl: var(--type-display);
+  --text-3xl--line-height: var(--leading-display);
+  --text-4xl: var(--type-display);
+  --text-4xl--line-height: var(--leading-display);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+p { text-wrap: pretty; }
+.count, [data-slot="table-cell"] { font-variant-numeric: tabular-nums; }
+
+/* Preserve the scale on phones; only editable controls get the zoom-safe minimum. */
+@media (max-width: 640px) {
+  input, textarea, select { font-size: max(1rem, var(--type-body)); }
+}
+
+/* Opt-in emphasis preserves authored hierarchy within the approved type scale. */
+.highway-weight-medium { font-weight:var(--weight-medium); }
+.highway-weight-semibold { font-weight:var(--weight-semibold); }
+.highway-weight-regular { font-weight:var(--weight-regular); }

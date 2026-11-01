@@ -1,10 +1,25 @@
 {
   "name": "@highway/styles",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Scoped Highway typography, materials, progressive blur, component styling and motion. No JavaScript or infrastructure required.",
   "license": "UNLICENSED",
-  "files": ["dist", "README.md", "THIRD-PARTY-NOTICES.md"],
-  "exports": { "./styles.css": "./dist/styles.css", "./effects.css": "./dist/effects.css", "./tokens.css": "./dist/tokens.css", "./package.json": "./package.json" },
-  "sideEffects": ["**/*.css"],
-  "repository": { "type": "git", "url": "https://github.com/eythandamico/highway.git", "directory": "packages/highway-styles" }
+  "files": [
+    "dist",
+    "README.md",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "exports": {
+    "./styles.css": "./dist/styles.css",
+    "./effects.css": "./dist/effects.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eythandamico/highway.git",
+    "directory": "packages/highway-styles"
+  }
 }

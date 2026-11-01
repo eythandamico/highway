@@ -1,5 +1,7 @@
 # Release checklist
 
+This checklist covers the optional application/backend. For the installable UI packages use [PACKAGE-RELEASE.md](PACKAGE-RELEASE.md).
+
 Use this as an acceptance list, not evidence that checks have been performed. See VALIDATION.md for actual package results.
 
 ## Configuration and ownership

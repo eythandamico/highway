@@ -2,12 +2,12 @@
 
 The owner selected Invariant as the styling system for the entire Foundation library. The single catalogue combines application patterns and Invariant components. Compatibility links for `inv-button` and `inv-toggle` resolve to the canonical Button and Switch. All 50 original preview scenarios remain available.
 
-- `app/tokens.css`: canonical Invariant light/dark palette, layered shadows, radii and motion.
-- `app/typography.css`: Invariant scale in rem with readable phone inputs.
-- `packages/invariant-ui/tokens/theme.css`: aliases and type classes only.
-- `components/library/index.ts`: unified public import surface.
+- `packages/highway-styles/src/tokens.css`: canonical Invariant light/dark palette, layered shadows, radii and motion.
+- `packages/highway-styles/src/typography.css`: Highway scale in rem with readable phone inputs.
+- `packages/highway-styles/src/invariant-theme.css`: aliases and type classes only.
+- `packages/highway-react/src/index.ts`: public package export surface.
 - Original Button and Toggle APIs delegate to shared Button/Switch. TextInput and Textarea compose the shared fields, retaining labels/errors and auto-grow.
-- Preview documents load the same styling owners. Isolation contains viewport-sized demonstrations; it does not define a separate theme.
+- All previews render directly through the shared showcase canvas and load the same styling owners.
 - Original upstream repositories remain untouched. All state stays demo-only, with no Yardwork backend or account dependency.
 
 The notes below record provenance and retained integration details.
@@ -18,13 +18,15 @@ The owner requested the original Invariant component collection and its engineer
 
 ## Use
 
-Import components directly from `@/packages/invariant-ui/components/<name>.jsx`. Their `--inv-*` theme and Tailwind classes are included by `app/globals.css`. Wrap compositions in `inv-scope` for reduced-motion and phone input rules. Components use their original APIs (for example, Invariant Button uses `label`, whereas Foundation Button uses children). Read the per-component docs before composing them. Keep Foundation's validated form and authorization patterns for domain operations.
+For consuming applications, import exact public exports from `@highway/react`, load `@highway/styles/styles.css`, and wrap adopted content in `HighwayTheme`. Use the catalog or MCP to select APIs; do not import compatibility source paths into another project. Preserve host validation and save handlers. See [package installation](PACKAGES.md).
 
 `/showcase?component=inv-segmented-control` exposes all 50 components, original interactive examples, source paths, copyable usage, and component references. `/guide#invariant` explains setup and reuse. Foundation patterns and Invariant components appear together; the Yardwork demo remains available.
 
 ## Preview architecture
 
-The preview is built from the same component source with Vite into ignored `public/invariant-preview`. `npm run build:invariant` rebuilds it during development; `npm run dev` and `npm run build` include this step. A same-origin iframe contains each preview so fixed navigation, portaled overlays, original typography, and sheet transforms retain their expected document geometry. This is not a second component implementation. Preview state resets when switching components or themes. The full-preview link opens a larger stage.
+`apps/showcase/components/component-preview.tsx` renders component pages, standalone views, and grid thumbnails directly in React. Family examples live in `apps/showcase/previews`; each interactive example owns its state and imports canonical package components. Preview controls are local to the canvas; overlays retain their package portals and focus handling. Switching components resets example state. The shared canvas uses Highway’s tan surface token.
+
+There is no separate preview build. Old `/invariant-preview/index.html` links redirect to `/showcase?component=<id>&preview=1`; static avatar and video assets keep their URLs. Tests target the React renderer directly.
 
 Original sample photos in ImageCarousel remain public Unsplash URLs. The personal profile photograph was replaced with a synthetic gradient avatar. The included sample video is from the source showcase. Actions produce local feedback; no customer backend is connected.
 
@@ -45,6 +47,10 @@ Checkbox and RadioGroup also delegate to the shared Radix primitives. Their Inva
 
 ## Ask bar
 
-`components/ui/ask-bar.tsx` extracts the original Yardwork glass composer without its orb. It is exported as `AskBar` from `components/library`; the demo's `ask-launcher.tsx` is now a context adapter around that same component. The shared composer has no Yardwork context, transport, AI, or voice dependency. Its material consumes the canonical `--panel-*` tokens and its original capsule motion consumes `--ask-*` tokens.
+`components/ui/ask-bar.tsx` extracts the original Yardwork glass composer without its orb. It is exported as `AskBar` from `@highway/react`; the demo's `ask-launcher.tsx` is now a context adapter around that same component. The shared composer has no Yardwork context, transport, AI, or voice dependency. Its material consumes the canonical `--panel-*` tokens and its original capsule motion consumes `--ask-*` tokens.
 
 Supply `onSend(text)` and an append-only `messages` array (`id`, `role`, `text`) for reply previews. Reject the callback on failure to preserve drafts; resolve only after the operation is accepted. Empty submissions and immediate duplicate submissions are blocked. `label`, `placeholder`, `disabled`, `hidden`, `floating`, `compactOnScroll`, and `onOpen` configure embedding. Inline is the default; floating placement requires content clearance, with bottom-navigation offsets owned by the consuming page. The showcase at `/showcase?component=ask-bar` exercises the real component with synthetic replies and an explicit failure toggle.
+
+### Current source ownership
+
+Canonical Invariant implementations now live in `packages/highway-react/src/invariant`; the original module paths are explicit compatibility reexports. Shared theme CSS lives in `packages/highway-styles/src/invariant-theme.css`. The family examples belong to `apps/showcase/previews` and build with the showcase. Attribution remains with the copied implementation. These are ownership moves, not new component designs or API replacements.

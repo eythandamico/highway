@@ -277,6 +277,8 @@ function ComboboxChipsInput({
   children,
   ...props
 }: ComboboxPrimitive.Input.Props) {
+  // Native input composition intentionally excludes children.
+  void children
   return (
     <ComboboxPrimitive.Input
       data-slot="combobox-chip-input"

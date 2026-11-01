@@ -8,4 +8,4 @@ AUTH_DELIVERY=console
 `, {mode:0o600});
   console.log("Created local configuration with a unique secret.");
 } else console.log("Kept existing .dev.vars.");
-console.log("Next: npm run db:migrate && npm run dev. Local email codes appear in the server terminal.");
+console.log("Next: npm run db:migrate && npm run dev:starter. Local email codes appear in the server terminal.");

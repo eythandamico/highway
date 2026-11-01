@@ -6,15 +6,15 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { test } from "node:test";
 import ts from "typescript";
-import { fieldApi } from "../components/yardwork/field-api.ts";
-import { demoSuite } from "../lib/yardwork/demo-suite.ts";
-import { exampleMapStops } from "../lib/yardwork/route-map.ts";
-import { applyAction } from "../lib/yardwork/yardwork.ts";
+import { fieldApi } from "../examples/yardwork/src/components/yardwork/field-api.ts";
+import { demoSuite } from "../examples/yardwork/src/lib/yardwork/demo-suite.ts";
+import { exampleMapStops } from "../examples/yardwork/src/lib/yardwork/route-map.ts";
+import { applyAction } from "../examples/yardwork/src/lib/yardwork/yardwork.ts";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 async function loadDemoProvider() {
-  const source = await readFile(path.join(root, "components/yardwork/context.tsx"), "utf8");
+  const source = await readFile(path.join(root, "examples/yardwork/src/components/yardwork/context.tsx"), "utf8");
   let output = ts.transpileModule(source, {
     compilerOptions: {
       module: ts.ModuleKind.ESNext,
@@ -24,8 +24,8 @@ async function loadDemoProvider() {
   }).outputText;
   output = output
     .replace('import { toast } from "sonner";', 'const toast = { success() {}, error() {} };')
-    .replaceAll('"@/lib/ui/action-feedback"', JSON.stringify(pathToFileURL(path.join(root, "lib/ui/action-feedback.ts")).href))
-    .replaceAll('"@/lib/yardwork/yardwork"', JSON.stringify(pathToFileURL(path.join(root, "lib/yardwork/yardwork.ts")).href));
+    .replaceAll('"../../../../../lib/ui/action-feedback"', JSON.stringify(pathToFileURL(path.join(root, "lib/ui/action-feedback.ts")).href))
+    .replaceAll('"../../lib/yardwork/yardwork"', JSON.stringify(pathToFileURL(path.join(root, "examples/yardwork/src/lib/yardwork/yardwork.ts")).href));
 
   const directory = await mkdtemp(path.join(root, "tests", ".office-provider-test-"));
   const modulePath = path.join(directory, "context.mjs");
@@ -119,7 +119,7 @@ test("demo route maps use fixed synthetic pins instead of geocoding addresses", 
   }
   assert.equal(exampleMapStops([{ id: "custom", number: 1, name: "Custom", address: "99 User Home Street, Toronto", time: "12:00", status: "scheduled" }])[0].point, undefined);
 
-  const routeMapSource = await readFile(path.join(root, "components/yardwork/route-map.tsx"), "utf8");
+  const routeMapSource = await readFile(path.join(root, "examples/yardwork/src/components/yardwork/route-map.tsx"), "utf8");
   const routeMap = ts.createSourceFile("route-map.tsx", routeMapSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const mappedDeclaration = descendants(routeMap, (node) => ts.isVariableDeclaration(node) && node.name.getText(routeMap) === "mapped" && !!node.initializer)[0];
   assert.ok(mappedDeclaration && ts.isConditionalExpression(mappedDeclaration.initializer), "route map selects points from a demo condition");
@@ -129,7 +129,7 @@ test("demo route maps use fixed synthetic pins instead of geocoding addresses", 
 });
 
 test("demo chat photo upload remains guarded by demo mode", async () => {
-  const askSource = await readFile(path.join(root, "components/yardwork/ask.tsx"), "utf8");
+  const askSource = await readFile(path.join(root, "examples/yardwork/src/components/yardwork/ask.tsx"), "utf8");
   const ask = ts.createSourceFile("ask.tsx", askSource, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const send = descendants(ask, (node) => ts.isFunctionDeclaration(node) && node.name?.text === "send")[0];
   assert.ok(send, "chat send handler exists");

@@ -1,0 +1,13 @@
+/* Unscoped source entry for Highway's full-page documentation and reference apps.
+   External hosts should use the compiled, scoped @highway/styles entry. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./vendor/shadcn-tailwind-4.13.0.css";
+@import "./tokens.css";
+@import "./typography.css";
+@import "./controls.css";
+@import "./invariant-theme.css";
+@import "./utilities.css";
+@import "./foundation.css";
+
+@import "./number-ticker.css";

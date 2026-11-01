@@ -1,5 +1,2 @@
-/** This standalone demo has no field-service backend. */
-export async function fieldApi<T>(...args: [path: string, method?: string, body?: unknown]): Promise<T> {
-  void args;
-  throw new Error("Field-service connections are unavailable in this demo.");
-}
+// Compatibility import. Edit the canonical owner, not this shim.
+export { fieldApi } from "../../examples/yardwork/src/components/yardwork/field-api";

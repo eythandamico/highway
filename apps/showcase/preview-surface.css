@@ -1,0 +1,2 @@
+/* Shared preview canvas; does not override the components' own surface tokens. */
+:root { --highway-preview-background: var(--surface-muted); }

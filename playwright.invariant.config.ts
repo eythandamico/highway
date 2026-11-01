@@ -2,6 +2,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/invariant-browser",
+  outputDir: "./test-results/invariant",
   fullyParallel: true,
   workers: 1,
   reporter: "list",
@@ -12,12 +13,20 @@ export default defineConfig({
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
   },
-  webServer: {
-    command: "npx vinext dev --port 5190",
-    url: "http://localhost:5190",
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  webServer: [
+    {
+      command: "npm run dev:showcase",
+      url: "http://localhost:5190",
+      reuseExistingServer: !process.env.CI,
+      timeout: 120_000,
+    },
+    {
+      command: "npm run dev:demo",
+      url: "http://localhost:5191/demo",
+      reuseExistingServer: !process.env.CI,
+      timeout: 120_000,
+    },
+  ],
   projects: [
     { name: "desktop", use: { viewport: { width: 1280, height: 900 } } },
     { name: "phone", use: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } },

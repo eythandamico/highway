@@ -2,6 +2,12 @@ import { expect, test } from "@playwright/test";
 
 const storyUrl = "/iframe.html?id=foundation-quality-lab--all-states&viewMode=story";
 const portalLayersStoryUrl = "/iframe.html?id=foundation-portal-layer-contracts--all-states&viewMode=story";
+const controlFamilyStoryUrl = "/iframe.html?id=foundation-control-family--all-states&viewMode=story";
+
+async function openControlFamily(page: import("@playwright/test").Page) {
+  await page.goto(controlFamilyStoryUrl);
+  await expect(page.getByRole("heading", { name: "Different purposes. Shared precision." })).toBeVisible();
+}
 
 test("theme and workspace accent reach an opaque dialog portal", async ({ page }) => {
   await page.goto(storyUrl);
@@ -232,4 +238,183 @@ test("shared controls disable their transition under reduced motion", async ({ p
   test.skip(testInfo.project.name !== "reduced-motion", "This contract runs in the reduced-motion browser project.");
   await page.goto(storyUrl);
   await expect(page.getByRole("button", { name: "Save changes" })).toHaveCSS("transition-duration", "0s");
+});
+
+test("SegmentedControl is a labelled native button group with working pointer and keyboard selection", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Segmented control interaction runs once on desktop.");
+  await openControlFamily(page);
+
+  const group = page.getByRole("group", { name: "Schedule view", exact: true });
+  const day = group.getByRole("button", { name: "Day", exact: true });
+  const week = group.getByRole("button", { name: "Week", exact: true });
+  const month = group.getByRole("button", { name: "Month", exact: true });
+  const year = group.getByRole("button", { name: "Year", exact: true });
+  await expect(group.getByRole("tab")).toHaveCount(0);
+  await expect(group.getByRole("button")).toHaveCount(4);
+  await expect(day).toHaveAttribute("type", "button");
+  await expect(week).toHaveAttribute("aria-pressed", "true");
+  await expect(year).toBeDisabled();
+
+  await day.click();
+  await expect(day).toHaveAttribute("aria-pressed", "true");
+  await expect(week).toHaveAttribute("aria-pressed", "false");
+  await expect(page.getByText("Selected: day", { exact: true })).toBeVisible();
+
+  await day.focus();
+  await page.keyboard.press("Tab");
+  await expect(week).toBeFocused();
+  await page.keyboard.press("Space");
+  await expect(week).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByText("Selected: week", { exact: true })).toBeVisible();
+  await page.keyboard.press("Tab");
+  await expect(month).toBeFocused();
+
+  await year.click({ force: true });
+  await expect(week).toHaveAttribute("aria-pressed", "true");
+  const disabledGroup = page.getByRole("group", { name: "Reporting period", exact: true });
+  const current = disabledGroup.getByRole("button", { name: "Current reporting period", exact: true });
+  const previous = disabledGroup.getByRole("button", { name: "Previous reporting period", exact: true });
+  await expect(current).toBeDisabled();
+  await expect(previous).toBeDisabled();
+  await expect(current).toHaveAttribute("aria-pressed", "true");
+  await previous.click({ force: true });
+  await expect(current).toHaveAttribute("aria-pressed", "true");
+
+  // These package-owned primitives keep their surrounding labels as accessible names.
+  await expect(page.getByRole("checkbox", { name: "Include notes", exact: true })).toBeChecked();
+  await expect(page.getByRole("checkbox", { name: "Archived", exact: true })).toBeDisabled();
+  await expect(page.getByRole("switch", { name: "Live updates", exact: true })).toBeChecked();
+  await expect(page.getByRole("radiogroup", { name: "Delivery", exact: true })).toBeVisible();
+});
+
+test("control family preserves compact segmented geometry, 48px slider geometry, and readable long labels on phones", async ({ page }, testInfo) => {
+  test.skip(!["phone", "narrow"].includes(testInfo.project.name), "Control target geometry runs at phone widths.");
+  await openControlFamily(page);
+
+  const segmented = page.getByRole("group", { name: "Schedule view", exact: true });
+  const optionGeometry = await segmented.getByRole("button").evaluateAll((buttons) => buttons.map((button) => {
+    const { width, height } = button.getBoundingClientRect();
+    const style = getComputedStyle(button);
+    return {
+      label: button.textContent?.trim(),
+      width,
+      height,
+      paddingInlineStart: style.paddingInlineStart,
+      paddingInlineEnd: style.paddingInlineEnd,
+    };
+  }));
+  expect(optionGeometry).toHaveLength(4);
+  expect(optionGeometry.every(({ width }) => width > 0)).toBe(true);
+  expect(optionGeometry.every(({ height }) => height === 32)).toBe(true);
+  expect(optionGeometry.every(({ paddingInlineStart, paddingInlineEnd }) =>
+    paddingInlineStart === "12px" && paddingInlineEnd === "12px",
+  )).toBe(true);
+  await expect(segmented).toHaveCSS("column-gap", "4px");
+
+  const slider = page.getByRole("slider", { name: "Intensity", exact: true });
+  const sliderGeometry = await slider.evaluate((element) => {
+    const style = getComputedStyle(element);
+    const fill = element.querySelector<HTMLElement>(".hw-slider-fill")!;
+    const probe = document.createElement("div");
+    probe.style.cssText = "position:absolute;border-radius:var(--control-radius);padding:var(--control-inset)";
+    element.appendChild(probe);
+    const probeStyle = getComputedStyle(probe);
+    const rootRadius = Number.parseFloat(probeStyle.borderTopLeftRadius);
+    const inset = Number.parseFloat(probeStyle.paddingTop);
+    probe.remove();
+    return {
+      height: element.getBoundingClientRect().height,
+      outerRadius: Number.parseFloat(style.borderTopLeftRadius),
+      rootRadius,
+      inset,
+      fillRadius: Number.parseFloat(getComputedStyle(fill).borderTopLeftRadius),
+    };
+  });
+  expect(sliderGeometry.height).toBeGreaterThanOrEqual(48);
+  expect(sliderGeometry.outerRadius).toBeCloseTo(sliderGeometry.rootRadius + sliderGeometry.inset, 1);
+  expect(sliderGeometry.fillRadius).toBeCloseTo(sliderGeometry.rootRadius, 1);
+
+  const longSlider = page.getByRole("slider", { name: "A longer label that remains readable in a narrow layout", exact: true });
+  const longLabel = longSlider.locator(".hw-slider-label");
+  const wrapping = await longLabel.evaluate((element) => {
+    const style = getComputedStyle(element);
+    const bounds = element.getBoundingClientRect();
+    return {
+      height: bounds.height,
+      lineHeight: Number.parseFloat(style.lineHeight),
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+      right: bounds.right,
+    };
+  });
+  expect(wrapping.height).toBeGreaterThan(wrapping.lineHeight);
+  expect(wrapping.scrollWidth).toBeLessThanOrEqual(wrapping.clientWidth + 1);
+  expect(wrapping.right).toBeLessThanOrEqual(testInfo.project.name === "narrow" ? 321 : 391);
+  await expect(longSlider).toHaveAttribute("aria-disabled", "true");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
+});
+
+test("SliderInput updates with keyboard and pointer, and keeps selection motion off when reduced motion is requested", async ({ page }, testInfo) => {
+  test.skip(!["desktop", "reduced-motion"].includes(testInfo.project.name), "Slider interaction runs on desktop and reduced-motion projects.");
+  await openControlFamily(page);
+
+  const slider = page.getByRole("slider", { name: "Intensity", exact: true });
+  const fill = slider.locator(".hw-slider-fill");
+  await expect(slider).toHaveAttribute("aria-valuenow", "40");
+  await slider.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(slider).toHaveAttribute("aria-valuenow", "41");
+  await expect(page.getByText("41%", { exact: true })).toBeVisible();
+
+  const bounds = await slider.boundingBox();
+  expect(bounds).not.toBeNull();
+  await page.mouse.click(bounds!.x + bounds!.width * 0.75, bounds!.y + bounds!.height / 2);
+  await expect(slider).toHaveAttribute("aria-valuenow", "75");
+
+  if (testInfo.project.name === "reduced-motion") {
+    await expect.poll(() => page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
+    await expect.poll(() => fill.evaluate((element) => Number.parseFloat(getComputedStyle(element).transitionDuration)))
+      .toBeLessThanOrEqual(0.001);
+    const indicator = page.locator(".hw-segmented-indicator").first();
+    await expect.poll(() => indicator.evaluate((element) => Number.parseFloat(getComputedStyle(element).transitionDuration)))
+      .toBeLessThanOrEqual(0.001);
+  }
+
+  const lightBackground = await page.locator("html").evaluate((element) => getComputedStyle(element).getPropertyValue("--background").trim());
+  await page.getByRole("button", { name: "Dark", exact: true }).click();
+  await expect(page.locator("html")).toHaveClass(/\bdark\b/);
+  await expect.poll(() => page.locator("html").evaluate((element) => getComputedStyle(element).getPropertyValue("--background").trim()))
+    .not.toBe(lightBackground);
+});
+
+test("SliderInput ignores a second touch and remains active until its owning pointer ends", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "phone", "Multitouch behavior runs on the touch-enabled phone project.");
+  await openControlFamily(page);
+
+  const slider = page.getByRole("slider", { name: "Intensity", exact: true });
+  await slider.scrollIntoViewIfNeeded();
+  const bounds = await slider.boundingBox();
+  expect(bounds).not.toBeNull();
+  const y = bounds!.y + bounds!.height / 2;
+  const start = { x: bounds!.x + bounds!.width * 0.4, y };
+  const secondStart = { x: bounds!.x + bounds!.width * 0.7, y };
+  const secondEnd = { x: bounds!.x + bounds!.width * 0.95, y };
+  const firstEnd = { x: bounds!.x + bounds!.width * 0.6, y };
+  const cdp = await page.context().newCDPSession(page);
+  const point = (position: { x: number; y: number }, id: number) => ({ ...position, id, radiusX: 2, radiusY: 2, force: 1 });
+  const dispatch = (type: "touchStart" | "touchMove" | "touchEnd", touchPoints: ReturnType<typeof point>[]) =>
+    cdp.send("Input.dispatchTouchEvent", { type, touchPoints });
+  try {
+    await dispatch("touchStart", [point(start, 1)]);
+    await expect(slider).toHaveAttribute("aria-valuenow", "40");
+    await dispatch("touchStart", [point(start, 1), point(secondStart, 2)]);
+    await dispatch("touchMove", [point(start, 1), point(secondEnd, 2)]);
+    await expect(slider).toHaveAttribute("aria-valuenow", "40");
+    await dispatch("touchEnd", [point(start, 1)]);
+    await dispatch("touchMove", [point(firstEnd, 1)]);
+    await expect(slider).toHaveAttribute("aria-valuenow", "60");
+    await dispatch("touchEnd", []);
+  } finally {
+    await cdp.detach();
+  }
 });

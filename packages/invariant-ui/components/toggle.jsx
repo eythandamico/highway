@@ -1,6 +1,3 @@
 "use client";
-import { Switch } from '../../../components/ui/switch'
-/** Legacy Toggle API delegates keyboard, disabled and form behavior to Switch. */
-export function Toggle({ checked = false, onChange, size = 'default', ...props }) {
-  return <Switch checked={checked} onCheckedChange={onChange} size={size === 'small' ? 'sm' : 'default'} {...props}/>
-}
+// Compatibility import. Edit the canonical owner, not this shim.
+export { Toggle } from "../../highway-react/src/invariant/components/toggle.jsx";

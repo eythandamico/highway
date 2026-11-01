@@ -1,0 +1,7 @@
+{
+  "description": "Gzip byte ceilings for the installed Vite fixtures, including React. Review increases; do not automatically reset budgets.",
+  "minimalJsGzip": 78000,
+  "fullJsGzip": 160000,
+  "minimalCssGzip": 30000,
+  "fullCssGzip": 30000
+}

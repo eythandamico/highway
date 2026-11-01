@@ -1,4 +1,6 @@
-# Component inventory
+# Historical source inventory
+
+For supported installation exports and component choices, use the [canonical catalog](../catalog/README.md) and [machine-readable map](../catalog/components.json). This list records inherited source files; it does **not** describe the public package API.
 
 70 source components copied from the Playground shared library. They are not all mounted on the demo page. Import only what a screen needs. Primitives with chart/calendar/command dependencies remain optional at runtime.
 

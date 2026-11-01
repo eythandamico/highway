@@ -1,21 +1,3 @@
-import { z } from "zod/v3";
-
-export const notificationPreferencesSchema = z
-  .object({
-    lateTexts: z.enum(["approval", "automatic", "off"]),
-  })
-  .strict();
-export type NotificationPreferences = z.infer<
-  typeof notificationPreferencesSchema
->;
-export const defaultNotificationPreferences: NotificationPreferences = {
-  lateTexts: "approval",
-};
-
-/** Older workspaces and malformed settings always require approval. */
-export function normalizeNotificationPreferences(
-  value: unknown,
-): NotificationPreferences {
-  const parsed = notificationPreferencesSchema.safeParse(value);
-  return parsed.success ? parsed.data : { ...defaultNotificationPreferences };
-}
+// Compatibility import. Edit the canonical owner, not this shim.
+export { notificationPreferencesSchema, defaultNotificationPreferences, normalizeNotificationPreferences } from "../../examples/yardwork/src/lib/yardwork/notification-preferences.ts";
+export type { NotificationPreferences } from "../../examples/yardwork/src/lib/yardwork/notification-preferences.ts";

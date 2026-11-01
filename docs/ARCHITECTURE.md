@@ -43,3 +43,13 @@ Replace the illustrative home copy and records feature once real workflows exist
 ## Things not bundled
 
 Playground's Studio, sandbox runner, code editor, AI-agent protocol, remix graph, creator marketplace, project processor, deployment pipelines and artwork are product-specific and intentionally excluded. Their architecture can inform later modules; they are not hidden runtime dependencies of this starter.
+
+## Library and reference-app boundaries
+
+The core runtime is owned by `packages/highway-react/src`; shared CSS is owned by `packages/highway-styles/src`. The package builder rejects JavaScript source inputs outside the React package. It reads explicit package CSS entries rather than extracting sections from the starter stylesheet. Original `components/ui`, selected foundation/visual files, and Invariant modules are compatibility reexports, not second implementations.
+
+`apps/showcase` owns the searchable library, guide and isolated Invariant preview. `examples/yardwork` owns the synthetic domain and office demo. Both run with Vinext and shared repository tooling, without the Cloudflare plugin, auth session lookup, database bindings or email configuration. The showcase deliberately imports three demo illustrations (avatar, navigation and bookings) as labelled reference examples; none enters the distributed packages. Quality labs remain shared development fixtures.
+
+Default `npm run dev` opens the showcase on 5190. `dev:demo` opens the reference on 5191. `build` builds packages and both apps; `build:starter` explicitly builds the optional root Cloudflare application. App output is isolated under each app's ignored `dist` directory. `HIGHWAY_DEMO_URL` and `HIGHWAY_DOCS_URL` customize cross-app links for preview hosting; local defaults use 5191 and 5190. They are public URLs, not secrets.
+
+The existing starter routes still resolve through compatibility imports. Deployment is intentionally separate: these local preview commands do not update the existing Worker or publish packages. Shared repository installation/tooling is retained; this is not a promise that copying one app folder alone is sufficient to run it.

@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "families": {
+    "display": {
+      "states": [
+        "default",
+        "long-content",
+        "light-dark",
+        "zoom",
+        "narrow"
+      ],
+      "behavior": "Preserve readable content, semantics and host layout; decorative content must not intercept input."
+    },
+    "action": {
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "pressed",
+        "disabled",
+        "pending",
+        "failure"
+      ],
+      "behavior": "Use native activation, accessible names, visible focus and explicit button type. Host owns success and side effects."
+    },
+    "field": {
+      "states": [
+        "default",
+        "focus",
+        "disabled",
+        "invalid",
+        "long-content",
+        "controlled",
+        "uncontrolled-when-supported"
+      ],
+      "behavior": "Keep labels, refs, native names/autofill and event contracts. Do not silently switch controlledness."
+    },
+    "overlay": {
+      "states": [
+        "closed",
+        "open",
+        "nested",
+        "pending-when-supported",
+        "rapid-reversal",
+        "reduced-motion"
+      ],
+      "behavior": "Restore focus, scope portals, coordinate Escape/outside dismissal and make closed content non-interactive. Do not bypass an outer focus trap."
+    },
+    "selection": {
+      "states": [
+        "default",
+        "selected",
+        "keyboard",
+        "pointer",
+        "disabled-when-supported",
+        "resize",
+        "reduced-motion"
+      ],
+      "behavior": "Reflect controlled values truthfully. Keyboard input is immediate; preserve pointer motion and resize alignment."
+    },
+    "feedback": {
+      "states": [
+        "loading",
+        "success",
+        "failure",
+        "empty-when-supported",
+        "long-content",
+        "reduced-motion"
+      ],
+      "behavior": "Use truthful labels; retain host data/drafts on failure. Cancel owned timers and animation frames on unmount."
+    },
+    "layout": {
+      "states": [
+        "default",
+        "narrow",
+        "long-content",
+        "zoom"
+      ],
+      "behavior": "Use semantic spacing and allow content growth; avoid layout changes outside the adopted scope."
+    },
+    "effect": {
+      "states": [
+        "default",
+        "light-dark",
+        "reduced-motion",
+        "reduced-transparency",
+        "narrow"
+      ],
+      "behavior": "Keep decorative layers bounded and pointer-transparent. Preserve artwork and readable foreground content."
+    },
+    "helper": {
+      "states": [
+        "server-render",
+        "nested-scope-when-supported"
+      ],
+      "behavior": "Keep helpers side-effect free during render and do not introduce application infrastructure."
+    }
+  },
+  "materials": {
+    "inherited": {
+      "owner": "packages/highway-styles/src/tokens.css",
+      "rule": "Consume semantic tokens; appearance inherits from HighwayTheme."
+    },
+    "glass": {
+      "owner": "packages/highway-styles/src/foundation.css",
+      "rule": "Preserve translucent wash, rim, inset highlight, bounded blur and layered elevation; use the opaque accessibility fallback."
+    },
+    "field": {
+      "owner": "packages/highway-styles/src/controls.css",
+      "rule": "Preserve control geometry, contrast, invalid/focus distinctions and phone input minimums."
+    },
+    "opaque-overlay": {
+      "owner": "packages/highway-styles/src/foundation.css",
+      "rule": "Preserve the component\u2019s authored overlay material and scoped portal tokens. Native menus/dialogs stay opaque; ProfileMenu and WorkspaceSwitcher retain their translucent blurred surfaces. Do not apply one background to every menu."
+    },
+    "invariant-surface": {
+      "owner": "packages/highway-styles/src/invariant-theme.css",
+      "rule": "Use Invariant surface and hairline shadow tokens; do not substitute for GlassCard."
+    },
+    "decorative": {
+      "owner": "packages/highway-react/src/components/visual/visual-effects.css",
+      "rule": "Bound effect layers and preserve prefixed blur masks."
+    }
+  },
+  "motion": {
+    "none": {
+      "purpose": "Immediate content and keyboard feedback.",
+      "owner": "packages/highway-styles/src/tokens.css",
+      "policy": "Do not add animation without a communication purpose."
+    },
+    "press": {
+      "purpose": "Tactile confirmation for pointer activation.",
+      "owner": "packages/highway-styles/src/controls.css",
+      "policy": "Preserve existing press geometry and focus. Reduced motion removes spatial feedback."
+    },
+    "overlay": {
+      "purpose": "Anchor a transient surface to its trigger.",
+      "owner": "packages/highway-react/src/invariant/lib/popover.js",
+      "policy": "Preserve component-owned entrance/exit recipes: Invariant scale/slide enters at 300ms with 200ms opacity, exits at 150ms with 120ms opacity. Keep correct origins, retargetable transitions, reduced motion, and inert closed content."
+    },
+    "selection": {
+      "purpose": "Connect pointer selection to the active indicator.",
+      "owner": "packages/highway-react/src/lib/motion.js",
+      "policy": "Preserve each selection recipe: Tabs uses its 300ms emphasized travel; SegmentedControl retains 250ms travel. Keyboard and reduced-motion paths are immediate; measurements respond to resizing and wrapping."
+    },
+    "slider": {
+      "purpose": "Quick pointer clicks settle with the original spring; sustained dragging tracks directly.",
+      "owner": "packages/highway-react/src/lib/motion.js",
+      "policy": "250ms spring, 80ms drag threshold; keyboard and reduced motion instant."
+    },
+    "expansion": {
+      "purpose": "Reveal related content without abruptly changing its container.",
+      "owner": "packages/highway-react/src/lib/motion.js",
+      "policy": "350ms height, 250ms content with 100ms entrance delay, 150ms content exit; interruptions retarget; hidden content inert."
+    },
+    "inherited-specialty": {
+      "purpose": "Preserve a distinct existing choreography until individually reviewed.",
+      "owner": "packages/highway-react/src/invariant/components",
+      "policy": "Do not normalize all timings. Any change requires explicit visual comparison, reduced-motion coverage and lifecycle cleanup."
+    }
+  },
+  "policy": "Highway canonical packages are the single source of truth for showcase, docs, MCP and consumers. Preserve authored component geometry, materials, emphasis and distinct motion; shared tokens are not permission for blanket visual overrides. Contracts are review requirements, not certification of every state."
+}

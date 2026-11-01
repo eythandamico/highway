@@ -24,7 +24,7 @@ const result = await build({
   }}],
 });
 const inputs = Object.keys(result.metafile.inputs);
-if (inputs.some(file => /(^|\/)(worker|server|yardwork)\/|lib\/(auth|session|db)/.test(file))) throw new Error("Application runtime leaked into library");
+if (inputs.some(file => !file.startsWith("packages/highway-react/src/"))) throw new Error("Application runtime leaked into library");
 const packageName = specifier => specifier.startsWith("@") ? specifier.split("/").slice(0, 2).join("/") : specifier.split("/")[0];
 const externals = [...new Set(Object.values(result.metafile.outputs).flatMap(output => output.imports.filter(item => item.external).map(item => packageName(item.path))))];
 const rootManifest = JSON.parse(await read("package.json"));
@@ -51,12 +51,10 @@ for (const file of await files(typesRoot)) {
 // Compile only classes actually referenced by the component dependency graph.
 const scanner = new Scanner({ sources: [] });
 const candidates = scanner.scanFiles(await Promise.all(inputs.filter(file => /\.[jt]sx?$/.test(file)).map(async file => ({ content: await read(file), extension: path.extname(file).slice(1) }))));
-const globals = await read("app/globals.css");
-const theme = globals.slice(globals.indexOf("@custom-variant"), globals.indexOf("\n* {"));
-const base = globals.slice(globals.indexOf("\n* {"), globals.indexOf("\n.brand {"));
-const common = ["app/tokens.css", "app/typography.css", "app/controls.css", "app/foundation.css", "packages/invariant-ui/tokens/theme.css"];
+const utilities = await read("packages/highway-styles/src/utilities.css");
+const common = ["tokens.css", "typography.css", "controls.css", "foundation.css", "invariant-theme.css", "number-ticker.css"].map(file => `packages/highway-styles/src/${file}`);
 const imports = [...common, ...[...cssFiles].map(file => path.relative(root, file))].map(file => `@import "./${file}";`).join("\n");
-const compiler = await compile(`@import "tailwindcss" source(none);\n@import "tw-animate-css";\n@import "./vendor/shadcn-tailwind-4.13.0.css";\n${imports}\n${theme}\n${base}`, { base: root, onDependency() {} });
+const compiler = await compile(`@import "tailwindcss" source(none);\n@import "tw-animate-css";\n@import "./packages/highway-styles/src/vendor/shadcn-tailwind-4.13.0.css";\n${imports}\n${utilities}`, { base: root, onDependency() {} });
 function scopeCSS(css) {
   // Flatten Tailwind nesting before prefixing so every selector is confined to Highway.
   const ast = postcss.parse(optimize(css, { minify: false }).code);
@@ -77,11 +75,11 @@ function scopeCSS(css) {
 }
 await writeFile(path.join(stylesDir, "dist/styles.css"), scopeCSS(compiler.build(candidates)));
 // Styles-only consumers can opt into tokens/effects without React or all component utilities.
-const tokens = (await read("app/tokens.css")) + "\n" + (await read("app/typography.css"));
+const tokens = (await read("packages/highway-styles/src/tokens.css")) + "\n" + (await read("packages/highway-styles/src/typography.css"));
 const tokenCompiler = await compile(tokens, { base: root, onDependency() {} });
 await writeFile(path.join(stylesDir, "dist/tokens.css"), scopeCSS(tokenCompiler.build([])));
-await writeFile(path.join(stylesDir, "dist/effects.css"), scopeCSS(tokenCompiler.build([]) + "\n" + await read("components/visual/visual-effects.css")));
-const notices = "# Third-party notices\n\nHighway includes adapted Invariant UI code under the following license. Other dependencies retain their respective licenses.\n\n" + await read("packages/invariant-ui/LICENSE");
+await writeFile(path.join(stylesDir, "dist/effects.css"), scopeCSS(tokenCompiler.build([]) + "\n" + await read("packages/highway-react/src/components/visual/visual-effects.css")));
+const notices = "# Third-party notices\n\nHighway includes adapted Invariant UI code under the following license. Other dependencies retain their respective licenses.\n\n" + await read("packages/highway-react/src/invariant/LICENSE");
 for (const directory of [reactDir, stylesDir]) await writeFile(path.join(directory, "THIRD-PARTY-NOTICES.md"), notices);
 await writeFile(path.join(reactDir, "dist/build-manifest.json"), JSON.stringify({ version: manifest.version, sourceFiles: inputs.sort(), externalDependencies: externals.sort() }, null, 2));
 console.log(`Built ${manifest.name}@${manifest.version}: ${inputs.length} shared source modules, ${candidates.length} CSS candidates. No application runtime.`);

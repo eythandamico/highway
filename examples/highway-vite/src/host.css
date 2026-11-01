@@ -4,9 +4,8 @@ body { margin: 0; background: #f2f2f2; }
 .host-header button { border: 3px dashed #364d43; background: #d6eddc; color: #15261c; padding: 7px 13px; font: 17px monospace; border-radius: 2px; }
 .host-header p { font: 17px monospace; margin: 12px 0 0; }
 .example-layout { max-width: 880px; margin: auto; padding: 48px 24px 80px; display: grid; gap: 24px; }
-.example-layout h1 { font-size: clamp(32px,5vw,52px); }
-.example-eyebrow { font-size: 12px; letter-spacing: .12em; }
+.example-eyebrow { font-size: var(--type-micro); line-height: var(--leading-micro); font-weight: var(--weight-micro); letter-spacing: .12em; }
 .example-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
 .example-effect { position: relative; min-height: 220px; overflow: hidden; border-radius: 24px; }
-.example-art { padding: 32px; font-size: 40px; font-weight: 600; }
+.example-art { padding: 32px; font-size: var(--type-display); line-height: var(--leading-display); font-weight: var(--weight-display); }
 .example-foreground { position: relative; z-index: 1; padding: 24px; }

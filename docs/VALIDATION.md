@@ -1,5 +1,7 @@
 # Validation
 
+> Historical report: versions, paths, and commands below record the audit at that time. For current installation use [PACKAGES.md](PACKAGES.md); for current checks use [SYSTEMS.md](SYSTEMS.md). Do not use historical commands as installation instructions.
+
 Validation for the unified Foundation and Invariant component library, visual effects previews, and public demo.
 
 ## Automated checks
@@ -74,7 +76,7 @@ To reproduce package validation against fresh artifacts, run:
 
 ```sh
 npm run pack:packages
-(cd examples/highway-vite && npm install ../../artifacts/highway-styles-0.1.0.tgz ../../artifacts/highway-react-0.1.0.tgz --force)
+(cd examples/highway-vite && npm install ../../artifacts/highway-styles-0.1.0.tgz ../../artifacts/highway-react-0.1.0.tgz)
 npm run test:packages
 ```
 

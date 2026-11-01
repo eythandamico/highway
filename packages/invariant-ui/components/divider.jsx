@@ -1,15 +1,3 @@
 "use client";
-export function Divider({ spacing = 'md', className = '' }) {
-  const spacings = {
-    none: 'my-0',
-    sm: 'my-2',
-    md: 'my-4',
-    lg: 'my-8',
-  }
-
-  return (
-    <hr
-      className={`border-0 border-t border-[var(--inv-border)] ${spacings[spacing] || spacings.md} ${className}`}
-    />
-  )
-}
+// Compatibility import. Edit the canonical owner, not this shim.
+export { Divider } from "../../highway-react/src/invariant/components/divider.jsx";

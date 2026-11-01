@@ -1,5 +1,6 @@
-import { expect, test, type Frame, type Locator, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
+import { invariantPreviews, openDirectPreview, showcaseIdForPreviewId } from "./preview-routes";
 
 type RegistryEntry = {
   id: string;
@@ -8,48 +9,20 @@ type RegistryEntry = {
   previewId: string;
 };
 
-type CatalogueEntry = { id: string; name: string; group: string };
+type CatalogueEntry = { id: string; name: string };
 
-const registry = JSON.parse(
-  readFileSync(new URL("../../components/library/invariant-registry.json", import.meta.url), "utf8"),
-) as RegistryEntry[];
+const registry = invariantPreviews as RegistryEntry[];
 const aliases: Record<string, string> = { "inv-button": "button", "inv-toggle": "switch" };
-const foundationEntries: CatalogueEntry[] = [
-  { id: "ask-bar", name: "Ask bar", group: "Inputs" },
-  { id: "button", name: "Button", group: "Actions" },
-  { id: "fields", name: "Form fields", group: "Inputs" },
-  { id: "select", name: "Accessible select", group: "Inputs" },
-  { id: "date", name: "Date input", group: "Inputs" },
-  { id: "switch", name: "Switch / Toggle", group: "Inputs" },
-  { id: "dialog", name: "Form dialog", group: "Overlays" },
-  { id: "sheet", name: "Sheet", group: "Overlays" },
-  { id: "menu", name: "Dropdown menu", group: "Overlays" },
-  { id: "card", name: "Glass surface", group: "Display" },
-  { id: "status", name: "Status & feedback", group: "Display" },
-  { id: "avatars", name: "Generated avatars", group: "Identity" },
-  { id: "state-icon", name: "State icon", group: "Actions" },
-  { id: "edge-fade", name: "Edge fade", group: "Materials" },
-  { id: "media-scrim", name: "Media scrim & glass actions", group: "Materials" },
-  { id: "progressive-blur", name: "Progressive blur", group: "Materials" },
-  { id: "gradients", name: "Soft gradients", group: "Materials" },
-  { id: "navigation", name: "Office navigation", group: "Yardwork" },
-  { id: "bookings", name: "Bookings chart", group: "Yardwork" },
-  { id: "theme", name: "Scoped appearance", group: "Theming" },
-];
-const catalogue = [
-  ...foundationEntries,
-  ...registry.filter((entry) => !aliases[entry.id]).map(({ id, name, group }) => ({
-    id,
-    name: name.split(",")[0],
-    group,
-  })),
-].sort((first, second) => first.group.localeCompare(second.group) || first.name.localeCompare(second.name));
+const componentCatalog = JSON.parse(
+  readFileSync(new URL("../../catalog/components.json", import.meta.url), "utf8"),
+) as { families: Array<{ name: string; primary: string; variants: Array<{ id: string; label: string; exports: string[]; compatibility: string[] }> }> };
+const catalogue: CatalogueEntry[] = componentCatalog.families.map(({ name, primary }) => ({ id: primary, name }));
 
 test.beforeEach(async ({ page }) => {
-  const localOrigin = new URL("http://localhost:5190").origin;
+  const localOrigins = new Set([new URL("http://localhost:5190").origin, new URL("http://localhost:5191").origin]);
   await page.route("**/*", async (route) => {
     const url = new URL(route.request().url());
-    if (url.origin === localOrigin) {
+    if (localOrigins.has(url.origin)) {
       await route.continue();
     } else if (url.origin === "https://images.unsplash.com") {
       await route.fulfill({
@@ -63,14 +36,6 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-async function currentPreviewFrame(page: Page) {
-  const frameLocator = page.locator("iframe.library-invariant-preview");
-  const handle = await frameLocator.elementHandle();
-  const frame = await handle?.contentFrame();
-  if (!frame) throw new Error("Invariant preview iframe did not create a document");
-  return { frameLocator, frame };
-}
-
 async function waitForShowcaseHydration(page: Page) {
   await page.waitForFunction(() => {
     const input = document.querySelector<HTMLInputElement>("#component-search");
@@ -81,9 +46,9 @@ async function waitForShowcaseHydration(page: Page) {
   const search = page.getByRole("textbox", { name: "Search components" });
   const componentNav = page.getByRole("navigation", { name: "Component library" });
   await search.fill("__preview_ready__");
-  await expect(page.getByText("No components match. Try another name.", { exact: true })).toBeVisible();
+  await expect(page.getByText("No components found.", { exact: true })).toBeVisible();
   await search.clear();
-  await expect(componentNav.getByRole("link")).toHaveCount(68);
+  await expect(componentNav.getByRole("link")).toHaveCount(componentCatalog.families.length);
   return { search, componentNav };
 }
 
@@ -91,27 +56,17 @@ async function loadShowcase(page: Page, componentId = "inv-segmented-control") {
   await page.goto(`/showcase?component=${componentId}`);
   const { componentNav } = await waitForShowcaseHydration(page);
   const canonicalId = aliases[componentId] ?? componentId;
-  const legacyAlias = Boolean(aliases[componentId]);
-  const entry = registry.find((candidate) => candidate.id === componentId);
-  const shouldFrame = Boolean(entry && !legacyAlias);
-  const selected = catalogue.find((candidate) => candidate.id === canonicalId);
-  if (selected) {
-    await expect(page.getByRole("heading", { name: selected.name, exact: true })).toBeVisible();
-  }
+  const selectedFamily = componentCatalog.families.find((family) => family.variants.some((variant) => variant.id === canonicalId));
+  const navId = selectedFamily?.primary ?? canonicalId;
+  if (selectedFamily) await expect(page.getByRole("heading", { name: selectedFamily.name, exact: true, level: 1 })).toBeVisible();
   await expect(componentNav.locator('[aria-current="page"]')).toHaveAttribute(
     "href",
-    `/showcase?component=${canonicalId}`,
+    `/showcase?component=${navId}`,
   );
-
-  if (shouldFrame) {
-    const { frameLocator, frame } = await currentPreviewFrame(page);
-    await expect(frameLocator).toBeVisible();
-    await expect(frame.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
-    return { frameLocator, frame, componentNav };
-  }
-
-  await expect(page.locator(".library-preview")).toBeVisible();
-  return { frameLocator: null, frame: null, componentNav };
+  const preview = page.locator("#component-preview .highway-preview");
+  await expect(preview).toBeVisible();
+  await expect(page.locator("iframe")).toHaveCount(0);
+  return { preview, componentNav };
 }
 
 async function loadLightShowcaseCard(page: Page, testInfo: { project: { name: string } }) {
@@ -152,44 +107,39 @@ async function choosePreviewOption(page: Page, label: string, value: string) {
   await page.getByRole("option", { name: value, exact: true }).click();
 }
 
-test("unified catalogue has 68 sorted entries, with legacy aliases resolved to shared components", async ({ page }, testInfo) => {
+test("showcase directory keeps grouped family routes sorted and resolves legacy aliases", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Catalogue discovery and aliases run once on desktop.");
   expect(registry).toHaveLength(50);
   expect(new Set(registry.map((entry) => entry.id)).size).toBe(50);
   expect(new Set(registry.map((entry) => entry.previewId)).size).toBe(50);
-  expect(foundationEntries).toHaveLength(20);
-  expect(catalogue).toHaveLength(68);
-  expect(new Set(catalogue.map((entry) => entry.id)).size).toBe(68);
+  expect(catalogue).toHaveLength(componentCatalog.families.length);
+  expect(new Set(catalogue.map((entry) => entry.id)).size).toBe(componentCatalog.families.length);
 
   const { componentNav } = await loadShowcase(page, "button");
-  const links = componentNav.getByRole("link");
-  const componentIds = await links.evaluateAll((elements) => elements.map((element) =>
-    new URL((element as HTMLAnchorElement).href).searchParams.get("component"),
-  ));
-  expect(componentIds).toEqual(catalogue.map((entry) => entry.id));
-  await expect(page.getByText("One library. Invariant by design.")).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Switch / Toggle", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Form fields", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Accessible select", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Ask bar", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Progressive blur", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Edge fade", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Media scrim & glass actions", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "State icon", exact: true })).toBeVisible();
-  await expect(componentNav.getByRole("link", { name: "Soft gradients", exact: true })).toBeVisible();
+  const groupedEntries = await componentNav.locator(".component-group").evaluateAll((groups) => groups.map((group) => ({
+    name: group.querySelector(".component-group-toggle span:nth-child(2)")?.textContent?.trim() ?? "",
+    links: Array.from(group.querySelectorAll<HTMLAnchorElement>(".component-group-links a"), (link) => ({
+      id: new URL(link.href).searchParams.get("component") ?? "",
+      name: link.textContent?.trim() ?? "",
+    })),
+  })));
+  expect(groupedEntries.map((group) => group.name)).toEqual([...groupedEntries.map((group) => group.name)].sort());
+  for (const group of groupedEntries) {
+    expect(group.links.map((link) => link.name)).toEqual([...group.links.map((link) => link.name)].sort());
+  }
+  const componentIds = groupedEntries.flatMap((group) => group.links.map((link) => link.id)).sort();
+  expect(componentIds).toEqual(componentCatalog.families.map((family) => family.primary).sort());
+  await expect(page.getByRole("heading", { name: "Buttons", exact: true, level: 1 })).toBeVisible();
+  await expect(componentNav.getByRole("link", { name: "Buttons", exact: true })).toBeVisible();
   await expect(componentNav.locator('a[href*="inv-button"]')).toHaveCount(0);
   await expect(componentNav.locator('a[href*="inv-toggle"]')).toHaveCount(0);
+  await expect(page.locator("iframe")).toHaveCount(0);
 
   for (const [alias, canonical] of Object.entries(aliases)) {
-    await page.goto(`/showcase?component=${alias}`);
-    const resolved = await waitForShowcaseHydration(page);
-    const canonicalEntry = catalogue.find((entry) => entry.id === canonical);
-    await expect(page.getByRole("heading", { name: canonicalEntry!.name, exact: true })).toBeVisible();
-    await expect(resolved.componentNav.locator('[aria-current="page"]')).toHaveAttribute(
-      "href",
-      `/showcase?component=${canonical}`,
-    );
-    await expect(page.locator("iframe.library-invariant-preview")).toHaveCount(0);
+    const resolved = await loadShowcase(page, alias);
+    const canonicalFamily = componentCatalog.families.find((family) => family.primary === canonical);
+    await expect(page.getByRole("heading", { name: canonicalFamily!.name, exact: true, level: 1 })).toBeVisible();
+    await expect(resolved.componentNav.locator('[aria-current="page"]')).toHaveAttribute("href", `/showcase?component=${canonical}`);
   }
 });
 
@@ -521,7 +471,7 @@ test("Ask bar fits on phone and removes transitions under reduced motion", async
 test("Yardwork compact Ask bar expands and transfers focus from its label", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Compact Ask bar focus runs once on desktop.");
   await page.setViewportSize({ width: 1280, height: 650 });
-  await page.goto("/demo");
+  await page.goto("http://localhost:5191/demo");
   const composer = page.locator('form[aria-label="Ask Yardwork composer"]');
   const input = page.getByRole("textbox", { name: "Ask Yardwork" });
   await expect(composer).toBeVisible();
@@ -531,61 +481,110 @@ test("Yardwork compact Ask bar expands and transfers focus from its label", asyn
       key.startsWith("__reactProps$") && typeof (value as { onSubmit?: unknown }).onSubmit === "function",
     );
   });
-  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => resolve())));
-  const focusState = await page.evaluate(() => new Promise((resolve, reject) => {
-    // Keep the scroll threshold deterministic even if the app enables smooth scrolling.
-    document.documentElement.style.scrollBehavior = "auto";
-    window.scrollTo(0, 240);
-    let frames = 0;
-    const focusWhenCompact = () => {
-      const form = document.querySelector<HTMLFormElement>('form[aria-label="Ask Yardwork composer"]');
-      const button = form?.querySelector<HTMLButtonElement>(".ui-ask-expand");
-      if (form?.dataset.compact === "true" && button?.getAttribute("aria-hidden") === "false" && button.tabIndex === 0) {
-        const state = { compact: form.dataset.compact, ariaHidden: button.getAttribute("aria-hidden"), tabIndex: button.tabIndex, label: button.textContent?.trim() };
-        // Focus dispatches the real button event; React then expands it and transfers focus to the input.
-        button.focus();
-        resolve(state);
-      } else if (frames++ < 120) {
-        requestAnimationFrame(focusWhenCompact);
-      } else {
-        reject(new Error("Compact composer expander did not remain keyboard-focusable"));
-      }
-    };
-    requestAnimationFrame(focusWhenCompact);
-  }));
-  expect(focusState).toEqual({ compact: "true", ariaHidden: "false", tabIndex: 0, label: "Ask Yardwork" });
+  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await page.mouse.move(640, 320);
+  await page.mouse.wheel(0, 100);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(80);
+  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await page.mouse.wheel(0, 140);
+  await expect(composer).toHaveAttribute("data-compact", "true");
+  const expander = page.getByRole("button", { name: "Ask Yardwork" });
+  await expect(expander).toHaveAttribute("aria-hidden", "false");
+  await expect(expander).toHaveAttribute("tabindex", "0");
+  // Focus dispatches the actual button event; React expands and transfers focus to the input.
+  await expander.focus();
   await expect(input).toBeFocused();
   await expect(composer).toHaveAttribute("data-compact", "false");
 });
 
-test("all 50 original Invariant previews remain available across the catalogue and direct preview routes", async ({ page }, testInfo) => {
+test("standalone guide documents the actual Highway packages and independent demo", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Independent guide smoke runs once on desktop.");
+  await page.goto("/guide");
+  await expect(page.getByRole("heading", { name: "Good work starts here." })).toBeVisible();
+  const packageSection = page.locator("#packages");
+  await expect(packageSection.getByRole("heading", { name: "Install Highway in another app." })).toBeVisible();
+  await expect(packageSection).toContainText("@highway/styles/styles.css");
+  await expect(packageSection).toContainText("@highway/react");
+  await expect(packageSection).toContainText("Neither includes authentication, routing, a database or Cloudflare setup.");
+  await expect(page.getByRole("link", { name: "Open demo" }))
+    .toHaveAttribute("href", "http://localhost:5191/demo");
+});
+
+test("standalone demo navigates Today and Schedule, then saves a local assignment", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Demo workflow smoke runs once on desktop.");
+  const prohibitedRequests: string[] = [];
+  page.on("request", (request) => {
+    const url = new URL(request.url());
+    const isLocalDemo = url.origin === "http://localhost:5191";
+    const isImageFixture = url.origin === "https://images.unsplash.com";
+    if ((!isLocalDemo && !isImageFixture) || (isLocalDemo && /^\/(?:api|auth)(?:\/|$)/.test(url.pathname))) {
+      prohibitedRequests.push(url.href);
+    }
+  });
+
+  await page.goto("http://localhost:5191/demo");
+  const navigation = page.getByRole("navigation", { name: "Office navigation" });
+  await expect(navigation.getByRole("button", { name: "Today" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Today’s work" })).toBeVisible();
+  await page.waitForFunction(() => {
+    const button = [...(document.querySelector('nav[aria-label="Office navigation"]')?.querySelectorAll("button") ?? [])]
+      .find((candidate) => candidate.textContent?.includes("Schedule"));
+    return button && Object.entries(button).some(([key, value]) =>
+      key.startsWith("__reactProps$") && typeof (value as { onClick?: unknown }).onClick === "function",
+    );
+  });
+  await navigation.getByRole("button", { name: "Schedule" }).click();
+  await expect(page).toHaveURL(/view=schedule/);
+  await expect(page.getByRole("heading", { name: "Schedule", exact: true })).toBeVisible();
+  await navigation.getByRole("button", { name: "Today" }).click();
+  await expect(page).toHaveURL(/view=today/);
+  await expect(page.getByRole("heading", { name: "Today’s work" })).toBeVisible();
+
+  await page.locator(".yw-row-link").first().click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog).toBeVisible();
+  const assignedTeam = dialog.locator(".yw-record-section").filter({ hasText: "Assigned team" });
+  await dialog.getByRole("button", { name: "Edit assignment" }).click();
+  await dialog.getByRole("checkbox", { name: "Alex Green · available" }).uncheck();
+  await dialog.getByRole("checkbox", { name: "Sam Rivera · available" }).uncheck();
+  await dialog.getByRole("checkbox", { name: "Maya Chen · available" }).check();
+  await dialog.getByRole("button", { name: "Save assignment" }).click();
+  await expect(assignedTeam).toContainText("Maya Chen");
+  await expect(assignedTeam).not.toContainText("Sam Rivera");
+  await expect(dialog.getByRole("button", { name: "Edit assignment" })).toBeVisible();
+  expect(prohibitedRequests).toEqual([]);
+});
+
+test("all 50 Invariant previews resolve through showcase and standalone showcase routes", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Exhaustive preview loading runs once on desktop.");
   test.setTimeout(180_000);
-  await loadShowcase(page);
-  const componentNav = page.getByRole("navigation", { name: "Component library" });
   const visited = new Set<string>();
+  const runtimeErrors: string[] = [];
+  page.on("pageerror", (error) => runtimeErrors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error") runtimeErrors.push(message.text());
+  });
 
-  for (const entry of registry.filter((candidate) => !aliases[candidate.id])) {
-    await componentNav.locator(`a[href="/showcase?component=${entry.id}"]`).click();
-    await expect(page).toHaveURL(new RegExp(`component=${entry.id}$`));
-    const { frameLocator, frame } = await currentPreviewFrame(page);
-    await expect(frameLocator).toHaveAttribute("src", new RegExp(`component=${entry.previewId}(?:&|$)`));
-    await expect.poll(() => new URL(frame.url()).searchParams.get("component")).toBe(entry.previewId);
-    await expect(frame.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
-    await expect(frame.locator("body")).not.toContainText("Preview unavailable");
-    visited.add(entry.id);
-  }
+  for (const entry of registry) {
+    const showcaseId = showcaseIdForPreviewId(entry.previewId);
+    expect(showcaseId).toBe(entry.id);
 
-  for (const id of Object.keys(aliases)) {
-    const entry = registry.find((candidate) => candidate.id === id)!;
-    await page.goto(`/invariant-preview/index.html?component=${entry.previewId}&theme=light`);
-    await expect(page.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
-    await expect(page.locator("body")).not.toContainText("Preview unavailable");
-    visited.add(entry.id);
+    await page.goto(`/showcase?component=${showcaseId}`);
+    const embeddedPreview = page.locator("article.library-content .highway-preview");
+    await expect(embeddedPreview).toBeVisible();
+    await expect(page.locator("iframe")).toHaveCount(0);
+    await expect(embeddedPreview).not.toContainText("Preview unavailable");
+
+    const directPreview = await openDirectPreview(page, entry.previewId);
+    expect(new URL(page.url()).searchParams.get("component")).toBe(showcaseId);
+    expect(new URL(page.url()).searchParams.get("preview")).toBe("1");
+    await expect(directPreview).not.toContainText("Preview unavailable");
+    visited.add(showcaseId);
   }
 
   expect(visited.size).toBe(50);
   expect([...visited].sort()).toEqual(registry.map((entry) => entry.id).sort());
+  expect(runtimeErrors).toEqual([]);
 });
 
 test("unified catalogue search filters names across both component sets", async ({ page }, testInfo) => {
@@ -593,29 +592,39 @@ test("unified catalogue search filters names across both component sets", async 
   await loadShowcase(page);
   const search = page.getByRole("textbox", { name: "Search components" });
   const links = page.getByRole("navigation", { name: "Component library" }).getByRole("link");
+  const searchText = (family: (typeof componentCatalog.families)[number]) => [
+    family.name,
+    ...family.variants.flatMap((variant) => [variant.label, ...variant.exports, ...variant.compatibility]),
+  ].join(" ").toLowerCase();
+  const matchingIds = (query: string) => componentCatalog.families
+    .filter((family) => searchText(family).includes(query.toLowerCase()))
+    .map((family) => family.primary).sort();
 
   await search.fill("toggle");
-  await expect(links).toHaveCount(2);
-  expect(await links.allTextContents()).toEqual(["Switch / Toggle", "SearchToggle"]);
+  const toggleMatches = await links.evaluateAll((elements) => elements.map((element) =>
+    new URL((element as HTMLAnchorElement).href).searchParams.get("component") ?? "",
+  ));
+  expect(toggleMatches.sort()).toEqual(matchingIds("toggle"));
 
   await search.fill("search");
-  const matchingEntries = catalogue.filter((entry) => `${entry.name} ${entry.group}`.toLowerCase().includes("search"));
-  await expect(links).toHaveCount(matchingEntries.length);
-  expect(await links.allTextContents()).toEqual(matchingEntries.map((entry) => entry.name));
+  const searchMatches = await links.evaluateAll((elements) => elements.map((element) =>
+    new URL((element as HTMLAnchorElement).href).searchParams.get("component") ?? "",
+  ));
+  expect(searchMatches.sort()).toEqual(matchingIds("search"));
 
   await search.fill("no-matching-component");
   await expect(links).toHaveCount(0);
-  await expect(page.getByText("No components match. Try another name.", { exact: true })).toBeVisible();
+  await expect(page.getByText("No components found.", { exact: true })).toBeVisible();
 
   await search.clear();
-  await expect(links).toHaveCount(68);
+  await expect(links).toHaveCount(componentCatalog.families.length);
 });
 
 test("segmented control preview updates its selected state", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Component interaction contracts run once on desktop.");
-  const { frame } = await loadShowcase(page, "inv-segmented-control");
-  const all = frame!.locator('button[data-tab-id="all"]');
-  const archived = frame!.locator('button[data-tab-id="archived"]');
+  const { preview } = await loadShowcase(page, "inv-segmented-control");
+  const all = preview.locator('button[data-tab-id="all"]');
+  const archived = preview.locator('button[data-tab-id="archived"]');
   const selectedColor = await all.evaluate((button) => getComputedStyle(button).color);
   const idleColor = await archived.evaluate((button) => getComputedStyle(button).color);
   expect(selectedColor).not.toBe(idleColor);
@@ -624,29 +633,131 @@ test("segmented control preview updates its selected state", async ({ page }, te
   await expect.poll(() => all.evaluate((button) => getComputedStyle(button).color)).toBe(idleColor);
 });
 
+test("Invariant Dropdown main preview keeps its divider out of the keyboard loop and supports Home/End", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Invariant Dropdown keyboard endpoints run once on desktop.");
+  const { preview } = await loadShowcase(page, "inv-dropdown");
+  await expect(preview.getByRole("switch")).toHaveCount(0);
+  const trigger = preview.getByRole("button", { name: "More options" });
+  await trigger.click();
+
+  const menu = page.getByRole("menu");
+  const edit = menu.getByRole("menuitem", { name: "Edit", exact: true });
+  const duplicate = menu.getByRole("menuitem", { name: "Duplicate", exact: true });
+  const share = menu.getByRole("menuitem", { name: "Share", exact: true });
+  const remove = menu.getByRole("menuitem", { name: "Delete", exact: true });
+  await expect(menu.getByRole("separator")).toHaveCount(1);
+  await expect(menu.getByRole("menuitem")).toHaveCount(4);
+  await expect(edit).toBeFocused();
+
+  await page.keyboard.press("End");
+  await expect(remove).toBeFocused();
+  const idleDestructiveColor = await remove.evaluate((element) => getComputedStyle(element).color);
+  await page.keyboard.press("Home");
+  await expect(edit).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(duplicate).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(share).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(remove).toBeFocused();
+  await remove.hover();
+  await expect.poll(() => remove.evaluate((element) => getComputedStyle(element).color)).toBe(idleDestructiveColor);
+  await expect.poll(() => remove.evaluate((element) => getComputedStyle(element).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
+
+  await page.keyboard.press("Escape");
+  await expect(menu).toBeHidden();
+  await expect(trigger).toBeFocused();
+});
+
+test("Invariant BottomNav mobile menu supports Home/End and restores trigger focus", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "phone", "BottomNav keyboard endpoints are checked in the phone layout.");
+  const { preview } = await loadShowcase(page, "inv-bottom-nav");
+  await preview.scrollIntoViewIfNeeded();
+  const navigation = preview.getByRole("navigation", { name: "Navigation" });
+  const trigger = navigation.locator('button[aria-haspopup="true"]').first();
+  await expect(trigger).toHaveAccessibleName("Add new");
+  await trigger.click();
+
+  const menu = page.getByRole("menu");
+  const first = menu.getByRole("menuitem", { name: "New Objective" });
+  const last = menu.getByRole("menuitem", { name: "Post a Role" });
+  await expect(first).toBeFocused();
+  await page.keyboard.press("End");
+  await expect(last).toBeFocused();
+  await page.keyboard.press("Home");
+  await expect(first).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(menu).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await expect(trigger).toHaveAccessibleName("Add new");
+});
+
+test("Invariant Toast removes blur and dismisses immediately under reduced motion", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "reduced-motion", "Invariant Toast reduced-motion behavior runs in its dedicated project.");
+  const { preview } = await loadShowcase(page, "inv-toast");
+  await expect.poll(() => page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
+  await preview.getByRole("button", { name: "Show Toast" }).click();
+
+  const toast = page.locator(".hw-toast");
+  const status = toast.getByRole("status").filter({ hasText: "Bread alert" });
+  await expect(status).toBeVisible();
+  await expect.poll(() => toast.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { transform: style.transform, filter: style.filter, transition: style.transition, opacity: style.opacity };
+  })).toEqual({ transform: "none", filter: "none", transition: "none", opacity: "1" });
+
+  await toast.getByRole("button", { name: "Dismiss Bread alert" }).click();
+  await expect(toast).toHaveCount(0);
+});
+
+test("Invariant Modal close target remains full size and PageSection fits at 320px", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "narrow", "The narrow Invariant layout check runs at 320px.");
+  const { preview } = await loadShowcase(page, "inv-modal");
+  await preview.getByRole("button", { name: "Open Modal" }).click();
+  const modal = page.getByRole("dialog", { name: "Settings" });
+  await expect(modal).toBeVisible();
+  const title = modal.getByRole("heading", { name: "Settings" });
+  const close = modal.getByRole("button", { name: "Close" });
+  await expect(title).toHaveCSS("min-width", "0px");
+  await expect(close).toHaveCSS("flex-shrink", "0");
+  await expect.poll(async () => (await close.boundingBox())?.width ?? 0).toBeGreaterThanOrEqual(44);
+  const closeBounds = await close.boundingBox();
+  expect(closeBounds?.width).toBeGreaterThanOrEqual(44);
+  expect(closeBounds?.height).toBeGreaterThanOrEqual(44);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
+
+  await page.goto("/showcase?component=inv-page-section");
+  await waitForShowcaseHydration(page);
+  const section = page.locator("article.library-content .highway-preview .max-w-2xl").first();
+  await expect(section).toHaveCSS("min-width", "0px");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
+});
+
 test("canonical Switch and the legacy Toggle adapter support Space and Enter", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Keyboard switch contracts run once on desktop.");
 
   for (const id of ["switch", "inv-toggle"]) {
-    const { frame } = await loadShowcase(page, id);
-    expect(frame).toBeNull();
-    await expectToggleKeyboardBehavior(page.getByRole("switch", { name: "Show reminders" }));
+    const { preview } = await loadShowcase(page, id);
+    await expectToggleKeyboardBehavior(preview.getByRole("switch", { name: "Show reminders" }));
   }
 
-  await page.goto("/invariant-preview/index.html?component=toggle&theme=light");
-  await expect(page.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
-  const legacySwitch = page.getByRole("switch").first();
-  await expect(legacySwitch).toHaveAttribute("aria-checked", "false");
+  const legacySwitchPreview = await openDirectPreview(page, "toggle");
+  const legacySwitch = legacySwitchPreview.getByRole("switch", { name: "Show reminders" });
   await expectToggleKeyboardBehavior(legacySwitch);
 });
 
-test("shared Button blocks activation while disabled or loading, including its Invariant adapter", async ({ page }, testInfo) => {
+test("Button main preview has no config toggles and labeled state examples preserve disabled/loading behavior", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Button state contracts run once on desktop.");
 
-  const { frame } = await loadShowcase(page, "button");
-  expect(frame).toBeNull();
-  const button = page.getByRole("button", { name: "Add something good" });
-  const clicks = page.getByRole("status");
+  const { preview } = await loadShowcase(page, "button");
+  const button = preview.getByRole("button", { name: "Add something good" });
+  const clicks = preview.getByRole("status");
+  await expect(preview.getByRole("switch")).toHaveCount(0);
+  await expect(preview.locator(".library-controls")).toHaveCount(0);
+  for (const label of ["Variant", "Disabled", "Loading"]) {
+    await expect(preview.getByText(label, { exact: true })).toHaveCount(0);
+  }
+
   await button.click();
   await expect(clicks).toHaveText("1 preview clicks");
   const regularSize = await button.evaluate((element) => {
@@ -654,69 +765,74 @@ test("shared Button blocks activation while disabled or loading, including its I
     return { width, height };
   });
 
-  const disabled = page.getByRole("switch", { name: "Disabled" });
-  await disabled.click();
-  await expect(disabled).toHaveAttribute("aria-checked", "true");
-  await expect(button).toBeDisabled();
-  await button.evaluate((element) => (element as HTMLButtonElement).click());
-  await expect(clicks).toHaveText("1 preview clicks");
-  await disabled.click();
+  const states = page.locator('article.library-content section[aria-label="States"]');
+  await expect(states.locator("figure")).toHaveCount(2);
+  const disabledExample = states.locator("figure").filter({ hasText: /^Disabled/ });
+  const disabledButton = disabledExample.getByRole("button", { name: "Add something good" });
+  const disabledClicks = disabledExample.getByRole("status");
+  await expect(disabledButton).toBeDisabled();
+  await disabledButton.evaluate((element) => (element as HTMLButtonElement).click());
+  await expect(disabledClicks).toHaveText("0 preview clicks");
 
-  const loading = page.getByRole("switch", { name: "Loading" });
-  await loading.click();
-  await expect(loading).toHaveAttribute("aria-checked", "true");
-  await expect(button).toBeDisabled();
-  await expect(button).toHaveAttribute("aria-busy", "true");
-  await expect.poll(() => button.evaluate((element) => {
+  const loadingExample = states.locator("figure").filter({ hasText: /^Loading/ });
+  const loadingButton = loadingExample.getByRole("button", { name: "Add something good" });
+  const loadingClicks = loadingExample.getByRole("status");
+  await expect(loadingButton).toBeDisabled();
+  await expect(loadingButton).toHaveAttribute("aria-busy", "true");
+  await expect.poll(() => loadingButton.evaluate((element) => {
     const { width, height } = element.getBoundingClientRect();
     return { width, height };
   })).toEqual(regularSize);
-  await button.evaluate((element) => (element as HTMLButtonElement).click());
-  await expect(clicks).toHaveText("1 preview clicks");
+  await loadingButton.evaluate((element) => (element as HTMLButtonElement).click());
+  await expect(loadingClicks).toHaveText("0 preview clicks");
+});
 
-  await page.goto("/invariant-preview/index.html?component=button&theme=light");
-  await expect(page.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
-  const adapterButton = page.getByRole("button", { name: "Button" });
-  const adapterToggles = page.getByRole("switch");
-  await expect(adapterToggles).toHaveCount(2);
-  await adapterToggles.nth(0).press("Space");
-  await expect(adapterButton).toHaveAttribute("aria-busy", "true");
-  await expect(adapterButton).toBeDisabled();
-  await adapterButton.evaluate((element) => (element as HTMLButtonElement).click());
-  await adapterToggles.nth(0).press("Space");
-  await adapterToggles.nth(1).press("Space");
-  await expect(adapterButton).toBeDisabled();
-  await adapterButton.evaluate((element) => (element as HTMLButtonElement).click());
-  await adapterToggles.nth(1).press("Space");
-  await expect(adapterButton).toBeEnabled();
+test("Invariant TextInput exposes labeled default, disabled, and error state examples", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "TextInput state examples run once on desktop.");
+  await loadShowcase(page, "inv-text-input");
+
+  const variants = page.locator('article.library-content section[aria-label="Variants"]');
+  await expect(variants.locator("figcaption")).toContainText(["With icon"]);
+  const states = page.locator('article.library-content section[aria-label="States"]');
+  await expect(states.locator("figcaption")).toContainText(["Default", "Disabled", "Error"]);
+
+  const defaultExample = states.locator("figure").filter({ hasText: /^Default/ });
+  const defaultInput = defaultExample.getByRole("textbox", { name: "Email" });
+  await expect(defaultInput).toBeEnabled();
+  await expect(defaultInput).toHaveAttribute("placeholder", "you@example.com");
+
+  const disabledExample = states.locator("figure").filter({ hasText: /^Disabled/ });
+  await expect(disabledExample.getByRole("textbox", { name: "Email" })).toBeDisabled();
+
+  const errorExample = states.locator("figure").filter({ hasText: /^Error/ });
+  await expect(errorExample.getByRole("textbox", { name: "Email" })).toHaveAttribute("aria-invalid", "true");
+  await expect(errorExample.getByRole("alert")).toHaveText("Invalid email address");
 });
 
 test("Invariant RadioGroup selects with ArrowDown and its associated labels", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Radio keyboard and label behavior runs once on desktop.");
-  await page.goto("/invariant-preview/index.html?component=radio-group&theme=light");
-  await expect(page.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
+  const preview = await openDirectPreview(page, "radio-group");
 
-  const free = page.getByRole("radio", { name: "Free" });
-  const pro = page.getByRole("radio", { name: "Pro" });
-  const team = page.getByRole("radio", { name: "Team" });
+  const free = preview.getByRole("radio", { name: "Free" });
+  const pro = preview.getByRole("radio", { name: "Pro" });
+  const team = preview.getByRole("radio", { name: "Team" });
   await expect(pro).toHaveAttribute("aria-checked", "true");
   await pro.focus();
   await pro.press("ArrowDown");
   await expect(team).toHaveAttribute("aria-checked", "true");
 
-  await page.getByText("Free", { exact: true }).click();
+  await preview.getByText("Free", { exact: true }).click();
   await expect(free).toHaveAttribute("aria-checked", "true");
   await expect(team).toHaveAttribute("aria-checked", "false");
 });
 
 test("Invariant Checkbox toggles by Space and its visible label", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Checkbox keyboard and label behavior runs once on desktop.");
-  await page.goto("/invariant-preview/index.html?component=checkbox&theme=light");
-  await expect(page.locator('main[aria-label="Interactive component preview"]')).toBeVisible();
+  const preview = await openDirectPreview(page, "checkbox");
 
-  const agreement = page.getByRole("checkbox", { name: "I agree to the terms" });
-  const updates = page.getByRole("checkbox", { name: "Send me updates" });
-  const locked = page.getByRole("checkbox", { name: "Locked by policy" });
+  const agreement = preview.getByRole("checkbox", { name: "I agree to the terms" });
+  const updates = preview.getByRole("checkbox", { name: "Send me updates" });
+  const locked = preview.getByRole("checkbox", { name: "Locked by policy" });
   await expect(agreement).toHaveAttribute("aria-checked", "false");
   await expect(updates).toHaveAttribute("aria-checked", "true");
   await expect(locked).toBeDisabled();
@@ -724,9 +840,9 @@ test("Invariant Checkbox toggles by Space and its visible label", async ({ page 
   await agreement.focus();
   await agreement.press("Space");
   await expect(agreement).toHaveAttribute("aria-checked", "true");
-  await page.getByText("Send me updates", { exact: true }).click();
+  await preview.getByText("Send me updates", { exact: true }).click();
   await expect(updates).toHaveAttribute("aria-checked", "false");
-  const lockedLabel = page.getByText("Locked by policy", { exact: true });
+  const lockedLabel = preview.getByText("Locked by policy", { exact: true });
   const lockedLabelBounds = await lockedLabel.boundingBox();
   if (!lockedLabelBounds) throw new Error("Disabled checkbox label is not visible");
   await page.mouse.click(
@@ -739,12 +855,12 @@ test("Invariant Checkbox toggles by Space and its visible label", async ({ page 
 test("modal preview traps focus, closes with Escape, and restores focus", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Focus management contract runs once on desktop.");
 
-  const { frame } = await loadShowcase(page, "inv-modal");
-  const trigger = frame!.getByRole("button", { name: "Open Modal" });
+  const { preview } = await loadShowcase(page, "inv-modal");
+  const trigger = preview.getByRole("button", { name: "Open Modal" });
   await trigger.focus();
   await trigger.click();
 
-  const dialog = frame!.getByRole("dialog", { name: "Settings" });
+  const dialog = page.getByRole("dialog", { name: "Settings" });
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveAttribute("aria-modal", "true");
   const closeButton = dialog.getByRole("button", { name: "Close" });
@@ -764,26 +880,24 @@ test("modal preview traps focus, closes with Escape, and restores focus", async 
 
 test("modal form labels provide accessible names to their inputs", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Form label semantics run once on desktop.");
-  const { frame } = await loadShowcase(page, "inv-modal");
-  await frame!.getByRole("button", { name: "Open Modal" }).click();
+  const { preview } = await loadShowcase(page, "inv-modal");
+  await preview.getByRole("button", { name: "Open Modal" }).click();
 
-  const dialog = frame!.getByRole("dialog", { name: "Settings" });
+  const dialog = page.getByRole("dialog", { name: "Settings" });
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('input[placeholder="Your name"]')).toHaveAccessibleName("Display name");
   await expect(dialog.locator('input[placeholder="you@example.com"]')).toHaveAccessibleName("Email");
 });
 
-test("host and iframe share the canonical light and dark design tokens", async ({ page }, testInfo) => {
+test("unified preview inherits canonical light and dark design tokens", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Token parity runs once on desktop.");
-  const { frameLocator, frame } = await loadShowcase(page);
-  if (!frameLocator || !frame) throw new Error("Token parity requires an Invariant preview frame");
+  const { preview } = await loadShowcase(page);
   const themeButton = page.getByRole("button", { name: "Toggle light and dark theme" });
-  const theme = () => frame.locator("html").getAttribute("data-theme");
   const tokenNames = ["--inv-bg", "--inv-surface", "--inv-heading", "--inv-accent", "--inv-font-body", "--inv-text-base", "--inv-space-md"];
-  const readTokens = (context: Page | Frame) => context.locator("html").evaluate((_element, names) => {
+  const readTokens = (container: Locator) => container.evaluate((element, names: string[]) => {
     const probe = document.createElement("div");
     probe.style.cssText = "position:fixed;visibility:hidden;";
-    document.body.appendChild(probe);
+    element.appendChild(probe);
     const values: Record<string, string> = {};
     for (const name of names) {
       if (name === "--inv-bg" || name === "--inv-surface" || name === "--inv-accent") {
@@ -807,52 +921,42 @@ test("host and iframe share the canonical light and dark design tokens", async (
     return values;
   }, tokenNames);
   const expectTokenParity = async () => {
-    const [hostTokens, iframeTokens] = await Promise.all([readTokens(page), readTokens(frame)]);
-    expect(hostTokens).toEqual(iframeTokens);
+    const [hostTokens, previewTokens] = await Promise.all([readTokens(page.locator("body")), readTokens(preview)]);
+    expect(hostTokens).toEqual(previewTokens);
   };
 
   await expectTokenParity();
-  const initialTheme = await theme();
-  const initialBackground = (await readTokens(frame))["--inv-bg"];
+  const initialDark = await page.locator("html").evaluate((element) => element.classList.contains("dark"));
+  const initialBackground = (await readTokens(preview))["--inv-bg"];
   await themeButton.click();
-  const nextTheme = initialTheme === "dark" ? "light" : "dark";
-  await expect(frameLocator).toHaveAttribute("src", new RegExp(`theme=${nextTheme}`));
-  await expect.poll(theme).toBe(nextTheme);
-  await expect.poll(async () => {
-    const [hostTokens, iframeTokens] = await Promise.all([readTokens(page), readTokens(frame)]);
-    return JSON.stringify(hostTokens) === JSON.stringify(iframeTokens);
-  }).toBe(true);
-  expect((await readTokens(frame))["--inv-bg"]).not.toBe(initialBackground);
+  await expect.poll(() => page.locator("html").evaluate((element) => element.classList.contains("dark"))).toBe(!initialDark);
+  await expect.poll(async () => JSON.stringify(await readTokens(page.locator("body")))).toBe(JSON.stringify(await readTokens(preview)));
+  expect((await readTokens(preview))["--inv-bg"]).not.toBe(initialBackground);
 
   await themeButton.click();
-  await expect(frameLocator).toHaveAttribute("src", new RegExp(`theme=${initialTheme}`));
-  await expect.poll(theme).toBe(initialTheme);
+  await expect.poll(() => page.locator("html").evaluate((element) => element.classList.contains("dark"))).toBe(initialDark);
   await expectTokenParity();
 });
 
 test("mobile showcase keeps the preview and controls within the viewport", async ({ page }, testInfo) => {
   test.skip(!["phone", "narrow"].includes(testInfo.project.name), "Mobile layout contract runs at phone widths.");
-  const { frameLocator, frame } = await loadShowcase(page);
+  const { preview } = await loadShowcase(page);
 
   const shellOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(shellOverflow).toBeLessThanOrEqual(1);
-  const frameWidth = await frameLocator!.evaluate((element) => element.getBoundingClientRect().width);
-  expect(frameWidth).toBeLessThanOrEqual(testInfo.project.name === "narrow" ? 321 : 391);
-  const previewViewport = await frame!.evaluate(() => ({
-    width: window.innerWidth,
-    documentWidth: document.documentElement.scrollWidth,
-  }));
-  expect(previewViewport.documentWidth - previewViewport.width).toBeLessThanOrEqual(1);
+  const previewWidth = await preview.evaluate((element) => element.getBoundingClientRect().width);
+  expect(previewWidth).toBeLessThanOrEqual(testInfo.project.name === "narrow" ? 321 : 391);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(1);
 
-  const archived = frame!.locator('button[data-tab-id="archived"]');
+  const archived = preview.locator('button[data-tab-id="archived"]');
   await archived.click();
   await expect(archived).toBeVisible();
 });
 
 test("Invariant preview transitions respect reduced-motion preference", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "reduced-motion", "This contract runs under reduced motion.");
-  const { frame } = await loadShowcase(page);
-  await expect.poll(() => frame!.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
-  const transitionDuration = await frame!.locator('button[data-tab-id="all"]').evaluate((button) => getComputedStyle(button).transitionDuration);
+  const { preview } = await loadShowcase(page);
+  await expect.poll(() => page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
+  const transitionDuration = await preview.locator('button[data-tab-id="all"]').evaluate((button) => getComputedStyle(button).transitionDuration);
   expect(transitionDuration.split(",").every((duration) => duration.trim() === "0s")).toBe(true);
 });

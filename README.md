@@ -1,41 +1,42 @@
 # Highway
 
-Highway is a standalone starter extracted and adapted from the Playground foundation, packaged for a different product. React 19, Next-compatible App Router via Vinext, Cloudflare Workers, D1, R2, Better Auth, Drizzle, Tailwind and shared Radix-based components. This is **a separate package**, refreshed with the reusable Yardwork design foundation on October 19, 2026. See [the refresh inventory](docs/STARTER-REFRESH.md) for scope and provenance.
-
-## Explore the demo and library
-
-- `/demo` — the original Yardwork office demo, with synthetic customers, visits, quotes, invoices, teams, and the Ask launcher. Local-only actions; no account required.
-- `/guide` — how to run, customize, and build with this foundation, including instructions for AI agents.
-- `/showcase` — searchable live component previews, source locations, and copyable examples.
-- `/examples/records` — the earlier generic records/files example.
-
-The owner requested this standalone demo extraction on October 19, 2026. See `docs/DEMO-EXTRACTION.md` for provenance and isolation details. Demo changes reset on reload. Original Yardwork resources are never used.
+Highway provides the exact Invariant-crafted components and styling used by its showcase, with optional application examples. The component packages contain no authentication, database or Cloudflare runtime.
 
 ## Start locally
 
-Use Node 22.13+ and npm. Unzip the whole folder, then:
+Use Node 22.13+ and npm:
 
 ```sh
 npm ci
-npm run setup
-npm run db:migrate
 npm run dev
 ```
 
-Open **http://localhost:5188**. Use that exact hostname: the configured origin protects writes. The setup command creates an ignored `.dev.vars` with a fresh secret. During local development only, email codes appear in the server terminal as `[LOCAL SIGN IN]`. No real email is sent in console mode. Do not expose the dev server publicly.
+The showcase and guide run at **http://localhost:5190** with no backend setup. In another terminal, run `npm run dev:demo` to explore the independent Yardwork reference at **http://localhost:5191/demo**. Its synthetic changes reset on reload; it sends no live messages or payments.
 
-Open Workspace, sign in, create a record, archive/restore it, search, upload a private file, switch themes, and sign out. A new user gets a separate empty workspace. Nothing is seeded with customer data.
+| Owner | Source | Command |
+| --- | --- | --- |
+| Core components and theme | `packages/highway-react/src` | `npm run build:packages` |
+| Core styles and tokens | `packages/highway-styles/src` | `npm run pack:packages` |
+| Showcase, guide, isolated previews | `apps/showcase` | `npm run dev:showcase` |
+| Yardwork reference demo | `examples/yardwork` | `npm run dev:demo` |
+| Clean installed-package fixture | `examples/highway-vite` | `npm run check:packages:clean` |
+| Optional Cloudflare starter | root `app`, `worker`, `lib` | `npm run dev:starter` |
+
+`npm run build` builds the packages, showcase and demo. Each app has an independent `build:showcase` or `build:demo` command. The apps share repository tooling and consume canonical package source; external projects install the built tarballs. Original import paths remain thin compatibility reexports for the optional starter and existing integrations.
+
+See [component selection](catalog/README.md), [package installation](docs/PACKAGES.md), and [repository boundaries](docs/ARCHITECTURE.md). No directories or dependencies should be removed just because they are optional.
+
+## Optional backend starter
+
+The original Vinext/Cloudflare Workers application, D1, R2 and authentication remain available independently:
 
 ```sh
-npm run typecheck
-npm run lint
-npm run build
-npm test
-npm run start
-npm run storybook
+npm run setup
+npm run db:migrate
+npm run dev:starter
 ```
 
-Stop the dev server before running npm test or starting the production-build preview on the same port. The integration suite uses a separate disposable local database and requires a completed build. Both commands use local Cloudflare bindings. Local state stays in `.wrangler/state`; do not package or commit it. A pinned `package-lock.json` belongs in your new repository. Read `docs/VALIDATION.md` for checks actually performed, including limitations.
+It runs at **http://localhost:5188**. Setup creates ignored local configuration with a fresh secret. Local console sign-in codes are for private local development only. Use `npm run build:starter` before `npm test` or `npm run start`; these commands exercise local Cloudflare bindings. Keep `.dev.vars` and `.wrangler/state` private. No existing deployment is changed by the standalone preview commands.
 
 ## What is implemented
 
@@ -58,11 +59,11 @@ Stop the dev server before running npm test or starting the production-build pre
 | Area | Location |
 | --- | --- |
 | Name and description | `config/app.ts` |
-| Colors, spacing, radii, layers and motion | `app/tokens.css` |
+| Colors, spacing, radii, layers and motion | `packages/highway-styles/src/tokens.css` |
 | Layout and responsive behavior | `app/globals.css` |
-| Fields, surfaces and overlays | `app/foundation.css` |
-| Button geometry | `app/controls.css` |
-| Forms, details and feedback | `components/foundation/patterns.tsx` |
+| Fields, surfaces and overlays | `packages/highway-styles/src/foundation.css` |
+| Button geometry | `packages/highway-styles/src/controls.css` |
+| Forms, details and feedback | `packages/highway-react/src/components/foundation/patterns.tsx` |
 | Typography scale | `app/typography.css` |
 | Reusable controls | `components/ui/` |
 | Shell and account flows | `components/foundation/` |
@@ -129,7 +130,7 @@ Vinext is pinned to the version used by the source foundation and is a beta depe
 
 ### One library, Invariant styling
 
-The library combines Invariant components and Foundation patterns under Invariant’s styling system. `app/tokens.css` and `app/typography.css` own the shared palette, materials, scale, and motion; `--inv-*` values are aliases. Import from `@/components/library` or direct modules. Explore `/showcase?component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. `npm run build:invariant` rebuilds the isolated previews during development. See `docs/INVARIANT-INTEGRATION.md`.
+The library combines Invariant components and Foundation patterns under Invariant’s styling system. `packages/highway-styles/src/tokens.css` and `packages/highway-styles/src/typography.css` own the shared palette, materials, scale, and motion; `--inv-*` values are aliases. Consuming projects import public exports from `@highway/react`. Explore `/showcase?component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. Previews render directly in the showcase through one shared React canvas; `npm run dev:showcase` updates them live. See `docs/INVARIANT-INTEGRATION.md`.
 
 ## Project identity
 
@@ -138,3 +139,33 @@ The project and personal GitHub repository are named Highway (`eythandamico/high
 ## Install the library without the application
 
 Highway now builds `@highway/styles` and `@highway/react` directly from its shared components. Run `npm run pack:packages` for versioned installable tarballs. Consumers need neither Tailwind configuration nor Highway infrastructure. Use `HighwayTheme` for exact defaults or supported brand overrides. See [package installation and theming](docs/PACKAGES.md) and the [isolated React/Vite/TypeScript example](examples/highway-vite/README.md).
+
+## Adopt Highway in another project
+
+Use `npm run adopt -- --target /absolute/project` to preview setup, then add `--apply` to install. Use `--mode styles` for CSS-only hosts. The generated guide explains the explicit theme wiring step. See [implementation rules](docs/IMPLEMENTATION.md), [package installation](docs/PACKAGES.md), [changelog](CHANGELOG.md), and [package release procedure](docs/PACKAGE-RELEASE.md).
+
+## Agent integration
+
+Use the [Highway MCP server](docs/MCP.md) to retrieve exact public component APIs, selection constraints and version-matched installation guidance. It runs as a separate local tool and adds nothing to application bundles.
+
+## Engineering systems
+
+[Component, motion and quality systems](docs/SYSTEMS.md) define the authoring workflow. Run `npm run verify` for the fast gate and `npm run verify:full` before release. Use `npm run component:new -- --name SummaryPanel` to preview a typed draft.
+
+[Interaction components](docs/INTERACTIONS.md) documents searchable selection, date ranges, inline editing, action groups, copy feedback and command palettes. See [0.3.0 upgrade behavior](docs/releases/0.3.0.md) for async actions, table selection, keyboard Select and toast changes.
+
+## Connect your agent with the Highway plugin
+
+Run `npm run build:plugins` to generate the Claude Code and Codex plugin archives and website downloads. Each includes the skill, a matching MCP snapshot, and bundled runtime dependencies. Unzip the archive and follow its `INSTALL.md`; Node 22.13+ is required. See [plugin packaging and installation](plugins/highway/README.md).
+
+These are directly installable local plugins, not public directory listings or ChatGPT web connectors. Plugin installation does not install UI packages into your application.
+
+## Other setup options
+
+From this checkout after `npm ci`, preview a new app with:
+
+```sh
+npm run onboard -- --target /absolute/path/to/my-app --new --agent codex
+```
+
+Add `--apply` to create it. Omit `--new` for an existing standalone npm React project; choose `codex`, `claude`, or `cursor`. Setup builds and installs matching packages, adds the Highway skill, and configures project-local MCP. Existing app source stays unchanged for agent-guided integration. See [the onboarding guide](docs/ONBOARDING.md) for requirements, recovery, and the first-task prompt.

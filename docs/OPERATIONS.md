@@ -8,7 +8,7 @@ This repository targets `Me@eythandami.co’s Account` (`2aebaf88ef9bbc427b72077
 - URL: https://app-foundation.winter-lake-b4eb.workers.dev
 - D1: `app-foundation-db` (`293f31a0-b2e9-4b18-a377-9b794028f72b`)
 - Private R2 bucket: `app-foundation-files`
-- Repository: https://github.com/eythandamico/app-foundation-starter
+- Repository: https://github.com/eythandamico/highway
 
 `wrangler.jsonc` holds production bindings and public configuration. Local development uses ignored `.dev.vars` overrides with `APP_ENV=development`, `AUTH_DELIVERY=console`, and a matching local `SITE_ORIGIN`. The current local instance runs at `http://localhost:5190` with `npm run dev -- --port 5190`; a fresh setup defaults to port 5188.
 
@@ -50,3 +50,14 @@ Keep the previous working build and known migration state. Roll back code indepe
 ## Git and packaging
 
 The delivered ZIP is allowlisted and includes a SHA-256 inventory. It excludes dependencies, build output, local databases, secrets, logs and Git history. After unpacking, initialize a new repository and commit the package. Run `npm run package` to create another clean archive after modifying it; inspect the inventory before distributing.
+
+## Highway public site and example
+
+The documentation site and synthetic Yardwork example deploy independently of the optional authenticated starter. They use the personal account above and have no D1/R2 bindings:
+
+- `highway`: https://highway.winter-lake-b4eb.workers.dev
+- `highway-demo`: https://highway-demo.winter-lake-b4eb.workers.dev/demo
+
+Run `npm run deploy:demo` and `npm run deploy:showcase` after validation. These explicitly use each app's `vite.cloudflare.config.ts` and generated `dist/server/wrangler.json`; ordinary preview builds remain independent of Cloudflare. The site build regenerates versioned plugin ZIP downloads. Production links are configured in the deployment configs, and can be overridden with `HIGHWAY_DOCS_URL`/`HIGHWAY_DEMO_URL`.
+
+Do not deploy the root starter configuration when publishing the Highway showcase. Skill licensing remains undecided; no new public reuse license is granted by this deployment.

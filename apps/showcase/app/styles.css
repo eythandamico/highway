@@ -1,0 +1,22 @@
+@import "../../../packages/highway-styles/src/source.css";
+@source "../";
+@source "../../../packages/highway-react/src";
+@source "../../../examples/yardwork/src/components";
+
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  padding: var(--space-3);
+  background: var(--background);
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 12px;
+}
+/* Layout for the shared development labs; component materials stay package-owned. */
+.page { max-width: 1200px; margin: 0 auto; padding: var(--space-12) var(--space-8); min-height: 65vh; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-8); }
+.page-heading p { margin-top: var(--space-2); }
+@media (max-width: 640px) { .page { padding: var(--space-8) var(--space-5); min-height: 65vh; } }

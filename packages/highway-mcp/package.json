@@ -1,0 +1,30 @@
+{
+  "name": "@highway/mcp",
+  "version": "0.2.0",
+  "description": "Read-only MCP access to Highway's versioned component APIs and adoption guidance.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "bin": {
+    "highway-mcp": "src/server.mjs"
+  },
+  "files": [
+    "src",
+    "data",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "prepack": "node --input-type=module -e \"await import('./src/create-server.mjs')\""
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.4.0"
+  }
+}

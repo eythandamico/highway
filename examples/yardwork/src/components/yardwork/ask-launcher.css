@@ -1,0 +1,7 @@
+.yw-app .yw-content { padding-bottom: calc(var(--space-30) + env(safe-area-inset-bottom)); }
+@media (max-width: 760px) {
+ .yw-app .ui-ask-root[data-floating="true"] { bottom: calc(var(--space-24) + env(safe-area-inset-bottom)); }
+ .yw-app .yw-content { padding-bottom: calc(var(--space-30) + var(--space-20) + env(safe-area-inset-bottom)); }
+ .has-dev-options .dev-options { bottom: calc(var(--space-24) + var(--space-16) + env(safe-area-inset-bottom)); }
+ .has-dev-options:has(.ui-ask-reply) .dev-options { visibility: hidden; }
+}

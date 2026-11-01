@@ -1,0 +1,478 @@
+[
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#2467c7",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#afb6fe",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#e05cc3",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#f72f1b",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#06b6d4",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#8b5cf6",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#ec4899",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#f97316",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#10b981",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#6366f1",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#f59e0b",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#ef4444",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#84cc16",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#f43f5e",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#a855f7",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#3b82f6",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#14b8a6",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#d946ef",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#0ea5e9",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+    "rule": "literal-color",
+    "match": "#151721",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#2467c7",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#afb6fe",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#e05cc3",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#f72f1b",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#06b6d4",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#8b5cf6",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#ec4899",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#f97316",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#10b981",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#6366f1",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#f59e0b",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#ef4444",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#84cc16",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#f43f5e",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#a855f7",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#3b82f6",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#14b8a6",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#d946ef",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#0ea5e9",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/card.jsx",
+    "rule": "literal-color",
+    "match": "#151721",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/pin-input.jsx",
+    "rule": "literal-color",
+    "match": "#ef4444",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/prompt-bar.jsx",
+    "rule": "literal-color",
+    "match": "#767270",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/split-pane.jsx",
+    "rule": "transition-all",
+    "match": "transition-all",
+    "count": 1,
+    "reason": "Inherited interaction recipe retained pending property-by-property visual review; no additional occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/invariant/components/step-indicator.jsx",
+    "rule": "literal-color",
+    "match": "#ffffff",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFD074",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#B99AF1",
+    "count": 5,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#F891EE",
+    "count": 3,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#ED71E7",
+    "count": 3,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFB68E",
+    "count": 3,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFDE92",
+    "count": 3,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#78DFB2",
+    "count": 3,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#8DEFFA",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#63DFF2",
+    "count": 4,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#8AF16A",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#60E83E",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#87C3F6",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#CFB5FF",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFCDAB",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#E4E46D",
+    "count": 3,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#A1F1CC",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#ACDAFF",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFB66C",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFB5CD",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#F894B7",
+    "count": 2,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#FFCE90",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#BDC5FF",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#A1ACF2",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  },
+  {
+    "file": "packages/highway-react/src/lib/gradient-identity.ts",
+    "rule": "literal-color",
+    "match": "#F1EF93",
+    "count": 1,
+    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
+  }
+]

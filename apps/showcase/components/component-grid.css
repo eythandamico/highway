@@ -1,0 +1,40 @@
+.component-directory { max-width:1440px; margin:auto; padding:var(--space-14) var(--space-10) var(--space-20); }
+.component-directory-heading { display:flex; justify-content:space-between; align-items:center; gap:var(--space-6); margin-bottom:var(--space-8); }
+.component-directory-heading h1 { font-size:var(--type-display); line-height:var(--leading-display); font-weight:var(--weight-semibold); letter-spacing:-.04em; margin:0 0 var(--space-3); }
+.component-directory-heading p { color:var(--muted-foreground); font-size:var(--type-body); line-height:var(--leading-body); max-width:540px; margin:0; }
+.component-directory-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--space-6); }
+.component-tile { position:relative; min-width:0; border:1px solid var(--border); border-radius:calc(var(--radius-panel) + var(--space-1)); overflow:hidden; background:var(--background); transition:transform var(--duration-normal) var(--ease-standard), box-shadow var(--duration-normal) var(--ease-standard), border-color var(--duration-normal) var(--ease-standard); }
+.component-tile-preview { position:relative; height:260px; overflow:hidden; display:grid; place-items:center; background:var(--highway-preview-background); pointer-events:none; }
+.component-tile-stage { position:absolute; left:50%; top:50%; width:420px; padding:var(--space-6); transform:translate(-50%,-50%) scale(.72); }
+.component-tile-stage .library-controls, .component-tile-stage .library-source { display:none; }
+.component-tile-caption { padding:var(--space-4); }
+.component-tile h2 { font-size:var(--type-body); line-height:var(--leading-body); font-weight:var(--weight-semibold); margin:0 0 var(--space-half); }
+.component-tile h2 a { display:flex; align-items:center; justify-content:space-between; gap:var(--space-3); }
+.component-tile h2 a::after { content:""; position:absolute; inset:0; border-radius:calc(var(--radius-panel) + var(--space-1)); }
+.component-tile h2 a:focus-visible { outline:none; }
+.component-tile:has(a:focus-visible) { outline:2px solid var(--ring); outline-offset:4px; }
+.component-tile h2 svg { color:var(--muted-foreground); transition:transform var(--duration-fast) var(--ease-standard); }
+.component-tile-caption p { font-size:var(--type-body-sm); line-height:var(--leading-body); color:var(--muted-foreground); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+@media(max-width:1000px) { .component-directory-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:640px) { .component-directory { padding:var(--space-8) var(--space-5) var(--space-12); } .component-directory-heading { align-items:flex-start; flex-direction:column; gap:var(--space-4); } .component-directory-grid { grid-template-columns:minmax(0,1fr); gap:var(--space-5); } }
+@media(prefers-reduced-motion:reduce) { .component-tile h2 svg { transition:none; } }
+
+.component-tile-stage[data-preview="review-apply-card"] { transform:translate(-50%,-50%) scale(.62); }
+
+@media(hover:hover) and (pointer:fine) {
+  .component-tile:hover { transform:translateY(calc(-1 * var(--space-half))); box-shadow:var(--panel-shadow); border-color:color-mix(in srgb, var(--border) 92%, var(--foreground)); }
+  .component-tile:active { transform:translateY(0); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .component-tile { transition:none; }
+  .component-tile:hover { transform:none; }
+}
+
+.component-directory-tabs-scroll { overflow-x:auto; scrollbar-width:none; margin-bottom:var(--space-6); }
+.component-directory-tabs-scroll::-webkit-scrollbar { display:none; }
+.component-directory-tabs { width:max-content; min-width:100%; }
+.component-directory-tabs button { white-space:nowrap; }
+
+.component-directory-empty { padding:var(--space-20) var(--space-5); text-align:center; }
+.component-directory-empty h2 { font-size:var(--type-heading-lg); line-height:var(--leading-heading-lg); font-weight:var(--weight-semibold); }
+.component-directory-empty p { margin-top:var(--space-2); color:var(--muted-foreground); font-size:var(--type-body); line-height:var(--leading-body); }

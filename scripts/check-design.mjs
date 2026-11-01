@@ -3,10 +3,32 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const appDirectory = path.join(root, "app");
-const componentsDirectory = path.join(root, "components");
-const tokenFile = path.join(appDirectory, "tokens.css");
+const sourceDirectories = [
+  "app",
+  "components",
+  "packages/highway-react/src",
+  "packages/highway-styles/src",
+  "apps/showcase/app",
+  "apps/showcase/components",
+  "examples/yardwork/app",
+  "examples/yardwork/src/components/yardwork",
+].map((directory) => path.join(root, directory));
+const tokenFile = path.join(root, "packages/highway-styles/src/tokens.css");
 const issues = [];
+const filesOutsideLegacyDesignGuard = new Set([
+  path.join(root, "packages/highway-styles/src/invariant-theme.css"),
+  path.join(root, "packages/highway-styles/src/vendor/shadcn-tailwind-4.13.0.css"),
+]);
+const legacyOwnership = new Map([
+  ["packages/highway-styles/src/controls.css", "app/controls.css"],
+  ["packages/highway-react/src/components/visual/visual-effects.css", "components/visual/visual-effects.css"],
+  ["packages/highway-react/src/components/ui/native-select.tsx", "components/ui/native-select.tsx"],
+]);
+
+function ownershipPath(file) {
+  const relativeFile = path.relative(root, file).replaceAll(path.sep, "/");
+  return legacyOwnership.get(relativeFile) ?? relativeFile;
+}
 
 function filesUnder(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -32,7 +54,7 @@ function reportMatches(file, source, pattern, describe, shouldReport = () => tru
 }
 
 function isIntentionalArtworkColor(file, source, match) {
-  const relativeFile = path.relative(root, file).replaceAll(path.sep, "/");
+  const relativeFile = ownershipPath(file);
   const lineStart = source.lastIndexOf("\n", match.index) + 1;
   const lineEnd = source.indexOf("\n", match.index);
   const line = source.slice(lineStart, lineEnd < 0 ? source.length : lineEnd);
@@ -70,16 +92,16 @@ function isIntentionalArtworkColor(file, source, match) {
   return artworkPalettes.some(([allowedColor, selector]) => color === allowedColor && selector.test(line));
 }
 
-const sourceFiles = [...filesUnder(appDirectory), ...filesUnder(componentsDirectory)];
+const sourceFiles = sourceDirectories.flatMap(filesUnder);
 const tsxFiles = sourceFiles.filter((file) => file.endsWith(".tsx"));
-const cssFiles = sourceFiles.filter((file) => file.endsWith(".css"));
+const cssFiles = sourceFiles.filter((file) => file.endsWith(".css") && !filesOutsideLegacyDesignGuard.has(file));
 const tokenCss = withoutBlockComments(readFileSync(tokenFile, "utf8"));
 const declaredTokenNames = new Set([...tokenCss.matchAll(/(--(?:space|radius)-[\w-]+)\s*:/g)].map((match) => match[1]));
 
 for (const file of tsxFiles) {
   let source = withoutBlockComments(readFileSync(file, "utf8"));
   // Recharts emits neutral SVG defaults in selectors; these are compatibility selectors, not component palette choices.
-  if (path.relative(root, file).replaceAll(path.sep, "/") === "components/ui/chart.tsx") {
+  if (ownershipPath(file) === "components/ui/chart.tsx") {
     source = source.replace(/\[(?:stroke|fill)='(?:#ccc|#fff)'\]/gi, "[]");
   }
 
@@ -89,7 +111,7 @@ for (const file of tsxFiles) {
     source,
     /<\s*select(?:\s|>|\/)/g,
     () => "use the shared NativeSelect component",
-    () => path.relative(root, file).replaceAll(path.sep, "/") !== "components/ui/native-select.tsx",
+    () => ownershipPath(file) !== "components/ui/native-select.tsx",
   );
   reportMatches(
     file,

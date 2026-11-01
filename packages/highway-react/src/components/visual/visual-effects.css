@@ -1,0 +1,52 @@
+/* Opt-in visual layer extracted from Playground's header, rail, composer,
+ * information panel, media controls, soft surfaces and avatar recipes.
+ * These are bounded effects: never add backdrop blur to an entire page.
+ */
+.fx-progressive {--fx-direction:to bottom;--fx-inverse:to top;position:absolute;inset:0;pointer-events:none;user-select:none;z-index:0}
+.fx-progressive[data-edge=bottom]{--fx-direction:to top;--fx-inverse:to bottom}
+.fx-progressive[data-edge=left]{--fx-direction:to right;--fx-inverse:to left}
+.fx-progressive[data-edge=right]{--fx-direction:to left;--fx-inverse:to right}
+.fx-progressive::after {content:"";position:absolute;inset:0;background:linear-gradient(var(--fx-direction),color-mix(in srgb,var(--surface) 88%,transparent) 0%,color-mix(in srgb,var(--surface) 72%,transparent) 48%,color-mix(in srgb,var(--surface) 36%,transparent) 76%,transparent 100%)}
+.fx-progressive>span {position:absolute;inset:0;pointer-events:none}
+.fx-progressive>span:nth-child(1){-webkit-backdrop-filter:blur(var(--fx-blur-low));backdrop-filter:blur(var(--fx-blur-low));-webkit-mask-image:linear-gradient(var(--fx-direction),#000 65%,transparent 100%);mask-image:linear-gradient(var(--fx-direction),#000 65%,transparent 100%)}
+.fx-progressive>span:nth-child(2){-webkit-backdrop-filter:blur(var(--fx-blur-mid));backdrop-filter:blur(var(--fx-blur-mid));-webkit-mask-image:linear-gradient(var(--fx-direction),#000 40%,transparent 85%);mask-image:linear-gradient(var(--fx-direction),#000 40%,transparent 85%)}
+.fx-progressive>span:nth-child(3){-webkit-backdrop-filter:blur(var(--fx-blur-high));backdrop-filter:blur(var(--fx-blur-high));-webkit-mask-image:linear-gradient(var(--fx-direction),#000 10%,transparent 65%);mask-image:linear-gradient(var(--fx-direction),#000 10%,transparent 65%)}
+.fx-progressive[data-recipe=rail]::after {background:linear-gradient(var(--fx-direction),color-mix(in srgb,var(--surface) 96%,transparent) 0%,color-mix(in srgb,var(--surface) 82%,transparent) 50%,color-mix(in srgb,var(--surface) 36%,transparent) 76%,color-mix(in srgb,var(--surface) 0%,transparent) 100%)}
+.fx-progressive[data-recipe=rail]>span:nth-child(1){-webkit-mask-image:linear-gradient(var(--fx-direction),#000 60%,transparent 100%);mask-image:linear-gradient(var(--fx-direction),#000 60%,transparent 100%)}
+.fx-progressive[data-recipe=rail]>span:nth-child(2){-webkit-mask-image:linear-gradient(var(--fx-direction),#000 35%,transparent 85%);mask-image:linear-gradient(var(--fx-direction),#000 35%,transparent 85%)}
+.fx-progressive[data-recipe=panel]::after {background:linear-gradient(var(--fx-direction),color-mix(in srgb,var(--surface) 100%,transparent),color-mix(in srgb,var(--surface) 70%,transparent) 55%,color-mix(in srgb,var(--surface) 0%,transparent))}
+.fx-progressive[data-recipe=panel]>span:nth-child(1){-webkit-backdrop-filter:blur(var(--fx-panel-low));backdrop-filter:blur(var(--fx-panel-low));-webkit-mask-image:linear-gradient(var(--fx-inverse),transparent,#000 45%);mask-image:linear-gradient(var(--fx-inverse),transparent,#000 45%)}
+.fx-progressive[data-recipe=panel]>span:nth-child(2){-webkit-backdrop-filter:blur(var(--fx-panel-mid));backdrop-filter:blur(var(--fx-panel-mid));-webkit-mask-image:linear-gradient(var(--fx-inverse),transparent 25%,#000 75%);mask-image:linear-gradient(var(--fx-inverse),transparent 25%,#000 75%)}
+.fx-progressive[data-recipe=panel]>span:nth-child(3){-webkit-backdrop-filter:blur(var(--fx-panel-high));backdrop-filter:blur(var(--fx-panel-high));-webkit-mask-image:linear-gradient(var(--fx-inverse),transparent 50%,#000);mask-image:linear-gradient(var(--fx-inverse),transparent 50%,#000)}
+/* Composer variant retains its source's transparent-to-solid tint stops. */
+.fx-progressive[data-recipe=panel][data-edge=bottom]::after {background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--surface) 65%,transparent) 65%,var(--surface))}
+.fx-edge-fade {position:absolute;inset:0;pointer-events:none;user-select:none;z-index:1;background:linear-gradient(to right,color-mix(in srgb,var(--surface) 98%,transparent),color-mix(in srgb,var(--surface) 62%,transparent) 4%,color-mix(in srgb,var(--surface) 20%,transparent) 10%,transparent 19%,transparent 81%,color-mix(in srgb,var(--surface) 20%,transparent) 90%,color-mix(in srgb,var(--surface) 62%,transparent) 96%,color-mix(in srgb,var(--surface) 98%,transparent))}
+.fx-edge-fade[data-axis=vertical]{background:linear-gradient(to bottom,color-mix(in srgb,var(--surface) 98%,transparent),color-mix(in srgb,var(--surface) 62%,transparent) 4%,color-mix(in srgb,var(--surface) 20%,transparent) 10%,transparent 19%,transparent 81%,color-mix(in srgb,var(--surface) 20%,transparent) 90%,color-mix(in srgb,var(--surface) 62%,transparent) 96%,color-mix(in srgb,var(--surface) 98%,transparent))}
+.fx-gradient-surface[data-gradient=onboarding]{background:linear-gradient(120deg,light-dark(#f7f8ff,var(--surface-muted)),light-dark(#fff,var(--surface)) 60%)}
+.fx-gradient-surface[data-gradient=profile]{background:linear-gradient(115deg,light-dark(#eaf0ff,var(--surface-muted)),light-dark(#f2f5fc,var(--surface-muted)) 65%,light-dark(#e7eeff,var(--surface-muted)))}
+.fx-gradient-surface[data-gradient=upload]{background:linear-gradient(125deg,light-dark(#fafbff,var(--surface)),light-dark(#fff,var(--surface)) 65%)}
+.fx-gradient-surface[data-gradient=stage]{background:radial-gradient(ellipse at 50% 35%,light-dark(#f0f4ff,var(--surface-muted)),var(--surface) 70%)}
+.fx-media-scrim {position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#12141605 0%,#12141680 35%,#121416f5 100%)}
+.fx-media-scrim[data-softness=true]{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.fx-media-foreground{position:relative;z-index:1;color:white}
+.fx-media-frame{position:relative;overflow:hidden;border-radius:var(--radius-panel);isolation:isolate;box-shadow:inset 0 0 0 1px rgb(0 0 0/.06)}
+.fx-gradient-avatar{display:inline-block;flex-shrink:0;border-radius:50%;overflow:hidden;vertical-align:middle}
+.fx-image-outline {outline:1px solid light-dark(rgb(0 0 0/.06),rgb(255 255 255/.12));outline-offset:-1px}
+.fx-overlay {background:light-dark(#12141930,#00000070);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+:is(.ui-button,.file-upload).image-action {--secondary:rgb(18 18 18/.62);--secondary-hover:rgb(18 18 18/.76);--secondary-active:rgb(18 18 18/.86);--ink:#fff;--control-focus:#fff;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:50%;background:var(--secondary);color:white;border:1px solid rgb(255 255 255/.22);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 2px 8px rgb(0 0 0/.14)}
+:is(.ui-button,.file-upload).image-action:focus-visible,.file-upload.image-action:has(input:focus-visible){outline:2px solid white;outline-offset:2px}
+.fx-elevated{box-shadow:var(--fx-surface-shadow)}
+/* Hover should enhance optional details, never hide required actions on touch. */
+.fx-hover-detail{opacity:1;transition:opacity var(--fx-motion-normal) var(--fx-motion-ease)}
+@media(hover:hover) and (pointer:fine){.fx-hover-reveal .fx-hover-detail{opacity:0}.fx-hover-reveal:is(:hover,:focus-within) .fx-hover-detail{opacity:1}}
+@media(hover:none){.fx-media-scrim[data-softness=true]{-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Less transparency is a separate preference from less animation. */
+@media(prefers-reduced-transparency:reduce){
+ .fx-progressive>span,.fx-media-scrim[data-softness=true],.image-action,.fx-overlay{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ .fx-progressive::after{background:var(--surface)!important}
+ .image-action{--secondary:#242424!important;--secondary-hover:#333!important;background:#242424!important}
+ .fx-overlay{background:rgb(0 0 0/.6)}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.fx-progressive::after{background:var(--surface)!important}.image-action{background:#242424}.fx-overlay{background:rgb(0 0 0/.45)}}
+@media(prefers-reduced-motion:reduce){.fx-hover-detail{transition:none}}
+@media(forced-colors:active){.fx-progressive>span,.fx-edge-fade,.fx-media-scrim{display:none}.fx-progressive::after{background:Canvas}.fx-gradient-surface{background:Canvas!important}.image-action{background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText}.fx-media-foreground{color:CanvasText;background:Canvas}}

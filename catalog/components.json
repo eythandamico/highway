@@ -1,0 +1,5489 @@
+{
+  "schemaVersion": 1,
+  "package": "@highway/react",
+  "packageVersion": "0.3.0",
+  "stylesImport": "@highway/styles/styles.css",
+  "themeExport": "HighwayTheme",
+  "rules": [
+    "Install the real package components; never create lookalikes.",
+    "Preserve host handlers, routes, validation and infrastructure.",
+    "Brand through HighwayTheme. Component geometry, material and motion belong to the package.",
+    "Use the application type scale from docs/PACKAGES.md across adopted host content: body 14/20, dense tables 13/20, and the named heading/metadata roles. Brand fonts without inventing a second scale.",
+    "Analytics typography: tabular figures, weights 400/500/600, muted 14px secondary labels, dense tables 13/20 with expandable ~40px desktop rows, primary KPI 30px and secondary KPI 24px.",
+    "An alternative is supported but is not interchangeable with the recommended API.",
+    "If a required export is missing, report the gap or compose existing exports; do not modify Highway without authorization.",
+    "Select a family and a documented variant before implementation. Props describe implemented modes only; compatibility exports retain their existing contracts. Never infer interchangeability from appearance."
+  ],
+  "components": [
+    {
+      "id": "highway.button",
+      "export": "Button",
+      "source": "packages/highway-react/src/components/ui/button.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Default action control. Choose default for the main action, secondary for alternatives, ghost for quiet actions, destructive for destructive actions.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "menus",
+        "buttons",
+        "sheets",
+        "mediascrim",
+        "stateicon",
+        "theme-infrastructure"
+      ]
+    },
+    {
+      "id": "highway.button-variants",
+      "export": "buttonVariants",
+      "source": "packages/highway-react/src/components/ui/button.tsx",
+      "status": "supported",
+      "kind": "helper",
+      "useWhen": "Compose buttonVariants through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "helper",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "menus",
+        "buttons",
+        "sheets",
+        "mediascrim",
+        "stateicon",
+        "theme-infrastructure"
+      ]
+    },
+    {
+      "id": "highway.input",
+      "export": "Input",
+      "source": "packages/highway-react/src/components/ui/input.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Native text/email/number form fields with existing change handlers and constraints.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "text-field"
+      ]
+    },
+    {
+      "id": "highway.switch",
+      "export": "Switch",
+      "source": "packages/highway-react/src/components/ui/switch.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose Switch through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "families": [
+        "switch"
+      ]
+    },
+    {
+      "id": "highway.native-select",
+      "export": "NativeSelect",
+      "source": "packages/highway-react/src/components/ui/native-select.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Default select for an existing native select value/change contract; presents a themed combobox.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Preserve labels and constraints; browser tests should interact with the visible combobox."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "families": [
+        "select"
+      ]
+    },
+    {
+      "id": "highway.date-input",
+      "export": "DateInput",
+      "source": "packages/highway-react/src/components/ui/date-input.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Native date entry with an on-demand calendar.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "families": [
+        "dates"
+      ]
+    },
+    {
+      "id": "highway.label",
+      "export": "Label",
+      "source": "packages/highway-react/src/components/ui/label.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose Label through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "text-field",
+        "switch",
+        "dates"
+      ]
+    },
+    {
+      "id": "highway.form-dialog",
+      "export": "FormDialog",
+      "source": "packages/highway-react/src/components/foundation/patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Create/edit forms with retained drafts, pending protection and save-failure recovery.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Wire onSave to the real operation; only resolve on confirmed success."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.confirm",
+      "export": "Confirm",
+      "source": "packages/highway-react/src/components/foundation/patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Confirmation requiring an explicit domain operation before success.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.status",
+      "export": "Status",
+      "source": "packages/highway-react/src/components/foundation/status.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose Status through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "badge-and-status"
+      ]
+    },
+    {
+      "id": "highway.feedback",
+      "export": "Feedback",
+      "source": "packages/highway-react/src/components/foundation/feedback.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose Feedback through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "alerts-and-feedback"
+      ]
+    },
+    {
+      "id": "highway.loading-state",
+      "export": "LoadingState",
+      "source": "packages/highway-react/src/components/foundation/feedback.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose LoadingState through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "alerts-and-feedback"
+      ]
+    },
+    {
+      "id": "highway.theme-scope",
+      "export": "ThemeScope",
+      "source": "packages/highway-react/src/components/ui/theme-scope.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Low-level token context inside an existing appearance scope.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Use HighwayTheme as the external application entry point; ThemeScope alone does not provide a styled wrapper."
+      ],
+      "contract": {
+        "family": "helper",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "theme-infrastructure"
+      ]
+    },
+    {
+      "id": "highway.accordion",
+      "export": "Accordion",
+      "source": "packages/highway-react/src/invariant/components/accordion.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Collapsible content sections with blur-in animation.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "accordion"
+      ]
+    },
+    {
+      "id": "highway.alert",
+      "export": "Alert",
+      "source": "packages/highway-react/src/invariant/components/alert.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Inline notification banner with icon, title, description, and optional dismiss. Animates out on dismiss with scale + fade.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "alerts-and-feedback"
+      ]
+    },
+    {
+      "id": "highway.action-button",
+      "export": "ActionButton",
+      "source": "packages/highway-react/src/invariant/components/action-button.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Button that morphs from label to spinner to checkmark on action.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "buttons"
+      ]
+    },
+    {
+      "id": "highway.agent-avatar",
+      "export": "AgentAvatar",
+      "source": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Circular avatar with deterministic mesh gradient generated from name. Supports thinking and inactive states.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "avatars"
+      ]
+    },
+    {
+      "id": "highway.badge",
+      "export": "Badge",
+      "source": "packages/highway-react/src/invariant/components/badge.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Pill label with three variants: dark, subdued, and outline.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "badge-and-status"
+      ]
+    },
+    {
+      "id": "highway.bottom-sheet",
+      "export": "BottomSheet",
+      "source": "packages/highway-react/src/invariant/components/bottom-sheet.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "iOS-style bottom sheet with pull-to-dismiss, viewport shrink effect, and backdrop. The page scales down and rounds its corners when the sheet opens.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "inherited-specialty",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.bottom-nav",
+      "export": "BottomNav",
+      "source": "packages/highway-react/src/invariant/components/bottom-nav.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Floating bottom navigation bar with tab switching, add menu, profile menu, and chat input morph.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "bottomnav"
+      ]
+    },
+    {
+      "id": "highway.divider",
+      "export": "Divider",
+      "source": "packages/highway-react/src/invariant/components/divider.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Horizontal rule using the theme border color.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "divider"
+      ]
+    },
+    {
+      "id": "highway.dropdown",
+      "export": "Dropdown",
+      "source": "packages/highway-react/src/invariant/components/dropdown.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Overflow menu with trigger button and 12 placement options.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "overlay",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.number-input",
+      "export": "NumberInput",
+      "source": "packages/highway-react/src/invariant/components/number-input.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Numeric input with +/- stepper buttons, min/max bounds, and step size.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "numberinput"
+      ]
+    },
+    {
+      "id": "highway.pin-input",
+      "export": "PinInput",
+      "source": "packages/highway-react/src/invariant/components/pin-input.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Row of individual digit boxes for 2FA/OTP codes. Auto-advances focus on input, supports paste, and arrow key navigation.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "pininput"
+      ]
+    },
+    {
+      "id": "highway.radio-group",
+      "export": "RadioGroup",
+      "source": "packages/highway-react/src/invariant/components/radio-group.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Group of radio options with vertical or horizontal layout.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "radiogroup"
+      ]
+    },
+    {
+      "id": "highway.split-pane",
+      "export": "SplitPane",
+      "source": "packages/highway-react/src/invariant/components/split-pane.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Resizable two-pane layout with a draggable divider and pull tab. Supports horizontal and vertical splitting.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "splitpane"
+      ]
+    },
+    {
+      "id": "highway.slider-input",
+      "export": "SliderInput",
+      "source": "packages/highway-react/src/invariant/components/slider-input.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Progress-bar style range slider with a draggable divider, label on the left, and value on the right. The filled portion represents the current value.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "slider",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "sliderinput"
+      ]
+    },
+    {
+      "id": "highway.textarea",
+      "export": "Textarea",
+      "source": "packages/highway-react/src/invariant/components/textarea.jsx",
+      "status": "alternative",
+      "kind": "component",
+      "useWhen": "The Invariant textarea API when its documented interaction model is specifically required.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Not an alias for NativeTextarea; prefer NativeTextarea for existing native forms."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "textarea"
+      ]
+    },
+    {
+      "id": "highway.modal",
+      "export": "Modal",
+      "source": "packages/highway-react/src/invariant/components/modal.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Larger content container with header, close button, and scrollable body. Closes on backdrop click and Escape key.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "inherited-specialty",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.image-carousel",
+      "export": "ImageCarousel",
+      "source": "packages/highway-react/src/invariant/components/image-carousel.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Image slideshow with sliding transitions, left/right arrow navigation, and a StepIndicator overlay at the bottom center.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "imagecarousel"
+      ]
+    },
+    {
+      "id": "highway.icon-button",
+      "export": "IconButton",
+      "source": "packages/highway-react/src/invariant/components/icon-button.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Square button with a single icon. Two sizes, optional elevation via shadow.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "buttons"
+      ]
+    },
+    {
+      "id": "highway.menu",
+      "export": "Menu",
+      "source": "packages/highway-react/src/invariant/components/menu.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "overlay",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.menu-item",
+      "export": "MenuItem",
+      "source": "packages/highway-react/src/invariant/components/menu.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "inherited-specialty",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.menu-divider",
+      "export": "MenuDivider",
+      "source": "packages/highway-react/src/invariant/components/menu.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "inherited-specialty",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.overlay",
+      "export": "Overlay",
+      "source": "packages/highway-react/src/invariant/components/overlay.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Fullscreen backdrop with black tint and blur. Used behind dialogs, modals, and other floating layers.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "inherited-specialty",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "overlay"
+      ]
+    },
+    {
+      "id": "highway.spinner",
+      "export": "Spinner",
+      "source": "packages/highway-react/src/invariant/components/spinner.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Animated loading circle. Inherits `currentColor` for stroke color.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "spinner"
+      ]
+    },
+    {
+      "id": "highway.tooltip",
+      "export": "Tooltip",
+      "source": "packages/highway-react/src/invariant/components/tooltip.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Animated hover label that appears above or below its parent. Uses `popoverStyle` for scale + blur entrance. Must be inside a `relative` positioned container.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "overlay",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "tooltip"
+      ]
+    },
+    {
+      "id": "highway.expand-card",
+      "export": "ExpandCard",
+      "source": "packages/highway-react/src/invariant/components/expand-card.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Card that expands to reveal content with blur-in animation.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "expansion",
+        "material": "invariant-surface"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.message-bubble",
+      "export": "MessageBubble",
+      "source": "packages/highway-react/src/invariant/components/message-bubble.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Chat message bubble for agent and user messages with thinking state and hover actions.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "messagebubble"
+      ]
+    },
+    {
+      "id": "highway.page-section",
+      "export": "PageSection",
+      "source": "packages/highway-react/src/invariant/components/page-section.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Content width constraint with responsive horizontal padding.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "pagesection"
+      ]
+    },
+    {
+      "id": "highway.progress",
+      "export": "Progress",
+      "source": "packages/highway-react/src/invariant/components/progress.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Linear progress bar with animated fill, optional label, value counter, shimmer effect, and three sizes.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "progress"
+      ]
+    },
+    {
+      "id": "highway.profile-avatar",
+      "export": "ProfileAvatar",
+      "source": "packages/highway-react/src/invariant/components/profile-avatar.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "User avatar with rounded/circle variants, alert gem, and group stacking.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "avatars"
+      ]
+    },
+    {
+      "id": "highway.profile-avatar-group",
+      "export": "ProfileAvatarGroup",
+      "source": "packages/highway-react/src/invariant/components/profile-avatar.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "User avatar with rounded/circle variants, alert gem, and group stacking.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "avatars"
+      ]
+    },
+    {
+      "id": "highway.profile-menu",
+      "export": "ProfileMenu",
+      "source": "packages/highway-react/src/invariant/components/profile-menu.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Avatar button with dropdown menu for profile actions.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "overlay",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "profilemenu"
+      ]
+    },
+    {
+      "id": "highway.prompt-bar",
+      "export": "PromptBar",
+      "source": "packages/highway-react/src/invariant/components/prompt-bar.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Multi-line prompt input with model selector, file upload, mic with voice visualizer, and send button.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "composers"
+      ]
+    },
+    {
+      "id": "highway.row",
+      "export": "Row",
+      "source": "packages/highway-react/src/invariant/components/row.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Horizontal layout with alignment and wrapping.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "layout"
+      ],
+      "examples": [
+        "examples/contracts/families.tsx"
+      ]
+    },
+    {
+      "id": "highway.search-bar",
+      "export": "SearchBar",
+      "source": "packages/highway-react/src/invariant/components/search-bar.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Styled search input with icon and keyboard shortcut badge.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "search"
+      ],
+      "examples": [
+        "examples/contracts/families.tsx"
+      ]
+    },
+    {
+      "id": "highway.search-toggle",
+      "export": "SearchToggle",
+      "source": "packages/highway-react/src/invariant/components/search-toggle.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Square icon button that morphs into a full search input on click.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "search"
+      ],
+      "examples": [
+        "examples/contracts/families.tsx"
+      ]
+    },
+    {
+      "id": "highway.segmented-control",
+      "export": "SegmentedControl",
+      "source": "packages/highway-react/src/invariant/components/segmented-control.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Choose one of a small set of views using a measured sliding selection.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "API uses pressed buttons; tab panels need an accessibility adapter for tab roles, relationships and roving keys."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "view-selection"
+      ]
+    },
+    {
+      "id": "highway.select",
+      "export": "Select",
+      "source": "packages/highway-react/src/invariant/components/select.jsx",
+      "status": "alternative",
+      "kind": "component",
+      "useWhen": "The Invariant option-selection API when explicitly selected.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Not interchangeable with NativeSelect; check props and event signatures."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "select"
+      ]
+    },
+    {
+      "id": "highway.spotlight-card",
+      "export": "SpotlightCard",
+      "source": "packages/highway-react/src/invariant/components/spotlight-card.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Card with cursor-following gradient glow effect.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "inherited-specialty",
+        "material": "decorative"
+      },
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.stack",
+      "export": "Stack",
+      "source": "packages/highway-react/src/invariant/components/stack.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Vertical layout with consistent gap sizes.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "layout"
+      ],
+      "examples": [
+        "examples/contracts/families.tsx"
+      ]
+    },
+    {
+      "id": "highway.step-indicator",
+      "export": "StepIndicator",
+      "source": "packages/highway-react/src/invariant/components/step-indicator.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Horizontal dots where the active step expands to a pill with spring animation.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "stepindicator"
+      ]
+    },
+    {
+      "id": "highway.surface",
+      "export": "Surface",
+      "source": "packages/highway-react/src/invariant/components/surface.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "A plain padded container with explicit elevation; no glass material implied.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "invariant-surface"
+      },
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.table",
+      "export": "Table",
+      "source": "packages/highway-react/src/invariant/components/table.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Data table with sortable columns, row selection, and animated container-responsive columns. Set collapseBelow on secondary columns to fold their values beside the primary cell at narrower widths.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "table"
+      ]
+    },
+    {
+      "id": "highway.tabs",
+      "export": "Tabs",
+      "source": "packages/highway-react/src/invariant/components/tabs.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Horizontal tab bar with sliding underline indicator. Supports optional count badges.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "selection",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "view-selection"
+      ]
+    },
+    {
+      "id": "highway.text-input",
+      "export": "TextInput",
+      "source": "packages/highway-react/src/invariant/components/text-input.jsx",
+      "status": "alternative",
+      "kind": "component",
+      "useWhen": "The Invariant text-input API when explicitly selected.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Prefer Input for native form integrations."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "text-field"
+      ]
+    },
+    {
+      "id": "highway.toast-provider",
+      "export": "ToastProvider",
+      "source": "packages/highway-react/src/invariant/components/toast.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Notification toasts with stacking card deck effect. Uses context provider pattern.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "toastprovider"
+      ]
+    },
+    {
+      "id": "highway.use-toast",
+      "export": "useToast",
+      "source": "packages/highway-react/src/invariant/components/toast.jsx",
+      "status": "supported",
+      "kind": "helper",
+      "useWhen": "Notification toasts with stacking card deck effect. Uses context provider pattern.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "helper",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "toastprovider"
+      ]
+    },
+    {
+      "id": "highway.toggle",
+      "export": "Toggle",
+      "source": "packages/highway-react/src/invariant/components/toggle.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "On/off switch with spring thumb animation.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "switch"
+      ]
+    },
+    {
+      "id": "highway.skeleton",
+      "export": "Skeleton",
+      "source": "packages/highway-react/src/invariant/components/skeleton.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Animated loading placeholder with variants for text, avatars, cards, and list items. Respects `prefers-reduced-motion`.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "skeleton"
+      ]
+    },
+    {
+      "id": "highway.checkbox",
+      "export": "Checkbox",
+      "source": "packages/highway-react/src/invariant/components/checkbox.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Single checkbox with optional label. Uses accent color when checked.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "inherited-specialty",
+        "material": "field"
+      },
+      "families": [
+        "checkbox"
+      ]
+    },
+    {
+      "id": "highway.card",
+      "export": "Card",
+      "source": "packages/highway-react/src/invariant/components/card.jsx",
+      "status": "alternative",
+      "kind": "component",
+      "useWhen": "The distinct Invariant card recipe when its documented card interaction is desired.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "This is not GlassCard. Do not use it to reproduce the glass showcase."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "invariant-surface"
+      },
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.dialog",
+      "export": "Dialog",
+      "source": "packages/highway-react/src/invariant/components/dialog.jsx",
+      "status": "alternative",
+      "kind": "component",
+      "useWhen": "The separate Invariant dialog API when specifically required.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Not the root for DialogContent. Use FoundationDialog with DialogContent."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "inherited-specialty",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.empty-state",
+      "export": "EmptyState",
+      "source": "packages/highway-react/src/invariant/components/empty-state.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Centered placeholder for empty lists, search results, and blank pages. Accepts an optional action button.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "feedback",
+        "motion": "inherited-specialty",
+        "material": "inherited"
+      },
+      "families": [
+        "emptystate"
+      ]
+    },
+    {
+      "id": "highway.workspace-switcher",
+      "export": "WorkspaceSwitcher",
+      "source": "packages/highway-react/src/invariant/components/workspace-switcher.jsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Displays current workspace with dropdown to switch between workspaces.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "selection",
+        "motion": "overlay",
+        "material": "inherited"
+      },
+      "families": [
+        "workspaceswitcher"
+      ]
+    },
+    {
+      "id": "highway.ask-bar",
+      "export": "AskBar",
+      "source": "packages/highway-react/src/components/ui/ask-bar.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Inline or floating chat composer with retained failed drafts and pending submission.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "No AI/voice service is bundled. Connect onSend and messages to the host application."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "families": [
+        "composers"
+      ]
+    },
+    {
+      "id": "highway.progressive-blur",
+      "export": "ProgressiveBlur",
+      "source": "packages/highway-react/src/components/visual/progressive-blur.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "A bounded decorative backdrop behind sharp foreground controls.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Keep foreground controls above the effect; measure live blur over moving media."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "none",
+        "material": "decorative"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "progressiveblur",
+        "gradientsurface"
+      ]
+    },
+    {
+      "id": "highway.edge-fade",
+      "export": "EdgeFade",
+      "source": "packages/highway-react/src/components/visual/edge-fade.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose EdgeFade through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "none",
+        "material": "decorative"
+      },
+      "families": [
+        "edgefade"
+      ]
+    },
+    {
+      "id": "highway.media-scrim",
+      "export": "MediaScrim",
+      "source": "packages/highway-react/src/components/visual/media-scrim.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose MediaScrim through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "none",
+        "material": "decorative"
+      },
+      "families": [
+        "mediascrim"
+      ]
+    },
+    {
+      "id": "highway.gradient-surface",
+      "export": "GradientSurface",
+      "source": "packages/highway-react/src/components/visual/gradient-surface.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Background gradient only; the host composes layout/content.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "none",
+        "material": "decorative"
+      },
+      "families": [
+        "gradientsurface"
+      ]
+    },
+    {
+      "id": "highway.gradient-avatar",
+      "export": "GradientAvatar",
+      "source": "packages/highway-react/src/components/visual/gradient-avatar.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose GradientAvatar through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "none",
+        "material": "decorative"
+      },
+      "families": [
+        "avatars"
+      ]
+    },
+    {
+      "id": "highway.state-icon",
+      "export": "StateIcon",
+      "source": "packages/highway-react/src/components/ui/state-icon.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose StateIcon through its documented public API.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "none",
+        "material": "decorative"
+      },
+      "families": [
+        "stateicon"
+      ]
+    },
+    {
+      "id": "highway.highway-theme",
+      "export": "HighwayTheme",
+      "source": "packages/highway-react/src/theme",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Wrap installed components and carry brand/mode into their portaled overlays.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Import @highway/styles/styles.css once; customize supported colors/fonts, not component internals."
+      ],
+      "contract": {
+        "family": "helper",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "theme-infrastructure"
+      ]
+    },
+    {
+      "id": "highway.glass-card",
+      "export": "GlassCard",
+      "source": "packages/highway-react/src/components/ui/card.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Group information in the original translucent glass material.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Use CardHeader/CardContent/CardFooter for internal composition; do not replace its material with Card or Surface."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "glass"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.card-header",
+      "export": "CardHeader",
+      "source": "packages/highway-react/src/components/ui/card.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with GlassCard; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.card-title",
+      "export": "CardTitle",
+      "source": "packages/highway-react/src/components/ui/card.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with GlassCard; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.card-description",
+      "export": "CardDescription",
+      "source": "packages/highway-react/src/components/ui/card.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with GlassCard; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.card-content",
+      "export": "CardContent",
+      "source": "packages/highway-react/src/components/ui/card.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with GlassCard; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.card-footer",
+      "export": "CardFooter",
+      "source": "packages/highway-react/src/components/ui/card.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with GlassCard; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "cards-and-surfaces"
+      ]
+    },
+    {
+      "id": "highway.native-textarea",
+      "export": "NativeTextarea",
+      "source": "packages/highway-react/src/components/ui/textarea.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Default multiline native form field; preserves native props and form behavior.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "field"
+      },
+      "examples": [
+        "examples/contracts/basic.tsx"
+      ],
+      "families": [
+        "textarea",
+        "text-field"
+      ]
+    },
+    {
+      "id": "highway.foundation-dialog",
+      "export": "FoundationDialog",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Custom accessible modal composition with DialogContent and the Dialog subcomponents.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles.",
+        "Use DialogContent pending for in-flight dismissal protection. Prefer FormDialog for supported form workflows."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-trigger",
+      "export": "DialogTrigger",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-content",
+      "export": "DialogContent",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-header",
+      "export": "DialogHeader",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-footer",
+      "export": "DialogFooter",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-title",
+      "export": "DialogTitle",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-description",
+      "export": "DialogDescription",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.dialog-close",
+      "export": "DialogClose",
+      "source": "packages/highway-react/src/components/ui/dialog.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with FoundationDialog; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "highway.sheet",
+      "export": "Sheet",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Secondary details in a side panel with focus management.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-trigger",
+      "export": "SheetTrigger",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-content",
+      "export": "SheetContent",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-header",
+      "export": "SheetHeader",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-footer",
+      "export": "SheetFooter",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-title",
+      "export": "SheetTitle",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-description",
+      "export": "SheetDescription",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.sheet-close",
+      "export": "SheetClose",
+      "source": "packages/highway-react/src/components/ui/sheet.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with Sheet; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "sheets"
+      ]
+    },
+    {
+      "id": "highway.dropdown-menu",
+      "export": "DropdownMenu",
+      "source": "packages/highway-react/src/components/ui/dropdown-menu.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Action menus composed with DropdownMenuTrigger/Content/Item.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.dropdown-menu-trigger",
+      "export": "DropdownMenuTrigger",
+      "source": "packages/highway-react/src/components/ui/dropdown-menu.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with DropdownMenu; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.dropdown-menu-content",
+      "export": "DropdownMenuContent",
+      "source": "packages/highway-react/src/components/ui/dropdown-menu.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with DropdownMenu; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.dropdown-menu-item",
+      "export": "DropdownMenuItem",
+      "source": "packages/highway-react/src/components/ui/dropdown-menu.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with DropdownMenu; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.dropdown-menu-separator",
+      "export": "DropdownMenuSeparator",
+      "source": "packages/highway-react/src/components/ui/dropdown-menu.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose with DropdownMenu; use the matching subcomponent family.",
+      "constraints": [
+        "Use the installed implementation; do not recreate its markup or override its internal styles."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "none",
+        "material": "opaque-overlay"
+      },
+      "families": [
+        "menus"
+      ]
+    },
+    {
+      "id": "highway.combobox",
+      "export": "Combobox",
+      "source": "packages/highway-react/src/components/ui/choice-picker.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Search a long single-choice list; not navigation or multiple selection.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "overlay",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx",
+        "examples/contracts/families.tsx"
+      ],
+      "families": [
+        "combobox"
+      ]
+    },
+    {
+      "id": "highway.multi-select",
+      "export": "MultiSelect",
+      "source": "packages/highway-react/src/components/ui/choice-picker.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Select multiple values; not a single-value form field.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "overlay",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx",
+        "examples/contracts/families.tsx"
+      ],
+      "families": [
+        "combobox"
+      ]
+    },
+    {
+      "id": "highway.inline-edit",
+      "export": "InlineEdit",
+      "source": "packages/highway-react/src/components/ui/action-patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Edit a short value in place with async save and retained failures; use a dialog for complex forms.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "inlineedit"
+      ]
+    },
+    {
+      "id": "highway.split-button",
+      "export": "SplitButton",
+      "source": "packages/highway-react/src/components/ui/action-patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "One primary action with related alternatives; not unrelated navigation.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "overlay",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "buttons"
+      ]
+    },
+    {
+      "id": "highway.button-group",
+      "export": "ButtonGroup",
+      "source": "packages/highway-react/src/components/ui/action-patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Group related native actions; not a segmented selection control.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "buttons"
+      ]
+    },
+    {
+      "id": "highway.copy-button",
+      "export": "CopyButton",
+      "source": "packages/highway-react/src/components/ui/action-patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Copy a supplied string with truthful success/failure feedback.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "buttons"
+      ]
+    },
+    {
+      "id": "highway.filter-toolbar",
+      "export": "FilterToolbar",
+      "source": "packages/highway-react/src/components/ui/action-patterns.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Compose host-owned filters and clear action; does not fetch or filter records.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "layout",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "filtertoolbar"
+      ]
+    },
+    {
+      "id": "highway.date-range-picker",
+      "export": "DateRangePicker",
+      "source": "packages/highway-react/src/components/ui/date-range-picker.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Select local calendar date strings for an inclusive range; not timestamps or timezone conversion.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "field",
+        "motion": "overlay",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "dates"
+      ]
+    },
+    {
+      "id": "highway.command-palette",
+      "export": "CommandPalette",
+      "source": "packages/highway-react/src/components/ui/command-palette.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Search application actions; not form-value selection. Host owns opening shortcut and command handlers.",
+      "constraints": [
+        "Composition of package primitives; host owns data, persistence and side effects.",
+        "Use installed exports and HighwayTheme; do not recreate internal styling."
+      ],
+      "contract": {
+        "family": "overlay",
+        "motion": "overlay",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/interactions.tsx"
+      ],
+      "families": [
+        "commandpalette"
+      ]
+    },
+    {
+      "id": "highway.voice-recorder",
+      "export": "VoiceRecorder",
+      "source": "packages/highway-react/src/components/ui/agent-tools.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Record, pause, play back, and attach local audio. The host owns uploading and transcription.",
+      "constraints": [
+        "Import the exact package implementation. Preserve host handlers and brand through HighwayTheme.",
+        "VoiceRecorder requires browser microphone permission and a secure context; no transcription service is included."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "examples": [
+        "examples/contracts/agent-tools.tsx"
+      ],
+      "families": [
+        "voicerecorder"
+      ]
+    },
+    {
+      "id": "highway.context-tray",
+      "export": "ContextTray",
+      "source": "packages/highway-react/src/components/ui/agent-tools.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Show controlled context items supplied to an agent, with optional inspection and host-owned removal.",
+      "constraints": [
+        "The host owns context data, removal state, and what is sent to an agent.",
+        "Preserve the installed dialog behavior and accessible item labels; do not add agent or persistence infrastructure."
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      },
+      "families": [
+        "contexttray"
+      ]
+    },
+    {
+      "id": "highway.review-apply-card",
+      "export": "ReviewApplyCard",
+      "source": "packages/highway-react/src/components/ui/agent-tools.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Present a before-and-after proposal that requires explicit host confirmation before applying.",
+      "constraints": [
+        "The host callback owns the mutation; preserve the original content until the user applies the proposal.",
+        "Keep pending and retryable failure states, and remount with a new key for each proposal."
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "press",
+        "material": "inherited"
+      },
+      "families": [
+        "reviewapplycard"
+      ]
+    },
+    {
+      "id": "highway.number-ticker",
+      "export": "NumberTicker",
+      "source": "packages/highway-react/src/components/ui/number-ticker.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Animate numeric values with rolling digits. Avoid frequent updates and dense tables.",
+      "constraints": [
+        "Respect reduced motion. Formatting uses Intl.NumberFormat.",
+        "Inherits Highway typography; use the exact installed component."
+      ],
+      "contract": {
+        "family": "effect",
+        "motion": "animated",
+        "material": "inherited"
+      },
+      "families": [
+        "number-roll"
+      ],
+      "examples": [
+        "examples/contracts/number-roll.tsx"
+      ]
+    },
+    {
+      "id": "highway.token-icon",
+      "export": "TokenIcon",
+      "source": "packages/highway-react/src/components/ui/token-icon.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Display token artwork with an optional network badge.",
+      "families": [
+        "token-icon"
+      ],
+      "constraints": [
+        "Supply token and network artwork from the host; no network registry or wallet connection is bundled."
+      ]
+    },
+    {
+      "id": "highway.token-badge",
+      "export": "TokenBadge",
+      "source": "packages/highway-react/src/components/ui/token-icon.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Display a compact network mark.",
+      "families": [
+        "token-badge"
+      ],
+      "constraints": [
+        "Supply token and network artwork from the host; no network registry or wallet connection is bundled."
+      ]
+    },
+    {
+      "id": "highway.breadcrumbs",
+      "export": "Breadcrumbs",
+      "source": "packages/highway-react/src/components/ui/breadcrumbs.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Show ancestor navigation and the current page.",
+      "constraints": [
+        "Use descriptive ancestor links; the final item represents the current page."
+      ],
+      "families": [
+        "breadcrumbs"
+      ]
+    },
+    {
+      "id": "highway.copy-page",
+      "export": "CopyPage",
+      "source": "packages/highway-react/src/components/ui/copy-page.tsx",
+      "status": "supported",
+      "kind": "component",
+      "useWhen": "Copy or share a documentation page with a split button and menu.",
+      "constraints": [
+        "Supply Markdown content and an optional install command; clipboard success is confirmed after the write completes."
+      ],
+      "families": [
+        "copy-page"
+      ]
+    }
+  ],
+  "showcase": {
+    "inv-bottom-nav": {
+      "availability": "package",
+      "exports": [
+        "BottomNav"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-profile-menu": {
+      "availability": "package",
+      "exports": [
+        "ProfileMenu"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-search-bar": {
+      "availability": "package",
+      "exports": [
+        "SearchBar"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-search-toggle": {
+      "availability": "package",
+      "exports": [
+        "SearchToggle"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-segmented-control": {
+      "availability": "package",
+      "exports": [
+        "SegmentedControl"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-tabs": {
+      "availability": "package",
+      "exports": [
+        "Tabs"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-workspace-switcher": {
+      "availability": "package",
+      "exports": [
+        "WorkspaceSwitcher"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-checkbox": {
+      "availability": "package",
+      "exports": [
+        "Checkbox"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-number-input": {
+      "availability": "package",
+      "exports": [
+        "NumberInput"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-pin-input": {
+      "availability": "package",
+      "exports": [
+        "PinInput"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-radio-group": {
+      "availability": "package",
+      "exports": [
+        "RadioGroup"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-select": {
+      "availability": "package",
+      "exports": [
+        "Select"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-slider-input": {
+      "availability": "package",
+      "exports": [
+        "SliderInput"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-text-input": {
+      "availability": "package",
+      "exports": [
+        "TextInput"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-textarea": {
+      "availability": "package",
+      "exports": [
+        "Textarea"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-toggle": {
+      "availability": "package",
+      "exports": [
+        "Switch"
+      ],
+      "note": "Alias of switch; use the canonical Highway Switch."
+    },
+    "inv-action-button": {
+      "availability": "package",
+      "exports": [
+        "ActionButton"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-button": {
+      "availability": "package",
+      "exports": [
+        "Button"
+      ],
+      "note": "Alias of button; use the canonical Highway Button."
+    },
+    "inv-dropdown": {
+      "availability": "package",
+      "exports": [
+        "Dropdown"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-icon-button": {
+      "availability": "package",
+      "exports": [
+        "IconButton"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-agent-avatar": {
+      "availability": "package",
+      "exports": [
+        "AgentAvatar"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-profile-avatar": {
+      "availability": "package",
+      "exports": [
+        "ProfileAvatar",
+        "ProfileAvatarGroup"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-card": {
+      "availability": "package",
+      "exports": [
+        "Card"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-divider": {
+      "availability": "package",
+      "exports": [
+        "Divider"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-expand-card": {
+      "availability": "package",
+      "exports": [
+        "ExpandCard"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-page-section": {
+      "availability": "package",
+      "exports": [
+        "PageSection"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-row": {
+      "availability": "package",
+      "exports": [
+        "Row"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-split-pane": {
+      "availability": "package",
+      "exports": [
+        "SplitPane"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-spotlight-card": {
+      "availability": "package",
+      "exports": [
+        "SpotlightCard"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-stack": {
+      "availability": "package",
+      "exports": [
+        "Stack"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-surface": {
+      "availability": "package",
+      "exports": [
+        "Surface"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-alert": {
+      "availability": "package",
+      "exports": [
+        "Alert"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-badge": {
+      "availability": "package",
+      "exports": [
+        "Badge"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-empty-state": {
+      "availability": "package",
+      "exports": [
+        "EmptyState"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-progress": {
+      "availability": "package",
+      "exports": [
+        "Progress"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-skeleton": {
+      "availability": "package",
+      "exports": [
+        "Skeleton"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-spinner": {
+      "availability": "package",
+      "exports": [
+        "Spinner"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-step-indicator": {
+      "availability": "package",
+      "exports": [
+        "StepIndicator"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-toast": {
+      "availability": "package",
+      "exports": [
+        "ToastProvider",
+        "useToast"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-bottom-sheet": {
+      "availability": "package",
+      "exports": [
+        "BottomSheet"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-dialog": {
+      "availability": "package",
+      "exports": [
+        "Dialog"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-menu": {
+      "availability": "package",
+      "exports": [
+        "Menu",
+        "MenuItem",
+        "MenuDivider"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-modal": {
+      "availability": "package",
+      "exports": [
+        "Modal"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-overlay": {
+      "availability": "package",
+      "exports": [
+        "Overlay"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-tooltip": {
+      "availability": "package",
+      "exports": [
+        "Tooltip"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-image-carousel": {
+      "availability": "package",
+      "exports": [
+        "ImageCarousel"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-message-bubble": {
+      "availability": "package",
+      "exports": [
+        "MessageBubble"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-prompt-bar": {
+      "availability": "package",
+      "exports": [
+        "PromptBar"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-accordion": {
+      "availability": "package",
+      "exports": [
+        "Accordion"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "inv-table": {
+      "availability": "package",
+      "exports": [
+        "Table"
+      ],
+      "note": "Use the package API shown below; source examples are reference material."
+    },
+    "progressive-blur": {
+      "availability": "package",
+      "exports": [
+        "ProgressiveBlur"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "edge-fade": {
+      "availability": "package",
+      "exports": [
+        "EdgeFade"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "media-scrim": {
+      "availability": "package",
+      "exports": [
+        "MediaScrim",
+        "Button"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "state-icon": {
+      "availability": "package",
+      "exports": [
+        "StateIcon",
+        "Button"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "ask-bar": {
+      "availability": "package",
+      "exports": [
+        "AskBar"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "button": {
+      "availability": "package",
+      "exports": [
+        "Button"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "fields": {
+      "availability": "package",
+      "exports": [
+        "Label",
+        "Input"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "select": {
+      "availability": "package",
+      "exports": [
+        "NativeSelect"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "date": {
+      "availability": "package",
+      "exports": [
+        "Label",
+        "DateInput"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "switch": {
+      "availability": "package",
+      "exports": [
+        "Switch",
+        "Label"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "dialog": {
+      "availability": "package",
+      "exports": [
+        "FormDialog"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "sheet": {
+      "availability": "package",
+      "exports": [
+        "Sheet",
+        "SheetTrigger",
+        "SheetContent",
+        "SheetTitle",
+        "SheetDescription",
+        "Button"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "menu": {
+      "availability": "package",
+      "exports": [
+        "DropdownMenu",
+        "DropdownMenuTrigger",
+        "DropdownMenuContent",
+        "DropdownMenuItem",
+        "Button"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "card": {
+      "availability": "package",
+      "exports": [
+        "GlassCard",
+        "CardHeader",
+        "CardTitle",
+        "CardDescription",
+        "CardContent"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "status": {
+      "availability": "package",
+      "exports": [
+        "Status"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "avatars": {
+      "availability": "mixed",
+      "exports": [
+        "GradientAvatar"
+      ],
+      "note": "GradientAvatar is installable. AccountAvatar is a Yardwork-only reference and is not exported."
+    },
+    "gradients": {
+      "availability": "package",
+      "exports": [
+        "GradientSurface",
+        "ProgressiveBlur"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "theme": {
+      "availability": "package",
+      "exports": [
+        "HighwayTheme",
+        "Button"
+      ],
+      "note": "Use these installed exports for this preview."
+    },
+    "navigation": {
+      "availability": "demo-only",
+      "exports": [],
+      "note": "Yardwork domain example only. Not included in @highway/react; do not recreate it as a claimed package component."
+    },
+    "bookings": {
+      "availability": "demo-only",
+      "exports": [],
+      "note": "Yardwork domain example only. Not included in @highway/react; do not recreate it as a claimed package component."
+    },
+    "combobox": {
+      "availability": "package",
+      "exports": [
+        "Combobox"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "multi-select": {
+      "availability": "package",
+      "exports": [
+        "MultiSelect"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "inline-edit": {
+      "availability": "package",
+      "exports": [
+        "InlineEdit"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "split-button": {
+      "availability": "package",
+      "exports": [
+        "SplitButton"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "button-group": {
+      "availability": "package",
+      "exports": [
+        "ButtonGroup"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "copy-button": {
+      "availability": "package",
+      "exports": [
+        "CopyButton"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "filter-toolbar": {
+      "availability": "package",
+      "exports": [
+        "FilterToolbar"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "date-range-picker": {
+      "availability": "package",
+      "exports": [
+        "DateRangePicker"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "command-palette": {
+      "availability": "package",
+      "exports": [
+        "CommandPalette"
+      ],
+      "note": "Host-owned data and handlers; demo results are local only."
+    },
+    "voice-recorder": {
+      "availability": "package",
+      "exports": [
+        "VoiceRecorder"
+      ],
+      "note": "Package-owned interactive component. Host controls data and side effects; see the checked example and interaction guide."
+    },
+    "native-textarea": {
+      "availability": "package",
+      "exports": [
+        "NativeTextarea",
+        "Label"
+      ],
+      "note": "Installed package component; preserve host behavior."
+    },
+    "inline-feedback": {
+      "availability": "package",
+      "exports": [
+        "Feedback",
+        "Button"
+      ],
+      "note": "Installed package component; preserve host behavior."
+    },
+    "loading-message": {
+      "availability": "package",
+      "exports": [
+        "LoadingState"
+      ],
+      "note": "Installed package component; preserve host behavior."
+    },
+    "number-roll": {
+      "availability": "package",
+      "exports": [
+        "NumberTicker"
+      ],
+      "note": "Rolling digits with locale-aware formatting."
+    },
+    "token-icon": {
+      "availability": "package",
+      "exports": [
+        "TokenIcon"
+      ],
+      "note": "Adapted from Vault token artwork; network data is supplied by the host."
+    },
+    "token-badge": {
+      "availability": "package",
+      "exports": [
+        "TokenBadge"
+      ],
+      "note": "Adapted from Vault token artwork; network data is supplied by the host."
+    },
+    "breadcrumbs": {
+      "availability": "package",
+      "exports": [
+        "Breadcrumbs"
+      ],
+      "note": "Semantic navigation with wrapping and optional host link rendering."
+    },
+    "copy-page": {
+      "availability": "package",
+      "exports": [
+        "CopyPage"
+      ],
+      "note": "Shared copy feedback, Markdown viewing, page links, and optional assistant actions."
+    }
+  },
+  "gaps": [
+    {
+      "id": "input-group",
+      "source": "components/ui/input-group.tsx",
+      "availability": "source-only",
+      "reason": "Not exported by the 0.1.0 package.",
+      "fallback": "Compose Input and Button in a plain layout, each retaining its own focus behavior."
+    }
+  ],
+  "recipes": [
+    {
+      "id": "edit-form",
+      "exports": [
+        "FormDialog"
+      ],
+      "purpose": "A saved form with pending protection and retry."
+    },
+    {
+      "id": "glass-summary",
+      "exports": [
+        "GlassCard",
+        "CardHeader",
+        "CardTitle",
+        "CardDescription",
+        "CardContent"
+      ],
+      "purpose": "Grouped information with original glass material."
+    },
+    {
+      "id": "native-field",
+      "exports": [
+        "Label",
+        "Input",
+        "NativeTextarea"
+      ],
+      "purpose": "Keep native form props and existing handlers."
+    },
+    {
+      "id": "branded-scope",
+      "exports": [
+        "HighwayTheme"
+      ],
+      "purpose": "Apply brand colors/font and light/dark mode including overlays."
+    }
+  ],
+  "families": [
+    {
+      "id": "combobox",
+      "name": "Combobox",
+      "primary": "combobox",
+      "summary": "One picker with single-value and multiple-value modes; MultiSelect is a compatibility wrapper.",
+      "decision": "Implemented modes with compatibility wrappers",
+      "variants": [
+        {
+          "id": "combobox",
+          "label": "Single selection",
+          "exports": [
+            "Combobox"
+          ],
+          "when": "Search options and choose exactly one value.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Combobox label=\"Team\" options={teams} value={team} onValueChange={setTeam} />"
+        },
+        {
+          "id": "multi-select",
+          "label": "Multiple selection",
+          "exports": [
+            "Combobox"
+          ],
+          "when": "Choose several values from searchable options.",
+          "props": {
+            "multiple": true
+          },
+          "compatibility": [
+            "MultiSelect"
+          ],
+          "example": "<Combobox multiple label=\"Teams\" options={teams} value={teamsSelected} onValueChange={setTeamsSelected} />"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "search",
+      "name": "Search",
+      "primary": "inv-search-bar",
+      "summary": "SearchBar supports a persistent field or expandable presentation; SearchToggle is a compatibility wrapper.",
+      "decision": "Implemented modes with compatibility wrappers",
+      "variants": [
+        {
+          "id": "inv-search-bar",
+          "label": "Expanded search",
+          "exports": [
+            "SearchBar"
+          ],
+          "when": "Keep a search field visible in a toolbar or page.",
+          "props": {},
+          "compatibility": [],
+          "example": "<SearchBar onSearch={setQuery} />"
+        },
+        {
+          "id": "inv-search-toggle",
+          "label": "Expandable search",
+          "exports": [
+            "SearchBar"
+          ],
+          "when": "Start with an icon when space is limited; expand on activation.",
+          "props": {
+            "expandable": true
+          },
+          "compatibility": [
+            "SearchToggle"
+          ],
+          "example": "<SearchBar expandable onSearch={setQuery} />"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "layout",
+      "name": "Layout",
+      "primary": "inv-row",
+      "summary": "Stack supports direction, gap, alignment and wrapping. Row preserves the horizontal centered defaults.",
+      "decision": "Implemented modes with compatibility wrappers",
+      "variants": [
+        {
+          "id": "inv-row",
+          "label": "Horizontal",
+          "exports": [
+            "Stack"
+          ],
+          "when": "Arrange items horizontally with alignment and optional wrapping.",
+          "props": {
+            "direction": "horizontal",
+            "align": "center"
+          },
+          "compatibility": [
+            "Row"
+          ],
+          "example": "<Stack direction=\"horizontal\" align=\"center\" gap=\"md\">{children}</Stack>"
+        },
+        {
+          "id": "inv-stack",
+          "label": "Vertical",
+          "exports": [
+            "Stack"
+          ],
+          "when": "Arrange content vertically with shared spacing.",
+          "props": {
+            "direction": "vertical"
+          },
+          "compatibility": [],
+          "example": "<Stack gap=\"md\">{children}</Stack>"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "dialog",
+      "name": "Dialog",
+      "primary": "inv-dialog",
+      "summary": "Confirmation and content dialogs share an authored shell. FormDialog manages saving; FoundationDialog exposes compound primitives.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-dialog",
+          "label": "Confirmation",
+          "exports": [
+            "Dialog"
+          ],
+          "when": "Short decision with title, description and actions.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Dialog isOpen={open} onClose={close} title=\"Discard changes?\" actions={actions} />"
+        },
+        {
+          "id": "inv-modal",
+          "label": "Content dialog",
+          "exports": [
+            "Modal"
+          ],
+          "when": "Longer content with close control and a scrollable body.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Modal isOpen={open} onClose={close} title=\"Details\">{children}</Modal>"
+        },
+        {
+          "id": "dialog",
+          "label": "Form dialog",
+          "exports": [
+            "FormDialog"
+          ],
+          "when": "Save a form with pending guards, retained drafts and failure feedback.",
+          "props": {},
+          "compatibility": [],
+          "example": "<FormDialog title=\"New customer\" fields={fields} initial={initial} onSave={save} onClose={close} />"
+        },
+        {
+          "id": "compound-dialog",
+          "label": "Compound dialog",
+          "exports": [
+            "FoundationDialog",
+            "DialogTrigger",
+            "DialogContent",
+            "DialogTitle",
+            "DialogDescription"
+          ],
+          "when": "Compose a custom portaled dialog with controlled state and themed primitive slots. Use FormDialog for managed save/failure workflows.",
+          "props": {},
+          "compatibility": [],
+          "example": "<FoundationDialog open={open} onOpenChange={setOpen}><DialogContent><DialogTitle>Details</DialogTitle><DialogDescription>Record details.</DialogDescription>{children}</DialogContent></FoundationDialog>"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "menus",
+      "name": "Menus",
+      "primary": "inv-dropdown",
+      "summary": "Item-driven, compound and menu-body APIs share a family. Authored menu shells share keyboard navigation; the compound adapter retains its portal/collision engine.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-dropdown",
+          "label": "Item-driven dropdown",
+          "exports": [
+            "Dropdown"
+          ],
+          "when": "An item-array API with authored placement and compact menu motion.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Dropdown items={items} placement=\"bottom-left\" />"
+        },
+        {
+          "id": "inv-menu",
+          "label": "Menu body",
+          "exports": [
+            "Menu",
+            "MenuItem",
+            "MenuDivider"
+          ],
+          "when": "Compose an already-positioned menu body; this does not provide a popup trigger.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Menu label=\"Actions\"><MenuItem label=\"Edit\" onClick={edit} /></Menu>"
+        },
+        {
+          "id": "menu",
+          "label": "Compound menu",
+          "exports": [
+            "DropdownMenu",
+            "DropdownMenuTrigger",
+            "DropdownMenuContent",
+            "DropdownMenuItem",
+            "Button"
+          ],
+          "when": "Compose action items with themed portals and collision-aware placement.",
+          "props": {},
+          "compatibility": [],
+          "example": "<DropdownMenu><DropdownMenuTrigger asChild><Button>Actions</Button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuItem onSelect={edit}>Edit</DropdownMenuItem></DropdownMenuContent></DropdownMenu>"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "text-field",
+      "name": "Text field",
+      "primary": "fields",
+      "summary": "TextInput already wraps Input with label/icon/error. One main field page; Input and Label remain useful low-level exports. The fields preview also contains NativeTextarea, which belongs in textarea documentation.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "fields",
+          "label": "Label",
+          "exports": [
+            "Label",
+            "Input"
+          ],
+          "when": "Compose Label through its documented public API.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Label htmlFor=\"name\">Customer name</Label>\n<Input id=\"name\" value={name} onChange={event => setName(event.target.value)} />"
+        },
+        {
+          "id": "inv-text-input",
+          "label": "TextInput",
+          "exports": [
+            "TextInput"
+          ],
+          "when": "The Invariant text-input API when explicitly selected.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "textarea",
+      "name": "Textarea",
+      "primary": "inv-textarea",
+      "summary": "Textarea already wraps the shared NativeTextarea. Document autoGrow, count and error as options; retain the primitive for composition.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-textarea",
+          "label": "Textarea",
+          "exports": [
+            "Textarea"
+          ],
+          "when": "The Invariant textarea API when its documented interaction model is specifically required.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "native-textarea",
+          "label": "Primitive textarea",
+          "exports": [
+            "NativeTextarea"
+          ],
+          "when": "Compose your own label, hint and validation around a native textarea while preserving host form handlers.",
+          "props": {},
+          "compatibility": [],
+          "example": "<NativeTextarea aria-label=\"Notes\" value={notes} onChange={event => setNotes(event.target.value)} />"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "primary": "select",
+      "summary": "NativeSelect preserves native form adapters; Select exposes an options-based API. Both use the shared select primitive.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "select",
+          "label": "NativeSelect",
+          "exports": [
+            "NativeSelect"
+          ],
+          "when": "Default select for an existing native select value/change contract; presents a themed combobox.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inv-select",
+          "label": "Select",
+          "exports": [
+            "Select"
+          ],
+          "when": "The Invariant option-selection API when explicitly selected.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "buttons",
+      "name": "Buttons",
+      "primary": "button",
+      "summary": "Button supplies emphasis, sizes and loading. Icon, async, split, grouped and copy actions retain their dedicated contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "button",
+          "label": "Button",
+          "exports": [
+            "Button"
+          ],
+          "when": "Host-controlled action; use variant for emphasis and size for text or icon geometry.",
+          "props": {
+            "variant": "default"
+          },
+          "compatibility": [],
+          "example": "<Button onClick={save}>Save</Button>",
+          "options": {
+            "variant": {
+              "default": "Primary action",
+              "secondary": "Alternative action",
+              "ghost": "Quiet action",
+              "destructive": "Destructive action"
+            },
+            "size": {
+              "default": "Text button",
+              "icon": "Icon-only action; supply aria-label"
+            }
+          }
+        },
+        {
+          "id": "inv-icon-button",
+          "label": "Icon-only button",
+          "exports": [
+            "Button"
+          ],
+          "when": "Use the same Button with an icon size and an accessible label.",
+          "props": {
+            "size": "icon",
+            "aria-label": "Search"
+          },
+          "compatibility": [
+            "IconButton"
+          ],
+          "example": "<Button size=\"icon\" aria-label=\"Search\"><Search /></Button>"
+        },
+        {
+          "id": "inv-action-button",
+          "label": "Async action",
+          "exports": [
+            "ActionButton"
+          ],
+          "when": "Promise-driven action with pending, success and retry motion.",
+          "props": {},
+          "compatibility": [],
+          "example": "<ActionButton label=\"Save\" onAction={save} />"
+        },
+        {
+          "id": "split-button",
+          "label": "Split button",
+          "exports": [
+            "SplitButton"
+          ],
+          "when": "One primary action with related alternatives; not unrelated navigation.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "button-group",
+          "label": "Button group",
+          "exports": [
+            "ButtonGroup"
+          ],
+          "when": "Group related native actions; not a segmented selection control.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "copy-button",
+          "label": "Copy button",
+          "exports": [
+            "CopyButton"
+          ],
+          "when": "Copy a supplied string with truthful success/failure feedback.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "switch",
+      "name": "Switch",
+      "primary": "switch",
+      "summary": "Legacy Toggle delegates to Switch; inv-toggle is already an alias. Do not add another runtime implementation.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "switch",
+          "label": "Switch",
+          "exports": [
+            "Switch",
+            "Label"
+          ],
+          "when": "Compose Switch through its documented public API.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "cards-and-surfaces",
+      "name": "Cards and surfaces",
+      "primary": "card",
+      "summary": "Glass, media, raised, expandable and spotlight recipes preserve their existing materials and behaviors.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "card",
+          "label": "Glass",
+          "exports": [
+            "GlassCard",
+            "CardHeader",
+            "CardTitle",
+            "CardDescription",
+            "CardContent"
+          ],
+          "when": "Translucent content surface with compound content slots.",
+          "props": {},
+          "compatibility": [],
+          "example": "<GlassCard><CardHeader><CardTitle>Overview</CardTitle></CardHeader><CardContent>{children}</CardContent></GlassCard>"
+        },
+        {
+          "id": "inv-card",
+          "label": "Media card",
+          "exports": [
+            "Card"
+          ],
+          "when": "Card with image, gradient or video treatment; preserve authored media styling.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Card title=\"Overview\" description=\"Latest activity\">{children}</Card>",
+          "options": {
+            "variant": {
+              "default": "Default content/media card",
+              "gradient": "Generated gradient artwork"
+            }
+          }
+        },
+        {
+          "id": "inv-surface",
+          "label": "Surface",
+          "exports": [
+            "Surface"
+          ],
+          "when": "A plain padded container with explicit elevation; no glass material implied.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inv-expand-card",
+          "label": "ExpandCard",
+          "exports": [
+            "ExpandCard"
+          ],
+          "when": "Card that expands to reveal content with blur-in animation.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inv-spotlight-card",
+          "label": "SpotlightCard",
+          "exports": [
+            "SpotlightCard"
+          ],
+          "when": "Card with cursor-following gradient glow effect.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "avatars",
+      "name": "Avatars",
+      "primary": "avatars",
+      "summary": "Image, generated agent and decorative gradient avatars retain distinct renderers and interaction semantics.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "avatars",
+          "label": "GradientAvatar",
+          "exports": [
+            "GradientAvatar"
+          ],
+          "when": "Compose GradientAvatar through its documented public API.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inv-agent-avatar",
+          "label": "AgentAvatar",
+          "exports": [
+            "AgentAvatar"
+          ],
+          "when": "Circular avatar with deterministic mesh gradient generated from name. Supports thinking and inactive states.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inv-profile-avatar",
+          "label": "ProfileAvatar",
+          "exports": [
+            "ProfileAvatar",
+            "ProfileAvatarGroup"
+          ],
+          "when": "User avatar with rounded/circle variants, alert gem, and group stacking.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "badge-and-status",
+      "name": "Badge and status",
+      "primary": "inv-badge",
+      "summary": "Appearance labels and semantic status labels remain supported APIs within one family.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-badge",
+          "label": "Badge",
+          "exports": [
+            "Badge"
+          ],
+          "when": "Pill label with three variants: dark, subdued, and outline.",
+          "props": {},
+          "compatibility": [],
+          "options": {
+            "variant": {
+              "dark": "Strong contrast label",
+              "subdued": "Quiet label",
+              "outline": "Outlined label"
+            }
+          }
+        },
+        {
+          "id": "status",
+          "label": "Status label",
+          "exports": [
+            "Status"
+          ],
+          "when": "A short semantic status; color supports its text.",
+          "props": {},
+          "compatibility": [],
+          "options": {
+            "tone": {
+              "neutral": "Neutral state",
+              "good": "Success",
+              "warning": "Attention",
+              "bad": "Failure",
+              "info": "Informational"
+            }
+          },
+          "example": "<Status tone=\"good\">Complete</Status>"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "alerts-and-feedback",
+      "name": "Alerts and feedback",
+      "primary": "inv-alert",
+      "summary": "Dismissible alerts, inline recovery messages and loading messages retain their announcement semantics.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-alert",
+          "label": "Alert",
+          "exports": [
+            "Alert"
+          ],
+          "when": "Inline notification banner with icon, title, description, and optional dismiss. Animates out on dismiss with scale + fade.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inline-feedback",
+          "label": "Inline feedback",
+          "exports": [
+            "Feedback",
+            "Button"
+          ],
+          "when": "Inline failure or information with an optional recovery action.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Feedback action={<Button onClick={retry}>Retry</Button>}>Could not save.</Feedback>"
+        },
+        {
+          "id": "loading-message",
+          "label": "Loading message",
+          "exports": [
+            "LoadingState"
+          ],
+          "when": "Indeterminate activity with readable status text.",
+          "props": {},
+          "compatibility": [],
+          "example": "<LoadingState>Loading results\u2026</LoadingState>"
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "dates",
+      "name": "Dates",
+      "primary": "date",
+      "summary": "DateInput preserves native date events; DateRangePicker provides range values, presets and validation. These are distinct APIs.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "date",
+          "label": "Label",
+          "exports": [
+            "Label",
+            "DateInput"
+          ],
+          "when": "Compose Label through its documented public API.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "date-range-picker",
+          "label": "DateRangePicker",
+          "exports": [
+            "DateRangePicker"
+          ],
+          "when": "Select local calendar date strings for an inclusive range; not timestamps or timezone conversion.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "view-selection",
+      "name": "View selection",
+      "primary": "inv-tabs",
+      "summary": "Underline and filled view selectors retain their APIs and motion. Both control host-owned views, not tab/panel widgets.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-tabs",
+          "label": "Underline views",
+          "exports": [
+            "Tabs"
+          ],
+          "when": "Switch host-owned views using an underline indicator and optional counts; not tab/panel semantics.",
+          "props": {},
+          "compatibility": [],
+          "example": "<Tabs tabs={views} activeTab={view} onTabChange={setView} />"
+        },
+        {
+          "id": "inv-segmented-control",
+          "label": "Segmented views",
+          "exports": [
+            "SegmentedControl"
+          ],
+          "when": "Switch host-owned views using a filled sliding indicator, labels or icons.",
+          "props": {},
+          "compatibility": [],
+          "example": "<SegmentedControl tabs={views} activeTab={view} onTabChange={setView} />",
+          "options": {
+            "variant": {
+              "default": "Standard filled presentation",
+              "subdued": "Quieter surface presentation"
+            }
+          }
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "sheets",
+      "name": "Sheets",
+      "primary": "sheet",
+      "summary": "Edge-positioned Sheet and draggable BottomSheet retain different motion and dismissal behavior.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "sheet",
+          "label": "Sheet",
+          "exports": [
+            "Sheet",
+            "SheetTrigger",
+            "SheetContent",
+            "SheetTitle",
+            "SheetDescription",
+            "Button"
+          ],
+          "when": "Secondary details in a side panel with focus management.",
+          "props": {},
+          "compatibility": [],
+          "options": {
+            "side": {
+              "left": "Left edge",
+              "right": "Right edge",
+              "top": "Top edge",
+              "bottom": "Bottom edge; no drag-to-dismiss"
+            }
+          }
+        },
+        {
+          "id": "inv-bottom-sheet",
+          "label": "BottomSheet",
+          "exports": [
+            "BottomSheet"
+          ],
+          "when": "iOS-style bottom sheet with pull-to-dismiss, viewport shrink effect, and backdrop. The page scales down and rounds its corners when the sheet opens.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "composers",
+      "name": "Composers",
+      "primary": "ask-bar",
+      "summary": "AskBar and PromptBar remain separate compositions for inline conversation and rich prompt entry.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "ask-bar",
+          "label": "AskBar",
+          "exports": [
+            "AskBar"
+          ],
+          "when": "Inline or floating chat composer with retained failed drafts and pending submission.",
+          "props": {},
+          "compatibility": []
+        },
+        {
+          "id": "inv-prompt-bar",
+          "label": "PromptBar",
+          "exports": [
+            "PromptBar"
+          ],
+          "when": "Multi-line prompt input with model selector, file upload, mic with voice visualizer, and send button.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "bottomnav",
+      "name": "BottomNav",
+      "primary": "inv-bottom-nav",
+      "summary": "These use controls and menus but have domain-specific navigation/identity/workspace models. Keep named patterns; share the menu engine where appropriate.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-bottom-nav",
+          "label": "BottomNav",
+          "exports": [
+            "BottomNav"
+          ],
+          "when": "Floating bottom navigation bar with tab switching, add menu, profile menu, and chat input morph.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "profilemenu",
+      "name": "ProfileMenu",
+      "primary": "inv-profile-menu",
+      "summary": "These use controls and menus but have domain-specific navigation/identity/workspace models. Keep named patterns; share the menu engine where appropriate.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-profile-menu",
+          "label": "ProfileMenu",
+          "exports": [
+            "ProfileMenu"
+          ],
+          "when": "Avatar button with dropdown menu for profile actions.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "workspaceswitcher",
+      "name": "WorkspaceSwitcher",
+      "primary": "inv-workspace-switcher",
+      "summary": "These use controls and menus but have domain-specific navigation/identity/workspace models. Keep named patterns; share the menu engine where appropriate.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-workspace-switcher",
+          "label": "WorkspaceSwitcher",
+          "exports": [
+            "WorkspaceSwitcher"
+          ],
+          "when": "Displays current workspace with dropdown to switch between workspaces.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "primary": "inv-checkbox",
+      "summary": "Selection, numeric stepping, multi-cell code input, radio choice, continuous dragging and edit/save/cancel are different keyboard/value contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-checkbox",
+          "label": "Checkbox",
+          "exports": [
+            "Checkbox"
+          ],
+          "when": "Single checkbox with optional label. Uses accent color when checked.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "numberinput",
+      "name": "NumberInput",
+      "primary": "inv-number-input",
+      "summary": "Selection, numeric stepping, multi-cell code input, radio choice, continuous dragging and edit/save/cancel are different keyboard/value contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-number-input",
+          "label": "NumberInput",
+          "exports": [
+            "NumberInput"
+          ],
+          "when": "Numeric input with +/- stepper buttons, min/max bounds, and step size.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "pininput",
+      "name": "PinInput",
+      "primary": "inv-pin-input",
+      "summary": "Selection, numeric stepping, multi-cell code input, radio choice, continuous dragging and edit/save/cancel are different keyboard/value contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-pin-input",
+          "label": "PinInput",
+          "exports": [
+            "PinInput"
+          ],
+          "when": "Row of individual digit boxes for 2FA/OTP codes. Auto-advances focus on input, supports paste, and arrow key navigation.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "radiogroup",
+      "name": "RadioGroup",
+      "primary": "inv-radio-group",
+      "summary": "Selection, numeric stepping, multi-cell code input, radio choice, continuous dragging and edit/save/cancel are different keyboard/value contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-radio-group",
+          "label": "RadioGroup",
+          "exports": [
+            "RadioGroup"
+          ],
+          "when": "Group of radio options with vertical or horizontal layout.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "sliderinput",
+      "name": "SliderInput",
+      "primary": "inv-slider-input",
+      "summary": "Selection, numeric stepping, multi-cell code input, radio choice, continuous dragging and edit/save/cancel are different keyboard/value contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-slider-input",
+          "label": "SliderInput",
+          "exports": [
+            "SliderInput"
+          ],
+          "when": "Progress-bar style range slider with a draggable divider, label on the left, and value on the right. The filled portion represents the current value.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "inlineedit",
+      "name": "InlineEdit",
+      "primary": "inline-edit",
+      "summary": "Selection, numeric stepping, multi-cell code input, radio choice, continuous dragging and edit/save/cancel are different keyboard/value contracts.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inline-edit",
+          "label": "InlineEdit",
+          "exports": [
+            "InlineEdit"
+          ],
+          "when": "Edit a short value in place with async save and retained failures; use a dialog for complex forms.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "progress",
+      "name": "Progress",
+      "primary": "inv-progress",
+      "summary": "Progress is measurable completion; spinner is indeterminate activity; skeleton predicts layout; steps indicate sequence; toast is temporary notification; empty state provides recovery. LoadingState can compose Spinner, not replace this family with one mode switch.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-progress",
+          "label": "Progress",
+          "exports": [
+            "Progress"
+          ],
+          "when": "Linear progress bar with animated fill, optional label, value counter, shimmer effect, and three sizes.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton",
+      "primary": "inv-skeleton",
+      "summary": "Progress is measurable completion; spinner is indeterminate activity; skeleton predicts layout; steps indicate sequence; toast is temporary notification; empty state provides recovery. LoadingState can compose Spinner, not replace this family with one mode switch.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-skeleton",
+          "label": "Skeleton",
+          "exports": [
+            "Skeleton"
+          ],
+          "when": "Animated loading placeholder with variants for text, avatars, cards, and list items. Respects `prefers-reduced-motion`.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "spinner",
+      "name": "Spinner",
+      "primary": "inv-spinner",
+      "summary": "Progress is measurable completion; spinner is indeterminate activity; skeleton predicts layout; steps indicate sequence; toast is temporary notification; empty state provides recovery. LoadingState can compose Spinner, not replace this family with one mode switch.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-spinner",
+          "label": "Spinner",
+          "exports": [
+            "Spinner"
+          ],
+          "when": "Animated loading circle. Inherits `currentColor` for stroke color.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "stepindicator",
+      "name": "StepIndicator",
+      "primary": "inv-step-indicator",
+      "summary": "Progress is measurable completion; spinner is indeterminate activity; skeleton predicts layout; steps indicate sequence; toast is temporary notification; empty state provides recovery. LoadingState can compose Spinner, not replace this family with one mode switch.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-step-indicator",
+          "label": "StepIndicator",
+          "exports": [
+            "StepIndicator"
+          ],
+          "when": "Horizontal dots where the active step expands to a pill with spring animation.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "toastprovider",
+      "name": "ToastProvider",
+      "primary": "inv-toast",
+      "summary": "Progress is measurable completion; spinner is indeterminate activity; skeleton predicts layout; steps indicate sequence; toast is temporary notification; empty state provides recovery. LoadingState can compose Spinner, not replace this family with one mode switch.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-toast",
+          "label": "ToastProvider",
+          "exports": [
+            "ToastProvider",
+            "useToast"
+          ],
+          "when": "Notification toasts with stacking card deck effect. Uses context provider pattern.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "emptystate",
+      "name": "EmptyState",
+      "primary": "inv-empty-state",
+      "summary": "Progress is measurable completion; spinner is indeterminate activity; skeleton predicts layout; steps indicate sequence; toast is temporary notification; empty state provides recovery. LoadingState can compose Spinner, not replace this family with one mode switch.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-empty-state",
+          "label": "EmptyState",
+          "exports": [
+            "EmptyState"
+          ],
+          "when": "Centered placeholder for empty lists, search results, and blank pages. Accepts an optional action button.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "progressiveblur",
+      "name": "ProgressiveBlur",
+      "primary": "progressive-blur",
+      "summary": "Blur, edge masking/tint, foreground contrast, icon transition and gradient artwork serve different rendering purposes. Existing effect axes/recipes are already props.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "progressive-blur",
+          "label": "ProgressiveBlur",
+          "exports": [
+            "ProgressiveBlur"
+          ],
+          "when": "A bounded decorative backdrop behind sharp foreground controls.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "edgefade",
+      "name": "EdgeFade",
+      "primary": "edge-fade",
+      "summary": "Blur, edge masking/tint, foreground contrast, icon transition and gradient artwork serve different rendering purposes. Existing effect axes/recipes are already props.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "edge-fade",
+          "label": "EdgeFade",
+          "exports": [
+            "EdgeFade"
+          ],
+          "when": "Compose EdgeFade through its documented public API.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "mediascrim",
+      "name": "MediaScrim",
+      "primary": "media-scrim",
+      "summary": "Blur, edge masking/tint, foreground contrast, icon transition and gradient artwork serve different rendering purposes. Existing effect axes/recipes are already props.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "media-scrim",
+          "label": "MediaScrim",
+          "exports": [
+            "MediaScrim",
+            "Button"
+          ],
+          "when": "Compose MediaScrim through its documented public API.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "stateicon",
+      "name": "StateIcon",
+      "primary": "state-icon",
+      "summary": "Blur, edge masking/tint, foreground contrast, icon transition and gradient artwork serve different rendering purposes. Existing effect axes/recipes are already props.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "state-icon",
+          "label": "StateIcon",
+          "exports": [
+            "StateIcon",
+            "Button"
+          ],
+          "when": "Compose StateIcon through its documented public API.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "gradientsurface",
+      "name": "GradientSurface",
+      "primary": "gradients",
+      "summary": "Blur, edge masking/tint, foreground contrast, icon transition and gradient artwork serve different rendering purposes. Existing effect axes/recipes are already props.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "gradients",
+          "label": "GradientSurface",
+          "exports": [
+            "GradientSurface",
+            "ProgressiveBlur"
+          ],
+          "when": "Background gradient only; the host composes layout/content.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "divider",
+      "name": "Divider",
+      "primary": "inv-divider",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-divider",
+          "label": "Divider",
+          "exports": [
+            "Divider"
+          ],
+          "when": "Horizontal rule using the theme border color.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "pagesection",
+      "name": "PageSection",
+      "primary": "inv-page-section",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-page-section",
+          "label": "PageSection",
+          "exports": [
+            "PageSection"
+          ],
+          "when": "Content width constraint with responsive horizontal padding.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "splitpane",
+      "name": "SplitPane",
+      "primary": "inv-split-pane",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-split-pane",
+          "label": "SplitPane",
+          "exports": [
+            "SplitPane"
+          ],
+          "when": "Resizable two-pane layout with a draggable divider and pull tab. Supports horizontal and vertical splitting.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "overlay",
+      "name": "Overlay",
+      "primary": "inv-overlay",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-overlay",
+          "label": "Overlay",
+          "exports": [
+            "Overlay"
+          ],
+          "when": "Fullscreen backdrop with black tint and blur. Used behind dialogs, modals, and other floating layers.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "tooltip",
+      "name": "Tooltip",
+      "primary": "inv-tooltip",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-tooltip",
+          "label": "Tooltip",
+          "exports": [
+            "Tooltip"
+          ],
+          "when": "Animated hover label that appears above or below its parent. Uses `popoverStyle` for scale + blur entrance. Must be inside a `relative` positioned container.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "imagecarousel",
+      "name": "ImageCarousel",
+      "primary": "inv-image-carousel",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-image-carousel",
+          "label": "ImageCarousel",
+          "exports": [
+            "ImageCarousel"
+          ],
+          "when": "Image slideshow with sliding transitions, left/right arrow navigation, and a StepIndicator overlay at the bottom center.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "messagebubble",
+      "name": "MessageBubble",
+      "primary": "inv-message-bubble",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-message-bubble",
+          "label": "MessageBubble",
+          "exports": [
+            "MessageBubble"
+          ],
+          "when": "Chat message bubble for agent and user messages with thinking state and hover actions.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "accordion",
+      "name": "Accordion",
+      "primary": "inv-accordion",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-accordion",
+          "label": "Accordion",
+          "exports": [
+            "Accordion"
+          ],
+          "when": "Collapsible content sections with blur-in animation.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "primary": "inv-table",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "inv-table",
+          "label": "Table",
+          "exports": [
+            "Table"
+          ],
+          "when": "Data table with sortable columns, row selection, and animated container-responsive columns. Set collapseBelow on secondary columns to fold their values beside the primary cell at narrower widths.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "commandpalette",
+      "name": "CommandPalette",
+      "primary": "command-palette",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "command-palette",
+          "label": "CommandPalette",
+          "exports": [
+            "CommandPalette"
+          ],
+          "when": "Search application actions; not form-value selection. Host owns opening shortcut and command handlers.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "filtertoolbar",
+      "name": "FilterToolbar",
+      "primary": "filter-toolbar",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "filter-toolbar",
+          "label": "FilterToolbar",
+          "exports": [
+            "FilterToolbar"
+          ],
+          "when": "Compose host-owned filters and clear action; does not fetch or filter records.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "voicerecorder",
+      "name": "VoiceRecorder",
+      "primary": "voice-recorder",
+      "summary": "Different content or interaction contracts. Overlay and Divider are primitives; the others should not become flags on a generic component. CommandPalette reuses SearchOptions but executes commands rather than selecting a field value.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "voice-recorder",
+          "label": "VoiceRecorder",
+          "exports": [
+            "VoiceRecorder"
+          ],
+          "when": "Record, pause, play back, and attach local audio. The host owns uploading and transcription.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "contexttray",
+      "name": "ContextTray",
+      "primary": "context-tray",
+      "summary": "A controlled list of agent context with optional inspection and host-owned removal.",
+      "decision": "Supported API; host owns context and side effects",
+      "variants": [
+        {
+          "id": "context-tray",
+          "label": "ContextTray",
+          "exports": [
+            "ContextTray"
+          ],
+          "when": "Show items supplied to an agent and optionally inspect or remove them.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "The host owns context data, removal state, and what is sent to an agent.",
+        "Retain dialog semantics, keyboard behavior, and accessible labels."
+      ]
+    },
+    {
+      "id": "reviewapplycard",
+      "name": "ReviewApplyCard",
+      "primary": "review-apply-card",
+      "summary": "An explicit before-and-after review with host-owned async application.",
+      "decision": "Supported API; require explicit confirmation before host mutation",
+      "variants": [
+        {
+          "id": "review-apply-card",
+          "label": "ReviewApplyCard",
+          "exports": [
+            "ReviewApplyCard"
+          ],
+          "when": "Present a proposal that a user must explicitly apply or reject.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "The host callback owns changes; the original remains until apply succeeds.",
+        "Retain pending and retryable failure states."
+      ]
+    },
+    {
+      "id": "theme-infrastructure",
+      "name": "Theme infrastructure",
+      "primary": "theme",
+      "summary": "HighwayTheme and ThemeScope provide styling/context and portal inheritance, not competing visual components.",
+      "decision": "Supported family; preserve each variant contract",
+      "variants": [
+        {
+          "id": "theme",
+          "label": "HighwayTheme",
+          "exports": [
+            "HighwayTheme",
+            "Button"
+          ],
+          "when": "Wrap installed components and carry brand/mode into their portaled overlays.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Use exact package exports and their declarations.",
+        "Brand through HighwayTheme; preserve geometry, artwork, material and motion.",
+        "Retain host handlers, form semantics and accessibility."
+      ]
+    },
+    {
+      "id": "number-roll",
+      "name": "Number roll",
+      "primary": "number-roll",
+      "summary": "Animated numerical values.",
+      "decision": "Use NumberTicker for rolling numbers.",
+      "variants": [
+        {
+          "id": "number-roll",
+          "label": "Number roll",
+          "exports": [
+            "NumberTicker"
+          ],
+          "when": "Show a numeric value entering or changing.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Reduced-motion support and accessible final value."
+      ]
+    },
+    {
+      "id": "token-icon",
+      "name": "Token icon",
+      "primary": "token-icon",
+      "summary": "Token icon with image fallback and three sizes.",
+      "decision": "Use TokenIcon for token identity.",
+      "variants": [
+        {
+          "id": "token-icon",
+          "label": "Token icon",
+          "exports": [
+            "TokenIcon"
+          ],
+          "when": "Render token or network identity.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Transparent badge cutout, accessible labels, and image fallback."
+      ]
+    },
+    {
+      "id": "token-badge",
+      "name": "Token badge",
+      "primary": "token-badge",
+      "summary": "Token badge with image fallback and three sizes.",
+      "decision": "Use TokenBadge for token identity.",
+      "variants": [
+        {
+          "id": "token-badge",
+          "label": "Token badge",
+          "exports": [
+            "TokenBadge"
+          ],
+          "when": "Render token or network identity.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Transparent badge cutout, accessible labels, and image fallback."
+      ]
+    },
+    {
+      "id": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "primary": "breadcrumbs",
+      "summary": "Page hierarchy navigation.",
+      "decision": "Use Breadcrumbs for ancestor links.",
+      "variants": [
+        {
+          "id": "breadcrumbs",
+          "label": "Breadcrumbs",
+          "exports": [
+            "Breadcrumbs"
+          ],
+          "when": "Show the current page in its hierarchy.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Navigation landmark, current-page semantics, keyboard focus, and wrapping."
+      ]
+    },
+    {
+      "id": "copy-page",
+      "name": "Copy page",
+      "primary": "copy-page",
+      "summary": "Documentation copy and sharing actions.",
+      "decision": "Use CopyPage for page-level documentation actions.",
+      "variants": [
+        {
+          "id": "copy-page",
+          "label": "Copy page",
+          "exports": [
+            "CopyPage"
+          ],
+          "when": "Offer copying, Markdown viewing, and assistant handoff.",
+          "props": {},
+          "compatibility": []
+        }
+      ],
+      "preserve": [
+        "Actual clipboard success, stable copied state, keyboard navigation, and brand marks."
+      ]
+    }
+  ],
+  "terminology": {
+    "family": "Related components and supported behavior modes grouped by purpose.",
+    "component": "The component or behavior mode selected within a family, such as Button, SplitButton, or a multiple-selection Combobox.",
+    "appearance": "Visual styling of a selected component, such as default, secondary, ghost, or destructive.",
+    "state": "Interaction or lifecycle condition, such as disabled, loading, or error.",
+    "compatibility": "The family variants field and select_variant tool retain their existing names for compatibility; they select family members or behavior modes, not visual appearance.",
+    "page": "A discoverable component with a distinct purpose. Same-purpose API modes, appearance options, sizes and states stay on its page; families organize related pages."
+  },
+  "pages": [
+    {
+      "id": "combobox",
+      "title": "Combobox",
+      "family": "combobox",
+      "examples": [
+        "combobox",
+        "multi-select"
+      ]
+    },
+    {
+      "id": "inv-search-bar",
+      "title": "Search",
+      "family": "search",
+      "examples": [
+        "inv-search-bar",
+        "inv-search-toggle"
+      ]
+    },
+    {
+      "id": "inv-row",
+      "title": "Stack",
+      "family": "layout",
+      "examples": [
+        "inv-row",
+        "inv-stack"
+      ]
+    },
+    {
+      "id": "inv-dialog",
+      "title": "Confirmation dialog",
+      "family": "dialog",
+      "examples": [
+        "inv-dialog"
+      ]
+    },
+    {
+      "id": "inv-modal",
+      "title": "Modal",
+      "family": "dialog",
+      "examples": [
+        "inv-modal"
+      ]
+    },
+    {
+      "id": "dialog",
+      "title": "Form dialog",
+      "family": "dialog",
+      "examples": [
+        "dialog"
+      ]
+    },
+    {
+      "id": "inv-dropdown",
+      "title": "Dropdown menu",
+      "family": "menus",
+      "examples": [
+        "inv-dropdown",
+        "menu"
+      ]
+    },
+    {
+      "id": "inv-menu",
+      "title": "Menu",
+      "family": "menus",
+      "examples": [
+        "inv-menu"
+      ]
+    },
+    {
+      "id": "fields",
+      "title": "Text input",
+      "family": "text-field",
+      "examples": [
+        "fields",
+        "inv-text-input"
+      ]
+    },
+    {
+      "id": "inv-textarea",
+      "title": "Textarea",
+      "family": "textarea",
+      "examples": [
+        "inv-textarea",
+        "native-textarea"
+      ]
+    },
+    {
+      "id": "select",
+      "title": "Select",
+      "family": "select",
+      "examples": [
+        "select",
+        "inv-select"
+      ]
+    },
+    {
+      "id": "button",
+      "title": "Button",
+      "family": "buttons",
+      "examples": [
+        "button",
+        "inv-icon-button"
+      ]
+    },
+    {
+      "id": "inv-action-button",
+      "title": "Async action",
+      "family": "buttons",
+      "examples": [
+        "inv-action-button"
+      ]
+    },
+    {
+      "id": "split-button",
+      "title": "Split button",
+      "family": "buttons",
+      "examples": [
+        "split-button"
+      ]
+    },
+    {
+      "id": "button-group",
+      "title": "Button group",
+      "family": "buttons",
+      "examples": [
+        "button-group"
+      ]
+    },
+    {
+      "id": "copy-button",
+      "title": "Copy button",
+      "family": "buttons",
+      "examples": [
+        "copy-button"
+      ]
+    },
+    {
+      "id": "switch",
+      "title": "Switch",
+      "family": "switch",
+      "examples": [
+        "switch"
+      ]
+    },
+    {
+      "id": "card",
+      "title": "Glass card",
+      "family": "cards-and-surfaces",
+      "examples": [
+        "card"
+      ]
+    },
+    {
+      "id": "inv-card",
+      "title": "Media card",
+      "family": "cards-and-surfaces",
+      "examples": [
+        "inv-card"
+      ]
+    },
+    {
+      "id": "inv-surface",
+      "title": "Surface",
+      "family": "cards-and-surfaces",
+      "examples": [
+        "inv-surface"
+      ]
+    },
+    {
+      "id": "inv-expand-card",
+      "title": "Expand card",
+      "family": "cards-and-surfaces",
+      "examples": [
+        "inv-expand-card"
+      ]
+    },
+    {
+      "id": "inv-spotlight-card",
+      "title": "Spotlight card",
+      "family": "cards-and-surfaces",
+      "examples": [
+        "inv-spotlight-card"
+      ]
+    },
+    {
+      "id": "avatars",
+      "title": "Gradient avatar",
+      "family": "avatars",
+      "examples": [
+        "avatars"
+      ]
+    },
+    {
+      "id": "inv-agent-avatar",
+      "title": "Agent avatar",
+      "family": "avatars",
+      "examples": [
+        "inv-agent-avatar"
+      ]
+    },
+    {
+      "id": "inv-profile-avatar",
+      "title": "Profile avatar",
+      "family": "avatars",
+      "examples": [
+        "inv-profile-avatar"
+      ]
+    },
+    {
+      "id": "inv-badge",
+      "title": "Badge",
+      "family": "badge-and-status",
+      "examples": [
+        "inv-badge"
+      ]
+    },
+    {
+      "id": "status",
+      "title": "Status",
+      "family": "badge-and-status",
+      "examples": [
+        "status"
+      ]
+    },
+    {
+      "id": "inv-alert",
+      "title": "Alert",
+      "family": "alerts-and-feedback",
+      "examples": [
+        "inv-alert"
+      ]
+    },
+    {
+      "id": "inline-feedback",
+      "title": "Inline feedback",
+      "family": "alerts-and-feedback",
+      "examples": [
+        "inline-feedback"
+      ]
+    },
+    {
+      "id": "loading-message",
+      "title": "Loading message",
+      "family": "alerts-and-feedback",
+      "examples": [
+        "loading-message"
+      ]
+    },
+    {
+      "id": "date",
+      "title": "Date input",
+      "family": "dates",
+      "examples": [
+        "date"
+      ]
+    },
+    {
+      "id": "date-range-picker",
+      "title": "Date range picker",
+      "family": "dates",
+      "examples": [
+        "date-range-picker"
+      ]
+    },
+    {
+      "id": "inv-tabs",
+      "title": "View selection",
+      "family": "view-selection",
+      "examples": [
+        "inv-tabs",
+        "inv-segmented-control"
+      ]
+    },
+    {
+      "id": "sheet",
+      "title": "Sheet",
+      "family": "sheets",
+      "examples": [
+        "sheet"
+      ]
+    },
+    {
+      "id": "inv-bottom-sheet",
+      "title": "Bottom sheet",
+      "family": "sheets",
+      "examples": [
+        "inv-bottom-sheet"
+      ]
+    },
+    {
+      "id": "ask-bar",
+      "title": "Ask bar",
+      "family": "composers",
+      "examples": [
+        "ask-bar"
+      ]
+    },
+    {
+      "id": "inv-prompt-bar",
+      "title": "Prompt bar",
+      "family": "composers",
+      "examples": [
+        "inv-prompt-bar"
+      ]
+    },
+    {
+      "id": "inv-bottom-nav",
+      "title": "BottomNav",
+      "family": "bottomnav",
+      "examples": [
+        "inv-bottom-nav"
+      ]
+    },
+    {
+      "id": "inv-profile-menu",
+      "title": "ProfileMenu",
+      "family": "profilemenu",
+      "examples": [
+        "inv-profile-menu"
+      ]
+    },
+    {
+      "id": "inv-workspace-switcher",
+      "title": "WorkspaceSwitcher",
+      "family": "workspaceswitcher",
+      "examples": [
+        "inv-workspace-switcher"
+      ]
+    },
+    {
+      "id": "inv-checkbox",
+      "title": "Checkbox",
+      "family": "checkbox",
+      "examples": [
+        "inv-checkbox"
+      ]
+    },
+    {
+      "id": "inv-number-input",
+      "title": "NumberInput",
+      "family": "numberinput",
+      "examples": [
+        "inv-number-input"
+      ]
+    },
+    {
+      "id": "inv-pin-input",
+      "title": "PinInput",
+      "family": "pininput",
+      "examples": [
+        "inv-pin-input"
+      ]
+    },
+    {
+      "id": "inv-radio-group",
+      "title": "RadioGroup",
+      "family": "radiogroup",
+      "examples": [
+        "inv-radio-group"
+      ]
+    },
+    {
+      "id": "inv-slider-input",
+      "title": "SliderInput",
+      "family": "sliderinput",
+      "examples": [
+        "inv-slider-input"
+      ]
+    },
+    {
+      "id": "inline-edit",
+      "title": "InlineEdit",
+      "family": "inlineedit",
+      "examples": [
+        "inline-edit"
+      ]
+    },
+    {
+      "id": "inv-progress",
+      "title": "Progress",
+      "family": "progress",
+      "examples": [
+        "inv-progress"
+      ]
+    },
+    {
+      "id": "inv-skeleton",
+      "title": "Skeleton",
+      "family": "skeleton",
+      "examples": [
+        "inv-skeleton"
+      ]
+    },
+    {
+      "id": "inv-spinner",
+      "title": "Spinner",
+      "family": "spinner",
+      "examples": [
+        "inv-spinner"
+      ]
+    },
+    {
+      "id": "inv-step-indicator",
+      "title": "StepIndicator",
+      "family": "stepindicator",
+      "examples": [
+        "inv-step-indicator"
+      ]
+    },
+    {
+      "id": "inv-toast",
+      "title": "ToastProvider",
+      "family": "toastprovider",
+      "examples": [
+        "inv-toast"
+      ]
+    },
+    {
+      "id": "inv-empty-state",
+      "title": "EmptyState",
+      "family": "emptystate",
+      "examples": [
+        "inv-empty-state"
+      ]
+    },
+    {
+      "id": "progressive-blur",
+      "title": "ProgressiveBlur",
+      "family": "progressiveblur",
+      "examples": [
+        "progressive-blur"
+      ]
+    },
+    {
+      "id": "edge-fade",
+      "title": "EdgeFade",
+      "family": "edgefade",
+      "examples": [
+        "edge-fade"
+      ]
+    },
+    {
+      "id": "media-scrim",
+      "title": "MediaScrim",
+      "family": "mediascrim",
+      "examples": [
+        "media-scrim"
+      ]
+    },
+    {
+      "id": "state-icon",
+      "title": "StateIcon",
+      "family": "stateicon",
+      "examples": [
+        "state-icon"
+      ]
+    },
+    {
+      "id": "gradients",
+      "title": "GradientSurface",
+      "family": "gradientsurface",
+      "examples": [
+        "gradients"
+      ]
+    },
+    {
+      "id": "inv-divider",
+      "title": "Divider",
+      "family": "divider",
+      "examples": [
+        "inv-divider"
+      ]
+    },
+    {
+      "id": "inv-page-section",
+      "title": "PageSection",
+      "family": "pagesection",
+      "examples": [
+        "inv-page-section"
+      ]
+    },
+    {
+      "id": "inv-split-pane",
+      "title": "SplitPane",
+      "family": "splitpane",
+      "examples": [
+        "inv-split-pane"
+      ]
+    },
+    {
+      "id": "inv-overlay",
+      "title": "Overlay",
+      "family": "overlay",
+      "examples": [
+        "inv-overlay"
+      ]
+    },
+    {
+      "id": "inv-tooltip",
+      "title": "Tooltip",
+      "family": "tooltip",
+      "examples": [
+        "inv-tooltip"
+      ]
+    },
+    {
+      "id": "inv-image-carousel",
+      "title": "ImageCarousel",
+      "family": "imagecarousel",
+      "examples": [
+        "inv-image-carousel"
+      ]
+    },
+    {
+      "id": "inv-message-bubble",
+      "title": "MessageBubble",
+      "family": "messagebubble",
+      "examples": [
+        "inv-message-bubble"
+      ]
+    },
+    {
+      "id": "inv-accordion",
+      "title": "Accordion",
+      "family": "accordion",
+      "examples": [
+        "inv-accordion"
+      ]
+    },
+    {
+      "id": "inv-table",
+      "title": "Table",
+      "family": "table",
+      "examples": [
+        "inv-table"
+      ]
+    },
+    {
+      "id": "command-palette",
+      "title": "CommandPalette",
+      "family": "commandpalette",
+      "examples": [
+        "command-palette"
+      ]
+    },
+    {
+      "id": "filter-toolbar",
+      "title": "FilterToolbar",
+      "family": "filtertoolbar",
+      "examples": [
+        "filter-toolbar"
+      ]
+    },
+    {
+      "id": "voice-recorder",
+      "title": "VoiceRecorder",
+      "family": "voicerecorder",
+      "examples": [
+        "voice-recorder"
+      ]
+    },
+    {
+      "id": "theme",
+      "title": "Theme infrastructure",
+      "family": "theme-infrastructure",
+      "examples": [
+        "theme"
+      ]
+    },
+    {
+      "id": "number-roll",
+      "title": "Number roll",
+      "family": "number-roll",
+      "examples": [
+        "number-roll"
+      ]
+    },
+    {
+      "id": "token-icon",
+      "title": "Token icon",
+      "family": "token-icon",
+      "examples": [
+        "token-icon"
+      ]
+    },
+    {
+      "id": "token-badge",
+      "title": "Token badge",
+      "family": "token-badge",
+      "examples": [
+        "token-badge"
+      ]
+    },
+    {
+      "id": "breadcrumbs",
+      "title": "Breadcrumbs",
+      "family": "breadcrumbs",
+      "examples": [
+        "breadcrumbs"
+      ]
+    },
+    {
+      "id": "copy-page",
+      "title": "Copy page",
+      "family": "copy-page",
+      "examples": [
+        "copy-page"
+      ]
+    }
+  ]
+}

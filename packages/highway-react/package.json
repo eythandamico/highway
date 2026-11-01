@@ -1,6 +1,6 @@
 {
   "name": "@highway/react",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Highway's original React components, with optional scoped branding and no application infrastructure.",
   "type": "module",
   "license": "UNLICENSED",
@@ -22,7 +22,7 @@
   "peerDependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "@highway/styles": "0.1.0"
+    "@highway/styles": "0.3.0"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",

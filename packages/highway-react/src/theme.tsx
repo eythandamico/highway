@@ -1,8 +1,8 @@
 "use client";
 import { createContext, useContext, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { ThemeScope, useThemeTokens } from "../../../components/ui/theme-scope";
-import { PortalContainerProvider } from "../../../components/ui/portal-container";
+import { ThemeScope, useThemeTokens } from "./components/ui/theme-scope";
+import { PortalContainerProvider } from "./components/ui/portal-container";
 
 export type HighwayTokens = Partial<Record<`--${string}`, string>>;
 export interface HighwayBrand {
@@ -18,7 +18,7 @@ export interface HighwayThemeProps {
   tokens?: HighwayTokens;
   className?: string;
 }
-const BrandContext = createContext<{ mode: "light" | "dark"; brand: HighwayBrand; tokens: HighwayTokens }>({ mode: "light", brand: {}, tokens: {} });
+const BrandContext = /* @__PURE__ */ createContext<{ mode: "light" | "dark"; brand: HighwayBrand; tokens: HighwayTokens }>({ mode: "light", brand: {}, tokens: {} });
 /** Isolates styles and carries the same theme into body-mounted overlays. */
 export function HighwayTheme({ children, mode, brand, tokens, className = "" }: HighwayThemeProps) {
   const inherited = useContext(BrandContext);

@@ -7,9 +7,13 @@ import { spawnSync } from "node:child_process";
 const root = process.cwd();
 const artifacts = join(root, "artifacts");
 const packages = [
-  { file: "highway-styles-0.1.0.tgz", name: "@highway/styles", requires: ["package/dist/styles.css"] },
-  { file: "highway-react-0.1.0.tgz", name: "@highway/react", requires: [] },
-];
+  { manifestPath: "packages/highway-styles/package.json", name: "@highway/styles", requires: ["package/dist/styles.css"] },
+  { manifestPath: "packages/highway-react/package.json", name: "@highway/react", requires: ["package/dist/build-manifest.json"] },
+].map((expected) => {
+  const sourceManifest = JSON.parse(readFileSync(resolve(root, expected.manifestPath), "utf8"));
+  assert.equal(sourceManifest.name, expected.name, `${expected.manifestPath} has the wrong package name`);
+  return { ...expected, version: sourceManifest.version, file: `highway-${expected.name.split("/")[1]}-${sourceManifest.version}.tgz` };
+});
 const forbiddenDependency = /^(?:next|vinext|wrangler|cloudflare|@cloudflare\/|@opennextjs\/|react-server-dom)/i;
 const forbiddenImport = /(?:from\s*["'](?:next\/|vinext(?:\/|["'])|wrangler(?:\/|["'])|@cloudflare\/|cloudflare:)|import\s*["'](?:next\/|vinext(?:\/|["'])|wrangler(?:\/|["'])|@cloudflare\/|cloudflare:))/;
 const temp = mkdtempSync(join(tmpdir(), "highway-package-validation-"));
@@ -41,7 +45,7 @@ try {
     run("tar", ["-xzf", tarball, "-C", temp]);
     const manifest = JSON.parse(readFileSync(join(temp, "package", "package.json"), "utf8"));
     assert.equal(manifest.name, expected.name, `${expected.file} has the wrong package name`);
-    assert.equal(manifest.version, "0.1.0", `${expected.file} has the wrong version`);
+    assert.equal(manifest.version, expected.version, `${expected.file} differs from its source manifest version`);
     for (const section of ["dependencies", "optionalDependencies", "peerDependencies"]) {
       for (const dependency of Object.keys(manifest[section] ?? {})) {
         assert.ok(!forbiddenDependency.test(dependency), `${expected.name} declares server/runtime dependency ${dependency}`);
@@ -56,6 +60,14 @@ try {
     }
 
     if (expected.name === "@highway/react") {
+      const buildManifest = JSON.parse(readFileSync(join(temp, "package", "dist", "build-manifest.json"), "utf8"));
+      assert.ok(Array.isArray(buildManifest.sourceFiles) && buildManifest.sourceFiles.length > 0, "React build manifest must list packaged source inputs");
+      assert.equal(new Set(buildManifest.sourceFiles).size, buildManifest.sourceFiles.length, "React build manifest must not duplicate source inputs");
+      for (const source of buildManifest.sourceFiles) {
+        assert.ok(source.startsWith("packages/highway-react/src/"), `Canonical package graph imported non-package source ${source}`);
+      }
+      assert.ok(buildManifest.sourceFiles.includes("packages/highway-react/src/index.ts"), "Package graph must start at its own entrypoint");
+
       const reactPeer = manifest.peerDependencies?.react;
       assert.ok(reactPeer && /(?:\^|>=?)?19(?:\.|$)/.test(reactPeer), `Expected a React 19 peer dependency, got ${reactPeer ?? "none"}`);
       const jsAndTypes = entries.filter((entry) => /\.(?:[cm]?js|d\.ts|tsx?)$/.test(entry));

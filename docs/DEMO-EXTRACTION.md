@@ -31,3 +31,7 @@ Cloudflare account: `2aebaf88ef9bbc427b720771d94a8efc`.
 Worker: `app-foundation`; database: `app-foundation-db`; private bucket: `app-foundation-files`.
 
 Deployment is manual, using the generated production Worker config. Original Yardwork and Invariant source projects were read but not modified.
+
+### Independent example entry
+
+The reference screens and synthetic domain now live under `examples/yardwork/src`; old component/domain paths are compatibility reexports for the starter. Run `npm run dev:demo` at the repository root for http://localhost:5191/demo, without authentication or Cloudflare setup. The root starter still exposes its existing `/demo` route. Core package source never imports the demo.

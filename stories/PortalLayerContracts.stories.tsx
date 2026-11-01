@@ -57,7 +57,7 @@ function PortalLayerContracts() {
           </label>
         </SheetContent>
       </Sheet>
-      <Button size="xs" aria-label="Open compact action">+</Button>
+      <Button size="icon" aria-label="Open compact action">+</Button>
       <label className="portal-layer-field">
         Page channel
         <Select value={pageChannel} onValueChange={setPageChannel}>

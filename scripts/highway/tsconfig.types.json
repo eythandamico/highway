@@ -26,7 +26,7 @@
       "react",
       "react-dom"
     ],
-    "strictNullChecks": false
+    "strictNullChecks": true
   },
   "files": [
     "../../packages/highway-react/src/index.ts"

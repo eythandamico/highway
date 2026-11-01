@@ -1,0 +1,13 @@
+.library:has(> .highway-examples) { display:flex; flex-direction:column; min-height:100dvh; }
+.highway-examples { flex:1; width:100%; max-width:1120px; margin-inline:auto; padding:var(--space-12) var(--space-8) var(--space-16); }
+.highway-examples-heading { max-width:60ch; margin-bottom:var(--space-12); }
+.highway-examples h1 { margin:0 0 var(--space-4); font-size:var(--type-display); line-height:var(--leading-display); font-weight:var(--weight-semibold); }
+.highway-examples p { color:var(--soft); font-size:var(--type-body); line-height:var(--leading-body); }
+.highway-example { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--space-12); padding-block:var(--space-8); border-top:1px solid var(--line); }
+.highway-example-kicker { color:var(--soft); font-size:var(--type-caption); line-height:var(--leading-caption); }
+.highway-example h2 { margin:var(--space-2) 0 var(--space-3); font-size:var(--type-heading-lg); line-height:var(--leading-heading-lg); font-weight:var(--weight-semibold); }
+.highway-example-description > p { margin:0 0 var(--space-5); max-width:48ch; }
+.highway-example-description .highway-example-note,.highway-example-code > p { font-size:var(--type-body-sm); line-height:var(--leading-body-sm); }
+.highway-example-code { min-width:0; }
+.highway-example-code > p { margin-top:var(--space-3); }
+@media(max-width:700px) { .highway-examples { padding:var(--space-8) var(--space-5); } .highway-example { grid-template-columns:1fr; gap:var(--space-6); } }

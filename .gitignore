@@ -15,4 +15,10 @@ test-results/
 playwright-report/
 
 # Generated isolated component previews
-/public/invariant-preview/
+/public/invariant-preview/assets/
+
+# Rebuilt from canonical package declarations and documentation
+/packages/highway-mcp/data/
+
+# Generated local plugin downloads
+/public/downloads/highway-*-plugin.zip

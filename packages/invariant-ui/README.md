@@ -1,5 +1,7 @@
 # Invariant UI in App Foundation
 
+Implementation ownership has moved to `../highway-react/src/invariant`; this directory retains attribution, reference documentation and compatibility imports. Edit the canonical implementation. Family examples live in `../../apps/showcase/previews` and use the shared showcase renderer.
+
 This locally integrated copy supplies the styling system and specialized components for the unified Foundation library. The upstream MIT license is retained. See [integration notes](../../docs/INVARIANT-INTEGRATION.md) for provenance and changes.
 
 ## Use in this app
@@ -21,7 +23,7 @@ All 50 Invariant component APIs remain available. Explore the combined catalogue
 
 For reusable installation, use the compiled `@highway/react` and `@highway/styles` packages described in [PACKAGES.md](../../docs/PACKAGES.md). They build directly from these sources without application infrastructure. This source folder depends on the Foundation project: do not copy only `tokens/theme.css` or a compatibility wrapper into another app. Reuse the starter, or bring the component's complete import graph and shared CSS owners (`tokens`, `typography`, `controls`, `foundation`, compatibility aliases). The app uses React 19, Tailwind 4, Radix and lucide-react; preserve the root lockfile. Original per-component API docs live in `docs/`.
 
-The showcase's isolated documents import those same styles. Rebuild their assets with `npm run build:invariant`; development startup and production builds include this automatically.
+The showcase renders every example directly through its shared React preview canvas. Family examples live in `apps/showcase/previews` and update with the showcase development server.
 
 ## License
 

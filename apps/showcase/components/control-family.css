@@ -1,0 +1,15 @@
+.control-family { max-width:var(--page-max); margin-inline:auto; padding:var(--space-8); display:grid; gap:var(--space-10); color:var(--foreground); }
+.control-family header { display:grid; gap:var(--space-4); max-width:var(--reading-max); }
+.control-family h1 { font-size:var(--type-heading-xl); font-weight:600; line-height:var(--leading-heading-xl); }
+.control-family h2 { font-size:var(--type-heading-lg); font-weight:600; }
+.control-family section { display:grid; gap:var(--space-4); padding-block-start:var(--space-6); border-block-start:1px solid var(--line); min-width:0; }
+.control-family-eyebrow, .control-family output { color:var(--muted-foreground); font-size:var(--type-caption); }
+.control-family output { display:block; margin-block-start:var(--space-2); }
+.control-family-row { display:flex; align-items:center; flex-wrap:wrap; gap:var(--space-3); }
+.control-family-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-6); align-items:start; }
+.control-family-grid > label { display:grid; gap:var(--space-2); min-width:0; }
+.control-family-grid > div > p { margin-block-end:var(--space-2); }
+.control-family-choice { display:inline-flex; align-items:center; gap:var(--space-2); }
+.control-family-error { color:var(--status-error); font-size:var(--type-caption); }
+@media(max-width:640px) { .control-family { padding:var(--space-4); } .control-family-grid { grid-template-columns:minmax(0,1fr); } }
+.surface-family-sheet-body { padding:var(--space-4); min-width:0; }

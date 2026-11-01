@@ -1,6 +1,2 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
-}
+// Compatibility import. Edit the canonical owner, not this shim.
+export { cn } from "../packages/highway-react/src/lib/utils";

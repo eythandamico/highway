@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const tokenPath = path.join(root, "app", "tokens.css");
+const tokenPath = path.join(root, "packages/highway-styles/src/tokens.css");
 
 function parseBlocks(source) {
   const css = source.replace(/\/\*[\s\S]*?\*\//g, "");
@@ -124,8 +124,8 @@ test("shared color token pairs meet contrast in light and dark themes", async ()
   const darkOverrides = readVariables(blocks, (selector) =>
     /(^|[\s,])\.dark\b/.test(selector) || /\[data-theme\s*=\s*["']?dark["']?\]/i.test(selector),
   );
-  assert.ok(light.size > 0, "app/tokens.css must define light-theme tokens in :root");
-  assert.ok(darkOverrides.size > 0, "app/tokens.css must define dark-theme token overrides");
+  assert.ok(light.size > 0, "packages/highway-styles/src/tokens.css must define light-theme tokens in :root");
+  assert.ok(darkOverrides.size > 0, "packages/highway-styles/src/tokens.css must define dark-theme token overrides");
 
   const pairs = [
     ["--foreground", "--background", 4.5],

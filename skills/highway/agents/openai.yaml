@@ -1,0 +1,4 @@
+interface:
+  display_name: "Highway"
+  short_description: "Design with intent and build with Highway"
+  default_prompt: "Use $highway to audit the screen, establish a product-specific direction, and build or refine it with real Highway components. Render and critique the result before finishing."

@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "highway-demo",
+  "main": "worker.ts",
+  "account_id": "2aebaf88ef9bbc427b720771d94a8efc",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true
+}

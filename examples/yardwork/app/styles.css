@@ -1,0 +1,15 @@
+@import "../../../packages/highway-styles/src/source.css";
+@source "../src";
+@source "../../../packages/highway-react/src";
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  padding: var(--space-3);
+  background: var(--background);
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 12px;
+}
