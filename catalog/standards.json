@@ -111,7 +111,7 @@
     },
     "opaque-overlay": {
       "owner": "packages/highway-styles/src/foundation.css",
-      "rule": "Preserve the component\u2019s authored overlay material and scoped portal tokens. Native menus/dialogs stay opaque; ProfileMenu and WorkspaceSwitcher retain their translucent blurred surfaces. Do not apply one background to every menu."
+      "rule": "Preserve the component’s authored overlay material and scoped portal tokens. Native menus/dialogs stay opaque; ProfileMenu and WorkspaceSwitcher retain their translucent blurred surfaces. Do not apply one background to every menu."
     },
     "invariant-surface": {
       "owner": "packages/highway-styles/src/invariant-theme.css",
@@ -157,6 +157,16 @@
       "purpose": "Preserve a distinct existing choreography until individually reviewed.",
       "owner": "packages/highway-react/src/invariant/components",
       "policy": "Do not normalize all timings. Any change requires explicit visual comparison, reduced-motion coverage and lifecycle cleanup."
+    },
+    "number-roll": {
+      "purpose": "Show numeric value changes with directional digit rolls while separators remain still.",
+      "owner": "packages/highway-react/src/components/ui/number-ticker.tsx",
+      "policy": "Default 900ms roll with configurable duration and initial delay; begin when visible, preserve digit identity, cancel frames and timers on unmount, and resolve immediately under reduced motion."
+    },
+    "copy-feedback": {
+      "purpose": "Confirm a successful clipboard write without shifting the control or surrounding content.",
+      "owner": "packages/highway-styles/src/controls.css",
+      "policy": "Keep idle and success labels in shared grid space. Preserve the 160ms opacity and 220ms vertical transition, announce clipboard failures, reset feedback after 2 seconds, and remove spatial transitions under reduced motion."
     }
   },
   "policy": "Highway canonical packages are the single source of truth for showcase, docs, MCP and consumers. Preserve authored component geometry, materials, emphasis and distinct motion; shared tokens are not permission for blanket visual overrides. Contracts are review requirements, not certification of every state."

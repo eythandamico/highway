@@ -120,6 +120,11 @@ Highway canonical packages are the single source of truth for showcase, docs, MC
 | VoiceRecorder | action | press | inherited |
 | ContextTray | display | none | inherited |
 | ReviewApplyCard | action | press | inherited |
+| NumberTicker | effect | number-roll | inherited |
+| TokenIcon | display | none | inherited |
+| TokenBadge | display | none | inherited |
+| Breadcrumbs | action | none | inherited |
+| CopyPage | action | copy-feedback | inherited |
 
 ## display
 
@@ -230,3 +235,19 @@ Preserve a distinct existing choreography until individually reviewed.
 Do not normalize all timings. Any change requires explicit visual comparison, reduced-motion coverage and lifecycle cleanup.
 
 Owner: `packages/highway-react/src/invariant/components`.
+
+## Motion: number-roll
+
+Show numeric value changes with directional digit rolls while separators remain still.
+
+Default 900ms roll with configurable duration and initial delay; begin when visible, preserve digit identity, cancel frames and timers on unmount, and resolve immediately under reduced motion.
+
+Owner: `packages/highway-react/src/components/ui/number-ticker.tsx`.
+
+## Motion: copy-feedback
+
+Confirm a successful clipboard write without shifting the control or surrounding content.
+
+Keep idle and success labels in shared grid space. Preserve the 160ms opacity and 220ms vertical transition, announce clipboard failures, reset feedback after 2 seconds, and remove spatial transitions under reduced motion.
+
+Owner: `packages/highway-styles/src/controls.css`.

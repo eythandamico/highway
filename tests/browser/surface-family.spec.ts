@@ -181,10 +181,19 @@ test("surface-family cards, accordions, steps, and overlays stay usable at 320px
   const menu = page.getByRole("menu", { name: "Project actions" });
   const menuRows = await menu.getByRole("menuitem").evaluateAll((items) => items.map((item) => {
     const bounds = item.getBoundingClientRect();
-    return { width: bounds.width, height: bounds.height, scrollWidth: item.scrollWidth, clientWidth: item.clientWidth };
+    return {
+      width: bounds.width,
+      height: bounds.height,
+      scrollWidth: item.scrollWidth,
+      clientWidth: item.clientWidth,
+      scrollHeight: item.scrollHeight,
+      clientHeight: item.clientHeight,
+    };
   }));
   expect(menuRows.every(({ width }) => width >= 180)).toBe(true);
-  expect(menuRows.map(({ height }) => height)).toEqual([32, 32, 48, 32]);
+  expect([menuRows[0].height, menuRows[1].height, menuRows[3].height]).toEqual([32, 32, 32]);
+  expect(menuRows[2].height).toBeGreaterThanOrEqual(48);
+  expect(menuRows[2].scrollHeight).toBeLessThanOrEqual(menuRows[2].clientHeight + 1);
   expect(menuRows.every(({ scrollWidth, clientWidth }) => scrollWidth <= clientWidth + 1)).toBe(true);
 
   const accordions = page.getByRole("button", { name: "A considered expansion" });

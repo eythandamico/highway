@@ -2317,7 +2317,7 @@
       ],
       "contract": {
         "family": "effect",
-        "motion": "animated",
+        "motion": "number-roll",
         "material": "inherited"
       },
       "families": [
@@ -2339,7 +2339,12 @@
       ],
       "constraints": [
         "Supply token and network artwork from the host; no network registry or wallet connection is bundled."
-      ]
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      }
     },
     {
       "id": "highway.token-badge",
@@ -2353,7 +2358,12 @@
       ],
       "constraints": [
         "Supply token and network artwork from the host; no network registry or wallet connection is bundled."
-      ]
+      ],
+      "contract": {
+        "family": "display",
+        "motion": "none",
+        "material": "inherited"
+      }
     },
     {
       "id": "highway.breadcrumbs",
@@ -2367,7 +2377,12 @@
       ],
       "families": [
         "breadcrumbs"
-      ]
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "none",
+        "material": "inherited"
+      }
     },
     {
       "id": "highway.copy-page",
@@ -2381,7 +2396,12 @@
       ],
       "families": [
         "copy-page"
-      ]
+      ],
+      "contract": {
+        "family": "action",
+        "motion": "copy-feedback",
+        "material": "inherited"
+      }
     }
   ],
   "showcase": {
@@ -3744,7 +3764,7 @@
           "when": "Indeterminate activity with readable status text.",
           "props": {},
           "compatibility": [],
-          "example": "<LoadingState>Loading results\u2026</LoadingState>"
+          "example": "<LoadingState>Loading results…</LoadingState>"
         }
       ],
       "preserve": [

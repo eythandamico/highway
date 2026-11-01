@@ -280,13 +280,6 @@
     "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
   },
   {
-    "file": "packages/highway-react/src/invariant/components/pin-input.jsx",
-    "rule": "literal-color",
-    "match": "#ef4444",
-    "count": 1,
-    "reason": "Inherited artwork or component color retained pending semantic-token/brand review; no new occurrences allowed."
-  },
-  {
     "file": "packages/highway-react/src/invariant/components/prompt-bar.jsx",
     "rule": "literal-color",
     "match": "#767270",
