@@ -1,14 +1,14 @@
 "use client";
 import { useExampleState } from "./example-state";
-import { TextInput } from '../../../packages/highway-react/src/invariant/components/text-input.jsx';
-import { Select } from '../../../packages/highway-react/src/invariant/components/select.jsx';
-import { Toggle } from '../../../packages/highway-react/src/invariant/components/toggle.jsx';
-import { PinInput } from '../../../packages/highway-react/src/invariant/components/pin-input.jsx';
-import { NumberInput } from '../../../packages/highway-react/src/invariant/components/number-input.jsx';
-import { Textarea } from '../../../packages/highway-react/src/invariant/components/textarea.jsx';
-import { Checkbox } from '../../../packages/highway-react/src/invariant/components/checkbox.jsx';
-import { RadioGroup } from '../../../packages/highway-react/src/invariant/components/radio-group.jsx';
-import { SliderInput } from '../../../packages/highway-react/src/invariant/components/slider-input.jsx';
+import { TextInput } from '../../../packages/highway-react/src/components/text-input.jsx';
+import { Select } from '../../../packages/highway-react/src/components/select.jsx';
+import { Toggle } from '../../../packages/highway-react/src/components/toggle.jsx';
+import { PinInput } from '../../../packages/highway-react/src/components/pin-input.jsx';
+import { NumberInput } from '../../../packages/highway-react/src/components/number-input.jsx';
+import { Textarea } from '../../../packages/highway-react/src/components/textarea.jsx';
+import { Checkbox } from '../../../packages/highway-react/src/components/checkbox.jsx';
+import { RadioGroup } from '../../../packages/highway-react/src/components/radio-group.jsx';
+import { SliderInput } from '../../../packages/highway-react/src/components/slider-input.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function SelectExample() {
     const [disabled] = useExampleState("disabled", false);

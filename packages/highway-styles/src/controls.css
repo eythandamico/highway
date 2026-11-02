@@ -435,22 +435,22 @@ html {
 .hw-menu [role^="menuitem"]:disabled { scale:1; }
 
 /* Invariant choice geometry/choreography belongs to these explicit wrappers only. */
-.hw-invariant-choice-field { gap:calc(var(--space-2) + var(--space-half)); }
-:is(.hw-invariant-checkbox,.hw-invariant-radio).ui-choice { width:var(--space-6); height:var(--space-6); }
-:is(.hw-invariant-checkbox,.hw-invariant-radio) .ui-choice-indicator { width:0; height:0; opacity:1; transform:none; overflow:hidden; transition:width var(--invariant-detail-duration) ease-in,height var(--invariant-detail-duration) ease-in; }
-.hw-invariant-checkbox[data-state="checked"] .ui-choice-indicator { width:calc(var(--space-4) + var(--space-half)); height:calc(var(--space-4) + var(--space-half)); }
-.hw-invariant-radio[data-state="checked"] .ui-choice-indicator { width:calc(var(--space-3) + var(--space-half)); height:calc(var(--space-3) + var(--space-half)); }
-:is(.hw-invariant-checkbox,.hw-invariant-radio)[data-state="checked"] .ui-choice-indicator { transition:width var(--invariant-selection-duration) var(--ease-spring),height var(--invariant-selection-duration) var(--ease-spring); }
-:is(.hw-invariant-checkbox,.hw-invariant-radio):focus-visible .ui-choice-indicator { transition:none; }
-@media(prefers-reduced-motion:reduce) { :is(.hw-invariant-checkbox,.hw-invariant-radio) .ui-choice-indicator { transition:none; } }
+.hw-choice-field { gap:calc(var(--space-2) + var(--space-half)); }
+:is(.hw-checkbox,.hw-radio).ui-choice { width:var(--space-6); height:var(--space-6); }
+:is(.hw-checkbox,.hw-radio) .ui-choice-indicator { width:0; height:0; opacity:1; transform:none; overflow:hidden; transition:width var(--invariant-detail-duration) ease-in,height var(--invariant-detail-duration) ease-in; }
+.hw-checkbox[data-state="checked"] .ui-choice-indicator { width:calc(var(--space-4) + var(--space-half)); height:calc(var(--space-4) + var(--space-half)); }
+.hw-radio[data-state="checked"] .ui-choice-indicator { width:calc(var(--space-3) + var(--space-half)); height:calc(var(--space-3) + var(--space-half)); }
+:is(.hw-checkbox,.hw-radio)[data-state="checked"] .ui-choice-indicator { transition:width var(--invariant-selection-duration) var(--ease-spring),height var(--invariant-selection-duration) var(--ease-spring); }
+:is(.hw-checkbox,.hw-radio):focus-visible .ui-choice-indicator { transition:none; }
+@media(prefers-reduced-motion:reduce) { :is(.hw-checkbox,.hw-radio) .ui-choice-indicator { transition:none; } }
 
 /* Field wrappers preserve their Invariant surface without changing native fields. */
-.hw-invariant-field { background:var(--inv-surface); border-color:transparent; box-shadow:var(--inv-shadow-sm); }
-.hw-invariant-field:focus { outline:none; box-shadow:var(--field-focus-shadow); }
-.hw-invariant-select > svg { transition:transform var(--invariant-detail-duration) ease-out; }
-.hw-invariant-select[data-state="open"] > svg { transform:rotate(180deg); }
+.hw-text-field { background:var(--inv-surface); border-color:transparent; box-shadow:var(--inv-shadow-sm); }
+.hw-text-field:focus { outline:none; box-shadow:var(--field-focus-shadow); }
+.hw-select-field > svg { transition:transform var(--invariant-detail-duration) ease-out; }
+.hw-select-field[data-state="open"] > svg { transform:rotate(180deg); }
 .hw-message-content { line-height:1.625; }
-@media(prefers-reduced-motion:reduce) { .hw-invariant-select > svg { transition:none; } }
+@media(prefers-reduced-motion:reduce) { .hw-select-field > svg { transition:none; } }
 
 /* Composite inputs own focus at the visible shell; their inner input is not a second control. */
 .hw-search-bar { display:flex; align-items:center; gap:var(--field-icon-gap); width:100%; min-width:0; min-height:var(--control-height); padding:var(--space-1) var(--space-3); border-radius:var(--radius-control); background:var(--field-surface); box-shadow:var(--control-shadow); transition:box-shadow var(--duration-fast) var(--ease-standard); }
@@ -577,4 +577,4 @@ html {
 :is(.hw-search-bar,.hw-prompt-bar,.hw-pin-input,.hw-choice-trigger) { transition:box-shadow 200ms var(--ease-standard), background-color 200ms var(--ease-standard); }
 .hw-choice-trigger:focus-visible { outline:none; box-shadow:var(--field-focus-shadow); }
 @media(prefers-reduced-motion:reduce) { :is(.hw-search-bar,.hw-prompt-bar,.hw-pin-input,.hw-choice-trigger) { transition:none; } }
-@media(forced-colors:active) { :is(.hw-invariant-field,.hw-pin-input,.hw-choice-trigger):focus { outline:2px solid Highlight; outline-offset:2px; } }
+@media(forced-colors:active) { :is(.hw-text-field,.hw-pin-input,.hw-choice-trigger):focus { outline:2px solid Highlight; outline-offset:2px; } }

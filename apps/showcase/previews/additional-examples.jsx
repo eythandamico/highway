@@ -1,18 +1,18 @@
 "use client";
 import { useExampleState } from "./example-state";
-import { Divider } from '../../../packages/highway-react/src/invariant/components/divider.jsx'
-import { Menu, MenuItem, MenuDivider } from '../../../packages/highway-react/src/invariant/components/menu.jsx'
-import { Overlay } from '../../../packages/highway-react/src/invariant/components/overlay.jsx'
-import { Spinner } from '../../../packages/highway-react/src/invariant/components/spinner.jsx'
-import { Tooltip } from '../../../packages/highway-react/src/invariant/components/tooltip.jsx'
-import { PageSection } from '../../../packages/highway-react/src/invariant/components/page-section.jsx'
-import { Row } from '../../../packages/highway-react/src/invariant/components/row.jsx'
-import { Stack } from '../../../packages/highway-react/src/invariant/components/stack.jsx'
-import { Surface } from '../../../packages/highway-react/src/invariant/components/surface.jsx'
-import { SearchToggle } from '../../../packages/highway-react/src/invariant/components/search-toggle.jsx'
-import { Skeleton } from '../../../packages/highway-react/src/invariant/components/skeleton.jsx'
-import { EmptyState } from '../../../packages/highway-react/src/invariant/components/empty-state.jsx'
-import { Button } from '../../../packages/highway-react/src/invariant/components/button.jsx'
+import { Divider } from '../../../packages/highway-react/src/components/divider.jsx'
+import { Menu, MenuItem, MenuDivider } from '../../../packages/highway-react/src/components/menu.jsx'
+import { Overlay } from '../../../packages/highway-react/src/components/overlay.jsx'
+import { Spinner } from '../../../packages/highway-react/src/components/spinner.jsx'
+import { Tooltip } from '../../../packages/highway-react/src/components/tooltip.jsx'
+import { PageSection } from '../../../packages/highway-react/src/components/page-section.jsx'
+import { Row } from '../../../packages/highway-react/src/components/row.jsx'
+import { Stack } from '../../../packages/highway-react/src/components/stack.jsx'
+import { Surface } from '../../../packages/highway-react/src/components/surface.jsx'
+import { SearchToggle } from '../../../packages/highway-react/src/components/search-toggle.jsx'
+import { Skeleton } from '../../../packages/highway-react/src/components/skeleton.jsx'
+import { EmptyState } from '../../../packages/highway-react/src/components/empty-state.jsx'
+import { Button } from '../../../packages/highway-react/src/components/button.jsx'
 export function Supplemental({id}) {
  const [active,setActive]=useExampleState("active", false),[message,setMessage]=useExampleState("message", '')
  const [skeletonVariant]=useExampleState("skeletonVariant", "card");

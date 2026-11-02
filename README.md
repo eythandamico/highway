@@ -1,6 +1,6 @@
 # Highway
 
-Highway provides the exact Invariant-crafted components and styling used by its showcase, with optional application examples. The component packages contain no authentication, database or Cloudflare runtime.
+Highway provides the React components and styling used by its showcase, with optional application examples. The component packages contain no authentication, database or Cloudflare runtime.
 
 ## Start locally
 
@@ -128,9 +128,11 @@ Create your own D1 database and private R2 bucket; configure your own HTTPS orig
 
 Vinext is pinned to the version used by the source foundation and is a beta dependency. Validate framework upgrades explicitly. This starter preserves that stack rather than promising compatibility with every Next.js deployment host.
 
-### One library, Invariant styling
+### One Highway design system
 
-The library combines Invariant components and Foundation patterns under Invariant’s styling system. `packages/highway-styles/src/tokens.css` and `packages/highway-styles/src/typography.css` own the shared palette, materials, scale, and motion; `--inv-*` values are aliases. Consuming projects import public exports from `@highway/react`. Explore `/showcase?component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. Previews render directly in the showcase through one shared React canvas; `npm run dev:showcase` updates them live. See `docs/INVARIANT-INTEGRATION.md`.
+Highway components and Foundation patterns share one design system. `packages/highway-styles/src/tokens.css` and `packages/highway-styles/src/typography.css` own the shared palette, materials, scale, and motion; `--inv-*` values remain compatibility aliases. Consuming projects import public exports from `@highway/react`. Explore `/showcase?component=inv-segmented-control` and `/guide#invariant`. Components can be imported directly into app routes; their theme is already wired up. Previews render directly in the showcase through one shared React canvas; `npm run dev:showcase` updates them live. See `docs/INVARIANT-INTEGRATION.md`.
+
+The implementations live in `packages/highway-react/src/components`, their helpers in `src/lib`, and their shared types in `src/types.ts`. `packages/highway-compat` contains compatibility re-exports and historical reference documents, not a second runtime library. Run `npm run test:components` for the component browser suite.
 
 ## Project identity
 

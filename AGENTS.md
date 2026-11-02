@@ -33,7 +33,7 @@
 
 ## Application boundaries
 
-- `apps/showcase` owns the guide, showcase and Invariant preview. `examples/yardwork` owns the synthetic office demo. Both run without Cloudflare or authentication setup.
+- `apps/showcase` owns the guide, showcase and component previews. `examples/yardwork` owns the synthetic office demo. Both run without Cloudflare or authentication setup.
 - Keep package runtime imports inside `packages/highway-react/src`; core styles belong to `packages/highway-styles/src`. Legacy files are compatibility shims; edit their canonical owners.
 - Default `dev` starts docs; default `build` builds packages/docs/demo. Use `dev:starter` and `build:starter` for the optional root backend. Preserve compatibility routes and manual deployment.
 
@@ -47,6 +47,6 @@
 ## Component craft preservation
 
 - Highway canonical packages are the source of truth. Use original Invariant only as a historical comparison; never add a second runtime styling source.
-- Preserve component-specific visible geometry, materials, emphasis, and timing. Do not force compact indicators, Invariant menus, or media controls into generic button dimensions or opaque surfaces.
+- Preserve component-specific visible geometry, materials, emphasis, and timing. Do not force compact indicators, authored menus, or media controls into generic button dimensions or opaque surfaces.
 - Complete type roles need explicit `highway-weight-*` emphasis when authored weight differs from the role default.
 - Any shared CSS change must be checked against all affected component families visually. Keep keyboard, focus, reduced-motion, and host behavior fixes; visual restoration is not permission to roll back functional safeguards.

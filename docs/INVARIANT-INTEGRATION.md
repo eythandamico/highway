@@ -1,20 +1,20 @@
-# Unified Invariant integration
+# Invariant integration history
 
-The owner selected Invariant as the styling system for the entire Foundation library. The single catalogue combines application patterns and Invariant components. Compatibility links for `inv-button` and `inv-toggle` resolve to the canonical Button and Switch. All 50 original preview scenarios remain available.
+Highway adopted components and styling from Invariant into its own canonical packages. This document records that integration history; current applications use one Highway component library. Compatibility links for `inv-button` and `inv-toggle` resolve to the canonical Button and Switch. All 50 original preview scenarios remain available.
 
-- `packages/highway-styles/src/tokens.css`: canonical Invariant light/dark palette, layered shadows, radii and motion.
+- `packages/highway-styles/src/tokens.css`: canonical Highway light/dark palette, layered shadows, radii and motion.
 - `packages/highway-styles/src/typography.css`: Highway scale in rem with readable phone inputs.
-- `packages/highway-styles/src/invariant-theme.css`: aliases and type classes only.
+- `packages/highway-styles/src/component-theme.css`: aliases and type classes only.
 - `packages/highway-react/src/index.ts`: public package export surface.
 - Original Button and Toggle APIs delegate to shared Button/Switch. TextInput and Textarea compose the shared fields, retaining labels/errors and auto-grow.
 - All previews render directly through the shared showcase canvas and load the same styling owners.
 - Original upstream repositories remain untouched. All state stays demo-only, with no Yardwork backend or account dependency.
 
-The notes below record provenance and retained integration details.
+The notes below record provenance and retained integration details. Highway is the current implementation owner; Invariant is not a separate runtime dependency.
 
 ## Source provenance
 
-The owner requested the original Invariant component collection and its engineering quality on October 19, 2026. All 50 registry entries were copied from the local Invariant project into `packages/invariant-ui`. The upstream repository and its deployment were not modified. The MIT license is retained alongside the code.
+The owner requested the original Invariant component collection and its engineering quality on October 19, 2026. All 50 registry entries were copied from the local Invariant project into `packages/highway-compat`. The upstream repository and its deployment were not modified. The MIT license is retained alongside the code.
 
 ## Use
 
@@ -53,4 +53,4 @@ Supply `onSend(text)` and an append-only `messages` array (`id`, `role`, `text`)
 
 ### Current source ownership
 
-Canonical Invariant implementations now live in `packages/highway-react/src/invariant`; the original module paths are explicit compatibility reexports. Shared theme CSS lives in `packages/highway-styles/src/invariant-theme.css`. The family examples belong to `apps/showcase/previews` and build with the showcase. Attribution remains with the copied implementation. These are ownership moves, not new component designs or API replacements.
+Canonical Highway implementations now live in `packages/highway-react/src/components`, with shared helpers in `packages/highway-react/src/lib`; the compatibility imports in `packages/highway-compat` are explicit re-exports. Shared theme CSS lives in `packages/highway-styles/src/component-theme.css`. The family examples belong to `apps/showcase/previews` and build with the showcase. Attribution remains with the copied implementation. These are ownership moves, not new component designs or API replacements.

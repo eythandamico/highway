@@ -1,9 +1,9 @@
 /** Named interaction recipes. Values live in tokens.css; keep each family's character. */
 export const motionTransitions = Object.freeze({
-  invariantPopoverEnter: 'scale var(--invariant-enter-duration) var(--ease-spring), opacity var(--duration-normal) ease-out, filter var(--invariant-enter-duration) var(--ease-spring)',
-  invariantPopoverExit: 'scale var(--invariant-detail-duration) var(--invariant-exit-ease), opacity var(--duration-fast) ease-in, filter var(--invariant-detail-duration) var(--invariant-exit-ease)',
-  invariantSlideEnter: 'opacity var(--duration-normal) ease-out, transform var(--invariant-enter-duration) var(--ease-spring), filter var(--invariant-enter-duration) var(--ease-spring)',
-  invariantSlideExit: 'opacity var(--duration-fast) ease-in, transform var(--invariant-detail-duration) var(--invariant-exit-ease), filter var(--invariant-detail-duration) var(--invariant-exit-ease)',
+  floatingEnter: 'scale var(--invariant-enter-duration) var(--ease-spring), opacity var(--duration-normal) ease-out, filter var(--invariant-enter-duration) var(--ease-spring)',
+  floatingExit: 'scale var(--invariant-detail-duration) var(--invariant-exit-ease), opacity var(--duration-fast) ease-in, filter var(--invariant-detail-duration) var(--invariant-exit-ease)',
+  floatingSlideEnter: 'opacity var(--duration-normal) ease-out, transform var(--invariant-enter-duration) var(--ease-spring), filter var(--invariant-enter-duration) var(--ease-spring)',
+  floatingSlideExit: 'opacity var(--duration-fast) ease-in, transform var(--invariant-detail-duration) var(--invariant-exit-ease), filter var(--invariant-detail-duration) var(--invariant-exit-ease)',
   selection: 'left var(--selection-duration) var(--ease-emphasized), width var(--selection-duration) var(--ease-emphasized)',
   slider: 'width var(--slider-duration) var(--ease-spring)',
   expansionSize: 'height var(--expansion-duration) var(--ease-emphasized)',

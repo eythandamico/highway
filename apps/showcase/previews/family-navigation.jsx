@@ -1,12 +1,12 @@
 "use client";
 import { useExampleState } from "./example-state";
 import { previewFeedback } from './feedback.js';
-import { BottomNav } from '../../../packages/highway-react/src/invariant/components/bottom-nav.jsx';
-import { WorkspaceSwitcher } from '../../../packages/highway-react/src/invariant/components/workspace-switcher.jsx';
-import { ProfileMenu } from '../../../packages/highway-react/src/invariant/components/profile-menu.jsx';
-import { SearchBar } from '../../../packages/highway-react/src/invariant/components/search-bar.jsx';
-import { SegmentedControl } from '../../../packages/highway-react/src/invariant/components/segmented-control.jsx';
-import { Tabs } from '../../../packages/highway-react/src/invariant/components/tabs.jsx';
+import { BottomNav } from '../../../packages/highway-react/src/components/bottom-nav.jsx';
+import { WorkspaceSwitcher } from '../../../packages/highway-react/src/components/workspace-switcher.jsx';
+import { ProfileMenu } from '../../../packages/highway-react/src/components/profile-menu.jsx';
+import { SearchBar } from '../../../packages/highway-react/src/components/search-bar.jsx';
+import { SegmentedControl } from '../../../packages/highway-react/src/components/segmented-control.jsx';
+import { Tabs } from '../../../packages/highway-react/src/components/tabs.jsx';
 import { TABS, STARTUPS } from './fixtures.jsx';
 import { PROFILE, PROFILE_ITEMS, ComponentStage } from "./preview-helpers.jsx";
 export function BottomNavExample({ darkMode, toggleDarkMode }) {

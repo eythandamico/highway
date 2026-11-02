@@ -6,4 +6,4 @@ The October 19, 2026 refresh adapts reusable design foundation code and guidelin
 
 ## Invariant UI
 
-The owner-authorized local copy in `packages/invariant-ui` includes all 50 Invariant UI components, helper utilities, theme tokens, and documentation under its retained MIT license (`packages/invariant-ui/LICENSE`). Integration changes are described in `docs/INVARIANT-INTEGRATION.md`.
+Highway includes adapted Invariant UI implementations in `packages/highway-react/src/components` and shared helpers in `packages/highway-react/src/lib`. Their upstream MIT license is retained at `packages/highway-react/INVARIANT-LICENSE`. `packages/highway-compat` contains compatibility re-exports, reference documentation, and the retained upstream license; it is not a separate runtime library. Integration history is recorded in `docs/INVARIANT-INTEGRATION.md`.

@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { scrollComponentPanelToTop } from "./component-navigation";
 import Link from "next/link";
 import { ChevronDown, Shapes } from "lucide-react";
-import { SearchBar } from "../../../packages/highway-react/src/invariant/components/search-bar";
+import { SearchBar } from "../../../packages/highway-react/src/components/search-bar";
 import { ProgressiveBlur } from "../../../packages/highway-react/src/components/visual/progressive-blur";
 import { Button } from "../../../packages/highway-react/src/components/ui/button";
 

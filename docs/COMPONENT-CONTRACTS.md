@@ -43,7 +43,7 @@ Highway canonical packages are the single source of truth for showcase, docs, MC
 | Overlay | overlay | inherited-specialty | opaque-overlay |
 | Spinner | feedback | inherited-specialty | inherited |
 | Tooltip | overlay | overlay | opaque-overlay |
-| ExpandCard | selection | expansion | invariant-surface |
+| ExpandCard | selection | expansion | component-surface |
 | MessageBubble | display | none | inherited |
 | PageSection | layout | none | inherited |
 | Progress | feedback | inherited-specialty | inherited |
@@ -59,7 +59,7 @@ Highway canonical packages are the single source of truth for showcase, docs, MC
 | SpotlightCard | effect | inherited-specialty | decorative |
 | Stack | layout | none | inherited |
 | StepIndicator | display | none | inherited |
-| Surface | display | none | invariant-surface |
+| Surface | display | none | component-surface |
 | Table | display | none | inherited |
 | Tabs | selection | selection | inherited |
 | TextInput | field | inherited-specialty | field |
@@ -68,7 +68,7 @@ Highway canonical packages are the single source of truth for showcase, docs, MC
 | Toggle | field | inherited-specialty | field |
 | Skeleton | feedback | inherited-specialty | inherited |
 | Checkbox | field | inherited-specialty | field |
-| Card | display | none | invariant-surface |
+| Card | display | none | component-surface |
 | Dialog | overlay | inherited-specialty | opaque-overlay |
 | EmptyState | feedback | inherited-specialty | inherited |
 | WorkspaceSwitcher | selection | overlay | inherited |
@@ -200,9 +200,9 @@ Owner: `packages/highway-styles/src/controls.css`.
 
 Anchor a transient surface to its trigger.
 
-Preserve component-owned entrance/exit recipes: Invariant scale/slide enters at 300ms with 200ms opacity, exits at 150ms with 120ms opacity. Keep correct origins, retargetable transitions, reduced motion, and inert closed content.
+Preserve component-owned entrance/exit recipes: Floating scale/slide enters at 300ms with 200ms opacity, exits at 150ms with 120ms opacity. Keep correct origins, retargetable transitions, reduced motion, and inert closed content.
 
-Owner: `packages/highway-react/src/invariant/lib/popover.js`.
+Owner: `packages/highway-react/src/lib/popover.js`.
 
 ## Motion: selection
 
@@ -234,7 +234,7 @@ Preserve a distinct existing choreography until individually reviewed.
 
 Do not normalize all timings. Any change requires explicit visual comparison, reduced-motion coverage and lifecycle cleanup.
 
-Owner: `packages/highway-react/src/invariant/components`.
+Owner: `packages/highway-react/src/components`.
 
 ## Motion: number-roll
 

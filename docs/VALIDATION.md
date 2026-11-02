@@ -7,7 +7,7 @@ Validation for the unified Foundation and Invariant component library, visual ef
 ## Automated checks
 
 - `npm run check:ui:full` — passed. TypeScript, lint, design and contrast checks, production app build, Storybook build, and Playwright UI suite all completed. The UI suite reported 28 passed and 8 skipped project-specific repeats. After the final reduced-transparency declaration-order adjustment, `npm run build` and the effects CSS verifier passed again.
-- `npm run test:invariant` — passed. The suite reported 31 passed and 77 project-specific skips across desktop, phone, narrow, and reduced-motion projects. It loads all 50 Invariant previews, checks the 68-item sorted catalogue and legacy aliases, shared/legacy Button and Switch behavior, radio arrow-key and label selection, checkbox Space/disabled behavior, modal focus handling, mobile overflow, reduced motion, and host/preview token parity.
+- `npm run test:components` — passed. The suite reported 31 passed and 77 project-specific skips across desktop, phone, narrow, and reduced-motion projects. It loads all 50 Invariant previews, checks the 68-item sorted catalogue and legacy aliases, shared/legacy Button and Switch behavior, radio arrow-key and label selection, checkbox Space/disabled behavior, modal focus handling, mobile overflow, reduced motion, and host/preview token parity.
 - `npm run test:demo` — passed, 3/3. It verifies the in-memory demo stays offline and isolated, route maps use synthetic pins, and demo chat upload remains guarded.
 - `node tests/verify-effects-build.mjs` — passed after production build. It checked 10 CSS files for 26 backdrop blur declarations, 11 masked layers, direction and gradient rules, unsupported-blur and reduced-transparency fallbacks, and reduced-motion behavior.
 
@@ -25,7 +25,7 @@ Playwright exercised desktop Chromium and emulated 390 px phone and 320 px narro
 
 # Invariant integration validation — October 19, 2026
 
-- `npm run test:invariant`: 9 applicable tests passed across desktop, 390px phone, 320px narrow, and reduced-motion projects; 23 project-specific skips. Tests visit all 50 catalogue previews and check search, segmented/toggle state, modal labels/focus/keyboard dismissal/restoration, theme sync, mobile containment, and reduced-motion CSS.
+- `npm run test:components`: 9 applicable tests passed across desktop, 390px phone, 320px narrow, and reduced-motion projects; 23 project-specific skips. Tests visit all 50 catalogue previews and check search, segmented/toggle state, modal labels/focus/keyboard dismissal/restoration, theme sync, mobile containment, and reduced-motion CSS.
 - `npm run check:ui:full`: typecheck, lint, design/contrast, preview + app production builds, Storybook, and Foundation browser tests passed (28 passed, 8 intentional skips).
 - `npm run test:demo`: 3/3 passed.
 - Lint: zero errors; 18 inherited package warnings remain, chiefly native image elements, unused variables, and dependency suggestions.
@@ -106,7 +106,7 @@ npm ci
 npm run setup
 npx playwright install chromium
 npm run check:ui:full
-npm run test:invariant
+npm run test:components
 npm test
 npm run package
 ```

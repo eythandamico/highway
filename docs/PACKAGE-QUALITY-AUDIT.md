@@ -61,19 +61,19 @@ Provisional code-review health score: **13/20**. This is a prioritization rubric
 
 ### P1 — BottomSheet mutates the host application outside HighwayTheme
 
-`packages/highway-react/src/invariant/components/bottom-sheet.jsx:57` looks up the global `#root` and rewrites its transform, filter, radius, height, overflow, and transition. It also changes the body background. Cleanup clears properties instead of restoring their prior values. In a typical Vite application this can alter the entire host UI, including content outside the themed subtree, and discard its existing inline styles. Make page transformation an explicit opt-in target owned by the caller; preserve and restore prior styles and coordinate scroll locking. The existing isolated-host test does not exercise BottomSheet. Suggested follow-up: `/harden`.
+`packages/highway-react/src/components/bottom-sheet.jsx:57` looks up the global `#root` and rewrites its transform, filter, radius, height, overflow, and transition. It also changes the body background. Cleanup clears properties instead of restoring their prior values. In a typical Vite application this can alter the entire host UI, including content outside the themed subtree, and discard its existing inline styles. Make page transformation an explicit opt-in target owned by the caller; preserve and restore prior styles and coordinate scroll locking. The existing isolated-host test does not exercise BottomSheet. Suggested follow-up: `/harden`.
 
 ### P1 — Closed menus remain keyboard-interactive
 
-`packages/highway-react/src/invariant/components/dropdown.jsx:47`, `profile-menu.jsx`, and `workspace-switcher.jsx` hide menus using opacity and pointer events through `lib/popover.js`. They do not remove closed actions from keyboard navigation or the accessibility tree. A keyboard user can encounter invisible actions. Use inert/hidden state consistent with exit motion, implement menu keyboard behavior, and restore focus on dismissal. Suggested follow-up: `/harden`.
+`packages/highway-react/src/components/dropdown.jsx:47`, `profile-menu.jsx`, and `workspace-switcher.jsx` hide menus using opacity and pointer events through `lib/popover.js`. They do not remove closed actions from keyboard navigation or the accessibility tree. A keyboard user can encounter invisible actions. Use inert/hidden state consistent with exit motion, implement menu keyboard behavior, and restore focus on dismissal. Suggested follow-up: `/harden`.
 
 ### P1 — NumberInput ignores keyboard activation
 
-`packages/highway-react/src/invariant/components/number-input.jsx:94` attaches the action to `onMouseDown`, with no click activation. Native Enter/Space activation therefore does not invoke the increment/decrement action. The displayed label also lacks an association to a value control. Implement click activation plus pointer hold without double stepping, label/value semantics, and cleanup when disabled or unmounted. Suggested follow-up: `/harden`.
+`packages/highway-react/src/components/number-input.jsx:94` attaches the action to `onMouseDown`, with no click activation. Native Enter/Space activation therefore does not invoke the increment/decrement action. The displayed label also lacks an association to a value control. Implement click activation plus pointer hold without double stepping, label/value semantics, and cleanup when disabled or unmounted. Suggested follow-up: `/harden`.
 
 ### P1 — SliderInput and SplitPane are mouse-only
 
-`packages/highway-react/src/invariant/components/slider-input.jsx:77` and `split-pane.jsx` expose draggable divs with mouse listeners but no keyboard model, focusability, range/separator semantics, or touch pointer handling. Users who cannot drag a mouse cannot operate them. Preserve the visual shell while using accessible range/separator behavior and pointer capture. Suggested follow-up: `/harden`.
+`packages/highway-react/src/components/slider-input.jsx:77` and `split-pane.jsx` expose draggable divs with mouse listeners but no keyboard model, focusability, range/separator semantics, or touch pointer handling. Users who cannot drag a mouse cannot operate them. Preserve the visual shell while using accessible range/separator behavior and pointer capture. Suggested follow-up: `/harden`.
 
 ### P2 — Slider arithmetic and drag cleanup can affect host behavior
 
@@ -81,11 +81,11 @@ Provisional code-review health score: **13/20**. This is a prioritization rubric
 
 ### P2 — Tabs does not expose selection and uses unsafe selector interpolation
 
-`packages/highway-react/src/invariant/components/tabs.jsx:17` interpolates arbitrary tab IDs into a CSS selector. Quote-containing IDs can throw. Buttons expose no selected/pressed state; the component needs a documented choice between a view-button group and a complete tab/panel pattern. Indicator measurement only runs on active-tab change, so font, content, or container resizing can leave it stale. Use element references or direct dataset comparisons, appropriate selection semantics, and resize observation. Suggested follow-up: `/harden`.
+`packages/highway-react/src/components/tabs.jsx:17` interpolates arbitrary tab IDs into a CSS selector. Quote-containing IDs can throw. Buttons expose no selected/pressed state; the component needs a documented choice between a view-button group and a complete tab/panel pattern. Indicator measurement only runs on active-tab change, so font, content, or container resizing can leave it stale. Use element references or direct dataset comparisons, appropriate selection semantics, and resize observation. Suggested follow-up: `/harden`.
 
 ### P2 — Progress mislabels non-default ranges and ignores reduced motion in JavaScript
 
-`packages/highway-react/src/invariant/components/progress.jsx` computes fill from `value/max` but renders the raw value followed by `%`. With `value=5, max=10`, the fill is 50% and the label is 5%. It has no progressbar semantics, and its requestAnimationFrame counter does not consult reduced motion; CSS cannot stop that JavaScript loop. Render the normalized percentage or explicitly label raw units, expose progress semantics, and bypass the counter under reduced motion. Suggested follow-up: `/harden` and `/animate`.
+`packages/highway-react/src/components/progress.jsx` computes fill from `value/max` but renders the raw value followed by `%`. With `value=5, max=10`, the fill is 50% and the label is 5%. It has no progressbar semantics, and its requestAnimationFrame counter does not consult reduced motion; CSS cannot stop that JavaScript loop. Render the normalized percentage or explicitly label raw units, expose progress semantics, and bypass the counter under reduced motion. Suggested follow-up: `/harden` and `/animate`.
 
 ### P2 — Specialized TypeScript declarations are permissive and sometimes incorrectly required
 

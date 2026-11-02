@@ -289,7 +289,7 @@
     {
       "id": "highway.accordion",
       "export": "Accordion",
-      "source": "packages/highway-react/src/invariant/components/accordion.jsx",
+      "source": "packages/highway-react/src/components/accordion.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Collapsible content sections with blur-in animation.",
@@ -308,7 +308,7 @@
     {
       "id": "highway.alert",
       "export": "Alert",
-      "source": "packages/highway-react/src/invariant/components/alert.jsx",
+      "source": "packages/highway-react/src/components/alert.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Inline notification banner with icon, title, description, and optional dismiss. Animates out on dismiss with scale + fade.",
@@ -327,7 +327,7 @@
     {
       "id": "highway.action-button",
       "export": "ActionButton",
-      "source": "packages/highway-react/src/invariant/components/action-button.jsx",
+      "source": "packages/highway-react/src/components/action-button.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Button that morphs from label to spinner to checkmark on action.",
@@ -346,7 +346,7 @@
     {
       "id": "highway.agent-avatar",
       "export": "AgentAvatar",
-      "source": "packages/highway-react/src/invariant/components/agent-avatar.jsx",
+      "source": "packages/highway-react/src/components/agent-avatar.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Circular avatar with deterministic mesh gradient generated from name. Supports thinking and inactive states.",
@@ -365,7 +365,7 @@
     {
       "id": "highway.badge",
       "export": "Badge",
-      "source": "packages/highway-react/src/invariant/components/badge.jsx",
+      "source": "packages/highway-react/src/components/badge.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Pill label with three variants: dark, subdued, and outline.",
@@ -384,7 +384,7 @@
     {
       "id": "highway.bottom-sheet",
       "export": "BottomSheet",
-      "source": "packages/highway-react/src/invariant/components/bottom-sheet.jsx",
+      "source": "packages/highway-react/src/components/bottom-sheet.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "iOS-style bottom sheet with pull-to-dismiss, viewport shrink effect, and backdrop. The page scales down and rounds its corners when the sheet opens.",
@@ -403,7 +403,7 @@
     {
       "id": "highway.bottom-nav",
       "export": "BottomNav",
-      "source": "packages/highway-react/src/invariant/components/bottom-nav.jsx",
+      "source": "packages/highway-react/src/components/bottom-nav.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Floating bottom navigation bar with tab switching, add menu, profile menu, and chat input morph.",
@@ -422,7 +422,7 @@
     {
       "id": "highway.divider",
       "export": "Divider",
-      "source": "packages/highway-react/src/invariant/components/divider.jsx",
+      "source": "packages/highway-react/src/components/divider.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Horizontal rule using the theme border color.",
@@ -441,7 +441,7 @@
     {
       "id": "highway.dropdown",
       "export": "Dropdown",
-      "source": "packages/highway-react/src/invariant/components/dropdown.jsx",
+      "source": "packages/highway-react/src/components/dropdown.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Overflow menu with trigger button and 12 placement options.",
@@ -460,7 +460,7 @@
     {
       "id": "highway.number-input",
       "export": "NumberInput",
-      "source": "packages/highway-react/src/invariant/components/number-input.jsx",
+      "source": "packages/highway-react/src/components/number-input.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Numeric input with +/- stepper buttons, min/max bounds, and step size.",
@@ -479,7 +479,7 @@
     {
       "id": "highway.pin-input",
       "export": "PinInput",
-      "source": "packages/highway-react/src/invariant/components/pin-input.jsx",
+      "source": "packages/highway-react/src/components/pin-input.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Row of individual digit boxes for 2FA/OTP codes. Auto-advances focus on input, supports paste, and arrow key navigation.",
@@ -498,7 +498,7 @@
     {
       "id": "highway.radio-group",
       "export": "RadioGroup",
-      "source": "packages/highway-react/src/invariant/components/radio-group.jsx",
+      "source": "packages/highway-react/src/components/radio-group.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Group of radio options with vertical or horizontal layout.",
@@ -517,7 +517,7 @@
     {
       "id": "highway.split-pane",
       "export": "SplitPane",
-      "source": "packages/highway-react/src/invariant/components/split-pane.jsx",
+      "source": "packages/highway-react/src/components/split-pane.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Resizable two-pane layout with a draggable divider and pull tab. Supports horizontal and vertical splitting.",
@@ -536,7 +536,7 @@
     {
       "id": "highway.slider-input",
       "export": "SliderInput",
-      "source": "packages/highway-react/src/invariant/components/slider-input.jsx",
+      "source": "packages/highway-react/src/components/slider-input.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Progress-bar style range slider with a draggable divider, label on the left, and value on the right. The filled portion represents the current value.",
@@ -558,7 +558,7 @@
     {
       "id": "highway.textarea",
       "export": "Textarea",
-      "source": "packages/highway-react/src/invariant/components/textarea.jsx",
+      "source": "packages/highway-react/src/components/textarea.jsx",
       "status": "alternative",
       "kind": "component",
       "useWhen": "The Invariant textarea API when its documented interaction model is specifically required.",
@@ -578,7 +578,7 @@
     {
       "id": "highway.modal",
       "export": "Modal",
-      "source": "packages/highway-react/src/invariant/components/modal.jsx",
+      "source": "packages/highway-react/src/components/modal.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Larger content container with header, close button, and scrollable body. Closes on backdrop click and Escape key.",
@@ -597,7 +597,7 @@
     {
       "id": "highway.image-carousel",
       "export": "ImageCarousel",
-      "source": "packages/highway-react/src/invariant/components/image-carousel.jsx",
+      "source": "packages/highway-react/src/components/image-carousel.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Image slideshow with sliding transitions, left/right arrow navigation, and a StepIndicator overlay at the bottom center.",
@@ -616,7 +616,7 @@
     {
       "id": "highway.icon-button",
       "export": "IconButton",
-      "source": "packages/highway-react/src/invariant/components/icon-button.jsx",
+      "source": "packages/highway-react/src/components/icon-button.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Square button with a single icon. Two sizes, optional elevation via shadow.",
@@ -635,7 +635,7 @@
     {
       "id": "highway.menu",
       "export": "Menu",
-      "source": "packages/highway-react/src/invariant/components/menu.jsx",
+      "source": "packages/highway-react/src/components/menu.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
@@ -654,7 +654,7 @@
     {
       "id": "highway.menu-item",
       "export": "MenuItem",
-      "source": "packages/highway-react/src/invariant/components/menu.jsx",
+      "source": "packages/highway-react/src/components/menu.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
@@ -673,7 +673,7 @@
     {
       "id": "highway.menu-divider",
       "export": "MenuDivider",
-      "source": "packages/highway-react/src/invariant/components/menu.jsx",
+      "source": "packages/highway-react/src/components/menu.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Composable menu primitives for building dropdown menus, context menus, and action lists.",
@@ -692,7 +692,7 @@
     {
       "id": "highway.overlay",
       "export": "Overlay",
-      "source": "packages/highway-react/src/invariant/components/overlay.jsx",
+      "source": "packages/highway-react/src/components/overlay.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Fullscreen backdrop with black tint and blur. Used behind dialogs, modals, and other floating layers.",
@@ -711,7 +711,7 @@
     {
       "id": "highway.spinner",
       "export": "Spinner",
-      "source": "packages/highway-react/src/invariant/components/spinner.jsx",
+      "source": "packages/highway-react/src/components/spinner.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Animated loading circle. Inherits `currentColor` for stroke color.",
@@ -730,7 +730,7 @@
     {
       "id": "highway.tooltip",
       "export": "Tooltip",
-      "source": "packages/highway-react/src/invariant/components/tooltip.jsx",
+      "source": "packages/highway-react/src/components/tooltip.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Animated hover label that appears above or below its parent. Uses `popoverStyle` for scale + blur entrance. Must be inside a `relative` positioned container.",
@@ -749,7 +749,7 @@
     {
       "id": "highway.expand-card",
       "export": "ExpandCard",
-      "source": "packages/highway-react/src/invariant/components/expand-card.jsx",
+      "source": "packages/highway-react/src/components/expand-card.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Card that expands to reveal content with blur-in animation.",
@@ -759,7 +759,7 @@
       "contract": {
         "family": "selection",
         "motion": "expansion",
-        "material": "invariant-surface"
+        "material": "component-surface"
       },
       "examples": [
         "examples/contracts/basic.tsx"
@@ -771,7 +771,7 @@
     {
       "id": "highway.message-bubble",
       "export": "MessageBubble",
-      "source": "packages/highway-react/src/invariant/components/message-bubble.jsx",
+      "source": "packages/highway-react/src/components/message-bubble.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Chat message bubble for agent and user messages with thinking state and hover actions.",
@@ -790,7 +790,7 @@
     {
       "id": "highway.page-section",
       "export": "PageSection",
-      "source": "packages/highway-react/src/invariant/components/page-section.jsx",
+      "source": "packages/highway-react/src/components/page-section.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Content width constraint with responsive horizontal padding.",
@@ -809,7 +809,7 @@
     {
       "id": "highway.progress",
       "export": "Progress",
-      "source": "packages/highway-react/src/invariant/components/progress.jsx",
+      "source": "packages/highway-react/src/components/progress.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Linear progress bar with animated fill, optional label, value counter, shimmer effect, and three sizes.",
@@ -828,7 +828,7 @@
     {
       "id": "highway.profile-avatar",
       "export": "ProfileAvatar",
-      "source": "packages/highway-react/src/invariant/components/profile-avatar.jsx",
+      "source": "packages/highway-react/src/components/profile-avatar.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "User avatar with rounded/circle variants, alert gem, and group stacking.",
@@ -847,7 +847,7 @@
     {
       "id": "highway.profile-avatar-group",
       "export": "ProfileAvatarGroup",
-      "source": "packages/highway-react/src/invariant/components/profile-avatar.jsx",
+      "source": "packages/highway-react/src/components/profile-avatar.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "User avatar with rounded/circle variants, alert gem, and group stacking.",
@@ -866,7 +866,7 @@
     {
       "id": "highway.profile-menu",
       "export": "ProfileMenu",
-      "source": "packages/highway-react/src/invariant/components/profile-menu.jsx",
+      "source": "packages/highway-react/src/components/profile-menu.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Avatar button with dropdown menu for profile actions.",
@@ -885,7 +885,7 @@
     {
       "id": "highway.prompt-bar",
       "export": "PromptBar",
-      "source": "packages/highway-react/src/invariant/components/prompt-bar.jsx",
+      "source": "packages/highway-react/src/components/prompt-bar.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Multi-line prompt input with model selector, file upload, mic with voice visualizer, and send button.",
@@ -904,7 +904,7 @@
     {
       "id": "highway.row",
       "export": "Row",
-      "source": "packages/highway-react/src/invariant/components/row.jsx",
+      "source": "packages/highway-react/src/components/row.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Horizontal layout with alignment and wrapping.",
@@ -926,7 +926,7 @@
     {
       "id": "highway.search-bar",
       "export": "SearchBar",
-      "source": "packages/highway-react/src/invariant/components/search-bar.jsx",
+      "source": "packages/highway-react/src/components/search-bar.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Styled search input with icon and keyboard shortcut badge.",
@@ -948,7 +948,7 @@
     {
       "id": "highway.search-toggle",
       "export": "SearchToggle",
-      "source": "packages/highway-react/src/invariant/components/search-toggle.jsx",
+      "source": "packages/highway-react/src/components/search-toggle.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Square icon button that morphs into a full search input on click.",
@@ -970,7 +970,7 @@
     {
       "id": "highway.segmented-control",
       "export": "SegmentedControl",
-      "source": "packages/highway-react/src/invariant/components/segmented-control.jsx",
+      "source": "packages/highway-react/src/components/segmented-control.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Choose one of a small set of views using a measured sliding selection.",
@@ -990,7 +990,7 @@
     {
       "id": "highway.select",
       "export": "Select",
-      "source": "packages/highway-react/src/invariant/components/select.jsx",
+      "source": "packages/highway-react/src/components/select.jsx",
       "status": "alternative",
       "kind": "component",
       "useWhen": "The Invariant option-selection API when explicitly selected.",
@@ -1010,7 +1010,7 @@
     {
       "id": "highway.spotlight-card",
       "export": "SpotlightCard",
-      "source": "packages/highway-react/src/invariant/components/spotlight-card.jsx",
+      "source": "packages/highway-react/src/components/spotlight-card.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Card with cursor-following gradient glow effect.",
@@ -1029,7 +1029,7 @@
     {
       "id": "highway.stack",
       "export": "Stack",
-      "source": "packages/highway-react/src/invariant/components/stack.jsx",
+      "source": "packages/highway-react/src/components/stack.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Vertical layout with consistent gap sizes.",
@@ -1051,7 +1051,7 @@
     {
       "id": "highway.step-indicator",
       "export": "StepIndicator",
-      "source": "packages/highway-react/src/invariant/components/step-indicator.jsx",
+      "source": "packages/highway-react/src/components/step-indicator.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Horizontal dots where the active step expands to a pill with spring animation.",
@@ -1070,7 +1070,7 @@
     {
       "id": "highway.surface",
       "export": "Surface",
-      "source": "packages/highway-react/src/invariant/components/surface.jsx",
+      "source": "packages/highway-react/src/components/surface.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "A plain padded container with explicit elevation; no glass material implied.",
@@ -1080,7 +1080,7 @@
       "contract": {
         "family": "display",
         "motion": "none",
-        "material": "invariant-surface"
+        "material": "component-surface"
       },
       "families": [
         "cards-and-surfaces"
@@ -1089,7 +1089,7 @@
     {
       "id": "highway.table",
       "export": "Table",
-      "source": "packages/highway-react/src/invariant/components/table.jsx",
+      "source": "packages/highway-react/src/components/table.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Data table with sortable columns, row selection, and animated container-responsive columns. Set collapseBelow on secondary columns to fold their values beside the primary cell at narrower widths.",
@@ -1108,7 +1108,7 @@
     {
       "id": "highway.tabs",
       "export": "Tabs",
-      "source": "packages/highway-react/src/invariant/components/tabs.jsx",
+      "source": "packages/highway-react/src/components/tabs.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Horizontal tab bar with sliding underline indicator. Supports optional count badges.",
@@ -1130,7 +1130,7 @@
     {
       "id": "highway.text-input",
       "export": "TextInput",
-      "source": "packages/highway-react/src/invariant/components/text-input.jsx",
+      "source": "packages/highway-react/src/components/text-input.jsx",
       "status": "alternative",
       "kind": "component",
       "useWhen": "The Invariant text-input API when explicitly selected.",
@@ -1150,7 +1150,7 @@
     {
       "id": "highway.toast-provider",
       "export": "ToastProvider",
-      "source": "packages/highway-react/src/invariant/components/toast.jsx",
+      "source": "packages/highway-react/src/components/toast.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Notification toasts with stacking card deck effect. Uses context provider pattern.",
@@ -1169,7 +1169,7 @@
     {
       "id": "highway.use-toast",
       "export": "useToast",
-      "source": "packages/highway-react/src/invariant/components/toast.jsx",
+      "source": "packages/highway-react/src/components/toast.jsx",
       "status": "supported",
       "kind": "helper",
       "useWhen": "Notification toasts with stacking card deck effect. Uses context provider pattern.",
@@ -1188,7 +1188,7 @@
     {
       "id": "highway.toggle",
       "export": "Toggle",
-      "source": "packages/highway-react/src/invariant/components/toggle.jsx",
+      "source": "packages/highway-react/src/components/toggle.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "On/off switch with spring thumb animation.",
@@ -1207,7 +1207,7 @@
     {
       "id": "highway.skeleton",
       "export": "Skeleton",
-      "source": "packages/highway-react/src/invariant/components/skeleton.jsx",
+      "source": "packages/highway-react/src/components/skeleton.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Animated loading placeholder with variants for text, avatars, cards, and list items. Respects `prefers-reduced-motion`.",
@@ -1226,7 +1226,7 @@
     {
       "id": "highway.checkbox",
       "export": "Checkbox",
-      "source": "packages/highway-react/src/invariant/components/checkbox.jsx",
+      "source": "packages/highway-react/src/components/checkbox.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Single checkbox with optional label. Uses accent color when checked.",
@@ -1245,7 +1245,7 @@
     {
       "id": "highway.card",
       "export": "Card",
-      "source": "packages/highway-react/src/invariant/components/card.jsx",
+      "source": "packages/highway-react/src/components/card.jsx",
       "status": "alternative",
       "kind": "component",
       "useWhen": "The distinct Invariant card recipe when its documented card interaction is desired.",
@@ -1256,7 +1256,7 @@
       "contract": {
         "family": "display",
         "motion": "none",
-        "material": "invariant-surface"
+        "material": "component-surface"
       },
       "families": [
         "cards-and-surfaces"
@@ -1265,7 +1265,7 @@
     {
       "id": "highway.dialog",
       "export": "Dialog",
-      "source": "packages/highway-react/src/invariant/components/dialog.jsx",
+      "source": "packages/highway-react/src/components/dialog.jsx",
       "status": "alternative",
       "kind": "component",
       "useWhen": "The separate Invariant dialog API when specifically required.",
@@ -1285,7 +1285,7 @@
     {
       "id": "highway.empty-state",
       "export": "EmptyState",
-      "source": "packages/highway-react/src/invariant/components/empty-state.jsx",
+      "source": "packages/highway-react/src/components/empty-state.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Centered placeholder for empty lists, search results, and blank pages. Accepts an optional action button.",
@@ -1304,7 +1304,7 @@
     {
       "id": "highway.workspace-switcher",
       "export": "WorkspaceSwitcher",
-      "source": "packages/highway-react/src/invariant/components/workspace-switcher.jsx",
+      "source": "packages/highway-react/src/components/workspace-switcher.jsx",
       "status": "supported",
       "kind": "component",
       "useWhen": "Displays current workspace with dropdown to switch between workspaces.",

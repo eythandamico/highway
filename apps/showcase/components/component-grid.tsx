@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ComponentPreview } from "./component-preview";
-import { Tabs } from "../../../packages/highway-react/src/invariant/components/tabs";
+import { Tabs } from "../../../packages/highway-react/src/components/tabs";
 import { Button } from "../../../packages/highway-react/src/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { LibraryShell } from "./library-shell";

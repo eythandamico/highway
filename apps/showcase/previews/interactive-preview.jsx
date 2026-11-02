@@ -1,6 +1,6 @@
 import { interactiveExamples } from './interactive-examples.jsx'
 import { Supplemental } from './additional-examples.jsx'
-import { ToastProvider } from '../../../packages/highway-react/src/invariant/components/toast.jsx'
+import { ToastProvider } from '../../../packages/highway-react/src/components/toast.jsx'
 
 export function CraftedPreview({ id, dark = false, onToggleTheme = () => {} }) {
   const Example = interactiveExamples[id]

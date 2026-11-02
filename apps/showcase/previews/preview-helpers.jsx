@@ -1,7 +1,7 @@
 import { useExampleState } from "./example-state";
 import { Button } from "../../../packages/highway-react/src/components/ui/button";
 import { previewFeedback } from './feedback.js';
-import { useToast } from '../../../packages/highway-react/src/invariant/components/toast.jsx';
+import { useToast } from '../../../packages/highway-react/src/components/toast.jsx';
 export const PROFILE = { name: 'Alex Morgan', email: 'alex@example.com' }
 export const PROFILE_ITEMS = [
   { label: 'Settings', icon: 'settings', onAction: () => previewFeedback('Settings') },

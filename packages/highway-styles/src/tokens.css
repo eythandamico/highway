@@ -1,4 +1,4 @@
-/* Invariant styling system. One owner for shared tokens and demo artwork.
+/* Highway design system. One owner for shared tokens and demo artwork.
    See docs/DESIGN-SYSTEM.md. --inv-* compatibility names alias these values. */
 :root {
   /* Fixed artwork colors and alpha masks are independent of the host theme. */

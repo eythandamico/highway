@@ -1,9 +1,9 @@
 "use client";
 import { useExampleState } from "./example-state";
-import { ExpandCard } from '../../../packages/highway-react/src/invariant/components/expand-card.jsx';
-import { SpotlightCard } from '../../../packages/highway-react/src/invariant/components/spotlight-card.jsx';
-import { Card } from '../../../packages/highway-react/src/invariant/components/card.jsx';
-import { SplitPane } from '../../../packages/highway-react/src/invariant/components/split-pane.jsx';
+import { ExpandCard } from '../../../packages/highway-react/src/components/expand-card.jsx';
+import { SpotlightCard } from '../../../packages/highway-react/src/components/spotlight-card.jsx';
+import { Card } from '../../../packages/highway-react/src/components/card.jsx';
+import { SplitPane } from '../../../packages/highway-react/src/components/split-pane.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function MorphCardExample() {
     return (<ComponentStage>

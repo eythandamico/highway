@@ -113,9 +113,9 @@
       "owner": "packages/highway-styles/src/foundation.css",
       "rule": "Preserve the component’s authored overlay material and scoped portal tokens. Native menus/dialogs stay opaque; ProfileMenu and WorkspaceSwitcher retain their translucent blurred surfaces. Do not apply one background to every menu."
     },
-    "invariant-surface": {
-      "owner": "packages/highway-styles/src/invariant-theme.css",
-      "rule": "Use Invariant surface and hairline shadow tokens; do not substitute for GlassCard."
+    "component-surface": {
+      "owner": "packages/highway-styles/src/component-theme.css",
+      "rule": "Use Highway surface and hairline shadow tokens; do not substitute for GlassCard."
     },
     "decorative": {
       "owner": "packages/highway-react/src/components/visual/visual-effects.css",
@@ -135,8 +135,8 @@
     },
     "overlay": {
       "purpose": "Anchor a transient surface to its trigger.",
-      "owner": "packages/highway-react/src/invariant/lib/popover.js",
-      "policy": "Preserve component-owned entrance/exit recipes: Invariant scale/slide enters at 300ms with 200ms opacity, exits at 150ms with 120ms opacity. Keep correct origins, retargetable transitions, reduced motion, and inert closed content."
+      "owner": "packages/highway-react/src/lib/popover.js",
+      "policy": "Preserve component-owned entrance/exit recipes: Floating scale/slide enters at 300ms with 200ms opacity, exits at 150ms with 120ms opacity. Keep correct origins, retargetable transitions, reduced motion, and inert closed content."
     },
     "selection": {
       "purpose": "Connect pointer selection to the active indicator.",
@@ -155,7 +155,7 @@
     },
     "inherited-specialty": {
       "purpose": "Preserve a distinct existing choreography until individually reviewed.",
-      "owner": "packages/highway-react/src/invariant/components",
+      "owner": "packages/highway-react/src/components",
       "policy": "Do not normalize all timings. Any change requires explicit visual comparison, reduced-motion coverage and lifecycle cleanup."
     },
     "number-roll": {

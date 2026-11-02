@@ -1,8 +1,8 @@
 import { TokenIcon } from "../../../packages/highway-react/src/components/ui/token-icon";
 import { useState } from "react";
 import { useExampleState } from "./example-state";
-import { Accordion } from '../../../packages/highway-react/src/invariant/components/accordion.jsx';
-import { Table } from '../../../packages/highway-react/src/invariant/components/table.jsx';
+import { Accordion } from '../../../packages/highway-react/src/components/accordion.jsx';
+import { Table } from '../../../packages/highway-react/src/components/table.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function AccordionExample() {
     const [multiple] = useExampleState("multiple", false);

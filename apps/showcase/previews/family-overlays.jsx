@@ -1,11 +1,11 @@
 "use client";
 import { useExampleState } from "./example-state";
 import { createPortal } from 'react-dom';
-import { TextInput } from '../../../packages/highway-react/src/invariant/components/text-input.jsx';
-import { Button } from '../../../packages/highway-react/src/invariant/components/button.jsx';
-import { BottomSheet } from '../../../packages/highway-react/src/invariant/components/bottom-sheet.jsx';
-import { Dialog } from '../../../packages/highway-react/src/invariant/components/dialog.jsx';
-import { Modal } from '../../../packages/highway-react/src/invariant/components/modal.jsx';
+import { TextInput } from '../../../packages/highway-react/src/components/text-input.jsx';
+import { Button } from '../../../packages/highway-react/src/components/button.jsx';
+import { BottomSheet } from '../../../packages/highway-react/src/components/bottom-sheet.jsx';
+import { Dialog } from '../../../packages/highway-react/src/components/dialog.jsx';
+import { Modal } from '../../../packages/highway-react/src/components/modal.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function DialogExample() {
     const [dialogOpen, setDialogOpen] = useExampleState("dialogOpen", false);

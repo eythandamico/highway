@@ -432,7 +432,7 @@
 @media(hover:hover) and (pointer:fine) { :is([data-slot="dialog-close"], [data-slot="sheet-close"]):hover:not(:disabled) { background:var(--secondary); color:var(--foreground); } }
 .hw-legacy-panel { max-height:calc(100dvh - var(--space-8)); overflow-y:auto; overscroll-behavior:contain; overflow-wrap:anywhere; }
 .hw-dialog-actions { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:var(--space-2); }
-.hw-invariant-card { min-width:0; overflow-wrap:anywhere; }
+.hw-content-card { min-width:0; overflow-wrap:anywhere; }
 .hw-surface { min-width:0; overflow-wrap:anywhere; }
 .hw-accordion-trigger { min-height:var(--control-height); gap:var(--space-3); text-align:start; overflow-wrap:anywhere; }
 .hw-accordion-trigger > span { flex-shrink:0; }

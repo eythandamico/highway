@@ -4,7 +4,7 @@
 @import "./tokens.css";
 @import "./typography.css";
 @import "./controls.css";
-@import "../packages/invariant-ui/tokens/theme.css";
+@import "../packages/highway-compat/tokens/theme.css";
 @import "../packages/highway-styles/src/utilities.css";
 @source "../packages/highway-react/src";
 @source "../apps/showcase/components";

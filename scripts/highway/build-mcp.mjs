@@ -41,7 +41,8 @@ async function collect(name) {
   for (const specifier of relatives) {
     const base = path.posix.normalize(path.posix.join(path.posix.dirname(name), specifier));
     let dependency;
-    for (const candidate of [base.replace(/\.js$/, '') + '.d.ts', base + '/index.d.ts']) {
+    const declarationFile = base.endsWith('.d.ts') ? base : base.replace(/\.(?:js|jsx|ts|tsx)$/, '') + '.d.ts';
+    for (const candidate of [declarationFile, base + '/index.d.ts']) {
       try { await read(typesRoot + candidate); dependency = candidate; break; } catch (error) { if (error.code !== 'ENOENT') throw error; }
     }
     if (!dependency) throw new Error(`Unresolved declaration: ${name} -> ${specifier}`);

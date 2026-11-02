@@ -8,7 +8,7 @@ export { Dialog as FoundationDialog, DialogTrigger, DialogContent, DialogHeader,
 export { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetClose } from "./components/ui/sheet";
 export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "./components/ui/dropdown-menu";
 
-export type * from "./invariant/types";
+export type * from "./types";
 
 export { Combobox, MultiSelect, type ComboboxProps, type MultiSelectProps, type ChoiceOption } from "./components/ui/choice-picker";
 export { ButtonGroup, SplitButton, CopyButton, InlineEdit, FilterToolbar, type ButtonGroupProps, type SplitButtonProps, type CopyButtonProps, type InlineEditProps, type FilterToolbarProps } from "./components/ui/action-patterns";

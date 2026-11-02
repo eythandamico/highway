@@ -1,10 +1,10 @@
 "use client";
 import { useExampleState } from "./example-state";
 import { previewFeedback } from './feedback.js';
-import { ActionButton } from '../../../packages/highway-react/src/invariant/components/action-button.jsx';
-import { Dropdown } from '../../../packages/highway-react/src/invariant/components/dropdown.jsx';
-import { Button } from '../../../packages/highway-react/src/invariant/components/button.jsx';
-import { IconButton } from '../../../packages/highway-react/src/invariant/components/icon-button.jsx';
+import { ActionButton } from '../../../packages/highway-react/src/components/action-button.jsx';
+import { Dropdown } from '../../../packages/highway-react/src/components/dropdown.jsx';
+import { Button } from '../../../packages/highway-react/src/components/button.jsx';
+import { IconButton } from '../../../packages/highway-react/src/components/icon-button.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function DropdownExample() {
     const [dropdownDir] = useExampleState("dropdownDir", 'bottom');

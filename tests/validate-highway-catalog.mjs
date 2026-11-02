@@ -59,7 +59,7 @@ for (const source of [
   "typography.css",
   "controls.css",
   "foundation.css",
-  "invariant-theme.css",
+  "component-theme.css",
   "utilities.css",
   "vendor/shadcn-tailwind-4.13.0.css",
 ]) {
@@ -73,7 +73,7 @@ for (const [legacyPath, canonicalPath] of [
   ["app/typography.css", "packages/highway-styles/src/typography.css"],
   ["app/controls.css", "packages/highway-styles/src/controls.css"],
   ["app/foundation.css", "packages/highway-styles/src/foundation.css"],
-  ["packages/invariant-ui/tokens/theme.css", "packages/highway-styles/src/invariant-theme.css"],
+  ["packages/highway-compat/tokens/theme.css", "packages/highway-styles/src/component-theme.css"],
   ["vendor/shadcn-tailwind-4.13.0.css", "packages/highway-styles/src/vendor/shadcn-tailwind-4.13.0.css"],
 ]) {
   const legacyFile = path.resolve(root, legacyPath);
@@ -129,6 +129,13 @@ const packageOwnedOnlyPaths = new Set([
   "components/ui/copy-page.tsx",
 ]);
 
+const compatibilityCatalog = readJson("packages/highway-compat/components.json");
+const compatibilityByExport = new Map();
+for (const entry of Object.values(compatibilityCatalog)) {
+  const exportNames = entry.export.split(",").map((name) => name.trim());
+  for (const exportName of exportNames) compatibilityByExport.set(exportName, entry.file);
+}
+
 function assertCompatibilityReexport(legacyPath, canonicalPath, context) {
   const legacyFile = path.resolve(root, legacyPath);
   if (packageOwnedOnlyPaths.has(legacyPath)) {
@@ -148,8 +155,9 @@ for (const component of catalog.components) {
   const canonicalPath = resolveSource(path.resolve(root, "package.json"), component.source);
   const packageRelative = path.relative(path.resolve(root, "packages/highway-react/src"), canonicalPath).split(path.sep).join("/");
   let legacyPath = null;
-  if (packageRelative.startsWith("components/")) legacyPath = packageRelative;
-  else if (packageRelative.startsWith("invariant/")) legacyPath = `packages/invariant-ui/${packageRelative.slice("invariant/".length)}`;
+  const compatibilityFile = compatibilityByExport.get(component.export);
+  if (compatibilityFile === packageRelative) legacyPath = `packages/highway-compat/${compatibilityFile}`;
+  else if (packageRelative.startsWith("components/")) legacyPath = packageRelative;
   else if (packageRelative.startsWith("lib/")) legacyPath = `lib/${packageRelative.slice("lib/".length)}`;
   if (legacyPath) assertCompatibilityReexport(legacyPath, canonicalPath, component.id);
 }
@@ -187,7 +195,7 @@ assert.equal(new Set(catalogShowcaseIds).size, catalogShowcaseIds.length, "Catal
 assert.deepEqual(
   [...catalogShowcaseIds].sort(),
   [...showcaseIds].sort(),
-  "Catalog availability must cover every local and Invariant showcase entry, including legacy aliases",
+  "Catalog availability must cover every local and Highway showcase entry, including legacy aliases",
 );
 
 for (const [id, mapping] of Object.entries(catalog.showcase)) {

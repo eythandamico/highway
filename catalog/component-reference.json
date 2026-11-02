@@ -66,267 +66,267 @@
       "displayDeclaration": "import { type CSSProperties, type ReactNode } from \"react\";\nexport declare function ThemeScope({ tokens, children, }: {\n    tokens: CSSProperties;\n    children: ReactNode;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Accordion": {
-      "source": "invariant/components/accordion.d.ts",
+      "source": "components/accordion.d.ts",
       "declaration": "export function Accordion({ items, multiple, className }: import(\"../types\").AccordionProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Accordion({ items, multiple, className }: import(\"../types\").AccordionProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Alert": {
-      "source": "invariant/components/alert.d.ts",
+      "source": "components/alert.d.ts",
       "declaration": "export function StatusIcon({ variant }: {\n    variant: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function Alert({ variant, title, description, dismissible, onDismiss, className, }: {\n    variant?: string | undefined;\n    title: any;\n    description: any;\n    dismissible?: boolean | undefined;\n    onDismiss: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element | null;\n",
       "displayDeclaration": "export function Alert({ variant, title, description, dismissible, onDismiss, className, }: {\n    variant?: string | undefined;\n    title: any;\n    description: any;\n    dismissible?: boolean | undefined;\n    onDismiss: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element | null;"
     },
     "ActionButton": {
-      "source": "invariant/components/action-button.d.ts",
+      "source": "components/action-button.d.ts",
       "declaration": "export function ActionButton({ label, icon, size, variant, onAction, onActionError, pendingLabel, successLabel, errorLabel, resetAfterMs, disabled, className, loadingDuration: _legacyDuration, ...props }: import(\"../types\").ActionButtonProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function ActionButton({ label, icon, size, variant, onAction, onActionError, pendingLabel, successLabel, errorLabel, resetAfterMs, disabled, className, loadingDuration: _legacyDuration, ...props }: import(\"../types\").ActionButtonProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "AgentAvatar": {
-      "source": "invariant/components/agent-avatar.d.ts",
+      "source": "components/agent-avatar.d.ts",
       "declaration": "export function AgentAvatar({ name, avatarUrl, size, state, onClick }: {\n    name: any;\n    avatarUrl: any;\n    size?: number | undefined;\n    state?: string | undefined;\n    onClick: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function AgentAvatar({ name, avatarUrl, size, state, onClick }: {\n    name: any;\n    avatarUrl: any;\n    size?: number | undefined;\n    state?: string | undefined;\n    onClick: any;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Badge": {
-      "source": "invariant/components/badge.d.ts",
+      "source": "components/badge.d.ts",
       "declaration": "export function Badge({ label, variant, className }: {\n    label: any;\n    variant?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Badge({ label, variant, className }: {\n    label: any;\n    variant?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "BottomSheet": {
-      "source": "invariant/components/bottom-sheet.d.ts",
+      "source": "components/bottom-sheet.d.ts",
       "declaration": "export function BottomSheet({ isOpen, onClose, title, children, className, pageTarget, }: import(\"../types\").BottomSheetProps): import(\"react/jsx-runtime\").JSX.Element | null;\n",
       "displayDeclaration": "export function BottomSheet({ isOpen, onClose, title, children, className, pageTarget, }: import(\"../types\").BottomSheetProps): import(\"react/jsx-runtime\").JSX.Element | null;"
     },
     "BottomNav": {
-      "source": "invariant/components/bottom-nav.d.ts",
+      "source": "components/bottom-nav.d.ts",
       "declaration": "export function BottomNav({ tabs, activeTab, onTabChange, addItems, notifications, avatarUrl, profile, profileItems, chatTabId, onSendMessage, darkMode, onToggleDarkMode }: import(\"../types\").BottomNavProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function BottomNav({ tabs, activeTab, onTabChange, addItems, notifications, avatarUrl, profile, profileItems, chatTabId, onSendMessage, darkMode, onToggleDarkMode }: import(\"../types\").BottomNavProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Divider": {
-      "source": "invariant/components/divider.d.ts",
+      "source": "components/divider.d.ts",
       "declaration": "export function Divider({ spacing, className }: {\n    spacing?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Divider({ spacing, className }: {\n    spacing?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Dropdown": {
-      "source": "invariant/components/dropdown.d.ts",
+      "source": "components/dropdown.d.ts",
       "declaration": "export function Dropdown({ trigger, items, placement, className }: import(\"../types\").DropdownProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Dropdown({ trigger, items, placement, className }: import(\"../types\").DropdownProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "NumberInput": {
-      "source": "invariant/components/number-input.d.ts",
+      "source": "components/number-input.d.ts",
       "declaration": "export function NumberInput({ label, value, onChange, min, max, step, disabled, error, className, }: import(\"../types\").NumberInputProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function NumberInput({ label, value, onChange, min, max, step, disabled, error, className, }: import(\"../types\").NumberInputProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "PinInput": {
-      "source": "invariant/components/pin-input.d.ts",
+      "source": "components/pin-input.d.ts",
       "declaration": "export function PinInput({ length, value, onChange, error, disabled, className, }: {\n    length?: number | undefined;\n    value?: string | undefined;\n    onChange: any;\n    error: any;\n    disabled?: boolean | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function PinInput({ length, value, onChange, error, disabled, className, }: {\n    length?: number | undefined;\n    value?: string | undefined;\n    onChange: any;\n    error: any;\n    disabled?: boolean | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "RadioGroup": {
-      "source": "invariant/components/radio-group.d.ts",
+      "source": "components/radio-group.d.ts",
       "declaration": "export function RadioGroup({ options, value, onChange, label, direction, disabled, className, ...props }: import(\"../types\").InvariantRadioGroupProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function RadioGroup({ options, value, onChange, label, direction, disabled, className, ...props }: import(\"../types\").InvariantRadioGroupProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "SplitPane": {
-      "source": "invariant/components/split-pane.d.ts",
+      "source": "components/split-pane.d.ts",
       "declaration": "export function SplitPane({ left, right, direction, defaultSplit, minSize, height, className, }: import(\"../types\").SplitPaneProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function SplitPane({ left, right, direction, defaultSplit, minSize, height, className, }: import(\"../types\").SplitPaneProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "SliderInput": {
-      "source": "invariant/components/slider-input.d.ts",
+      "source": "components/slider-input.d.ts",
       "declaration": "export function SliderInput({ label, value, onChange, min, max, step, suffix, disabled, className, }: import(\"../types\").SliderInputProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function SliderInput({ label, value, onChange, min, max, step, suffix, disabled, className, }: import(\"../types\").SliderInputProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Textarea": {
-      "source": "invariant/components/textarea.d.ts",
+      "source": "components/textarea.d.ts",
       "declaration": "export const Textarea: import(\"react\").ForwardRefExoticComponent<import(\"react\").RefAttributes<any>>;\n",
       "displayDeclaration": "export const Textarea: import(\"react\").ForwardRefExoticComponent<import(\"react\").RefAttributes<any>>;"
     },
     "Modal": {
-      "source": "invariant/components/modal.d.ts",
+      "source": "components/modal.d.ts",
       "declaration": "export function Modal({ isOpen, onClose, title, children, className, }: {\n    isOpen: any;\n    onClose: any;\n    title: any;\n    children: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Modal({ isOpen, onClose, title, children, className, }: {\n    isOpen: any;\n    onClose: any;\n    title: any;\n    children: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "ImageCarousel": {
-      "source": "invariant/components/image-carousel.d.ts",
+      "source": "components/image-carousel.d.ts",
       "declaration": "export function ImageCarousel({ images, height, autoHide, controlsPosition, className, }: import(\"../types\").ImageCarouselProps): import(\"react/jsx-runtime\").JSX.Element | null;\n",
       "displayDeclaration": "export function ImageCarousel({ images, height, autoHide, controlsPosition, className, }: import(\"../types\").ImageCarouselProps): import(\"react/jsx-runtime\").JSX.Element | null;"
     },
     "IconButton": {
-      "source": "invariant/components/icon-button.d.ts",
+      "source": "components/icon-button.d.ts",
       "declaration": "export function IconButton({ icon, label, size, elevated, onClick, className, ...rest }: {\n    [x: string]: any;\n    icon: any;\n    label: any;\n    size?: string | undefined;\n    elevated?: boolean | undefined;\n    onClick: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function IconButton({ icon, label, size, elevated, onClick, className, ...rest }: {\n    [x: string]: any;\n    icon: any;\n    label: any;\n    size?: string | undefined;\n    elevated?: boolean | undefined;\n    onClick: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Menu": {
-      "source": "invariant/components/menu.d.ts",
+      "source": "components/menu.d.ts",
       "declaration": "export function Menu({ children, className, label }: {\n    children: any;\n    className?: string | undefined;\n    label?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function MenuItem({ label, icon, danger, description, selected, disabled, onClick, className, }: import(\"../types\").MenuItemProps): import(\"react/jsx-runtime\").JSX.Element;\nexport function MenuDivider(): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Menu({ children, className, label }: {\n    children: any;\n    className?: string | undefined;\n    label?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "MenuItem": {
-      "source": "invariant/components/menu.d.ts",
+      "source": "components/menu.d.ts",
       "declaration": "export function Menu({ children, className, label }: {\n    children: any;\n    className?: string | undefined;\n    label?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function MenuItem({ label, icon, danger, description, selected, disabled, onClick, className, }: import(\"../types\").MenuItemProps): import(\"react/jsx-runtime\").JSX.Element;\nexport function MenuDivider(): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function MenuItem({ label, icon, danger, description, selected, disabled, onClick, className, }: import(\"../types\").MenuItemProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "MenuDivider": {
-      "source": "invariant/components/menu.d.ts",
+      "source": "components/menu.d.ts",
       "declaration": "export function Menu({ children, className, label }: {\n    children: any;\n    className?: string | undefined;\n    label?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function MenuItem({ label, icon, danger, description, selected, disabled, onClick, className, }: import(\"../types\").MenuItemProps): import(\"react/jsx-runtime\").JSX.Element;\nexport function MenuDivider(): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function MenuDivider(): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Overlay": {
-      "source": "invariant/components/overlay.d.ts",
+      "source": "components/overlay.d.ts",
       "declaration": "export function Overlay({ isOpen, onClick, className }: {\n    isOpen: any;\n    onClick: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Overlay({ isOpen, onClick, className }: {\n    isOpen: any;\n    onClick: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Spinner": {
-      "source": "invariant/components/spinner.d.ts",
+      "source": "components/spinner.d.ts",
       "declaration": "export function Spinner({ size, className }: {\n    size?: number | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Spinner({ size, className }: {\n    size?: number | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Tooltip": {
-      "source": "invariant/components/tooltip.d.ts",
+      "source": "components/tooltip.d.ts",
       "declaration": "export function Tooltip({ label, visible, position, className }: {\n    label: any;\n    visible: any;\n    position?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Tooltip({ label, visible, position, className }: {\n    label: any;\n    visible: any;\n    position?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "ExpandCard": {
-      "source": "invariant/components/expand-card.d.ts",
+      "source": "components/expand-card.d.ts",
       "declaration": "export function ExpandCard({ title, children, icon, defaultExpanded, className }: import(\"../types\").ExpandCardProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function ExpandCard({ title, children, icon, defaultExpanded, className }: import(\"../types\").ExpandCardProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "MessageBubble": {
-      "source": "invariant/components/message-bubble.d.ts",
+      "source": "components/message-bubble.d.ts",
       "declaration": "export function MessageBubble({ content, role, thinking, agentName, avatarUrl, timestamp, onCopy, onThumbsUp, onThumbsDown, onEdit, onRetry, className, }: {\n    content: any;\n    role?: string | undefined;\n    thinking?: boolean | undefined;\n    agentName: any;\n    avatarUrl: any;\n    timestamp: any;\n    onCopy: any;\n    onThumbsUp: any;\n    onThumbsDown: any;\n    onEdit: any;\n    onRetry: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function MessageBubble({ content, role, thinking, agentName, avatarUrl, timestamp, onCopy, onThumbsUp, onThumbsDown, onEdit, onRetry, className, }: {\n    content: any;\n    role?: string | undefined;\n    thinking?: boolean | undefined;\n    agentName: any;\n    avatarUrl: any;\n    timestamp: any;\n    onCopy: any;\n    onThumbsUp: any;\n    onThumbsDown: any;\n    onEdit: any;\n    onRetry: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "PageSection": {
-      "source": "invariant/components/page-section.d.ts",
+      "source": "components/page-section.d.ts",
       "declaration": "export function PageSection({ width, className, children, ...rest }: {\n    [x: string]: any;\n    width?: string | undefined;\n    className?: string | undefined;\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function PageSection({ width, className, children, ...rest }: {\n    [x: string]: any;\n    width?: string | undefined;\n    className?: string | undefined;\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Progress": {
-      "source": "invariant/components/progress.d.ts",
+      "source": "components/progress.d.ts",
       "declaration": "export function Progress({ value, max, label, showValue, size, animated, className, }: import(\"../types\").ProgressProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Progress({ value, max, label, showValue, size, animated, className, }: import(\"../types\").ProgressProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "ProfileAvatar": {
-      "source": "invariant/components/profile-avatar.d.ts",
+      "source": "components/profile-avatar.d.ts",
       "declaration": "export function ProfileAvatar(props: import(\"../types\").ProfileAvatarProps): import(\"react/jsx-runtime\").JSX.Element;\nexport function ProfileAvatarGroup({ avatars, size, rounded, max }: import(\"../types\").ProfileAvatarGroupProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function ProfileAvatar(props: import(\"../types\").ProfileAvatarProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "ProfileAvatarGroup": {
-      "source": "invariant/components/profile-avatar.d.ts",
+      "source": "components/profile-avatar.d.ts",
       "declaration": "export function ProfileAvatar(props: import(\"../types\").ProfileAvatarProps): import(\"react/jsx-runtime\").JSX.Element;\nexport function ProfileAvatarGroup({ avatars, size, rounded, max }: import(\"../types\").ProfileAvatarGroupProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function ProfileAvatarGroup({ avatars, size, rounded, max }: import(\"../types\").ProfileAvatarGroupProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "ProfileMenu": {
-      "source": "invariant/components/profile-menu.d.ts",
+      "source": "components/profile-menu.d.ts",
       "declaration": "export function ProfileMenu({ avatarUrl, profile, profileItems, placement }: import(\"../types\").ProfileMenuProps): import(\"react/jsx-runtime\").JSX.Element | null;\n",
       "displayDeclaration": "export function ProfileMenu({ avatarUrl, profile, profileItems, placement }: import(\"../types\").ProfileMenuProps): import(\"react/jsx-runtime\").JSX.Element | null;"
     },
     "PromptBar": {
-      "source": "invariant/components/prompt-bar.d.ts",
+      "source": "components/prompt-bar.d.ts",
       "declaration": "export function PromptBar({ placeholder, models, activeModel, onModelChange, onSubmit, onUpload, onMicPress, className, }: import(\"../types\").PromptBarProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function PromptBar({ placeholder, models, activeModel, onModelChange, onSubmit, onUpload, onMicPress, className, }: import(\"../types\").PromptBarProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Row": {
-      "source": "invariant/components/row.d.ts",
+      "source": "components/row.d.ts",
       "declaration": "export function Row({ align, ...props }: Omit<import(\"../types\").StackProps, \"direction\">): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Row({ align, ...props }: Omit<import(\"../types\").StackProps, \"direction\">): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "SearchBar": {
-      "source": "invariant/components/search-bar.d.ts",
+      "source": "components/search-bar.d.ts",
       "declaration": "export function SearchBar({ placeholder, shortcutKey, className, onSearch, autoFocus, expandable, value, inputRef, \"aria-label\": ariaLabel }: import(\"../types\").SearchBarProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function SearchBar({ placeholder, shortcutKey, className, onSearch, autoFocus, expandable, value, inputRef, \"aria-label\": ariaLabel }: import(\"../types\").SearchBarProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "SearchToggle": {
-      "source": "invariant/components/search-toggle.d.ts",
+      "source": "components/search-toggle.d.ts",
       "declaration": "export function SearchToggle(props: Omit<import(\"../types\").SearchBarProps, \"expandable\">): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function SearchToggle(props: Omit<import(\"../types\").SearchBarProps, \"expandable\">): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "SegmentedControl": {
-      "source": "invariant/components/segmented-control.d.ts",
+      "source": "components/segmented-control.d.ts",
       "declaration": "export function SegmentedControl({ tabs, activeTab, onTabChange, variant, className, label, disabled }: import(\"../types\").SegmentedControlProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function SegmentedControl({ tabs, activeTab, onTabChange, variant, className, label, disabled }: import(\"../types\").SegmentedControlProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Select": {
-      "source": "invariant/components/select.d.ts",
+      "source": "components/select.d.ts",
       "declaration": "export function Select({ label, options, value, onChange, placeholder, className, disabled, name, required }: import(\"../types\").SelectProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Select({ label, options, value, onChange, placeholder, className, disabled, name, required }: import(\"../types\").SelectProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "SpotlightCard": {
-      "source": "invariant/components/spotlight-card.d.ts",
+      "source": "components/spotlight-card.d.ts",
       "declaration": "export function SpotlightCard({ children, className, spotlightSize, spotlightOpacity }: {\n    children: any;\n    className?: string | undefined;\n    spotlightSize?: number | undefined;\n    spotlightOpacity?: number | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function SpotlightCard({ children, className, spotlightSize, spotlightOpacity }: {\n    children: any;\n    className?: string | undefined;\n    spotlightSize?: number | undefined;\n    spotlightOpacity?: number | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Stack": {
-      "source": "invariant/components/stack.d.ts",
+      "source": "components/stack.d.ts",
       "declaration": "export function Stack({ direction, gap, align, justify, wrap, as: Tag, className, children, ...rest }: import(\"../types\").StackProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Stack({ direction, gap, align, justify, wrap, as: Tag, className, children, ...rest }: import(\"../types\").StackProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "StepIndicator": {
-      "source": "invariant/components/step-indicator.d.ts",
+      "source": "components/step-indicator.d.ts",
       "declaration": "export function StepIndicator({ steps, activeStep, onStepChange, variant, className }: {\n    steps?: number | undefined;\n    activeStep?: number | undefined;\n    onStepChange: any;\n    variant?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function StepIndicator({ steps, activeStep, onStepChange, variant, className }: {\n    steps?: number | undefined;\n    activeStep?: number | undefined;\n    onStepChange: any;\n    variant?: string | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Surface": {
-      "source": "invariant/components/surface.d.ts",
+      "source": "components/surface.d.ts",
       "declaration": "export function Surface({ padding, elevation, className, children, ...rest }: {\n    [x: string]: any;\n    padding?: string | undefined;\n    elevation?: string | undefined;\n    className?: string | undefined;\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Surface({ padding, elevation, className, children, ...rest }: {\n    [x: string]: any;\n    padding?: string | undefined;\n    elevation?: string | undefined;\n    className?: string | undefined;\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Table": {
-      "source": "invariant/components/table.d.ts",
+      "source": "components/table.d.ts",
       "declaration": "export function Table<T extends Record<string, unknown>>({ columns, data, footer, caption, selectable, onSelectionChange, rowKey, selectedKeys, defaultSelectedKeys, onSelectedKeysChange, sort, onSortChange, className }: import(\"../types\").TableProps<T>): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Table<T extends Record<string, unknown>>({ columns, data, footer, caption, selectable, onSelectionChange, rowKey, selectedKeys, defaultSelectedKeys, onSelectedKeysChange, sort, onSortChange, className }: import(\"../types\").TableProps<T>): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Tabs": {
-      "source": "invariant/components/tabs.d.ts",
+      "source": "components/tabs.d.ts",
       "declaration": "export function Tabs({ tabs, activeTab, onTabChange, className, }: import(\"../types\").TabsProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Tabs({ tabs, activeTab, onTabChange, className, }: import(\"../types\").TabsProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "TextInput": {
-      "source": "invariant/components/text-input.d.ts",
+      "source": "components/text-input.d.ts",
       "declaration": "export const TextInput: import(\"react\").ForwardRefExoticComponent<import(\"react\").RefAttributes<any>>;\n",
       "displayDeclaration": "export const TextInput: import(\"react\").ForwardRefExoticComponent<import(\"react\").RefAttributes<any>>;"
     },
     "ToastProvider": {
-      "source": "invariant/components/toast.d.ts",
-      "declaration": "export function ToastProvider({ children }: {\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function useToast(): import(\"../types\").ToastController;\n",
+      "source": "components/toast.d.ts",
+      "declaration": "export function ToastProvider({ children }: {\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function useToast(): import(\"..\").ToastController;\n",
       "displayDeclaration": "export function ToastProvider({ children }: {\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "useToast": {
-      "source": "invariant/components/toast.d.ts",
-      "declaration": "export function ToastProvider({ children }: {\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function useToast(): import(\"../types\").ToastController;\n",
-      "displayDeclaration": "export function useToast(): import(\"../types\").ToastController;"
+      "source": "components/toast.d.ts",
+      "declaration": "export function ToastProvider({ children }: {\n    children: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\nexport function useToast(): import(\"..\").ToastController;\n",
+      "displayDeclaration": "export function useToast(): import(\"..\").ToastController;"
     },
     "Toggle": {
-      "source": "invariant/components/toggle.d.ts",
+      "source": "components/toggle.d.ts",
       "declaration": "export function Toggle({ checked, onChange, size, ...props }: {\n    [x: string]: any;\n    checked?: boolean | undefined;\n    onChange: any;\n    size?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Toggle({ checked, onChange, size, ...props }: {\n    [x: string]: any;\n    checked?: boolean | undefined;\n    onChange: any;\n    size?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Skeleton": {
-      "source": "invariant/components/skeleton.d.ts",
+      "source": "components/skeleton.d.ts",
       "declaration": "export function Skeleton({ variant, width, height, lines, className, }: {\n    variant?: string | undefined;\n    width: any;\n    height: any;\n    lines?: number | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Skeleton({ variant, width, height, lines, className, }: {\n    variant?: string | undefined;\n    width: any;\n    height: any;\n    lines?: number | undefined;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Checkbox": {
-      "source": "invariant/components/checkbox.d.ts",
+      "source": "components/checkbox.d.ts",
       "declaration": "export function Checkbox({ checked, onChange, label, disabled, className, id, ...props }: {\n    [x: string]: any;\n    checked?: boolean | undefined;\n    onChange: any;\n    label: any;\n    disabled?: boolean | undefined;\n    className?: string | undefined;\n    id: any;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Checkbox({ checked, onChange, label, disabled, className, id, ...props }: {\n    [x: string]: any;\n    checked?: boolean | undefined;\n    onChange: any;\n    label: any;\n    disabled?: boolean | undefined;\n    className?: string | undefined;\n    id: any;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Card": {
-      "source": "invariant/components/card.d.ts",
+      "source": "components/card.d.ts",
       "declaration": "export function Card({ image, title, description, children, variant, gradientSeed, className, }: import(\"../types\").CardProps): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Card({ image, title, description, children, variant, gradientSeed, className, }: import(\"../types\").CardProps): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "Dialog": {
-      "source": "invariant/components/dialog.d.ts",
+      "source": "components/dialog.d.ts",
       "declaration": "export function Dialog({ isOpen, onClose, title, description, actions, className, }: {\n    isOpen: any;\n    onClose: any;\n    title: any;\n    description: any;\n    actions: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function Dialog({ isOpen, onClose, title, description, actions, className, }: {\n    isOpen: any;\n    onClose: any;\n    title: any;\n    description: any;\n    actions: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "EmptyState": {
-      "source": "invariant/components/empty-state.d.ts",
+      "source": "components/empty-state.d.ts",
       "declaration": "export function EmptyState({ icon, title, description, action, className, }: {\n    icon?: string | undefined;\n    title?: string | undefined;\n    description: any;\n    action: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;\n",
       "displayDeclaration": "export function EmptyState({ icon, title, description, action, className, }: {\n    icon?: string | undefined;\n    title?: string | undefined;\n    description: any;\n    action: any;\n    className?: string | undefined;\n}): import(\"react/jsx-runtime\").JSX.Element;"
     },
     "WorkspaceSwitcher": {
-      "source": "invariant/components/workspace-switcher.d.ts",
+      "source": "components/workspace-switcher.d.ts",
       "declaration": "export function WorkspaceSwitcher({ currentStartup, startups, onStartupChange }: import(\"../types\").WorkspaceSwitcherProps): import(\"react/jsx-runtime\").JSX.Element | null;\n",
       "displayDeclaration": "export function WorkspaceSwitcher({ currentStartup, startups, onStartupChange }: import(\"../types\").WorkspaceSwitcherProps): import(\"react/jsx-runtime\").JSX.Element | null;"
     },

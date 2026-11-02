@@ -75,7 +75,7 @@
   .library-preview .yw-desktop-nav .ui-button { min-inline-size: 0; flex-direction: column; padding-inline: var(--space-1); }
 }
 
-/* Invariant's quiet selection, deliberate entrance, and spacious preview stage. */
+/* Highway's quiet selection, deliberate entrance, and spacious preview stage. */
 .library-reference { margin-top:var(--space-6); border-bottom:1px solid var(--line); padding-bottom:var(--space-5); }
 .library-reference summary { cursor:pointer; padding:var(--space-3) 0; }
 .library-reference pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:var(--type-body-sm); line-height:var(--leading-body-sm); color:var(--soft); margin-top:var(--space-4); }

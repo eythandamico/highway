@@ -5,8 +5,8 @@ import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "../../../packages/highway-react/src/components/ui/button";
-import { SegmentedControl } from "../../../packages/highway-react/src/invariant/components/segmented-control";
-import Icon from "../../../packages/highway-react/src/invariant/lib/icon";
+import { SegmentedControl } from "../../../packages/highway-react/src/components/segmented-control";
+import Icon from "../../../packages/highway-react/src/lib/icon";
 import "./library.css";
 const themeOptions = [{ id: "Light theme", icon: "sun" }, { id: "Dark theme", icon: "moon" }];
 export function LibraryShell({ children }: { children: React.ReactNode }) {

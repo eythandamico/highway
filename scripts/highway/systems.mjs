@@ -70,7 +70,7 @@ function focusedDeclaration(text, name) {
   return file.statements.filter(statement => selected.has(statement) || ts.isImportDeclaration(statement))
     .map(statement => printer.printNode(ts.EmitHint.Unspecified, statement, file)).join('\n');
 }
-const reference = { components: {}, examples: {}, supportingTypes: declarations['invariant/types.d.ts'] };
+const reference = { components: {}, examples: {}, supportingTypes: declarations['types.d.ts'] };
 for (const component of catalog.components) {
   const source = component.source.replace('packages/highway-react/src/', '').replace(/\.[jt]sx?$/, '') + '.d.ts';
   if (!declarations[source]) errors.push(`Missing declaration for ${component.export}`);

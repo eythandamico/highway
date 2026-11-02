@@ -1,7 +1,7 @@
 "use client";
 import { useExampleState } from "./example-state";
-import { AgentAvatar } from '../../../packages/highway-react/src/invariant/components/agent-avatar.jsx';
-import { ProfileAvatar, ProfileAvatarGroup } from '../../../packages/highway-react/src/invariant/components/profile-avatar.jsx';
+import { AgentAvatar } from '../../../packages/highway-react/src/components/agent-avatar.jsx';
+import { ProfileAvatar, ProfileAvatarGroup } from '../../../packages/highway-react/src/components/profile-avatar.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function ProfileAvatarExample() {
     const [avatarRounded] = useExampleState("avatarRounded", 'xl');

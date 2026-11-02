@@ -4,7 +4,7 @@ October 28, 2026. Local work; not published or deployed.
 
 ## Scope
 
-All 50 files in `packages/highway-react/src/invariant/components` were compared with the original Invariant component sources supplied by the owner. The comparison covered component markup, visual geometry, materials, emphasis, and motion, plus Highway’s shared CSS overrides. The original files were read only. Highway continues to contain its own implementation and has no runtime dependency on the original project.
+All 50 files in `packages/highway-react/src/components` were compared with the original Invariant component sources supplied by the owner. The comparison covered component markup, visual geometry, materials, emphasis, and motion, plus Highway’s shared CSS overrides. The original files were read only. Highway continues to contain its own implementation and has no runtime dependency on the original project.
 
 The previous family pass applied rules too broadly. Functional checks did not catch the resulting loss of visual detail. This pass restores authored component differences instead of treating every control, surface, and label as interchangeable.
 

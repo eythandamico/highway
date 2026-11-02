@@ -1,9 +1,9 @@
 "use client";
 import { useExampleState } from "./example-state";
-import { StepIndicator } from '../../../packages/highway-react/src/invariant/components/step-indicator.jsx';
-import { Badge } from '../../../packages/highway-react/src/invariant/components/badge.jsx';
-import { Alert } from '../../../packages/highway-react/src/invariant/components/alert.jsx';
-import { Progress } from '../../../packages/highway-react/src/invariant/components/progress.jsx';
+import { StepIndicator } from '../../../packages/highway-react/src/components/step-indicator.jsx';
+import { Badge } from '../../../packages/highway-react/src/components/badge.jsx';
+import { Alert } from '../../../packages/highway-react/src/components/alert.jsx';
+import { Progress } from '../../../packages/highway-react/src/components/progress.jsx';
 import { ComponentStage, ToastDemo } from "./preview-helpers.jsx";
 export function StepIndicatorExample() {
     const [stepVariant] = useExampleState("stepVariant", "default");

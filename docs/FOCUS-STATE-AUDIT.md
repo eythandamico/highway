@@ -22,7 +22,7 @@ The source scan covered canonical Invariant components, native primitives, share
 
 Focused Chromium checks use keyboard Tab on the direct preview routes. The SearchBar input stays unoutlined while its wrapper draws one 2px accent ring. SearchToggle keeps the collapsed trigger's outline inset in its clipped shell; when expanded, the shell owns the input ring. Invariant TextInput and Button retain visible focus outlines in normal and forced-colors modes.
 
-The focused Playwright regression in `tests/invariant-browser/focus-states.spec.ts` passed 1/1. Normal and forced-colors screenshots show the single SearchBar wrapper indicator:
+The focused Playwright regression in `tests/component-browser/focus-states.spec.ts` passed 1/1. Normal and forced-colors screenshots show the single SearchBar wrapper indicator:
 
 - [Normal keyboard focus](../artifacts/validation-screenshots/invariant-search-focus-normal.png)
 - [Forced-colors keyboard focus](../artifacts/validation-screenshots/invariant-search-focus-forced-colors.png)

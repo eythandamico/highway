@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ArrowDownToLine } from "lucide-react";
 import { Button } from "../../../packages/highway-react/src/components/ui/button";
-import { SegmentedControl } from "../../../packages/highway-react/src/invariant/components/segmented-control";
+import { SegmentedControl } from "../../../packages/highway-react/src/components/segmented-control";
 import { CodeExample } from "./code-example";
 const clients = [{id:"codex",label:"Codex"},{id:"claude",label:"Claude Code"},{id:"chatgpt",label:"ChatGPT"}];
 export function PluginSetup() {

@@ -16,7 +16,7 @@ const sourceDirectories = [
 const tokenFile = path.join(root, "packages/highway-styles/src/tokens.css");
 const issues = [];
 const filesOutsideLegacyDesignGuard = new Set([
-  path.join(root, "packages/highway-styles/src/invariant-theme.css"),
+  path.join(root, "packages/highway-styles/src/component-theme.css"),
   path.join(root, "packages/highway-styles/src/vendor/shadcn-tailwind-4.13.0.css"),
 ]);
 const legacyOwnership = new Map([

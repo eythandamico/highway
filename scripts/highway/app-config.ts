@@ -6,7 +6,9 @@ const repository = fileURLToPath(new URL("../../", import.meta.url));
 export function previewApp(directory: string) {
   return defineConfig({
     root: resolve(repository, directory),
-    cacheDir: process.env.HIGHWAY_TEST_CACHE_DIR ? resolve(process.env.HIGHWAY_TEST_CACHE_DIR) : undefined,
+    // Both apps share the root package.json; Vite's default cache would collide.
+    // Keep their optimized dependency graphs separate, including in isolated tests.
+    cacheDir: resolve(process.env.HIGHWAY_TEST_CACHE_DIR || resolve(repository, "node_modules/.cache/highway"), directory),
     publicDir: resolve(repository, "public"),
     plugins: [vinext()],
     define: {

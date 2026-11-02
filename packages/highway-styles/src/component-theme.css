@@ -1,0 +1,113 @@
+/* Compatibility names. tokens.css owns the Highway design system. Existing --inv-* aliases remain supported. */
+:root, .dark, [data-theme] {
+  --inv-bg: var(--background);
+  --inv-bg-alt: var(--secondary);
+  --inv-surface: var(--card);
+  --inv-accent: var(--ring);
+  --inv-accent-soft: var(--accent);
+  --inv-heading: var(--foreground);
+  --inv-body: var(--body-foreground);
+  --inv-muted: var(--muted-foreground);
+  --inv-border: var(--border);
+  --inv-input: var(--field-surface);
+  --inv-nav: var(--popover);
+  --inv-nav-text: var(--muted-foreground);
+  --inv-nav-text-active: var(--foreground);
+  --inv-nav-divider: var(--line);
+  --inv-nav-hover-bg: var(--secondary-hover);
+  --inv-menu-bg: var(--popover);
+  --inv-menu-text: var(--muted-foreground);
+  --inv-menu-text-active: var(--foreground);
+  --inv-menu-divider: var(--line);
+  --inv-menu-hover-bg: var(--secondary-hover);
+  --inv-shadow: var(--surface-shadow);
+  --inv-shadow-sm: var(--control-shadow);
+  --inv-shadow-sm-hover: var(--control-shadow-hover);
+  --inv-nav-shadow: var(--nav-shadow);
+  --inv-menu-shadow: var(--menu-shadow);
+  --inv-outline: var(--menu-edge);
+  --inv-radius: var(--radius-control);
+  --inv-font-display: var(--font-sans);
+  --inv-font-body: var(--font-sans);
+  --inv-text-xs: var(--type-caption);
+  --inv-text-sm: var(--type-body-sm);
+  --inv-text-base: var(--type-body);
+  --inv-text-lg: var(--type-subheading);
+  --inv-text-xl: var(--type-title);
+  --inv-space-xs: var(--space-1);
+  --inv-space-sm: var(--space-2);
+  --inv-space-md: var(--space-4);
+  --inv-space-lg: var(--space-6);
+  --inv-space-xl: var(--space-10);
+}
+
+/* Compatibility type styles consume the canonical complete roles. */
+.inv-display {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-display);
+  line-height: var(--leading-display);
+  font-weight: var(--weight-display);
+  color: var(--inv-heading);
+}
+.inv-title {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-heading-xl);
+  line-height: var(--leading-heading-xl);
+  font-weight: var(--weight-heading-xl);
+  color: var(--inv-heading);
+}
+.inv-heading {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-heading-lg);
+  line-height: var(--leading-heading-lg);
+  font-weight: var(--weight-heading-lg);
+  color: var(--inv-heading);
+}
+.inv-subheading {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-heading-md);
+  line-height: var(--leading-heading-md);
+  font-weight: var(--weight-heading-md);
+  color: var(--inv-heading);
+}
+.inv-body {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-body);
+  color: var(--inv-body);
+}
+.inv-body-sm {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-body-sm);
+  line-height: var(--leading-body-sm);
+  font-weight: var(--weight-body-sm);
+  color: var(--inv-body);
+}
+.inv-caption {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-caption);
+  line-height: var(--leading-caption);
+  font-weight: var(--weight-caption);
+  color: var(--inv-muted);
+}
+.inv-label {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-body);
+  color: var(--inv-heading);
+}
+.inv-overline {
+  font-family: var(--inv-font-body);
+  font-size: var(--type-micro);
+  line-height: var(--leading-micro);
+  font-weight: var(--weight-micro);
+  color: var(--inv-muted);
+}
+.inv-overline { letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Integration: preserve motion preferences and readable phone inputs. */
+@media (prefers-reduced-motion: reduce) {
+  .inv-scope *, .inv-scope *::before, .inv-scope *::after { animation:none !important; transition:none !important; }
+}

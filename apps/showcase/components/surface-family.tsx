@@ -7,17 +7,17 @@ import { Card as GlassCard, CardHeader, CardTitle, CardDescription, CardContent,
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogFooter } from "../../../packages/highway-react/src/components/ui/dialog";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent } from "../../../packages/highway-react/src/components/ui/dropdown-menu";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "../../../packages/highway-react/src/components/ui/sheet";
-import { Menu, MenuItem, MenuDivider } from "../../../packages/highway-react/src/invariant/components/menu";
-import { Card } from "../../../packages/highway-react/src/invariant/components/card";
-import { Surface } from "../../../packages/highway-react/src/invariant/components/surface";
-import { BottomNav } from "../../../packages/highway-react/src/invariant/components/bottom-nav";
-import { BottomSheet } from "../../../packages/highway-react/src/invariant/components/bottom-sheet";
-import { Modal } from "../../../packages/highway-react/src/invariant/components/modal";
-import { Dialog as LegacyDialog } from "../../../packages/highway-react/src/invariant/components/dialog";
-import { Accordion } from "../../../packages/highway-react/src/invariant/components/accordion";
-import { Alert } from "../../../packages/highway-react/src/invariant/components/alert";
-import { Progress } from "../../../packages/highway-react/src/invariant/components/progress";
-import { StepIndicator } from "../../../packages/highway-react/src/invariant/components/step-indicator";
+import { Menu, MenuItem, MenuDivider } from "../../../packages/highway-react/src/components/menu";
+import { Card } from "../../../packages/highway-react/src/components/card";
+import { Surface } from "../../../packages/highway-react/src/components/surface";
+import { BottomNav } from "../../../packages/highway-react/src/components/bottom-nav";
+import { BottomSheet } from "../../../packages/highway-react/src/components/bottom-sheet";
+import { Modal } from "../../../packages/highway-react/src/components/modal";
+import { Dialog as LegacyDialog } from "../../../packages/highway-react/src/components/dialog";
+import { Accordion } from "../../../packages/highway-react/src/components/accordion";
+import { Alert } from "../../../packages/highway-react/src/components/alert";
+import { Progress } from "../../../packages/highway-react/src/components/progress";
+import { StepIndicator } from "../../../packages/highway-react/src/components/step-indicator";
 import "./control-family.css";
 
 export function SurfaceFamily() {

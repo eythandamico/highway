@@ -4,9 +4,9 @@ import { Button } from "../../../packages/highway-react/src/components/ui/button
 import { Input } from "../../../packages/highway-react/src/components/ui/input";
 import { useExampleState } from "./example-state";
 import { previewFeedback } from './feedback.js';
-import { PromptBar } from '../../../packages/highway-react/src/invariant/components/prompt-bar.jsx';
-import { MessageBubble } from '../../../packages/highway-react/src/invariant/components/message-bubble.jsx';
-import { ImageCarousel } from '../../../packages/highway-react/src/invariant/components/image-carousel.jsx';
+import { PromptBar } from '../../../packages/highway-react/src/components/prompt-bar.jsx';
+import { MessageBubble } from '../../../packages/highway-react/src/components/message-bubble.jsx';
+import { ImageCarousel } from '../../../packages/highway-react/src/components/image-carousel.jsx';
 import { ComponentStage } from "./preview-helpers.jsx";
 export function MessageBubbleExample() {
     const [messageState] = useExampleState("messageState", 'default');

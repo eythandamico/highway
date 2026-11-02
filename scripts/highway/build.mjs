@@ -52,7 +52,7 @@ for (const file of await files(typesRoot)) {
 const scanner = new Scanner({ sources: [] });
 const candidates = scanner.scanFiles(await Promise.all(inputs.filter(file => /\.[jt]sx?$/.test(file)).map(async file => ({ content: await read(file), extension: path.extname(file).slice(1) }))));
 const utilities = await read("packages/highway-styles/src/utilities.css");
-const common = ["tokens.css", "typography.css", "controls.css", "foundation.css", "invariant-theme.css", "number-ticker.css"].map(file => `packages/highway-styles/src/${file}`);
+const common = ["tokens.css", "typography.css", "controls.css", "foundation.css", "component-theme.css", "number-ticker.css"].map(file => `packages/highway-styles/src/${file}`);
 const imports = [...common, ...[...cssFiles].map(file => path.relative(root, file))].map(file => `@import "./${file}";`).join("\n");
 const compiler = await compile(`@import "tailwindcss" source(none);\n@import "tw-animate-css";\n@import "./packages/highway-styles/src/vendor/shadcn-tailwind-4.13.0.css";\n${imports}\n${utilities}`, { base: root, onDependency() {} });
 function scopeCSS(css) {
@@ -79,7 +79,7 @@ const tokens = (await read("packages/highway-styles/src/tokens.css")) + "\n" + (
 const tokenCompiler = await compile(tokens, { base: root, onDependency() {} });
 await writeFile(path.join(stylesDir, "dist/tokens.css"), scopeCSS(tokenCompiler.build([])));
 await writeFile(path.join(stylesDir, "dist/effects.css"), scopeCSS(tokenCompiler.build([]) + "\n" + await read("packages/highway-react/src/components/visual/visual-effects.css")));
-const notices = "# Third-party notices\n\nHighway includes adapted Invariant UI code under the following license. Other dependencies retain their respective licenses.\n\n" + await read("packages/highway-react/src/invariant/LICENSE");
+const notices = "# Third-party notices\n\nHighway includes adapted Invariant UI code under the following license. Other dependencies retain their respective licenses.\n\n" + await read("packages/highway-react/INVARIANT-LICENSE");
 for (const directory of [reactDir, stylesDir]) await writeFile(path.join(directory, "THIRD-PARTY-NOTICES.md"), notices);
 await writeFile(path.join(reactDir, "dist/build-manifest.json"), JSON.stringify({ version: manifest.version, sourceFiles: inputs.sort(), externalDependencies: externals.sort() }, null, 2));
 console.log(`Built ${manifest.name}@${manifest.version}: ${inputs.length} shared source modules, ${candidates.length} CSS candidates. No application runtime.`);

@@ -50,7 +50,7 @@ async function expectRenderedSize(locator: import("@playwright/test").Locator, w
   }).toEqual({ width, height });
 }
 
-test("Invariant Menu preserves original row geometry, roving focus, and destructive meaning", async ({ page }, testInfo) => {
+test("Highway Menu preserves original row geometry, roving focus, and destructive meaning", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Menu keyboard and theme contracts run once on desktop.");
   await openSurfaceFamily(page);
 

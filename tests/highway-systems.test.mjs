@@ -155,9 +155,9 @@ test('quality guard accepts the inventoried baseline and rejects a new style vio
 
   const baseline = invoke(root, script);
   assert.equal(baseline.status, 0, baseline.stderr || baseline.stdout);
-  const source = path.join(root, 'packages/highway-react/src/invariant/components/alert.jsx');
+  const source = path.join(root, 'packages/highway-react/src/components/alert.jsx');
   writeFileSync(source, `${readFileSync(source, 'utf8')}\n// New style debt: transition-all.\n`);
   const guard = await import(`${pathToFileURL(path.join(root, script)).href}?injected=1`);
-  assert.ok(guard.findings().some(item => item.file === 'packages/highway-react/src/invariant/components/alert.jsx' && item.rule === 'transition-all' && item.match === 'transition-all'));
+  assert.ok(guard.findings().some(item => item.file === 'packages/highway-react/src/components/alert.jsx' && item.rule === 'transition-all' && item.match === 'transition-all'));
   assertFails(invoke(root, script), /Quality guard failed:[\s\S]*transition-all/);
 });

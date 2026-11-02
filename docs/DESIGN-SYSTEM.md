@@ -79,7 +79,7 @@ Run `npm run check:ui` for static guards and builds; `npm run test:ui` for brows
 
 ## One library, Invariant styling
 
-`packages/highway-styles/src/tokens.css` owns Invariant's palette, shadows, geometry and motion. `packages/highway-styles/src/typography.css` owns its rem type scale with phone input minimums. `packages/invariant-ui/tokens/theme.css` contains compatibility aliases, not another palette. Both app and isolated preview import these same owners.
+`packages/highway-styles/src/tokens.css` owns Highway's palette, shadows, geometry and motion. `packages/highway-styles/src/typography.css` owns its rem type scale with phone input minimums. `packages/highway-compat/tokens/theme.css` contains compatibility aliases, not another palette. Both app and isolated preview import these same owners.
 
 Import from `components/library` or individual modules. Button, Switch/Toggle, TextInput/Input and Textarea use the same production primitives. Compatibility wrappers preserve original Invariant prop names. Specialized Invariant components remain at their source locations; they consume the unified tokens and type scale. Use FormDialog for pending/error-protected forms. Legacy showcase URLs continue to work; the catalogue no longer splits by collection. `docs/INVARIANT-INTEGRATION.md` records provenance and limits.
 
@@ -124,9 +124,9 @@ Changes to these relationships belong in package CSS and primitives. Do not copy
 
 Review `/components/surfaces` or Storybook **Foundation / Surface family** alongside the control family. Both render package-owned implementations.
 
-- Menus use the 16px panel radius with an 8px inset and an 8px concentric row radius. Plain, checkbox, radio and submenu rows use the 32px `--space-8` minimum and expand for wrapped labels. Checkmark gutters stay reserved; destructive meaning survives highlighting. Invariant menus own their row geometry and materials independently; do not impose native row minimums, opaque fills, or trigger-relative width on them.
-- GlassCard keeps its wash, rim, blur and shadow recipe. Its content can shrink and wrap; footer actions wrap; header actions move below text on narrow screens. Invariant cards retain their opaque/gradient/video identity. Decorative SVGs are hidden from assistive technology. Video cards support pause/play and respect reduced-motion autoplay preferences.
-- Dialogs and sheets retain opaque readable bases, their focus-management owner and scoped portals. Native close controls retain their targets; Invariant close/media controls retain their authored geometry and keyboard access. Legacy dialog/modal panels scroll within the viewport and action groups wrap. Bottom-sheet page transforms respect reduced motion and remain scoped to the caller's pageTarget.
+- Menus use the 16px panel radius with an 8px inset and an 8px concentric row radius. Plain, checkbox, radio and submenu rows use the 32px `--space-8` minimum and expand for wrapped labels. Checkmark gutters stay reserved; destructive meaning survives highlighting. Menu components own their row geometry and materials independently; do not impose native row minimums, opaque fills, or trigger-relative width on them.
+- GlassCard keeps its wash, rim, blur and shadow recipe. Its content can shrink and wrap; footer actions wrap; header actions move below text on narrow screens. Card components retain their opaque/gradient/video identity. Decorative SVGs are hidden from assistive technology. Video cards support pause/play and respect reduced-motion autoplay preferences.
+- Dialogs and sheets retain opaque readable bases, their focus-management owner and scoped portals. Native close controls retain their targets; specialized close/media controls retain their authored geometry and keyboard access. Legacy dialog/modal panels scroll within the viewport and action groups wrap. Bottom-sheet page transforms respect reduced motion and remain scoped to the caller's pageTarget.
 - Accordion expansion preserves the existing choreography while observing changing content size. Closed panels are inert and hidden from accessibility navigation; triggers announce expanded state and reference their panel.
 - Alerts use semantic status colors, guard repeated dismissal and cancel owned timers on unmount. A success alert is not proof of a host operation; the host still chooses when to render it.
 - Remaining inherited motion durations are centralized without changing their values. Navigation, carousel, message shimmer, progress, skeleton and toast recipes retain distinct timings. Do not use one global speed for unrelated functions.
@@ -141,7 +141,7 @@ Shared tokens describe materials, type roles, and motion recipes; they do not re
 
 Use `highway-weight-regular`, `highway-weight-medium`, or `highway-weight-semibold` when a component needs explicit emphasis within a type role. These opt-in utilities preserve the approved 400/500/600 scale. Do not depend on a layered font utility to override an unlayered complete type role.
 
-Native action buttons retain their established target sizes. Compact Invariant controls and media/close controls retain their authored visible geometry; assess their actual hit area, spacing, keyboard support, and mobile use per component. Do not inflate all layouts with a shared minimum-width rule. Record any accessibility tradeoff instead of claiming that visual parity proves accessibility.
+Native action buttons retain their established target sizes. Compact Highway controls and media/close controls retain their authored visible geometry; assess their actual hit area, spacing, keyboard support, and mobile use per component. Do not inflate all layouts with a shared minimum-width rule. Record any accessibility tradeoff instead of claiming that visual parity proves accessibility.
 
 Before changing shared CSS, inspect every matching component and compare representative states visually, including open menus, translucent materials, active/pressed controls, long labels, and reduced motion. Functional passes alone do not establish visual fidelity. See [the restoration audit](INVARIANT-DETAIL-RESTORATION.md).
 

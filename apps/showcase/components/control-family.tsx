@@ -8,8 +8,8 @@ import { NativeSelect } from "../../../packages/highway-react/src/components/ui/
 import { Switch } from "../../../packages/highway-react/src/components/ui/switch";
 import { Checkbox } from "../../../packages/highway-react/src/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "../../../packages/highway-react/src/components/ui/radio-group";
-import { SegmentedControl } from "../../../packages/highway-react/src/invariant/components/segmented-control";
-import { SliderInput } from "../../../packages/highway-react/src/invariant/components/slider-input";
+import { SegmentedControl } from "../../../packages/highway-react/src/components/segmented-control";
+import { SliderInput } from "../../../packages/highway-react/src/components/slider-input";
 import "./control-family.css";
 
 /** Review surface only: all controls are their canonical package owners. */

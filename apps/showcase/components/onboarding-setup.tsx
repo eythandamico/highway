@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Tabs } from "../../../packages/highway-react/src/invariant/components/tabs";
+import { Tabs } from "../../../packages/highway-react/src/components/tabs";
 import { CodeExample } from "./code-example";
 
 const projects = [{ id: "new", label: "New project" }, { id: "existing", label: "Existing project" }];
